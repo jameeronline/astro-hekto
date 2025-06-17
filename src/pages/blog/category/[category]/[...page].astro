@@ -1,0 +1,75 @@
+---
+import { getCollection } from "astro:content";
+
+import BaseLayout from "@layouts/BaseLayout.astro";
+import BlogGrid from "@blocks/BlogGrid.astro";
+import TagFilter from "@components/TagFilter.astro";
+import Paginate from '@components/Paginate.astro';
+
+import { slugify } from "@utils/helper";
+
+export async function getStaticPaths({ paginate }) {
+  const posts = await getCollection("posts");
+
+  // Collect all unique categories from posts
+  const categoriesSet = new Set();
+  posts.forEach((post) => {
+    if (Array.isArray(post.data.categories)) {
+      post.data.categories.forEach((category) => categoriesSet.add(category));
+    }
+  });
+
+  // Generate a path for each unique category, passing only posts related to that category
+  return Array.from(categoriesSet)
+    .map((category) => {
+      const filteredPosts = posts.filter(
+        (post) =>
+          Array.isArray(post.data.categories) &&
+          post.data.categories.some((cat) => slugify(cat) === slugify(category))
+      );
+
+      return paginate(filteredPosts, {
+        params: { category: slugify(category as string) },
+        props: { posts: filteredPosts, categoryName: category },
+        pageSize: 2, // Adjust page size as needed
+      });
+    })
+    .flat();
+}
+
+const { category } = Astro.params;
+const { posts, categoryName, page } = Astro.props;
+
+const selected = "all";
+
+const noPosts = !page || page.data.length === 0;
+---
+
+<BaseLayout pageTitle={selected}>
+  <section class="py-16">
+
+
+<header class="mx-auto flex max-w-screen-md flex-col items-center gap-2 mb-10">
+  <span class="text-caption">Posts in category</span>
+  <h2 class="mb-4 text-center text-2xl font-semibold">
+    <span class="capitalize">"{category}"</span>
+  </h2>
+</header>
+    <!-- <TagFilter selected={selected} /> -->
+    {
+      noPosts ? (
+        <div class="text-red-600 py-8 text-center font-semibold">
+          No posts found for category: {categoryName}
+        </div>
+      ) : (
+        <BlogGrid posts={page.data} />
+        <Paginate 
+            currentPage={page.currentPage} 
+            lastPage={page.lastPage} 
+            prevUrl={page.url.prev} 
+            nextUrl={page.url.next}
+        />
+      )
+    }
+  </section>
+</BaseLayout>

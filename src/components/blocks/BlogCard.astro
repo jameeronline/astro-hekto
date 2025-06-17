@@ -1,0 +1,53 @@
+---
+//astro import
+import Image from "astro/components/Image.astro";
+
+//components import
+// import Badge from "./ui/Badge.astro";
+import { Badge } from "@/starwind/badge";
+
+// utils import
+import { slugify } from "@/utils/helper";
+
+// Astro props
+const { post, url = "#" } = Astro.props;
+console.log(post);
+
+// get tags and categories from post
+// const tags = post.tags.map((tag: string) => tag.trim());
+// const categories = post.categories.map((category: string) => category.trim());
+const category = post.category;
+---
+
+<article class="rounded-xl transition-all">
+  <a href={`/blog/${url}`}>
+    <div class="relative overflow-hidden bg-cover bg-no-repeat rounded-lg mb-8">
+      <Image
+        class="object-cover object-center aspect-video w-full bg-slate-50 transition duration-300 ease-in-out hover:scale-110 dark:bg-transparent"
+        src={post.image}
+        alt={post.title}
+        format="webp"
+        loading="lazy"
+        width={1600}
+        height={900}
+      />
+    </div>
+
+    <h3
+      class="mb-6 text-xl font-heading font-semibold leading-snug text-tertiary-900 lg:text-3xl dark:text-slate-100"
+    >
+      {post.title}
+    </h3>
+    <p
+      class="leading-relaxed text-emphasis-500 line-clamp-3 dark:text-slate-400"
+    >
+      {post.description}
+    </p>
+  </a>
+
+  <a href={`/blog/${url}`} class="font-lg">Read More</a>
+
+  <div class="mt-6 flex gap-4">
+    <Badge href={`/blog/category/${slugify(category)}`}>{category}</Badge>
+  </div>
+</article>

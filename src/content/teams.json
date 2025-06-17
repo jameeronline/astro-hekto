@@ -1,0 +1,117 @@
+[
+  {
+    "id": 1,
+    "name": "Karl Johnson",
+    "email": "karl.johnson@example.com",
+    "gender": "male",
+    "country": "United States",
+    "role": "Developer",
+    "description": "Full-stack developer with a passion for scalable web applications.",
+    "socialLinks": [
+      { "type": "linkedin", "url": "https://linkedin.com/in/karljohnson" },
+      { "type": "github", "url": "https://github.com/karljohnson" },
+      { "type": "dribble", "url": "https://dribbble.com/karljohnson" }
+    ],
+    "picture": "https://randomuser.me/api/portraits/men/6.jpg"
+  },
+  {
+    "id": 2,
+    "name": "Jezdimir Popović",
+    "email": "jezdimir.popovic@example.com",
+    "gender": "male",
+    "country": "Serbia",
+    "role": "UI/UX Designer",
+    "description": "Expert in user experience and interface design.",
+    "socialLinks": [
+      { "type": "linkedin", "url": "https://linkedin.com/in/jezdimirpopovic" },
+      { "type": "github", "url": "https://github.com/jezdimirpopovic" },
+      { "type": "dribble", "url": "https://dribbble.com/jezdimirpopovic" }
+    ],
+    "picture": "https://randomuser.me/api/portraits/men/64.jpg"
+  },
+  {
+    "id": 3,
+    "name": "Elli Hatala",
+    "email": "elli.hatala@example.com",
+    "gender": "female",
+    "country": "Finland",
+    "role": "Project Manager",
+    "description": "Experienced project manager ensuring timely delivery.",
+    "socialLinks": [
+      { "type": "linkedin", "url": "https://linkedin.com/in/ellihatala" },
+      { "type": "github", "url": "https://github.com/ellihatala" },
+      { "type": "dribble", "url": "https://dribbble.com/ellihatala" }
+    ],
+    "picture": "https://randomuser.me/api/portraits/women/55.jpg"
+  },
+  {
+    "id": 4,
+    "name": "Deniz Topçuoğlu",
+    "email": "deniz.topcuoglu@example.com",
+    "gender": "female",
+    "country": "Turkey",
+    "role": "Backend Engineer",
+    "description": "Specialist in APIs and server-side logic.",
+    "socialLinks": [
+      { "type": "linkedin", "url": "https://linkedin.com/in/deniztopcuoglu" },
+      { "type": "github", "url": "https://github.com/deniztopcuoglu" },
+      { "type": "dribble", "url": "https://dribbble.com/deniztopcuoglu" }
+    ],
+    "picture": "https://randomuser.me/api/portraits/women/64.jpg"
+  },
+  {
+    "id": 5,
+    "name": "Margot Roche",
+    "email": "margot.roche@example.com",
+    "gender": "female",
+    "country": "Switzerland",
+    "role": "Frontend Engineer",
+    "description": "Frontend specialist with a keen eye for detail.",
+    "socialLinks": [
+      { "type": "linkedin", "url": "https://linkedin.com/in/margotroche" },
+      { "type": "github", "url": "https://github.com/margotroche" },
+      { "type": "dribble", "url": "https://dribbble.com/margotroche" }
+    ],
+    "picture": "https://randomuser.me/api/portraits/women/21.jpg"
+  },
+  {
+    "id": 6,
+    "name": "Lucas Meyer",
+    "email": "lucas.meyer@example.com",
+    "gender": "male",
+    "country": "Germany",
+    "role": "DevOps Engineer",
+    "description": "Automation and cloud infrastructure expert.",
+    "socialLinks": [
+      { "type": "linkedin", "url": "https://linkedin.com/in/lucasmeyer" },
+      { "type": "github", "url": "https://github.com/lucasmeyer" }
+    ],
+    "picture": "https://randomuser.me/api/portraits/men/23.jpg"
+  },
+  {
+    "id": 7,
+    "name": "Priya Sharma",
+    "email": "priya.sharma@example.com",
+    "gender": "female",
+    "country": "India",
+    "role": "QA Engineer",
+    "description": "Ensures product quality through rigorous testing.",
+    "socialLinks": [
+      { "type": "linkedin", "url": "https://linkedin.com/in/priyasharma" }
+    ],
+    "picture": "https://randomuser.me/api/portraits/women/45.jpg"
+  },
+  {
+    "id": 8,
+    "name": "Mateo García",
+    "email": "mateo.garcia@example.com",
+    "gender": "male",
+    "country": "Spain",
+    "role": "Mobile Developer",
+    "description": "Builds performant mobile applications.",
+    "socialLinks": [
+      { "type": "github", "url": "https://github.com/mateogarcia" }
+    ],
+    "picture": "https://randomuser.me/api/portraits/men/34.jpg"
+  }
+]

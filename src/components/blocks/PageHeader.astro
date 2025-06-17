@@ -1,0 +1,50 @@
+---
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/starwind/breadcrumb";
+
+interface Props {
+  title: string;
+  caption: string;
+  description: string;
+}
+
+const { headerInfo }: Props = Astro.props;
+const { title, caption, description } = headerInfo || {
+  title: "",
+  caption: "",
+  description: "",
+};
+---
+
+<header class="bg-brand-50 h-64 flex flex-col justify-center">
+  <div class="xl:container px-6 mx-auto">
+    <h1 class="text-4xl font-heading font-semibold mb-2">{title}</h1>
+
+    <Breadcrumb>
+      <BreadcrumbList>
+        <BreadcrumbItem>
+          <BreadcrumbLink href="/">Home</BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbSeparator>/</BreadcrumbSeparator>
+        <BreadcrumbItem>
+          <BreadcrumbLink href="/components">Page</BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbSeparator>/</BreadcrumbSeparator>
+        <BreadcrumbItem class="text-primary-500">
+          <BreadcrumbPage>{caption || title}</BreadcrumbPage>
+        </BreadcrumbItem>
+      </BreadcrumbList>
+    </Breadcrumb>
+  </div>
+</header>
+
+<style>
+  .page-header {
+  }
+</style>

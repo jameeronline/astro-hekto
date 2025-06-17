@@ -1,0 +1,75 @@
+---
+//astro imports
+import { getCollection } from "astro:content";
+
+//components import
+import BaseLayout from "@layouts/BaseLayout.astro";
+import BlogGrid from "@blocks/BlogGrid.astro";
+import TagFilter from "@components/TagFilter.astro";
+import Paginate from "@components/Paginate.astro";
+
+//utils import
+import { slugify } from "@utils/helper";
+
+//generate static paths
+export async function getStaticPaths({ paginate }) {
+  const posts = await getCollection("posts");
+
+  // Collect all unique tags from posts
+  const tagsSet = new Set();
+  posts.forEach((post) => {
+    if (Array.isArray(post.data.tags)) {
+      post.data.tags.forEach((tag) => tagsSet.add(tag));
+    }
+  });
+
+  // Generate a path for each unique category, passing only posts related to that category
+  return Array.from(tagsSet)
+    .map((tag) => {
+      const filteredPosts = posts.filter(
+        (post) =>
+          Array.isArray(post.data.tags) &&
+          post.data.tags.some((cat) => slugify(cat) === slugify(tag))
+      );
+
+      return paginate(filteredPosts, {
+        params: { tag: slugify(tag as string) },
+        props: { posts: filteredPosts, tagName: tag },
+        pageSize: 2, // Adjust page size as needed
+      });
+    })
+    .flat();
+}
+
+const { tag } = Astro.params;
+const { posts, tagName, page } = Astro.props;
+
+// const filteredPosts = await getCollection(
+//   "posts",
+//   ({ data }) =>
+//     Array.isArray(data.tags) && data.tags.includes(tagName as string)
+// );
+
+const noPosts = !page || page.data.length === 0;
+---
+
+<BaseLayout pageTitle={tagName}>
+  <section class="py-16">
+    <TagFilter selected={tagName} />
+    {
+      noPosts ? (
+        <div class="text-red-600 py-8 text-center font-semibold">
+          No posts found for tag: {tagName}
+        </div>
+      ) : (
+        <BlogGrid posts={page.data} />
+        <Paginate 
+            currentPage={page.currentPage} 
+            lastPage={page.lastPage} 
+            prevUrl={page.url.prev} 
+            nextUrl={page.url.next}
+        />
+      )
+    }
+  </section>
+</BaseLayout>

@@ -1,0 +1,90 @@
+---
+//icon import
+import { Icon } from "astro-icon/components";
+
+//variables
+const partners = [
+  {
+    title: "Dribbble",
+    img: "dribbble-logo",
+    link: "#",
+  },
+  {
+    title: "Dropbox",
+    img: "dropbox-logo",
+    link: "#",
+  },
+  {
+    title: "GitHub",
+    img: "github-logo",
+    link: "#",
+  },
+  {
+    title: "Jira Software",
+    img: "jira-software-logo",
+    link: "#",
+  },
+  {
+    title: "Miro",
+    img: "miro-logo",
+    link: "#",
+  },
+  {
+    title: "Pingdom",
+    img: "pingdom-logo",
+    link: "#",
+  },
+  {
+    title: "Unsplash",
+    img: "unsplash-logo",
+    link: "#",
+  },
+  {
+    title: "Webflow",
+    img: "webflow-logo",
+    link: "#",
+  },
+  {
+    title: "Wix",
+    img: "wix-logo",
+    link: "#",
+  },
+  {
+    title: "Zendesk",
+    img: "zendesk-logo",
+    link: "#",
+  },
+];
+---
+
+---
+<!-- START - Partners -->
+<section class="my-14 xl:my-24">
+  <div class="container px-6 mx-auto">
+    <!-- Component: Carousel with controls inside -->
+    <div class="relative xl:w-4/5 mx-auto" id="glide-partners">
+      <!-- Slides -->
+      <div class="overflow-hidden" data-glide-el="track">
+        <ul
+          class="relative w-full overflow-hidden p-0 whitespace-no-wrap flex flex-no-wrap [backface-visibility: hidden] [transform-style: preserve-3d] [touch-action: pan-Y] [will-change: transform]"
+        >
+          {
+            partners.map((partner) => (
+              <li class="flex items-center" title={partner.title}>
+                <a href={partner.link} target="_blank" rel="external">
+                  <Icon
+                    name={`logos/${partner.img}`}
+                    class="w-40 m-auto grayscale opacity-70 transition duration-300 hover:grayscale-0 hover:opacity-90"
+                  />
+                  <span class="sr-only">{partner.title}</span>
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+    <!-- End Carousel with controls inside -->
+  </div>
+</section>
+<!-- END - Partners -->

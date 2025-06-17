@@ -1,0 +1,18 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+//components import
+import PageHeader from "@/components/blocks/PageHeader.astro";
+
+// page header details
+const pageHeader = {
+  title: "Page Types",
+  caption: "Blog index",
+  description:
+    "Explore our latest articles, tutorials, and insights on web development, Astro, and more. Stay updated with tips, guides, and case studies from our team.",
+};
+---
+
+<BaseLayout>
+  <PageHeader headerInfo={pageHeader} slot="pageHeader" />
+</BaseLayout>

@@ -1,0 +1,59 @@
+---
+// styles imports
+import "@/styles/global.css";
+
+//components imports
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+// import CTA from "@blocks/CTA.astro";
+
+//fonts import
+import "@fontsource-variable/josefin-sans";
+import "@fontsource/lato";
+
+//scripts imports
+// import LocalScript from "@components/scripts/LocalScript.astro";
+
+//site config imports
+// import { siteConfig } from "@config/siteconfig.ts";
+
+//page meta data imports
+// const { title = siteConfig.title } = Astro.props;
+
+import { ClientRouter } from "astro:transitions";
+import LocalScript from "@/components/scripts/LocalScript.astro";
+
+const title = "Astro E Commerce | Hekto App";
+---
+
+<html lang="en" class="h-full scroll-animation scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <title>{title}</title>
+    <ClientRouter />
+  </head>
+  <body
+    class="relative h-full font-body font-normal text-gray-900 dark:bg-slate-900 dark:text-slate-50"
+  >
+    <div class="grid grid-cols-1 grid-rows-[auto_1fr_auto] h-full">
+      <Header />
+      <slot name="pageHeader" />
+      <!-- <main class="w-full xl:container mx-auto px-4 py-6 md:py-14"> -->
+      <main>
+        <slot />
+      </main>
+      <Footer />
+      <LocalScript />
+    </div>
+    <script>
+      //   import "../scripts/menu.js";
+      //   import "../scripts/vendor.js";
+      //   import { Observer } from "tailwindcss-intersect";
+      //   Observer.start();
+    </script>
+  </body>
+</html>

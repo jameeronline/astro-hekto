@@ -1,16 +1,29 @@
 ---
+//layout imports
+import BaseLayout from "@/layouts/BaseLayout.astro";
 
+//blocks imports
+import HomeBanner from "@/components/blocks/home/HomeBanner.astro";
+import FeaturedProducts from "@/components/blocks/home/FeaturedProducts.astro";
+import LatestProducts from "@/components/blocks/home/LatestProducts.astro";
+import LatestBlog from "@/components/blocks/home/LatestBlog.astro";
+import Offers from "@/components/blocks/home/Offers.astro";
+import TrendingBanner from "@/components/blocks/home/TrendingBanner.astro";
+import TrendingProducts from "@/components/blocks/home/TrendingProducts.astro";
+import TopCategories from "@/components/blocks/home/TopCategories.astro";
+import Newsletter from "@/components/blocks/home/Newsletter.astro";
+import Partners from "@/components/blocks/home/Partners.astro";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout>
+  <HomeBanner />
+  <FeaturedProducts />
+  <LatestProducts />
+  <Offers />
+  <TrendingBanner />
+  <TrendingProducts />
+  <TopCategories />
+  <Newsletter />
+  <Partners />
+  <LatestBlog />
+</BaseLayout>

@@ -1,0 +1,155 @@
+---
+//astro imports
+import { Image } from "astro:assets";
+import { Breadcrumbs } from "astro-breadcrumbs";
+import { getCollection, getEntry, render } from "astro:content";
+
+//components import
+import BaseLayout from "@/layouts/BaseLayout.astro";
+// import BlogAside from "@blocks/BlogAside.astro";
+// import BlogGrid from "@blocks/BlogGrid.astro";
+// import Badge from "@components/ui/Badge.astro";
+// import BackButton from "@components/BackButton.astro";
+// import RelatedBlogCard from "@components/RelatedBlogCard.astro";
+
+//icons import
+import { ArrowLeft } from "@lucide/astro";
+
+//vendor style imports
+// import "astro-breadcrumbs/breadcrumbs.css";
+
+//utils import
+import { slugify, formatDate } from "@/utils/helper";
+
+//define static paths for dynamic routing
+export async function getStaticPaths() {
+  const posts = await getCollection("posts");
+  return posts.map((post) => ({
+    params: { slug: slugify(post.data.title) },
+    props: { id: post.id, posts: posts },
+  }));
+}
+
+const { slug } = Astro.params;
+const { id, posts } = Astro.props;
+
+// Fetch the post entry using the ID from the dynamic route
+const post = await getEntry("posts", id);
+
+// If the post is not found, throw an error
+if (!post) {
+  throw new Error("Post not found");
+}
+
+// Extract data and content from the post
+const { data } = post;
+const { Content, headings } = await render(post);
+
+const tags = data.tags.map((tag) => tag.trim());
+const categories = data.categories.map((category) => category.trim());
+
+// Get related posts: share at least one tag or category, exclude current post
+const relatedPosts = posts
+  .filter(
+    (p) =>
+      p.id !== post.id &&
+      (p.data.tags.some((tag) => tags.includes(tag.trim())) ||
+        p.data.categories.some((cat) => categories.includes(cat.trim())))
+  )
+  .slice(0, 4); // Limit to 4
+
+//access data properties
+const { title, description, image, pubDate, author } = data;
+---
+
+<BaseLayout title={title}>
+  <section>
+    <header
+      class="prose dark:prose-invert max-w-none lg:prose-lg prose-h1:leading-[1.2] prose-h1:mb-4 md:prose-h1:mb-4 prose-p:my-2 mb-8"
+    >
+      <div
+        class="grid grid-cols-4 gap-6 md:grid-cols-8 md:gap-12 lg:grid-cols-12"
+      >
+        <div class="col-span-4 md:col-span-12 text-center">
+          <!-- <Breadcrumbs /> -->
+          <!-- <BackButton label="Back to blog" href="/blog" data-scroll-animate /> -->
+
+          <div
+            class="flex items-center justify-center flex-wrap gap-2 mb-4 mt-4 md:mb-6"
+          >
+            {
+              categories.map((category, index) => (
+                <Badge
+                  key={index}
+                  label={category}
+                  href={`/blog/category/${slugify(category)}`}
+                />
+              ))
+            }
+          </div>
+
+          <h1 data-scroll-animate>{title}</h1>
+
+          <p class="text-gray-500 text-sm" data-scroll-animate>
+            Written by {author} on {formatDate(pubDate)}
+          </p>
+        </div>
+      </div>
+    </header>
+    <div
+      class="grid grid-cols-4 gap-6 md:grid-cols-8 md:gap-12 lg:grid-cols-12"
+    >
+      <div class="col-span-4 md:col-span-8 lg:col-span-9">
+        <article>
+          <figure data-scroll-animate>
+            <div class="relative">
+              <Image
+                src={image.url}
+                alt={title}
+                width={1600}
+                height={900}
+                class="w-full rounded-xl object-cover object-center"
+              />
+            </div>
+            <figcaption class="sr-only">{image.alt}</figcaption>
+          </figure>
+
+          <!-- Summary -->
+          <p
+            class="text-xl md:text-2xl text-gray-600 my-10"
+            data-scroll-animate
+          >
+            {description}
+          </p>
+
+          <div
+            class="prose lg:prose-lg max-w-none dark:prose-invert"
+            data-scroll-animate
+          >
+            <Content />
+          </div>
+        </article>
+      </div>
+
+      <div class="col-span-4 hidden lg:col-span-3 lg:block" data-scroll-animate>
+        <BlogAside headings={headings} tags={tags} categories={categories} />
+      </div>
+    </div>
+    {
+      relatedPosts.length > 0 && (
+        <footer class="my-16">
+          <h3 class="text-xl font-bold mb-8">Related Posts</h3>
+          <div class="grid grid-cols-4 gap-6 md:grid-cols-8 md:gap-10 lg:grid-cols-12">
+            {relatedPosts.map((post) => (
+              <RelatedBlogCard
+                post={post}
+                url={slugify(post.data.title)}
+                data-scroll-animate
+              />
+            ))}
+          </div>
+        </footer>
+      )
+    }
+  </section>
+</BaseLayout>

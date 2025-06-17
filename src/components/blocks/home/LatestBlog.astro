@@ -1,0 +1,104 @@
+---
+//astro imports
+import { Image } from "astro:assets";
+import { Icon } from "astro-icon/components";
+
+//components import
+import SectionHeader from "@/components/atoms/SectionHeader.astro";
+
+//blog images
+import Blog1 from "@/assets/images/latest-blog-1.jpg";
+import Blog2 from "@/assets/images/latest-blog-2.jpg";
+import Blog3 from "@/assets/images/latest-blog-3.jpg";
+
+//data values
+const blogs = [
+  {
+    image: Blog1,
+    author: "SaberAli",
+    date: "21 August, 2020",
+    title: "Top Essential Trends in 2021",
+    description:
+      "Following the journey of history and culture, is a journey through the beautiful green rice paddies, and endless golden fields! Dotted amongst the countryside are bustling towns, with a vibrant atmosphere and great cafe culture.",
+    link: "#",
+  },
+  {
+    image: Blog2,
+    author: "SaberAli",
+    date: "21 August, 2020",
+    title: "Top Essential Trends in 2021",
+    description:
+      "Following the journey of history and culture, is a journey through the beautiful green rice paddies, and endless golden fields! Dotted amongst the countryside are bustling towns, with a vibrant atmosphere and great cafe culture.",
+    link: "#",
+  },
+  {
+    image: Blog3,
+    author: "SaberAli",
+    date: "21 August, 2020",
+    title: "Top Essential Trends in 2021",
+    description:
+      "Following the journey of history and culture, is a journey through the beautiful green rice paddies, and endless golden fields! Dotted amongst the countryside are bustling towns, with a vibrant atmosphere and great cafe culture.",
+    link: "#",
+  },
+];
+---
+
+<!-- START - Latest Blogs -->
+<section class="my-24">
+  <div class="xl:container px-6 mx-auto">
+    <SectionHeader title="Latest Blog" />
+    <div
+      class="grid grid-cols-4 gap-8 md:grid-cols-8 lg:grid-cols-12 lg:gap-14"
+      data-scroll-animate
+    >
+      {
+        blogs.map((blog) => (
+          <div class="col-span-4" data-scroll-animate>
+            <article class="overflow-hidden bg-white rounded-lg shadow-[0px_8px_40px_0px_rgba(0,0,0,0.05)] text-slate-500">
+              <figure class="overflow-hidden group">
+                <Image
+                  src={blog.image}
+                  alt="card image"
+                  width={1600}
+                  height={900}
+                  loading="lazy"
+                  format="webp"
+                  class="aspect-video w-full rounded-lg transition-transform duration-300 group-hover:scale-125"
+                />
+              </figure>
+              <div class="px-6 pt-5 pb-9">
+                <div class="flex gap-8 mb-8 text-tertiary-950">
+                  <span class="inline-flex items-center gap-1">
+                    <Icon name="pen" class="size-3" />
+                    {blog.author}
+                  </span>
+                  <span class="inline-flex items-center gap-1">
+                    <Icon name="calendar" class="size-4" />
+                    {blog.date}
+                  </span>
+                </div>
+                <header class="flex gap-4 mb-4">
+                  <h3 class="text-lg font-bold text-tertiary-950">
+                    {blog.title}
+                  </h3>
+                </header>
+                <p class=" leading-7 text-[#72718F] md:line-clamp-2 mb-4">
+                  {blog.description}
+                </p>
+                <footer>
+                  <a
+                    href={blog.link}
+                    class="text-tertiary-950  py-2 transition-colors duration-300 underline hover:text-primary-500"
+                  >
+                    Read More
+                  </a>
+                </footer>
+              </div>
+            </article>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+<!-- END - Latest Blogs -->

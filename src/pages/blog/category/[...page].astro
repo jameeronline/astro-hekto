@@ -1,0 +1,50 @@
+---
+//astro imports
+import { getCollection } from "astro:content";
+
+//components imports
+import BaseLayout from "@layouts/BaseLayout.astro";
+import BlogGrid from "@blocks/BlogGrid.astro";
+import TagFilter from "@components/TagFilter.astro";
+import Paginate from "@components/Paginate.astro";
+
+//config imports
+import { siteConfig } from "@config/siteconfig"; // Make sure you have pageLength here
+
+const { tag } = Astro.params;
+
+const selected = "all";
+
+export async function getStaticPaths({ paginate }) {
+  const allPosts = await getCollection("posts");
+  const pageSize = siteConfig.pageLength || 6; // Or your preferred page size
+  return paginate(allPosts, { pageSize: pageSize });
+}
+
+const { page } = Astro.props;
+const { data: filteredPosts, currentPage, totalPages } = page;
+const noPosts = !filteredPosts || filteredPosts.length === 0;
+---
+
+<BaseLayout pageTitle={selected}>
+  <section class="py-16">
+    <!-- <TagFilter selected={selected} /> -->
+    {
+      noPosts ? (
+        <div class="text-red-600 py-8 text-center font-semibold">
+          No posts found for category: {selected}
+        </div>
+      ) : (
+        <>
+          <BlogGrid posts={filteredPosts} />
+          <Paginate
+            currentPage={page.currentPage}
+            lastPage={page.lastPage}
+            prevUrl={page.url.prev}
+            nextUrl={page.url.next}
+          />
+        </>
+      )
+    }
+  </section>
+</BaseLayout>

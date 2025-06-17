@@ -1,0 +1,111 @@
+@import "tailwindcss";
+
+@theme {
+  /* fonts */
+  --font-heading: "Josefin Sans Variable", sans-serif;
+  --font-body: "Lato", sans-serif;
+
+  /* screen sizes */
+  --screen-xs: 375px;
+  --screen-sm: 640px;
+  --screen-md: 768px;
+  --screen-lg: 1024px;
+  --screen-xl: 1280px;
+  --screen-2xl: 1536px;
+
+  --breakpoint-2xl: 72rem;
+
+  /* colors */
+  --color-primary-50: #fef1f7;
+  --color-primary-100: #fee5f1;
+  --color-primary-200: #ffcbe6;
+  --color-primary-300: #ffa0cf;
+  --color-primary-400: #ff66ad;
+  --color-primary-500: #fb2e86;
+  --color-primary-600: #ec1667;
+  --color-primary-700: #cd094d;
+  --color-primary-800: #a90b41;
+  --color-primary-900: #8d0e39;
+  --color-primary-950: #57001d;
+
+  --color-secondary-50: #fbf8fc;
+  --color-secondary-100: #f5eef9;
+  --color-secondary-200: #eee1f3;
+  --color-secondary-300: #e0c9e9;
+  --color-secondary-400: #cba5db;
+  --color-secondary-500: #b682ca;
+  --color-secondary-600: #a266b7;
+  --color-secondary-700: #8b529e;
+  --color-secondary-800: #744783;
+  --color-secondary-900: #5e3a69;
+  --color-secondary-950: #41214a;
+
+  --color-tertiary-50: #eef3ff;
+  --color-tertiary-100: #e0e9ff;
+  --color-tertiary-200: #c6d5ff;
+  --color-tertiary-300: #a4b8fd;
+  --color-tertiary-400: #7f92fa;
+  --color-tertiary-500: #5f6bf3;
+  --color-tertiary-600: #4445e7;
+  --color-tertiary-700: #3836cc;
+  --color-tertiary-800: #2e2ea5;
+  --color-tertiary-900: #2d2f82;
+  --color-tertiary-950: #1a1a4c;
+
+  --color-accent-50: #ecf0ff;
+  --color-accent-100: #dde3ff;
+  --color-accent-200: #c2cbff;
+  --color-accent-300: #9da9ff;
+  --color-accent-400: #767aff;
+  --color-accent-500: #5b54fe;
+  --color-accent-600: #4e37f4;
+  --color-accent-700: #432bd7;
+  --color-accent-800: #3725ae;
+  --color-accent-900: #302689;
+  --color-accent-950: #1d174f;
+
+  /* regentgray colors */
+  --color-emphasis-50: #f4f5f9;
+  --color-emphasis-100: #ebeef4;
+  --color-emphasis-200: #dadfeb;
+  --color-emphasis-300: #c3cade;
+  --color-emphasis-400: #abb1ce;
+  --color-emphasis-500: #8a8fb9;
+  --color-emphasis-600: #7e80ad;
+  --color-emphasis-700: #6b6c97;
+  --color-emphasis-800: #58597b;
+  --color-emphasis-900: #4b4c64;
+  --color-emphasis-950: #2c2c3a;
+
+  --color-brand-50: #f6f3ff;
+  --color-brand-100: #eee8ff;
+  --color-brand-200: #ded5ff;
+  --color-brand-300: #c6b3ff;
+  --color-brand-400: #ab88fd;
+  --color-brand-500: #9058fa;
+  --color-brand-600: #8335f2;
+  --color-brand-700: #7e33e0;
+  --color-brand-800: #611dba;
+  --color-brand-900: #511a98;
+  --color-brand-950: #310e67;
+
+  --color-ghost-50: #eaf2ff;
+  --color-ghost-100: #d9e6ff;
+  --color-ghost-200: #bbd1ff;
+  --color-ghost-300: #92b1ff;
+  --color-ghost-400: #6783ff;
+  --color-ghost-500: #4457ff;
+  --color-ghost-600: #2328ff;
+  --color-ghost-700: #1819ea;
+  --color-ghost-800: #171abc;
+  --color-ghost-900: #1c2293;
+  --color-ghost-950: #0d0e43;
+}
+
+@layer components {
+  /* Scroll animations */
+  /* To disable scroll animations remove the class "sroll-animation" from root html in the layout file */
+  .scroll-animation [data-scroll-animate] {
+    @apply translate-y-4 transform opacity-0 transition-all duration-1000 [&.scroll-animated]:translate-y-0 [&.scroll-animated]:opacity-100 [&:nth-child(1)]:delay-[50ms] [&:nth-child(10)]:delay-[725ms] [&:nth-child(11)]:delay-[800ms] [&:nth-child(12)]:delay-[875ms] [&:nth-child(2)]:delay-[125ms] [&:nth-child(3)]:delay-[200ms] [&:nth-child(4)]:delay-[275ms] [&:nth-child(5)]:delay-[350ms] [&:nth-child(6)]:delay-[425ms] [&:nth-child(7)]:delay-[500ms] [&:nth-child(8)]:delay-[575ms] [&:nth-child(9)]:delay-[650ms];
+  }
+}
