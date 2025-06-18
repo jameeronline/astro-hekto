@@ -4,19 +4,16 @@ import { getCollection } from "astro:content";
 
 //components imports
 import BlogLayout from "@/layouts/BlogLayout.astro";
-import BlogGrid from "@/components/blocks/BlogGrid.astro";
-import PageHeader from "@/components/blocks/PageHeader.astro";
+import BlogGrid from "@/blocks/BlogGrid.astro";
+// import TagFilter from "@components/TagFilter.astro";
 import Paginate from "@/components/Paginate.astro";
-
-//utils imports
-import { slugify } from "@/utils/helper";
 
 //config imports
 import { siteConfig } from "@/config/siteconfig"; // Make sure you have pageLength here
 
-// const { category } = Astro.params;
+const { tag } = Astro.params;
 
-// const selected = "all";
+const selected = "all";
 
 export async function getStaticPaths({ paginate }) {
   const allPosts = await getCollection("posts");
@@ -25,29 +22,27 @@ export async function getStaticPaths({ paginate }) {
 }
 
 const { page } = Astro.props;
-const postsData = page?.data || [];
-
 const { data: filteredPosts, currentPage, totalPages } = page;
 const noPosts = !filteredPosts || filteredPosts.length === 0;
 ---
 
 <BlogLayout pageTitle={selected}>
-  <PageHeader
-    headerInfo={{
-      title: "Category Index",
-      caption: "Category",
-      description: "",
-    }}
-    slot="pageHeader"
-  />
-
   <!-- <TagFilter selected={selected} /> -->
-  <BlogGrid posts={postsData} />
-
-  <Paginate
-    currentPage={page.currentPage}
-    lastPage={page.lastPage}
-    prevUrl={page.url.prev}
-    nextUrl={page.url.next}
-  />
+  {
+    noPosts ? (
+      <div class="text-red-600 py-8 text-center font-semibold">
+        No posts found for Tag
+      </div>
+    ) : (
+      <>
+        <BlogGrid posts={filteredPosts} />
+        <Paginate
+          currentPage={page.currentPage}
+          lastPage={page.lastPage}
+          prevUrl={page.url.prev}
+          nextUrl={page.url.next}
+        />
+      </>
+    )
+  }
 </BlogLayout>

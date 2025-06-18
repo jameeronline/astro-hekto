@@ -1,0 +1,19 @@
+---
+//layout imports
+import BaseLayout from "@/layouts/BaseLayout.astro";
+const { title } = Astro.props;
+---
+
+<BaseLayout title={title}>
+  <slot name="pageHeader" />
+  <section class="xl:container px-6 mx-auto py-10 md:py-16 lg:py-20">
+    <div class="grid grid-cols-4 gap-4 md:grid-cols-8 md:gap-6 lg:grid-cols-12">
+      <div class="lg:col-span-8 space-y-12">
+        <slot />
+      </div>
+      <div class="lg:col-span-4">
+        <slot name="sidebar" />
+      </div>
+    </div>
+  </section>
+</BaseLayout>

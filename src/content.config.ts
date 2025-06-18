@@ -32,45 +32,45 @@ const posts = defineCollection({
 //   }),
 // });
 
-const teams = defineCollection({
-  loader: file("src/content/teams.json"),
-  schema: zod.object({
-    id: zod.number(),
-    name: zod.string(),
-    email: zod.string(),
-    gender: zod.string(),
-    country: zod.string(),
-    role: zod.string(),
-    description: zod.string(),
-    socialLinks: zod.array(
-      zod.object({
-        type: zod.string(),
-        url: zod.string().url(),
-      })
-    ),
-    picture: zod.string(),
-  }),
-});
+// const teams = defineCollection({
+//   loader: file("src/content/teams.json"),
+//   schema: zod.object({
+//     id: zod.number(),
+//     name: zod.string(),
+//     email: zod.string(),
+//     gender: zod.string(),
+//     country: zod.string(),
+//     role: zod.string(),
+//     description: zod.string(),
+//     socialLinks: zod.array(
+//       zod.object({
+//         type: zod.string(),
+//         url: zod.string().url(),
+//       })
+//     ),
+//     picture: zod.string(),
+//   }),
+// });
 
-const projects = defineCollection({
-  loader: glob({ pattern: "**/*.mdx", base: "src/content/projects" }),
-  schema: zod.object({
-    id: zod.number(),
-    title: zod.string(),
-    description: zod.string(),
-    thumbnail: zod.string(),
-    images: zod.array(zod.string()),
-    type: zod.string(),
-    tags: zod.array(zod.string()),
-    technologies: zod.array(zod.string()),
-    github: zod.string().url(),
-    liveDemo: zod.string().url(),
-    year: zod.number(),
-    role: zod.string(),
-    duration: zod.string(),
-    teamSize: zod.number(),
-  }),
-});
+// const projects = defineCollection({
+//   loader: glob({ pattern: "**/*.mdx", base: "src/content/projects" }),
+//   schema: zod.object({
+//     id: zod.number(),
+//     title: zod.string(),
+//     description: zod.string(),
+//     thumbnail: zod.string(),
+//     images: zod.array(zod.string()),
+//     type: zod.string(),
+//     tags: zod.array(zod.string()),
+//     technologies: zod.array(zod.string()),
+//     github: zod.string().url(),
+//     liveDemo: zod.string().url(),
+//     year: zod.number(),
+//     role: zod.string(),
+//     duration: zod.string(),
+//     teamSize: zod.number(),
+//   }),
+// });
 
 // const projects = defineCollection({
 //   loader: file("src/content/projects.json"),
@@ -92,4 +92,5 @@ const projects = defineCollection({
 // });
 
 // 4. Export a single `collections` object to register your collection(s)
-export const collections = { posts, projects, teams };
+//export const collections = { posts, projects, teams };
+export const collections = { posts };

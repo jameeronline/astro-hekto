@@ -19,7 +19,7 @@ export const siteConfig = {
     "A modern frontend developer portfolio built with Astro, Tailwind CSS, and Lucide icons.",
   logo: "/logo.svg",
   onlyLogo: false,
-  pageLength: 6,
+  pageLength: 2,
   year: new Date().getFullYear(),
 };
 

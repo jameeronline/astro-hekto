@@ -1,12 +1,15 @@
 ---
 import { getCollection } from "astro:content";
 
-import BaseLayout from "@layouts/BaseLayout.astro";
-import BlogGrid from "@blocks/BlogGrid.astro";
-import TagFilter from "@components/TagFilter.astro";
-import Paginate from '@components/Paginate.astro';
+import BlogLayout from "@/layouts/BlogLayout.astro";
+import BlogGrid from "@/blocks/BlogGrid.astro";
+// import TagFilter from "@components/TagFilter.astro";
+import Paginate from "@/components/Paginate.astro";
 
-import { slugify } from "@utils/helper";
+//utils import
+import { slugify } from "@/utils/helper";
+import BlogCard from "@/components/blocks/BlogCard.astro";
+import PageHeader from "@/components/blocks/PageHeader.astro";
 
 export async function getStaticPaths({ paginate }) {
   const posts = await getCollection("posts");
@@ -39,37 +42,48 @@ export async function getStaticPaths({ paginate }) {
 
 const { category } = Astro.params;
 const { posts, categoryName, page } = Astro.props;
+const postsData = page?.data;
 
 const selected = "all";
 
 const noPosts = !page || page.data.length === 0;
 ---
 
-<BaseLayout pageTitle={selected}>
-  <section class="py-16">
-
-
-<header class="mx-auto flex max-w-screen-md flex-col items-center gap-2 mb-10">
-  <span class="text-caption">Posts in category</span>
-  <h2 class="mb-4 text-center text-2xl font-semibold">
-    <span class="capitalize">"{category}"</span>
-  </h2>
-</header>
-    <!-- <TagFilter selected={selected} /> -->
-    {
-      noPosts ? (
-        <div class="text-red-600 py-8 text-center font-semibold">
-          No posts found for category: {categoryName}
-        </div>
-      ) : (
-        <BlogGrid posts={page.data} />
-        <Paginate 
-            currentPage={page.currentPage} 
-            lastPage={page.lastPage} 
-            prevUrl={page.url.prev} 
-            nextUrl={page.url.next}
+<BlogLayout pageTitle={selected}>
+  <PageHeader
+    headerInfo={{
+      title: `Posts in Category`,
+      caption: `${categoryName} Category`,
+      description: "",
+    }}
+    slot="pageHeader"
+  />
+  <!-- <header
+      class="mx-auto flex max-w-screen-md flex-col items-center gap-2 mb-10"
+    >
+      <span class="text-caption">Posts in category</span>
+      <h2 class="mb-4 text-center text-2xl font-semibold">
+        <span class="capitalize">"{category}"</span>
+      </h2>
+    </header> -->
+  <!-- <TagFilter selected={selected} /> -->
+  {
+    noPosts ? (
+      <div class="text-red-600 py-8 text-center font-semibold">
+        No posts found for category: {categoryName}
+      </div>
+    ) : (
+      <>
+        {postsData.map((post) => (
+          <BlogCard post={post.data} url={slugify(post.data.title)} />
+        ))}
+        <Paginate
+          currentPage={page.currentPage}
+          lastPage={page.lastPage}
+          prevUrl={page.url.prev}
+          nextUrl={page.url.next}
         />
-      )
-    }
-  </section>
-</BaseLayout>
+      </>
+    )
+  }
+</BlogLayout>

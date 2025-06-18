@@ -1,5 +1,55 @@
+---
+//astro imports
+import { Image } from "astro:assets";
+
+//blog images
+import Product1 from "@/assets/products/1.png";
+import Product2 from "@/assets/products/2.png";
+import Product3 from "@/assets/products/3.png";
+import Product4 from "@/assets/products/4.png";
+import Product5 from "@/assets/products/5.png";
+import Product6 from "@/assets/products/6.png";
+import Product7 from "@/assets/products/7.png";
+import Product8 from "@/assets/products/8.png";
+import Product9 from "@/assets/products/9.png";
+import Product10 from "@/assets/products/10.png";
+import Product11 from "@/assets/products/11.png";
+import Product12 from "@/assets/products/12.png";
+import Product13 from "@/assets/products/13.png";
+import Product14 from "@/assets/products/14.png";
+import Product15 from "@/assets/products/15.png";
+
+//data imports
+const trendingProducts = [
+  {
+    image: Product10,
+    title: "Modern Lounge Chair",
+    price: "$199.00",
+    oldPrice: "$249.00",
+  },
+  {
+    image: Product11,
+    title: "Ergonomic Office Chair",
+    price: "$149.00",
+    oldPrice: "$199.00",
+  },
+  {
+    image: Product12,
+    title: "Classic Wooden Armchair",
+    price: "$179.00",
+    oldPrice: "$229.00",
+  },
+  {
+    image: Product13,
+    title: "Minimalist Dining Chair",
+    price: "$89.00",
+    oldPrice: "$129.00",
+  },
+];
+---
+
 <!-- START - trending Products -->
-<section class="my-10">
+<section class="my-16 xl:my-24">
   <div class="xl:container px-6 mx-auto">
     <h2
       class="text-center text-tertiary-950 text-2xl mb-6 lg:text-4xl lg:mb-12 font-bold"
@@ -14,142 +64,38 @@
         <ul
           class="whitespace-no-wrap flex-no-wrap [backface-visibility: hidden] [transform-style: preserve-3d] [touch-action: pan-Y] [will-change: transform] relative flex w-full overflow-hidden p-0 py-4"
         >
-          <li class="px-2">
-            <!-- Component: E-commerce card -->
-            <article
-              class="group overflow-hidden bg-white p-3 rounded-lg shadow-[0px_0px_16px_0px_rgba(0,0,0,0.05)] text-slate-500 transition-colors"
-            >
-              <!-- Image -->
-              <figure
-                class="relative overflow-hidden aspect-square w-full bg-tertiary-50 flex items-center justify-center"
-              >
-                <img
-                  src="./src/images/furniture/14.png"
-                  alt="card image"
-                  class="transition-transform duration-300 scale-90 group-hover:scale-105"
-                />
-              </figure>
-              <!-- Body-->
-              <div class="p-6 text-center transition-colors">
-                <header class="mb-4">
-                  <h3
-                    class="text-xl font-bold text-tertiary-950 group-hover:text-primary-500"
-                  >
-                    Cantilever chair
-                  </h3>
-                </header>
-                <p class="text-blue-950">
-                  $21.00
-                  <em class="not-italic text-sm text-emphasis-500 underline"
-                    >$42.00</em
-                  >
-                </p>
-              </div>
-            </article>
-            <!-- End E-commerce card -->
-          </li>
-          <li class="px-2">
-            <!-- Component: E-commerce card -->
-            <article
-              class="group overflow-hidden bg-white p-3 rounded-lg shadow-[0px_0px_16px_0px_rgba(0,0,0,0.05)] text-slate-500 transition-colors"
-            >
-              <!-- Image -->
-              <figure
-                class="relative overflow-hidden aspect-square w-full bg-tertiary-50 flex items-center justify-center"
-              >
-                <img
-                  src="./src/images/furniture/10.png"
-                  alt="card image"
-                  class="transition-transform duration-300 scale-90 group-hover:scale-105"
-                />
-              </figure>
-              <!-- Body-->
-              <div class="p-6 text-center transition-colors">
-                <header class="mb-4">
-                  <h3
-                    class="text-xl font-bold text-tertiary-950 group-hover:text-primary-500"
-                  >
-                    Cantilever chair
-                  </h3>
-                </header>
-                <p class="text-blue-950">
-                  $21.00
-                  <em class="not-italic text-sm text-emphasis-500 underline"
-                    >$42.00</em
-                  >
-                </p>
-              </div>
-            </article>
-            <!-- End E-commerce card -->
-          </li>
-          <li class="px-2">
-            <!-- Component: E-commerce card -->
-            <article
-              class="group overflow-hidden bg-white p-3 rounded-lg shadow-[0px_0px_16px_0px_rgba(0,0,0,0.05)] text-slate-500 transition-colors"
-            >
-              <!-- Image -->
-              <figure
-                class="relative overflow-hidden aspect-square w-full bg-tertiary-50 flex items-center justify-center"
-              >
-                <img
-                  src="./src/images/furniture/11.png"
-                  alt="card image"
-                  class="transition-transform duration-300 scale-90 group-hover:scale-105"
-                />
-              </figure>
-              <!-- Body-->
-              <div class="p-6 text-center transition-colors">
-                <header class="mb-4">
-                  <h3
-                    class="text-xl font-bold text-tertiary-950 group-hover:text-primary-500"
-                  >
-                    Cantilever chair
-                  </h3>
-                </header>
-                <p class="text-blue-950">
-                  $21.00
-                  <em class="not-italic text-sm text-emphasis-500 underline"
-                    >$42.00</em
-                  >
-                </p>
-              </div>
-            </article>
-            <!-- End E-commerce card -->
-          </li>
-          <li class="px-2">
-            <!-- Component: E-commerce card -->
-            <article
-              class="group overflow-hidden bg-white p-3 rounded-lg shadow-[0px_0px_16px_0px_rgba(0,0,0,0.05)] text-slate-500 transition-colors"
-            >
-              <!-- Image -->
-              <figure
-                class="relative overflow-hidden aspect-square w-full bg-tertiary-50 flex items-center justify-center"
-              >
-                <img
-                  src="./src/images/furniture/8.png"
-                  alt="card image"
-                  class="transition-transform duration-300 scale-90 group-hover:scale-105"
-                />
-              </figure>
-              <!-- Body-->
-              <div class="p-6 text-center transition-colors">
-                <header class="mb-4">
-                  <h3
-                    class="text-xl font-bold text-tertiary-950 group-hover:text-primary-500"
-                  >
-                    Cantilever chair
-                  </h3>
-                </header>
-                <p class="text-blue-950">
-                  $21.00
-                  <em class="not-italic text-sm text-emphasis-500 underline"
-                    >$42.00</em
-                  >
-                </p>
-              </div>
-            </article>
-            <!-- End E-commerce card -->
-          </li>
+          {
+            trendingProducts.map((product) => (
+              <li class="px-2">
+                <article class="group overflow-hidden bg-white p-3 rounded-lg shadow-[0px_0px_16px_0px_rgba(0,0,0,0.05)] text-slate-500 transition-colors">
+                  <figure class="relative overflow-hidden aspect-square w-full bg-tertiary-50 flex items-center justify-center">
+                    <Image
+                      src={product.image}
+                      alt={product.title}
+                      width={600}
+                      height={600}
+                      loading="lazy"
+                      format="webp"
+                      class="transition-transform duration-300 scale-75 group-hover:scale-100"
+                    />
+                  </figure>
+                  <div class="p-6 text-center transition-colors">
+                    <header class="mb-4">
+                      <h3 class="text-lg font-bold text-tertiary-950 group-hover:text-primary-500">
+                        {product.title}
+                      </h3>
+                    </header>
+                    <p class="text-blue-950">
+                      {product.price}
+                      <em class="not-italic text-sm text-emphasis-500 underline">
+                        {product.oldPrice}
+                      </em>
+                    </p>
+                  </div>
+                </article>
+              </li>
+            ))
+          }
         </ul>
       </div>
       <!-- Indicators -->

@@ -5,28 +5,19 @@ import { getCollection } from "astro:content";
 //components imports
 import BlogLayout from "@/layouts/BlogLayout.astro";
 import BlogGrid from "@/components/blocks/BlogGrid.astro";
-import PageHeader from "@/components/blocks/PageHeader.astro";
 import Paginate from "@/components/Paginate.astro";
-
-//utils imports
-import { slugify } from "@/utils/helper";
+import PageHeader from "@/components/blocks/PageHeader.astro";
 
 //config imports
 import { siteConfig } from "@/config/siteconfig"; // Make sure you have pageLength here
 
-// const { category } = Astro.params;
-
-// const selected = "all";
-
 export async function getStaticPaths({ paginate }) {
   const allPosts = await getCollection("posts");
   const pageSize = siteConfig.pageLength || 6; // Or your preferred page size
-  return paginate(allPosts, { pageSize: pageSize });
+  return paginate(allPosts, { pageSize });
 }
 
 const { page } = Astro.props;
-const postsData = page?.data || [];
-
 const { data: filteredPosts, currentPage, totalPages } = page;
 const noPosts = !filteredPosts || filteredPosts.length === 0;
 ---
@@ -34,20 +25,28 @@ const noPosts = !filteredPosts || filteredPosts.length === 0;
 <BlogLayout pageTitle={selected}>
   <PageHeader
     headerInfo={{
-      title: "Category Index",
-      caption: "Category",
+      title: "Tags Index",
+      caption: "Tags",
       description: "",
     }}
     slot="pageHeader"
   />
 
-  <!-- <TagFilter selected={selected} /> -->
-  <BlogGrid posts={postsData} />
-
-  <Paginate
-    currentPage={page.currentPage}
-    lastPage={page.lastPage}
-    prevUrl={page.url.prev}
-    nextUrl={page.url.next}
-  />
+  {
+    noPosts ? (
+      <div class="text-red-600 py-8 text-center font-semibold">
+        No posts found for tag
+      </div>
+    ) : (
+      <>
+        <BlogGrid posts={filteredPosts} />
+        <Paginate
+          currentPage={page.currentPage}
+          lastPage={page.lastPage}
+          prevUrl={page.url.prev}
+          nextUrl={page.url.next}
+        />
+      </>
+    )
+  }
 </BlogLayout>

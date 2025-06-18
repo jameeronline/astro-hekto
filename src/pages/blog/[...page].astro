@@ -4,19 +4,20 @@ import { getCollection } from "astro:content";
 
 //components import
 import BaseLayout from "@/layouts/BaseLayout.astro";
-// import BlogGrid from "@/blocks/BlogGrid.astro";
+import BlogLayout from "@/layouts/BlogLayout.astro";
+import BlogCard from "@/blocks/BlogCard.astro";
+import BlogGrid from "@/blocks/BlogGrid.astro";
 import PageHeader from "@/blocks/PageHeader.astro";
-// import Paginate from "@/components/Paginate.astro";
+import Paginate from "@/components/Paginate.astro";
 
 //utils import
 import { slugify } from "@/utils/helper";
 
 //site config
 import { siteConfig } from "@/config/siteconfig";
-import BlogCard from "@/blocks/BlogCard.astro";
 
 //page meta data
-const pageTitle = "Blog Index";
+const pageTitle = "Latest Blog";
 
 // Pagination setup
 export async function getStaticPaths({ paginate }) {
@@ -30,90 +31,39 @@ export async function getStaticPaths({ paginate }) {
   );
 
   return paginate(sortedPosts, {
-    pageSize: pageLength, // Number of posts per page
+    pageSize: 2, // Number of posts per page
   });
 }
 
 //props
 const { page } = Astro.props;
-
-import blogImage1 from "../../assets/blog-1.png";
-import blogImage2 from "../../assets/blog-2.png";
-import blogImage3 from "../../assets/blog-3.png";
-
-const posts = [
-  {
-    title: "Exploring the Alps: A Travel Vlog Adventure",
-    image: blogImage1,
-    description:
-      "Join us as we hike through the breathtaking landscapes of the Alps, sharing tips and highlights from our journey. Our adventure begins in the picturesque valleys, where the air is crisp and the scenery is nothing short of spectacular. As we ascend winding trails, we encounter charming alpine villages, each with its own unique culture and traditions. Along the way, we meet fellow travelers and locals who share their stories and recommendations, enriching our experience. The journey is not without its challenges—steep climbs and unpredictable weather test our endurance and determination. However, the reward is always worth it: panoramic views of snow-capped peaks, serene lakes reflecting the sky, and fields of wildflowers stretching as far as the eye can see. We document our favorite hiking routes, must-see viewpoints, and essential gear for anyone planning a similar trip. In the evenings, we unwind with hearty mountain cuisine and reflect on the day’s adventures. Whether you’re an experienced hiker or a casual explorer, our vlog offers practical advice, inspiration, and a glimpse into the magic of the Alps. Join us for an unforgettable journey that celebrates nature, adventure, and the spirit of exploration.",
-    date: "2024-05-10",
-    category: "Travel Vlog",
-  },
-  {
-    title: "A Foodie's Guide to Street Eats in Bangkok",
-    image: blogImage2,
-    description:
-      "Discover the vibrant street food scene of Bangkok with our travel vlog team as we embark on a flavorful journey through the bustling markets and lively streets of Thailand’s capital. In this comprehensive guide, we take you beyond the typical tourist hotspots to uncover hidden gems and local favorites that define Bangkok’s culinary landscape. From the sizzling woks of Chinatown to the aromatic stalls of Chatuchak Market, each stop offers a unique taste and story. We chat with passionate street vendors, learning about their family recipes and the cultural significance behind each dish. Whether it’s sampling spicy som tam (papaya salad), savoring crispy pad Thai, or indulging in sweet mango sticky rice, our vlog captures the sights, sounds, and flavors that make Bangkok a paradise for food lovers. Along the way, we share practical tips for navigating the city’s food stalls, understanding local etiquette, and making the most of your culinary adventure. Join us as we celebrate the diversity and creativity of Bangkok’s street food, offering inspiration and insights for fellow travelers and foodies eager to experience authentic Thai cuisine. This guide is your passport to an unforgettable gastronomic adventure in one of the world’s most exciting food destinations.",
-    date: "2024-04-22",
-    category: "Travel Vlog",
-  },
-  {
-    title: "Road Tripping Across New Zealand",
-    image: blogImage3,
-    description:
-      "Experience the ultimate road trip across New Zealand's North and South Islands, featuring stunning scenery and adventure activities. Our journey begins in Auckland, where we set out on winding coastal roads that reveal breathtaking ocean vistas and lush forests. As we travel south, we explore geothermal wonders in Rotorua, marvel at the glowworm caves in Waitomo, and hike the dramatic landscapes of Tongariro National Park. Crossing to the South Island, we are greeted by the majestic Southern Alps, crystal-clear lakes, and the adventure capital of Queenstown. Each day brings new discoveries, from sampling local cuisine in charming towns to encountering unique wildlife like kiwis and dolphins. We share tips for planning your own road trip, including must-see stops, recommended routes, and advice on campervan travel. Our vlog highlights both popular attractions and hidden gems, ensuring you get the most out of your New Zealand adventure. Whether you’re seeking adrenaline-pumping activities or tranquil moments in nature, this road trip offers something for everyone. Join us as we navigate scenic highways, meet friendly locals, and create unforgettable memories in one of the world’s most beautiful countries.",
-    date: "2024-03-15",
-    category: "Travel Vlog",
-  },
-  {
-    title: "Cultural Wonders of Morocco",
-    image: blogImage1,
-    description:
-      "Immerse yourself in the sights, sounds, and flavors of Morocco as we explore bustling markets and ancient cities. Our journey takes us from the vibrant souks of Marrakech, where the air is filled with the aroma of spices and the sound of lively bargaining, to the serene blue streets of Chefchaouen nestled in the Rif Mountains. We wander through centuries-old medinas, marvel at intricate tilework and architecture, and sample traditional Moroccan dishes like tagine and couscous. Along the way, we meet artisans who share their craft, from weaving colorful rugs to creating beautiful pottery. We also venture into the Sahara Desert, riding camels across golden dunes and spending nights under a canopy of stars. Our vlog delves into Morocco’s rich history, diverse cultures, and warm hospitality, offering insights and travel tips for those eager to experience this enchanting country. Whether you’re drawn to Morocco’s vibrant cities, stunning landscapes, or unique traditions, our adventure showcases the best the country has to offer and inspires you to embark on your own cultural exploration.",
-    date: "2024-02-28",
-    category: "Travel Vlog",
-  },
-  {
-    title: "Island Hopping in the Philippines",
-    image: blogImage2,
-    description:
-      "Join our travel vlog as we hop between the beautiful islands of the Philippines, sharing snorkeling spots and local culture. Our adventure begins in Palawan, where we kayak through hidden lagoons and snorkel among vibrant coral reefs teeming with marine life. We then journey to Cebu, exploring its stunning waterfalls and swimming with gentle whale sharks. Each island offers its own unique charm, from the powdery white sands of Boracay to the laid-back atmosphere of Siargao, famous for its surfing and friendly locals. Along the way, we immerse ourselves in Filipino culture, sampling delicious street food, attending lively festivals, and learning about the traditions that make each island special. We provide practical tips for island hopping, including transportation options, must-visit destinations, and advice on sustainable travel. Our vlog captures the breathtaking scenery, warm hospitality, and adventurous spirit that define the Philippines. Whether you’re a beach lover, thrill-seeker, or cultural explorer, this journey offers inspiration and guidance for planning your own unforgettable island adventure in this tropical paradise.",
-    date: "2024-01-12",
-    category: "Travel Vlog",
-  },
-];
+const posts = page?.data;
 
 // page header details
 const pageHeader = {
-  title: "Blog Page",
+  title: "Latest Blog",
   caption: "Blog",
-  description:
-    "Explore our latest articles, tutorials, and insights on web development, Astro, and more. Stay updated with tips, guides, and case studies from our team.",
+  description: "",
 };
 ---
 
-<BaseLayout title={pageTitle}>
+<BlogLayout title={pageTitle}>
   <PageHeader headerInfo={pageHeader} slot="pageHeader" />
-  <section class="xl:container px-6 mx-auto">
-    <div class="grid grid-cols-4 gap-4 md:grid-cols-8 md:gap-6 lg:grid-cols-12">
-      <div class="lg:col-span-8">
-        {
-          posts.map((post) => (
-            <BlogCard post={post} url={slugify(post.title)} />
-          ))
-        }
+
+  {
+    posts.length === 0 ? (
+      <div class="empty-message">
+        <p>No blog posts found.</p>
       </div>
-      <div class="lg:col-span-4">
-        <h3>sidebar</h3>
-      </div>
-      <!-- <BlogGrid posts={page.data} />
-    <Paginate
-      currentPage={page.currentPage}
-      lastPage={page.lastPage}
-      prevUrl={page.url.prev}
-      nextUrl={page.url.next}
-    /> -->
-    </div>
-  </section>
-</BaseLayout>
+    ) : (
+      <BlogGrid posts={posts} />
+    )
+  }
+
+  <Paginate
+    currentPage={page.currentPage}
+    lastPage={page.lastPage}
+    prevUrl={page.url.prev}
+    nextUrl={page.url.next}
+  />
+</BlogLayout>

@@ -3,13 +3,17 @@
 import { getCollection } from "astro:content";
 
 //components import
-import BaseLayout from "@layouts/BaseLayout.astro";
-import BlogGrid from "@blocks/BlogGrid.astro";
-import TagFilter from "@components/TagFilter.astro";
-import Paginate from "@components/Paginate.astro";
+import BlogLayout from "@/layouts/BlogLayout.astro";
+import PageHeader from "@/components/blocks/PageHeader.astro";
+// import BlogGrid from "@/components/blocks/BlogGrid.astro";
+import BlogCard from "@/components/blocks/BlogCard.astro";
+import Paginate from "@/components/Paginate.astro";
+
+//import BlogGrid from "@blocks/BlogGrid.astro";
+//import TagFilter from "@components/TagFilter.astro";
 
 //utils import
-import { slugify } from "@utils/helper";
+import { slugify } from "@/utils/helper";
 
 //generate static paths
 export async function getStaticPaths({ paginate }) {
@@ -44,6 +48,8 @@ export async function getStaticPaths({ paginate }) {
 const { tag } = Astro.params;
 const { posts, tagName, page } = Astro.props;
 
+const postsData = page?.data;
+
 // const filteredPosts = await getCollection(
 //   "posts",
 //   ({ data }) =>
@@ -53,23 +59,33 @@ const { posts, tagName, page } = Astro.props;
 const noPosts = !page || page.data.length === 0;
 ---
 
-<BaseLayout pageTitle={tagName}>
-  <section class="py-16">
-    <TagFilter selected={tagName} />
-    {
-      noPosts ? (
-        <div class="text-red-600 py-8 text-center font-semibold">
-          No posts found for tag: {tagName}
-        </div>
-      ) : (
-        <BlogGrid posts={page.data} />
-        <Paginate 
-            currentPage={page.currentPage} 
-            lastPage={page.lastPage} 
-            prevUrl={page.url.prev} 
-            nextUrl={page.url.next}
+<BlogLayout pageTitle={tagName}>
+  <PageHeader
+    headerInfo={{
+      title: `Posts in Tags`,
+      caption: `${tagName} Tag`,
+      description: "",
+    }}
+    slot="pageHeader"
+  />
+  <!-- <TagFilter selected={tagName} /> -->
+  {
+    noPosts ? (
+      <div class="text-red-600 py-8 text-center font-semibold">
+        No posts found for category: {tagName}
+      </div>
+    ) : (
+      <>
+        {postsData.map((post) => (
+          <BlogCard post={post.data} url={slugify(post.data.title)} />
+        ))}
+        <Paginate
+          currentPage={page.currentPage}
+          lastPage={page.lastPage}
+          prevUrl={page.url.prev}
+          nextUrl={page.url.next}
         />
-      )
-    }
-  </section>
-</BaseLayout>
+      </>
+    )
+  }
+</BlogLayout>

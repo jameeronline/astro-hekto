@@ -1,0 +1,74 @@
+---
+import { getCollection } from "astro:content";
+
+//components imports
+import BlogLayout from "@/layouts/BlogLayout.astro";
+import BlogGrid from "@/blocks/BlogGrid.astro";
+import Paginate from "@/components/Paginate.astro";
+import PageHeader from "@/components/blocks/PageHeader.astro";
+
+//utils import
+import { slugify } from "@/utils/helper";
+
+export async function getStaticPaths({ paginate }) {
+  const posts = await getCollection("posts");
+
+  // Collect all unique categories from posts
+  const authorsSet = new Set();
+  posts.forEach((post) => {
+    if (post.data.author) {
+      authorsSet.add(post.data.author);
+    }
+  });
+
+  // Generate a path for each unique author, passing only posts related to that author
+  return Array.from(authorsSet)
+    .map((author) => {
+      const filteredPosts = posts.filter(
+        (post) => post.data.author && slugify(post.data.author) === slugify(author)
+      );
+
+      return paginate(filteredPosts, {
+        params: { author: slugify(author as string) },
+        props: { posts: filteredPosts, authorName: author },
+        pageSize: 2, // Adjust page size as needed
+      });
+    })
+    .flat();
+}
+
+const { author } = Astro.params;
+const { posts, authorName, page } = Astro.props;
+
+//const selected = "all";
+
+const noPosts = !page || page.data.length === 0;
+---
+
+<BlogLayout pageTitle={authorName}>
+
+  <PageHeader
+    headerInfo={{
+      title: `Posts in Author`,
+      caption: `${authorName} Author`,
+      description: "",
+    }}
+    slot="pageHeader"
+  />
+    <!-- <TagFilter selected={selected} /> -->
+    {
+      noPosts ? (
+        <div class="text-red-600 py-8 text-center font-semibold">
+          No posts found for category: {authorName}
+        </div>
+      ) : (
+        <BlogGrid posts={page.data} />
+        <Paginate 
+            currentPage={page.currentPage} 
+            lastPage={page.lastPage} 
+            prevUrl={page.url.prev} 
+            nextUrl={page.url.next}
+        />
+      )
+    }
+</BlogLayout>

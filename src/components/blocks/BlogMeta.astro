@@ -1,0 +1,50 @@
+---
+//icons import
+import { Calendar, Pen, Group, PenTool } from "@lucide/astro";
+
+// utils import
+import { slugify, formatDate } from "@/utils/helper";
+
+//props
+const { post, categories = [] } = Astro.props;
+---
+
+<div
+  class="mb-8 flex gap-8 items-center text-sm text-tertiary-900 dark:text-slate-400"
+>
+  {
+    categories.length > 0 && (
+      <div class="flex gap-2">
+        {categories.map((category) => (
+          <a
+            href={`/blog/category/${slugify(category)}`}
+            key={category}
+            class="inline-flex flex-nowrap items-center"
+          >
+            <Group class="inline me-2 text-secondary-500 size-4" />
+            <span class="inline-flex px-4 h-6 rounded-sm bg-secondary-100 items-center leading-0">
+              {category}
+            </span>
+          </a>
+        ))}
+      </div>
+    )
+  }
+  <a
+    href={`/blog/author/${slugify(post.author)}`}
+    class="inline-flex flex-nowrap items-center"
+  >
+    <PenTool class="inline me-2 text-primary-500 rotate-270 size-4" />
+    <span
+      class="inline-flex px-4 h-6 rounded-sm bg-primary-100 items-center leading-0"
+      >{post.author}</span
+    >
+  </a>
+  <a href="#" class="inline-flex flex-nowrap items-center">
+    <Calendar class="inline me-2 text-orange-500 size-4" />
+    <span
+      class="inline-flex px-4 h-6 rounded-sm bg-orange-100 items-center leading-0"
+      >{formatDate(post.pubDate)}</span
+    >
+  </a>
+</div>

@@ -1,82 +1,127 @@
+---
+//astro imports
+import { Image } from "astro:assets";
+import { Icon } from "astro-icon/components";
+
+//components import
+import Button from "@/starwind/button";
+
+//images import
+import ProductImage from "@/assets/images/furniture/15.png";
+
+//variables
+const product = {
+  title: "20% Off Modern Wood Chair Collection",
+  subtitle: "Oslo Lounge Chair",
+  description:
+    "Experience comfort and style with our Oslo Lounge Chair, crafted from premium oak and upholstered in soft, durable fabric. Perfect for any modern living space.",
+  features: [
+    "Solid oak wood frame",
+    "Ergonomic curved backrest",
+    "High-density foam cushioning",
+    "Available in multiple colors",
+  ],
+  image: ProductImage,
+  imageAlt: "furniture image",
+  buttonLabel: "Add to Cart",
+  categories: [
+    { name: "Wood Chair", href: "#" },
+    { name: "Plastic Chair", href: "#" },
+    { name: "Sofa Collections", href: "#" },
+  ],
+};
+---
+
 <!-- START - Trending banner -->
-<h2 class="text-center text-tertiary-950 text-2xl mb-14 font-bold lg:text-4xl">
-  Discount Item
-</h2>
-<section class="bg-primary-50 my-10 py-8 lg:py-4">
-  <div class="xl:container px-6 mx-auto">
-    <nav>
-      <ul class="flex justify-center gap-6">
-        <li>
-          <a
-            href="#"
-            class="text-tertiary-950 transition-colors duration-200 hover:text-primary-500 hover:underline"
-            >Wood Chair</a
-          >
-        </li>
-        <li>
-          <a
-            href="#"
-            class="text-tertiary-950 transition-colors duration-200 hover:text-primary-500 hover:underline"
-            >Plastic Chair</a
-          >
-        </li>
-        <li>
-          <a
-            href="#"
-            class="text-tertiary-950 transition-colors duration-200 hover:text-primary-500 hover:underline"
-            >Sofa Colletion</a
-          >
-        </li>
-      </ul>
-    </nav>
-    <div
-      class="grid grid-cols-4 gap-6 items-center md:grid-cols-8 lg:grid-cols-12"
-    >
-      <div class="col-span-4 lg:col-span-6">
-        <h2
-          class="text-tertiary-950 text-2xl mb-4 lg:text-4xl lg:leading-relaxed font-bold"
-        >
-          20% Discount Of All Products
-        </h2>
-        <p
-          class="text-primary-500 text-xl font-normal leading-7 tracking-tight mb-5"
-        >
-          Eams Sofa Compact
-        </p>
-        <p class="text-lg font-lato text-emphasis-400 mb-6">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eu eget
-          feugiat habitasse nec, bibendum condimentum.
-        </p>
-
-        <ul
-          class="text-lg font-lato grid grid-cols-2 text-emphasis-400 list-disc tracking-tight ms-5 space-y-2 marker:text-primary-500 marker:w-1 marker:h-1"
-        >
-          <li>Material expose like metals</li>
-          <li>Clear lines and geomatric figures</li>
-          <li>Simple neutral colours.</li>
-          <li>Material expose like metals</li>
+<section class="my-16 xl:my-24">
+  <h2
+    class="text-center text-tertiary-950 text-2xl mb-14 font-bold lg:text-4xl"
+  >
+    Discount Item
+  </h2>
+  <section class="bg-primary-50 my-10 py-8 lg:py-16">
+    <div class="xl:container px-6 mx-auto">
+      <nav class="mb-8">
+        <ul class="flex justify-center gap-6">
+          <li>
+            <a
+              href="#"
+              class="text-tertiary-950 transition-colors duration-200 hover:text-primary-500 hover:underline"
+              >Wood Chair</a
+            >
+          </li>
+          <li>
+            <a
+              href="#"
+              class="text-tertiary-950 transition-colors duration-200 hover:text-primary-500 hover:underline"
+              >Plastic Chair</a
+            >
+          </li>
+          <li>
+            <a
+              href="#"
+              class="text-tertiary-950 transition-colors duration-200 hover:text-primary-500 hover:underline"
+              >Sofa Collections</a
+            >
+          </li>
         </ul>
-
-        <div class="flex gap-5 items-center mt-9">
-          <!-- Component: Large primary basic button -->
-          <button
-            class="inline-flex items-center justify-center h-12 gap-2 px-8 font-lato font-semibold tracking-wide text-white transition duration-300 rounded focus-visible:outline-none whitespace-nowrap bg-primary-500 hover:bg-primary-600 focus:bg-primary-700 disabled:cursor-not-allowed disabled:border-primary-300 disabled:bg-primary-300 disabled:shadow-none"
+      </nav>
+      <div
+        class="grid grid-cols-4 gap-6 items-center md:grid-cols-8 lg:grid-cols-12"
+      >
+        <div class="col-span-4 lg:col-span-6">
+          <h2
+            class="text-tertiary-950 text-2xl mb-4 lg:text-4xl lg:leading-relaxed font-bold"
           >
-            <span>Add to Cart</span>
-          </button>
-          <!-- End Large primary basic button -->
+            20% Off Modern Wood Chair Collection
+          </h2>
+          <p
+            class="text-primary-500 text-xl font-normal leading-7 tracking-tight mb-5"
+          >
+            Oslo Lounge Chair
+          </p>
+          <p class="text-lg text-emphasis-600 mb-6">
+            Experience comfort and style with our Oslo Lounge Chair, crafted
+            from premium oak and upholstered in soft, durable fabric. Perfect
+            for any modern living space.
+          </p>
+
+          <ul
+            class="text-lg grid grid-cols-2 text-emphasis-600 list-disc tracking-tight ms-5 space-y-2 marker:text-primary-500 marker:w-1 marker:h-1"
+          >
+            <li>Solid oak wood frame</li>
+            <li>Ergonomic curved backrest</li>
+            <li>High-density foam cushioning</li>
+            <li>Available in multiple colors</li>
+          </ul>
+
+          <div class="flex gap-5 items-center mt-9">
+            <Button
+              size="lg"
+              class="text-white bg-primary-500 hover:bg-primary-600 focus:bg-primary-700 rounded"
+              aria-label="Add to Cart"
+            >
+              Add to Cart
+            </Button>
+          </div>
+        </div>
+        <div class="col-span-4 lg:col-span-6 text-red">
+          <figure class="bg-blob-bg bg-no-repeat bg-center">
+            <Icon name="svg/blobanimation" class="w-full aspect-square" />
+            <Image
+              src={ProductImage}
+              width={600}
+              height={600}
+              format="webp"
+              loading="lazy"
+              decoding="async"
+              alt="furniture image"
+              class="mx-auto"
+            />
+          </figure>
         </div>
       </div>
-      <div class="col-span-4 lg:col-span-6 text-red">
-        <figure class="bg-blob-bg bg-no-repeat bg-center">
-          <img
-            src="./src/images/furniture/15.png"
-            alt="furniture image"
-            class="mx-auto"
-          />
-        </figure>
-      </div>
     </div>
-  </div>
+  </section>
+  <!-- END - Trending banner -->
 </section>
-<!-- END - Trending banner -->

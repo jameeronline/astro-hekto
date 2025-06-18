@@ -1,0 +1,46 @@
+---
+//component imports
+import { Button } from "@/starwind/button";
+
+//icons import
+import { ArrowLeft, ArrowRight } from "@lucide/astro";
+
+export interface Props {
+  currentPage: number;
+  lastPage: number;
+  prevUrl?: string;
+  nextUrl?: string;
+}
+
+const { currentPage, lastPage, prevUrl, nextUrl } = Astro.props;
+---
+
+<nav class="flex items-center justify-center gap-4 mt-12 w-full">
+  {
+    prevUrl ? (
+      <Button variant="ghost" href={prevUrl}>
+        <ArrowLeft class="size-4" /> Previous
+      </Button>
+    ) : (
+      <Button variant="ghost" disabled>
+        <ArrowLeft class="size-4" /> Previous
+      </Button>
+    )
+  }
+
+  <span class="px-4 py-2">
+    Page {currentPage} of {lastPage}
+  </span>
+
+  {
+    nextUrl ? (
+      <Button variant="ghost" href={nextUrl}>
+        Next <ArrowRight class="size-4" />
+      </Button>
+    ) : (
+      <Button variant="ghost" disabled>
+        Next <ArrowRight class="size-4" />
+      </Button>
+    )
+  }
+</nav>

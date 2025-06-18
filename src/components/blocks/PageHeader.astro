@@ -8,23 +8,23 @@ import {
   BreadcrumbSeparator,
 } from "@/starwind/breadcrumb";
 
-interface Props {
+interface HeaderInfo {
   title: string;
   caption: string;
   description: string;
 }
 
-const { headerInfo }: Props = Astro.props;
-const { title, caption, description } = headerInfo || {
-  title: "",
-  caption: "",
-  description: "",
+const { headerInfo: HeaderInfo } = Astro.props;
+const { title, caption, description } = HeaderInfo || {
+  title: "Page Title",
+  caption: "Page Caption",
+  description: "Page Description",
 };
 ---
 
 <header class="bg-brand-50 h-64 flex flex-col justify-center">
-  <div class="xl:container px-6 mx-auto">
-    <h1 class="text-4xl font-heading font-semibold mb-2">{title}</h1>
+  <div class="w-full xl:container px-6 mx-auto">
+    <p class="text-4xl font-heading font-semibold mb-2">{title}</p>
 
     <Breadcrumb>
       <BreadcrumbList>
@@ -43,8 +43,3 @@ const { title, caption, description } = headerInfo || {
     </Breadcrumb>
   </div>
 </header>
-
-<style>
-  .page-header {
-  }
-</style>
