@@ -4,18 +4,15 @@ import { defineConfig } from "astro/config";
 import path from "path";
 import tailwindcss from "@tailwindcss/vite";
 
-import mdx from "@astrojs/mdx";
-
-import sitemap from "@astrojs/sitemap";
-
-import alpinejs from "@astrojs/alpinejs";
-
 import icon from "astro-icon";
-
+import mdx from "@astrojs/mdx";
 import netlify from "@astrojs/netlify";
+import sitemap from "@astrojs/sitemap";
+import alpinejs from "@astrojs/alpinejs";
 
 // https://astro.build/config
 export default defineConfig({
+  site: "https://jameer.online", // Replace with your site's URL
   vite: {
     plugins: [tailwindcss()],
     resolve: {

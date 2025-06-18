@@ -43,18 +43,11 @@ const title = "Astro E Commerce | Hekto App";
     <div class="grid grid-cols-1 grid-rows-[auto_1fr_auto] h-full">
       <Header />
       <slot name="pageHeader" />
-      <!-- <main class="w-full xl:container mx-auto px-4 py-6 md:py-14"> -->
       <main>
         <slot />
       </main>
       <Footer />
       <LocalScript />
     </div>
-    <script>
-      //   import "../scripts/menu.js";
-      //   import "../scripts/vendor.js";
-      //   import { Observer } from "tailwindcss-intersect";
-      //   Observer.start();
-    </script>
   </body>
 </html>
