@@ -12,6 +12,8 @@ import alpinejs from "@astrojs/alpinejs";
 
 import icon from "astro-icon";
 
+import netlify from "@astrojs/netlify";
+
 // https://astro.build/config
 export default defineConfig({
   vite: {
@@ -32,4 +34,5 @@ export default defineConfig({
   },
 
   integrations: [mdx(), sitemap(), alpinejs(), icon()],
+  adapter: netlify(),
 });
