@@ -7,6 +7,7 @@ import {
   CircleUserRound,
   Heart,
   Search,
+  ShoppingCart,
 } from "@lucide/astro";
 
 //navigation items
@@ -183,6 +184,15 @@ const lang = [
                 <Heart class="size-5" />
               </a>
             </li>
+            <li class="inline-flex">
+              <a
+                href="/checkout"
+                class="text-white font-medium inline-flex gap-2 items-center"
+              >
+                <span>Cart</span>
+                <ShoppingCart class="size-5" />
+              </a>
+            </li>
           </ul>
         </nav>
         <!-- start | right list -->
@@ -195,7 +205,7 @@ const lang = [
   <div class="py-5">
     <div class="xl:container px-6 mx-auto">
       <div class="flex items-center">
-        <a href="#" class="text-4xl font-bold text-ghost-950">Hekto</a>
+        <a href="/" class="text-4xl font-heading font-bold text-black">Hekto</a>
         <nav class="ml-20">
           <ul class="flex items-center gap-9 font-medium">
             {

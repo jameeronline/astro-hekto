@@ -22,11 +22,13 @@ const { title, caption, description } = HeaderInfo || {
 };
 ---
 
-<header class="bg-brand-50 h-64 flex flex-col justify-center">
-  <div class="w-full xl:container px-6 mx-auto">
-    <p class="text-4xl font-heading font-semibold mb-2">{title}</p>
+<header class="bg-brand-50 h-64 flex flex-col justify-center text-tertiary-950">
+  <div class="w-full xl:container px-6 mx-auto" data-scroll-animate>
+    <p class="text-4xl font-heading font-bold mb-2" data-scroll-animate>
+      {title}
+    </p>
 
-    <Breadcrumb>
+    <Breadcrumb data-scroll-animate>
       <BreadcrumbList>
         <BreadcrumbItem>
           <BreadcrumbLink href="/">Home</BreadcrumbLink>

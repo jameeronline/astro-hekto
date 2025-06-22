@@ -1,0 +1,128 @@
+---
+//icon import
+import { Icon } from "astro-icon/components";
+
+//variables
+const partners = [
+  {
+    title: "Dribbble",
+    img: "dribbble-logo",
+    link: "https://dribbble.com/",
+  },
+  {
+    title: "Dropbox",
+    img: "dropbox-logo",
+    link: "https://www.dropbox.com/",
+  },
+  {
+    title: "GitHub",
+    img: "github-logo",
+    link: "https://github.com/",
+  },
+  {
+    title: "Jira Software",
+    img: "jira-software-logo",
+    link: "https://www.atlassian.com/software/jira",
+  },
+  {
+    title: "Miro",
+    img: "miro-logo",
+    link: "https://miro.com/",
+  },
+  {
+    title: "Pingdom",
+    img: "pingdom-logo",
+    link: "https://www.pingdom.com/",
+  },
+  {
+    title: "Unsplash",
+    img: "unsplash-logo",
+    link: "https://unsplash.com/",
+  },
+  {
+    title: "Webflow",
+    img: "webflow-logo",
+    link: "https://webflow.com/",
+  },
+  {
+    title: "Wix",
+    img: "wix-logo",
+    link: "https://www.wix.com/",
+  },
+  {
+    title: "Zendesk",
+    img: "zendesk-logo",
+    link: "https://www.zendesk.com/",
+  },
+];
+---
+
+<!-- START - Partners -->
+<section class="my-16">
+  <div class="container px-6 mx-auto">
+    <!-- Component: Carousel with controls inside -->
+    <div class="relative mx-auto" id="glide-partners">
+      <!-- Slides -->
+      <div class="overflow-hidden" data-glide-el="track">
+        <ul
+          class="relative w-full overflow-hidden p-0 whitespace-no-wrap flex flex-no-wrap [backface-visibility: hidden] [transform-style: preserve-3d] [touch-action: pan-Y] [will-change: transform]"
+        >
+          {
+            partners.map((partner) => (
+              <li class="flex items-center" title={partner.title}>
+                <a
+                  href={partner.link}
+                  target="_blank"
+                  rel="external"
+                  class="block w-full"
+                >
+                  <Icon
+                    name={`logos/${partner.img}`}
+                    class="w-40 h-5 m-auto grayscale opacity-70 transition duration-300 hover:grayscale-0 hover:opacity-90"
+                  />
+                  <span class="sr-only">{partner.title}</span>
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+    <!-- End Carousel with controls inside -->
+  </div>
+</section>
+
+<script>
+  import Glide from "@glidejs/glide";
+
+  function initSlider() {
+    const glideElement = document.querySelector("#glide-partners");
+    if (glideElement) {
+      const glideInstance = new Glide(glideElement, {
+        type: "carousel",
+        focusAt: "center",
+        perView: 5,
+        autoplay: 3000,
+        hoverpause: true,
+        animationDuration: 700,
+        gap: 24,
+        classNames: {
+          nav: {
+            active: "[&>*]:bg-wuiSlate-700",
+          },
+        },
+        breakpoints: {
+          1024: {
+            perView: 2,
+          },
+          640: {
+            perView: 1,
+          },
+        },
+      });
+      glideInstance.mount();
+    }
+  }
+
+  document.addEventListener("astro:page-load", initSlider);
+</script>

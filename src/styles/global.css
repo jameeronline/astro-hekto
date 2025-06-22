@@ -2,12 +2,17 @@
 @plugin "@tailwindcss/typography";
 @plugin "@tailwindcss/forms";
 
+/* Vendor styles */
+@import "aos/dist/aos.css";
+
+@import "./starwind.css";
+
 @theme {
   /* fonts */
-  /* --font-heading: "Josefin Sans Variable", sans-serif; */
-  --font-heading: "IBM Plex Sans Variable", sans-serif;
-  /* --font-body: "Lato", sans-serif; */
-  --font-body: "IBM Plex Sans Variable", sans-serif;
+  --font-heading: "Josefin Sans Variable", sans-serif;
+  --font-body: "Lato", sans-serif;
+  /* --font-heading: "IBM Plex Sans Variable", sans-serif; */
+  /* --font-body: "IBM Plex Sans Variable", sans-serif; */
 
   /* screen sizes */
   --screen-xs: 375px;
@@ -44,7 +49,7 @@
   --color-secondary-900: #5e3a69;
   --color-secondary-950: #41214a;
 
-  --color-tertiary-50: #eef3ff;
+  /* --color-tertiary-50: #eef3ff;
   --color-tertiary-100: #e0e9ff;
   --color-tertiary-200: #c6d5ff;
   --color-tertiary-300: #a4b8fd;
@@ -54,7 +59,19 @@
   --color-tertiary-700: #3836cc;
   --color-tertiary-800: #2e2ea5;
   --color-tertiary-900: #2d2f82;
-  --color-tertiary-950: #1a1a4c;
+  --color-tertiary-950: #1a1a4c; */
+
+  --color-tertiary-50: #f3f6ff;
+  --color-tertiary-100: #e9edfe;
+  --color-tertiary-200: #d7dffd;
+  --color-tertiary-300: #b7c3fb;
+  --color-tertiary-400: #8d9bf8;
+  --color-tertiary-500: #5f6bf3;
+  --color-tertiary-600: #3e41e9;
+  --color-tertiary-700: #2d2cd5;
+  --color-tertiary-800: #2524b3;
+  --color-tertiary-900: #212092;
+  --color-tertiary-950: #151875;
 
   --color-accent-50: #ecf0ff;
   --color-accent-100: #dde3ff;
@@ -104,6 +121,56 @@
   --color-ghost-800: #171abc;
   --color-ghost-900: #1c2293;
   --color-ghost-950: #0d0e43;
+}
+
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-heading text-tertiary-900 dark:text-tertiary-50;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-bold;
+  }
+
+  h1 {
+    @apply text-4xl md:text-5xl lg:text-6xl leading-tight;
+  }
+
+  h2 {
+    @apply text-3xl md:text-4xl lg:text-5xl leading-snug;
+  }
+
+  h3 {
+    @apply text-2xl md:text-3xl lg:text-4xl leading-snug;
+  }
+
+  h4 {
+    @apply text-xl md:text-2xl lg:text-3xl leading-snug;
+  }
+
+  h5 {
+    @apply text-lg md:text-xl lg:text-2xl leading-snug;
+  }
+
+  h6 {
+    @apply text-base md:text-lg lg:text-xl leading-snug;
+  }
 }
 
 @layer components {

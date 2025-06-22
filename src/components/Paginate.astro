@@ -15,7 +15,9 @@ export interface Props {
 const { currentPage, lastPage, prevUrl, nextUrl } = Astro.props;
 ---
 
-<nav class="flex items-center justify-center gap-4 mt-12 w-full">
+<nav
+  class="flex items-center justify-center gap-4 mt-12 w-full text-tertiary-950"
+>
   {
     prevUrl ? (
       <Button variant="ghost" href={prevUrl}>
@@ -29,7 +31,7 @@ const { currentPage, lastPage, prevUrl, nextUrl } = Astro.props;
   }
 
   <span class="px-4 py-2">
-    Page {currentPage} of {lastPage}
+    Page <span>{currentPage}</span> of <span class="">{lastPage}</span>
   </span>
 
   {

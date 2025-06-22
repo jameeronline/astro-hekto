@@ -38,7 +38,7 @@ const title = "Astro E Commerce | Hekto App";
     <ClientRouter />
   </head>
   <body
-    class="relative h-full font-body font-normal text-gray-900 dark:bg-slate-900 dark:text-slate-50"
+    class="relative h-full font-body font-normal text-emphasis-500 dark:bg-slate-900 dark:text-slate-50"
   >
     <div class="grid grid-cols-1 grid-rows-[auto_1fr_auto] h-full">
       <Header />
@@ -49,5 +49,16 @@ const title = "Astro E Commerce | Hekto App";
       <Footer />
       <LocalScript />
     </div>
+
+    <script>
+      import AOS from "aos";
+      AOS.init({
+        duration: 1000,
+        once: true,
+        disable: "mobile",
+        easing: "ease-in-out",
+        offset: 200,
+      });
+    </script>
   </body>
 </html>

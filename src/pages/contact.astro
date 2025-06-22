@@ -3,6 +3,31 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 
 //components import
 import PageHeader from "@/components/blocks/PageHeader.astro";
+import Partners from "@/components/blocks/Partners.astro";
+import { Button } from "@/starwind/button";
+
+const faqs = [
+  {
+    question: "How can I get in touch with your support team?",
+    answer:
+      "You can reach our support team by filling out the contact form on this page or by emailing support@hekto.com. We aim to respond within 24 hours.",
+  },
+  {
+    question: "What are your customer service hours?",
+    answer:
+      "Our customer service team is available Monday to Friday, 9:00 AM to 6:00 PM (GMT). We are closed on weekends and public holidays.",
+  },
+  {
+    question: "Where is your company located?",
+    answer:
+      "Our headquarters are located at 123 Market Street, San Francisco, CA 94103, USA. We also have offices in London and Berlin.",
+  },
+  {
+    question: "Can I track my order after purchase?",
+    answer:
+      "Yes, once your order is shipped, you will receive a tracking number via email. You can use this number to track your order status on our website.",
+  },
+];
 
 // page header details
 const pageHeader = {
@@ -14,4 +39,78 @@ const pageHeader = {
 
 <BaseLayout>
   <PageHeader headerInfo={pageHeader} slot="pageHeader" />
+
+  <div class="py-16" data-scroll-animate>
+    <div class="max-w-6xl mx-auto">
+      <div
+        class="grid grid-cols-4 gap-4 md:grid-cols-8 md:gap-16 lg:grid-cols-12"
+      >
+        {/* General Information Section */}
+        <div
+          class="space-y-8 col-span-4 md:col-span-8 lg:col-span-6"
+          data-scroll-animate
+        >
+          <h3 class="mb-8" data-scroll-animate>General Information</h3>
+
+          <div class="space-y-12" data-scroll-animate>
+            {
+              faqs.map((faq) => (
+                <div>
+                  <h6 class="text-lg font-semibold mb-3">{faq.question}</h6>
+                  <p class="leading-relaxed">{faq.answer}</p>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+
+        {/* Ask a Question Section */}
+        <div class="col-span-4 md:col-span-8 lg:col-span-6" data-scroll-animate>
+          <div class="space-y-6 bg-brand-100/50 p-12">
+            <h4 class="mb-8" data-scroll-animate>Ask a Question</h4>
+
+            <form class="space-y-6" data-scroll-animate>
+              <div>
+                <input
+                  type="text"
+                  placeholder="Your Name"
+                  class="w-full h-12 px-4 border border-gray-200 rounded-md bg-white text-gray-700 placeholder:text-gray-400"
+                />
+              </div>
+
+              <div>
+                <input
+                  type="text"
+                  placeholder="Subject"
+                  class="w-full h-12 px-4 border border-gray-200 rounded-md bg-white text-gray-700 placeholder:text-gray-400"
+                />
+              </div>
+
+              <div>
+                <textarea
+                  name="message"
+                  id="message"
+                  placeholder="Type Your Message"
+                  rows={6}
+                  class="w-full p-4 border border-gray-200 rounded-md bg-white text-gray-700 placeholder:text-gray-400 resize-none"
+                ></textarea>
+              </div>
+
+              <button
+                type="submit"
+                class="bg-pink-500 hover:bg-pink-600 text-white px-8 py-3 rounded-md font-medium"
+              >
+                Send Mail
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      {/* Company Logos Section */}
+      <div class="mt-20 pt-12 border-t border-gray-200" data-scroll-animate>
+        <Partners />
+      </div>
+    </div>
+  </div>
 </BaseLayout>

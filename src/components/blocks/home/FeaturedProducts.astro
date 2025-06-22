@@ -1,4 +1,6 @@
 ---
+import SectionHeader from "@/components/atoms/SectionHeader.astro";
+
 const featuredProducts = [
   {
     image: "/src/images/furniture/1.png",
@@ -34,11 +36,7 @@ const featuredProducts = [
 <!-- START - Featured Products -->
 <section class="my-10">
   <div class="xl:container px-6 mx-auto">
-    <h2
-      class="text-center text-tertiary-950 text-2xl mb-6 lg:text-4xl lg:mb-12 font-bold"
-    >
-      Featured Products
-    </h2>
+    <SectionHeader> Featured Products </SectionHeader>
 
     <!-- Component: carousel -->
     <div class="relative overflow-hidden w-full" id="glide-featured">

@@ -2,6 +2,9 @@
 //layout imports
 import BaseLayout from "@/layouts/BaseLayout.astro";
 const { title } = Astro.props;
+
+//components imports
+import Partners from "@/components/blocks/Partners.astro";
 ---
 
 <BaseLayout title={title}>
@@ -16,4 +19,5 @@ const { title } = Astro.props;
       </div>
     </div>
   </section>
+  <Partners />
 </BaseLayout>
