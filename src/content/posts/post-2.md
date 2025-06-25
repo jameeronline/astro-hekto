@@ -5,7 +5,7 @@ description: A simple, beginner-friendly guide to picking interior colors that m
 image:
   url: "/blog/blog-2.png"
   alt: Cozy living room with vibrant interior colors
-pubDate: 2025-06-17
+pubDate: 2024-10-27
 tags: ["interior design", "home decor", "colors", "beginner tips"]
 categories: ["Home & Lifestyle"]
 featured: true

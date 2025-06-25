@@ -269,12 +269,13 @@ const productIcons = [
 
     <!-- Component: grid -->
     <div class="relative overflow-hidden w-full">
-      <ul class="list grid grid-cols-4 gap-6 md:grid-cols-8 lg:grid-cols-12">
+      <ul
+        class="list grid grid-cols-4 gap-6 md:grid-cols-8 lg:grid-cols-12 lg:gap-10"
+      >
         <template x-for="product in products.slice(0, 6)" :key="product.id">
           <li
             class="col-span-4 md:col-span-4"
             x-show="filter === '*' || product.category === filter"
-            data-scroll-animate
           >
             <article class="group overflow-hidden">
               <figure
@@ -336,13 +337,13 @@ const productIcons = [
               <div class="py-6 text-center">
                 <header class="flex items-center justify-between">
                   <h6
-                    class="font-bold text-blue-900 underline underline-offset-8 decoration-blue-900/10"
+                    class="font-bold text-tertiary-900 underline underline-offset-8 decoration-tertiary-900/10"
                     x-text="product.name"
                   >
                   </h6>
                   <p class="inline-flex gap-2 items-center">
                     <span
-                      class="text-blue-900 font-semibold"
+                      class="text-tertiary-900 font-semibold"
                       x-text="product.price.toFixed(2)"></span>
                     <span
                       class="text-primary-600 text-xs line-through"

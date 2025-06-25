@@ -5,7 +5,7 @@ description: A simple, beginner-friendly guide to designing a functional and sty
 image:
   url: "/blog/blog-3.png"
   alt: Modern kitchen with functional design
-pubDate: 2024-06-17
+pubDate: 2025-05-18
 tags: ["kitchen design", "home decor", "interior design", "beginner tips"]
 categories: ["Construction"]
 featured: true

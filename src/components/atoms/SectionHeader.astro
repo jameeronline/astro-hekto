@@ -1,9 +1,13 @@
 ---
-
+export interface Props {
+  class?: string;
+}
+const { class: customClass = "" } = Astro.props;
 ---
 
 <h2
-  class="text-center text-2xl font-bold mb-6 lg:text-4xl lg:mb-12"
+  class="text-center text-2xl font-bold mb-6 lg:text-4xl lg:mb-10"
+  class:list={customClass}
   data-scroll-animate
 >
   <slot />

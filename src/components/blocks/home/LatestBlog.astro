@@ -1,10 +1,18 @@
 ---
 //astro imports
+import { getCollection } from "astro:content";
 import { Image } from "astro:assets";
 import { Icon } from "astro-icon/components";
 
+//utils imports
+import { formatDate, slugify } from "@/utils/helper";
+
 //components import
 import SectionHeader from "@/components/atoms/SectionHeader.astro";
+
+const posts = (await getCollection("posts"))
+  .sort((a, b) => new Date(b.data.pubDate) - new Date(a.data.pubDate))
+  .slice(0, 3);
 
 //blog images
 import Blog1 from "@/assets/images/latest-blog-1.jpg";
@@ -52,43 +60,45 @@ const blogs = [
       data-scroll-animate
     >
       {
-        blogs.map((blog) => (
+        posts.map(({ data }) => (
           <div class="col-span-4" data-scroll-animate>
             <article class="overflow-hidden bg-white rounded-lg shadow-[0px_8px_40px_0px_rgba(0,0,0,0.05)] text-slate-500">
               <figure class="overflow-hidden group">
-                <Image
-                  src={blog.image}
-                  alt="card image"
-                  width={1600}
-                  height={900}
-                  loading="lazy"
-                  format="webp"
-                  class="aspect-video w-full rounded-lg transition-transform duration-300 group-hover:scale-125"
-                />
+                {data.image && (
+                  <Image
+                    src={data.image.url}
+                    alt={data.image.alt || data.title}
+                    width={1600}
+                    height={900}
+                    loading="lazy"
+                    format="webp"
+                    class="aspect-video w-full rounded-lg transition-transform duration-300 group-hover:scale-125"
+                  />
+                )}
               </figure>
               <div class="px-6 pt-5 pb-9">
                 <div class="flex gap-8 mb-8 text-tertiary-950">
                   <span class="inline-flex items-center gap-1">
                     <Icon name="pen" class="size-3" />
-                    {blog.author}
+                    {data.author}
                   </span>
                   <span class="inline-flex items-center gap-1">
                     <Icon name="calendar" class="size-4" />
-                    {blog.date}
+                    {formatDate(data.pubDate)}
                   </span>
                 </div>
                 <header class="flex gap-4 mb-4">
-                  <h3 class="text-lg font-bold text-tertiary-950">
-                    {blog.title}
+                  <h3 class="text-lg font-bold text-tertiary-950 line-clamp-2">
+                    {data.title}
                   </h3>
                 </header>
-                <p class=" leading-7 text-[#72718F] md:line-clamp-2 mb-4">
-                  {blog.description}
+                <p class="leading-7 text-[#72718F] md:line-clamp-2 mb-4">
+                  {data.description}
                 </p>
                 <footer>
                   <a
-                    href={blog.link}
-                    class="text-tertiary-950  py-2 transition-colors duration-300 underline hover:text-primary-500"
+                    href={`/blog/${slugify(data.title)}`}
+                    class="text-tertiary-950 py-2 transition-colors duration-300 underline hover:text-primary-500"
                   >
                     Read More
                   </a>

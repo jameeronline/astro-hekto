@@ -1,4 +1,5 @@
 ---
+import Button from "@/starwind/button";
 import SectionHeader from "@/components/atoms/SectionHeader.astro";
 ---
 
@@ -9,16 +10,13 @@ import SectionHeader from "@/components/atoms/SectionHeader.astro";
       class="mx-auto flex flex-col items-center justify-center gap-6 py-14 lg:py-24 md:max-w-lg"
       data-scroll-animate
     >
-      <SectionHeader>
+      <SectionHeader class="mb-6">
         Get Latest Update By Subscribe 0ur Newsletter
       </SectionHeader>
       <!-- Component: Large primary basic button -->
-      <button
-        class="inline-flex items-center justify-center h-12 gap-2 px-8 font-lato font-semibold tracking-wide text-white transition duration-300 rounded focus-visible:outline-none whitespace-nowrap bg-primary-500 hover:bg-primary-600 focus:bg-primary-700 disabled:cursor-not-allowed disabled:border-primary-300 disabled:bg-primary-300 disabled:shadow-none"
-        data-scroll-animate
-      >
+      <Button class="btn--primary" data-scroll-animate>
         <span>Shop Now</span>
-      </button>
+      </Button>
       <!-- End Large primary basic button -->
     </div>
   </div>

@@ -9,6 +9,9 @@ import Button from "@/starwind/button";
 //images import
 import ProductImage from "@/assets/images/furniture/15.png";
 
+//blog animation
+import BlobAnimation from "@/assets/animated-svg/blob-animation.svg";
+
 //variables
 const product = {
   title: "20% Off Modern Wood Chair Collection",
@@ -43,32 +46,40 @@ const product = {
     <div class="xl:container px-6 mx-auto">
       <nav class="mb-8">
         <ul class="flex justify-center gap-6">
-          <li>
-            <a
-              href="#"
-              class="text-tertiary-950 transition-colors duration-200 hover:text-primary-500 hover:underline"
-              >Wood Chair</a
-            >
-          </li>
-          <li>
-            <a
-              href="#"
-              class="text-tertiary-950 transition-colors duration-200 hover:text-primary-500 hover:underline"
-              >Plastic Chair</a
-            >
-          </li>
-          <li>
-            <a
-              href="#"
-              class="text-tertiary-950 transition-colors duration-200 hover:text-primary-500 hover:underline"
-              >Sofa Collections</a
-            >
-          </li>
+          {
+            product.categories.map((category) => (
+              <li>
+                <a
+                  href={category.href}
+                  class="text-tertiary-950 transition-colors duration-200 hover:text-primary-500 hover:underline"
+                >
+                  {category.name}
+                </a>
+              </li>
+            ))
+          }
         </ul>
       </nav>
       <div
         class="grid grid-cols-4 gap-6 items-center md:grid-cols-8 lg:grid-cols-12"
       >
+        <div class="col-span-4 lg:col-span-6 text-red">
+          <figure class="bg-blob-bg bg-no-repeat bg-center relative">
+            <BlobAnimation
+              class="absolute inset-0 w-full h-full z-0 fill-pink-100"
+            />
+            <Image
+              src={ProductImage}
+              width={600}
+              height={600}
+              format="webp"
+              loading="lazy"
+              decoding="async"
+              alt="furniture image"
+              class="mx-auto relative z-10"
+            />
+          </figure>
+        </div>
         <div class="col-span-4 lg:col-span-6">
           <h2
             class="text-tertiary-950 text-2xl mb-4 lg:text-4xl lg:leading-relaxed font-bold"
@@ -80,14 +91,14 @@ const product = {
           >
             Oslo Lounge Chair
           </p>
-          <p class="text-lg text-emphasis-600 mb-6">
+          <p class="mb-6">
             Experience comfort and style with our Oslo Lounge Chair, crafted
             from premium oak and upholstered in soft, durable fabric. Perfect
             for any modern living space.
           </p>
 
           <ul
-            class="text-lg grid grid-cols-2 text-emphasis-600 list-disc tracking-tight ms-5 space-y-2 marker:text-primary-500 marker:w-1 marker:h-1"
+            class="grid grid-cols-2 list-disc tracking-tight ms-5 space-y-2 marker:text-primary-500 marker:w-1 marker:h-1"
           >
             <li>Solid oak wood frame</li>
             <li>Ergonomic curved backrest</li>
@@ -96,29 +107,10 @@ const product = {
           </ul>
 
           <div class="flex gap-5 items-center mt-9">
-            <Button
-              size="lg"
-              class="text-white bg-primary-500 hover:bg-primary-600 focus:bg-primary-700 rounded"
-              aria-label="Add to Cart"
-            >
+            <Button size="lg" class="btn--primary" aria-label="Add to Cart">
               Add to Cart
             </Button>
           </div>
-        </div>
-        <div class="col-span-4 lg:col-span-6 text-red">
-          <figure class="bg-blob-bg bg-no-repeat bg-center">
-            <Icon name="svg/blobanimation" class="w-full aspect-square" />
-            <Image
-              src={ProductImage}
-              width={600}
-              height={600}
-              format="webp"
-              loading="lazy"
-              decoding="async"
-              alt="furniture image"
-              class="mx-auto"
-            />
-          </figure>
         </div>
       </div>
     </div>

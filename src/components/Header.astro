@@ -20,6 +20,8 @@ import {
   DropdownSeparator,
 } from "@/starwind/dropdown";
 
+import PageFindSearch from "./blocks/PageFindSearch.astro";
+
 //navigation items
 const navItems = [
   {
@@ -32,12 +34,10 @@ const navItems = [
     subItems: [
       { name: "Services", url: "/pages/services" },
       { name: "Features", url: "/pages/features" },
-      { name: "About Us", url: "/pages/about" },
+      { name: "About", url: "/pages/about" },
       { name: "Team", url: "/pages/team" },
       { name: "Careers", url: "/pages/careers" },
       { name: "FAQ", url: "/pages/faq" },
-      { name: "Teams", url: "/pages/teams" },
-      { name: "Contact Us", url: "/pages/contact" },
     ],
   },
   {
@@ -278,6 +278,7 @@ const lang = [
             }
           </ul>
         </nav>
+        <PageFindSearch class="ml-20" />
         <form action="" class="flex ml-auto">
           <label for="search" class="sr-only">Enter keywords to search</label>
           <input

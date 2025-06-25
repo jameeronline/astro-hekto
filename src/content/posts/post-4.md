@@ -5,7 +5,7 @@ description: "Discover the fundamentals of furniture selection, including style,
 image:
   url: "/blog/blog-1.png"
   alt: "A stylish modern living room with elegant furniture."
-pubDate: 2025-04-01
+pubDate: 2025-01-01
 tags: ["furniture", "interior design", "home decor"]
 categories: ["Interior"]
 featured: true
