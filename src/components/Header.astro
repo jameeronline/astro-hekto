@@ -10,6 +10,16 @@ import {
   ShoppingCart,
 } from "@lucide/astro";
 
+//astro components imports
+import {
+  Dropdown,
+  DropdownTrigger,
+  DropdownContent,
+  DropdownItem,
+  DropdownLabel,
+  DropdownSeparator,
+} from "@/starwind/dropdown";
+
 //navigation items
 const navItems = [
   {
@@ -19,10 +29,24 @@ const navItems = [
   {
     name: "Pages",
     url: "/pages",
+    subItems: [
+      { name: "Services", url: "/pages/services" },
+      { name: "Features", url: "/pages/features" },
+      { name: "About Us", url: "/pages/about" },
+      { name: "Team", url: "/pages/team" },
+      { name: "Careers", url: "/pages/careers" },
+      { name: "FAQ", url: "/pages/faq" },
+      { name: "Teams", url: "/pages/teams" },
+      { name: "Contact Us", url: "/pages/contact" },
+    ],
   },
   {
     name: "Products",
     url: "/products",
+    subItems: [
+      { name: "Grid", url: "/products/grid" },
+      { name: "List", url: "/products/list" },
+    ],
   },
   {
     name: "Blog",
@@ -98,7 +122,7 @@ const lang = [
             <li class="relative inline-flex" x-data="{open: false}">
               <!--  Start Dropdown trigger -->
               <a
-                href="#"
+                href="javascript:void(0)"
                 x-on:click="open = ! open"
                 x-on:click.outside="open = false"
                 class="inline-flex items-center justify-center gap-1 tracking-wide text-white focus-visible:outline-none whitespace-nowrap disabled:cursor-not-allowed disabled:border-emerald-300 disabled:bg-emerald-300 disabled:shadow-none"
@@ -134,7 +158,7 @@ const lang = [
             <li class="relative inline-flex" x-data="{open: false}">
               <!--  Start Dropdown trigger -->
               <a
-                href="#"
+                href="javascript:void(0)"
                 x-on:click="open = ! open"
                 x-on:click.outside="open = false"
                 class="inline-flex items-center justify-center gap-1 tracking-wide text-white focus-visible:outline-none whitespace-nowrap disabled:cursor-not-allowed disabled:border-emerald-300 disabled:bg-emerald-300 disabled:shadow-none"
@@ -209,16 +233,48 @@ const lang = [
         <nav class="ml-20">
           <ul class="flex items-center gap-9 font-medium">
             {
-              navItems.map((item) => (
-                <li class="inline-flex">
-                  <a
-                    href={item.url}
-                    class="text-ghost-950 transition-colors duration-300 hover:text-primary-500 focus:text-brand-400"
-                  >
-                    {item.name}
-                  </a>
-                </li>
-              ))
+              navItems.map((item) =>
+                item.subItems ? (
+                  <li class="relative inline-flex" x-data="{open: false}">
+                    <a
+                      href="javascript:void(0)"
+                      class="text-ghost-950 transition-colors duration-300 hover:text-primary-500 focus:text-brand-400 inline-flex items-center gap-1"
+                      x-on:click="open = ! open"
+                      x-on:keydown.escape.window="open = false"
+                      x-on:click.outside="open = false"
+                    >
+                      {item.name}
+                      <ChevronDown class="size-5" />
+                    </a>
+                    <ul
+                      class="absolute left-0 top-full mt-2 min-w-[180px] bg-white rounded shadow-md z-20"
+                      x-bind:class="! open ? 'hidden' : ''"
+                      x-transition:enter="transition ease-out duration-200"
+                      x-transition:enter-start="opacity-0"
+                    >
+                      {item.subItems.map((sub) => (
+                        <li>
+                          <a
+                            href={sub.url}
+                            class="block px-5 py-2 text-ghost-950 hover:text-primary-500 hover:bg-slate-50 transition-colors duration-300"
+                          >
+                            {sub.name}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </li>
+                ) : (
+                  <li class="inline-flex">
+                    <a
+                      href={item.url}
+                      class="text-ghost-950 transition-colors duration-300 hover:text-primary-500 focus:text-brand-400"
+                    >
+                      {item.name}
+                    </a>
+                  </li>
+                )
+              )
             }
           </ul>
         </nav>

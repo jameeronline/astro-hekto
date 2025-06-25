@@ -28,7 +28,7 @@ const { title, caption, description } = HeaderInfo || {
       {title}
     </p>
 
-    <Breadcrumb data-scroll-animate>
+    <Breadcrumb data-scroll-animate class="text-tertiary-900">
       <BreadcrumbList>
         <BreadcrumbItem>
           <BreadcrumbLink href="/">Home</BreadcrumbLink>
@@ -38,8 +38,10 @@ const { title, caption, description } = HeaderInfo || {
           <BreadcrumbLink href="/components">Page</BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbSeparator>/</BreadcrumbSeparator>
-        <BreadcrumbItem class="text-primary-500">
-          <BreadcrumbPage>{caption || title}</BreadcrumbPage>
+        <BreadcrumbItem>
+          <BreadcrumbPage class="text-primary-500 capitalize"
+            >{caption || title}</BreadcrumbPage
+          >
         </BreadcrumbItem>
       </BreadcrumbList>
     </Breadcrumb>

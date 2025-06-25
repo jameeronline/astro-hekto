@@ -7,7 +7,7 @@ image:
   alt: Cozy living room with vibrant interior colors
 pubDate: 2025-03-17
 tags: ["interior design", "home decor", "colors", "beginner tips"]
-categories: ["Home & Lifestyle"]
+categories: ["Modern Ideas"]
 featured: true
 ---
 

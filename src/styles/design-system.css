@@ -1,0 +1,30 @@
+/* LAYOUT */
+.container--default {
+  @apply lg:container mx-auto px-6 py-8 md:py-12 lg:py-16;
+}
+
+/* FORM STYLES */
+.as-form-control {
+  @apply w-full h-12 px-4 border border-gray-200 rounded-md bg-white text-gray-700 placeholder:text-gray-400;
+  /* @apply w-full h-12 px-4 rounded-md bg-emphasis-50 dark:bg-emphasis-900 border-emphasis-200 dark:border-emphasis-700 text-emphasis-900 dark:text-emphasis-50 placeholder:text-emphasis-500 dark:placeholder:text-emphasis-400 focus:ring-2 focus:ring-primary-500
+      focus:border-primary-500 focus:outline-none transition-colors duration-200; */
+}
+
+.as-form-textarea {
+  @apply w-full h-32 px-4 border border-gray-200 rounded-md bg-white text-gray-700 placeholder:text-gray-400  resize-none;
+  /* @apply w-full h-32 px-4 rounded-md bg-emphasis-50 dark:bg-emphasis-900 border-emphasis-200 dark:border-emphasis-700 text-emphasis-900 dark:text-emphasis-50 placeholder:text-emphasis-500 dark:placeholder:text-emphasis-400 focus:ring-2 focus:ring-primary-500
+      focus:border-primary-500 focus:outline-none transition-colors duration-200; */
+}
+
+/* BUTTON STYLES */
+.btn--primary {
+  @apply bg-primary-500 text-white hover:bg-primary-600 focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 focus:outline-none rounded-md transition-colors duration-200 font-semibold px-8;
+}
+
+.btn--secondary {
+  @apply bg-secondary-500 text-white hover:bg-secondary-600 focus:ring-2 focus:ring-secondary-500 focus:ring-offset-2 focus:outline-none rounded-md transition-colors duration-200 font-semibold px-8;
+}
+
+.btn--tertiary {
+  @apply bg-tertiary-900 text-white hover:bg-tertiary-950 focus:ring-2 focus:ring-tertiary-500 focus:ring-offset-2 focus:outline-none rounded-md transition-colors duration-200 font-semibold px-8;
+}

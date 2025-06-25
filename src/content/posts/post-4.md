@@ -7,7 +7,7 @@ image:
   alt: "A stylish modern living room with elegant furniture."
 pubDate: 2025-04-01
 tags: ["furniture", "interior design", "home decor"]
-categories: ["Furniture"]
+categories: ["Interior"]
 featured: true
 ---
 

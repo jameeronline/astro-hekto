@@ -7,6 +7,9 @@
 
 @import "./starwind.css";
 
+/* Design System Tokens */
+@import "./design-system.css";
+
 @theme {
   /* fonts */
   --font-heading: "Josefin Sans Variable", sans-serif;

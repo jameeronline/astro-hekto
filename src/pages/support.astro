@@ -15,6 +15,7 @@ import { Button } from "@/starwind/button";
 
 //images import
 import ContactImage from "@/assets/support.svg";
+import Partners from "@/components/blocks/Partners.astro";
 
 // page header details
 const pageHeader = {
@@ -27,142 +28,137 @@ const pageHeader = {
 <BaseLayout>
   <PageHeader headerInfo={pageHeader} slot="pageHeader" />
 
-  <div class="py-16">
-    <div class="max-w-6xl mx-auto">
-      {/* Top Section */}
-      <div class="grid lg:grid-cols-2 gap-16 mb-20">
-        {/* Information About us */}
-        <div class="space-y-6">
-          <h3 class="mb-6">Information About us</h3>
-          <p class="leading-relaxed mb-8">
-            We are dedicated to providing you with the best shopping experience.
-            Our team is passionate about helping you find the right products and
-            ensuring your satisfaction every step of the way. If you have
-            questions about our store, your order, or our services, please don’t
-            hesitate to reach out. We’re here to help!
-          </p>
-          <div class="flex space-x-3">
-            <div class="w-4 h-4 bg-tertiary-800 rounded-full"></div>
-            <div class="w-4 h-4 bg-primary-500 rounded-full"></div>
-            <div class="w-4 h-4 bg-cyan-400 rounded-full"></div>
-          </div>
-        </div>
-
-        {/* Contact Way */}
-        <div class="space-y-6">
-          <h3 class="mb-6">Contact Way</h3>
-          <div class="grid grid-cols-2 gap-10">
-            <div class="flex items-center space-x-3">
-              <div
-                class="w-12 h-12 bg-tertiary-900 rounded-full flex items-center justify-center"
-              >
-                <Phone class="w-5 h-5 text-white" />
-              </div>
-              <div>
-                <p class="">Tel: 877-67-88-99</p>
-                <p class="">E-Mail: shop@store.com</p>
-              </div>
-            </div>
-
-            <div class="flex items-center space-x-3">
-              <div
-                class="w-12 h-12 bg-primary-500 rounded-full flex items-center justify-center"
-              >
-                <MessageCircle class="w-5 h-5 text-white" />
-              </div>
-              <div>
-                <p class="">Support Forum</p>
-                <p class="">For over 24hr</p>
-              </div>
-            </div>
-
-            <div class="flex items-center space-x-3">
-              <div
-                class="w-12 h-12 bg-orange-400 rounded-full flex items-center justify-center"
-              >
-                <MapPin class="w-5 h-5 text-white" />
-              </div>
-              <div>
-                <p class="">20 Margaret st, London</p>
-                <p class="">Great Britain, 2NW9R-LK</p>
-              </div>
-            </div>
-
-            <div class="flex items-center space-x-3">
-              <div
-                class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center"
-              >
-                <Truck class="w-5 h-5 text-white" />
-              </div>
-              <div>
-                <p class="">Free standard shipping</p>
-                <p class="">on all orders</p>
-              </div>
-            </div>
-          </div>
+  <div class="container--default">
+    {/* Top Section */}
+    <div class="grid lg:grid-cols-2 gap-16 mb-20">
+      {/* Information About us */}
+      <div class="space-y-6">
+        <h3 class="mb-6">Information About us</h3>
+        <p class="leading-relaxed mb-8">
+          We are dedicated to providing you with the best shopping experience.
+          Our team is passionate about helping you find the right products and
+          ensuring your satisfaction every step of the way. If you have
+          questions about our store, your order, or our services, please don’t
+          hesitate to reach out. We’re here to help!
+        </p>
+        <div class="flex space-x-3">
+          <div class="w-4 h-4 bg-tertiary-800 rounded-full"></div>
+          <div class="w-4 h-4 bg-primary-500 rounded-full"></div>
+          <div class="w-4 h-4 bg-cyan-400 rounded-full"></div>
         </div>
       </div>
 
-      <div class="grid lg:grid-cols-2 gap-16 items-start">
-        <div class="space-y-6">
-          <h3 class="mb-6">Get In Touch</h3>
-          <p class="leading-relaxed mb-8">
-            Have a question or need assistance? Our support team is here to help
-            you with any inquiries about our products, orders, or services. Fill
-            out the form below and we’ll get back to you as soon as possible.
-          </p>
-
-          <div class="space-y-6">
-            <div class="grid grid-cols-2 gap-4">
-              <Input
-                id="username-input"
-                size="md"
-                placeholder="Your Name"
-                class="border-tertiary-200 rounded-md bg-white text-gray-700 placeholder:text-tertiary-800/30"
-              />
-              <Input
-                id="email-input"
-                type="email"
-                placeholder="Your E-mail"
-                class="border-tertiary-200 rounded-md bg-white text-gray-700 placeholder:text-tertiary-800/30"
-              />
-            </div>
-
-            <div>
-              <Input
-                id="subject-input"
-                type="text"
-                placeholder="Subject"
-                class="border-tertiary-200 rounded-md bg-white text-gray-700 placeholder:text-tertiary-800/30"
-              />
-            </div>
-
-            <div>
-              <Textarea
-                name="message"
-                id="message"
-                placeholder="Type Your Message"
-                rows={5}
-                class="border-tertiary-200 rounded-md bg-white text-gray-700 placeholder:text-tertiary-800/30 resize-none"
-              />
-            </div>
-
-            <Button
-              type="submit"
-              class="bg-primary-500 hover:bg-primary-600 text-white px-8 rounded-md font-semibold"
+      {/* Contact Way */}
+      <div class="space-y-6">
+        <h3 class="mb-6">Contact Way</h3>
+        <div class="grid grid-cols-2 gap-10">
+          <div class="flex items-center space-x-3">
+            <div
+              class="w-12 h-12 bg-tertiary-900 rounded-full flex items-center justify-center"
             >
-              Send Email
-            </Button>
+              <Phone class="w-5 h-5 text-white" />
+            </div>
+            <div>
+              <p class="">Tel: 877-67-88-99</p>
+              <p class="">E-Mail: shop@store.com</p>
+            </div>
           </div>
-        </div>
 
-        {/* Illustration Area */}
-        <div class="relative">
-          <div class="relative z-10 text-center w-full">
-            <ContactImage class="max-w-full" />
+          <div class="flex items-center space-x-3">
+            <div
+              class="w-12 h-12 bg-primary-500 rounded-full flex items-center justify-center"
+            >
+              <MessageCircle class="w-5 h-5 text-white" />
+            </div>
+            <div>
+              <p class="">Support Forum</p>
+              <p class="">For over 24hr</p>
+            </div>
+          </div>
+
+          <div class="flex items-center space-x-3">
+            <div
+              class="w-12 h-12 bg-orange-400 rounded-full flex items-center justify-center"
+            >
+              <MapPin class="w-5 h-5 text-white" />
+            </div>
+            <div>
+              <p class="">20 Margaret st, London</p>
+              <p class="">Great Britain, 2NW9R-LK</p>
+            </div>
+          </div>
+
+          <div class="flex items-center space-x-3">
+            <div
+              class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center"
+            >
+              <Truck class="w-5 h-5 text-white" />
+            </div>
+            <div>
+              <p class="">Free standard shipping</p>
+              <p class="">on all orders</p>
+            </div>
           </div>
         </div>
       </div>
     </div>
+
+    <div class="grid lg:grid-cols-2 gap-16 items-start">
+      <div class="space-y-6">
+        <h3 class="mb-6">Get In Touch</h3>
+        <p class="leading-relaxed mb-8">
+          Have a question or need assistance? Our support team is here to help
+          you with any inquiries about our products, orders, or services. Fill
+          out the form below and we’ll get back to you as soon as possible.
+        </p>
+
+        <div class="space-y-6">
+          <div class="grid grid-cols-2 gap-4">
+            <Input
+              id="username-input"
+              size="md"
+              placeholder="Your Name"
+              class="border-tertiary-200 rounded-md bg-white text-gray-700 placeholder:text-tertiary-800/30"
+            />
+            <Input
+              id="email-input"
+              type="email"
+              placeholder="Your E-mail"
+              class="border-tertiary-200 rounded-md bg-white text-gray-700 placeholder:text-tertiary-800/30"
+            />
+          </div>
+
+          <div>
+            <Input
+              id="subject-input"
+              type="text"
+              placeholder="Subject"
+              class="border-tertiary-200 rounded-md bg-white text-gray-700 placeholder:text-tertiary-800/30"
+            />
+          </div>
+
+          <div>
+            <Textarea
+              name="message"
+              id="message"
+              placeholder="Type Your Message"
+              rows={5}
+              class="border-tertiary-200 rounded-md bg-white text-gray-700 placeholder:text-tertiary-800/30 resize-none"
+            />
+          </div>
+
+          <Button type="submit" class="btn--primary"> Send Email </Button>
+        </div>
+      </div>
+
+      {/* Illustration Area */}
+      <div class="relative">
+        <div class="relative z-10 text-center w-full">
+          <ContactImage class="max-w-full" />
+        </div>
+      </div>
+    </div>
   </div>
+
+  <Partners />
 </BaseLayout>

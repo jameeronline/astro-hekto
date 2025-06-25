@@ -7,7 +7,7 @@ image:
   alt: Modern kitchen with functional design
 pubDate: 2025-05-17
 tags: ["kitchen design", "home decor", "interior design", "beginner tips"]
-categories: ["Home & Lifestyle"]
+categories: ["Tips & Tricks"]
 featured: true
 ---
 

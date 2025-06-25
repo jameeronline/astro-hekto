@@ -2,6 +2,9 @@
 //icon import
 import { Icon } from "astro-icon/components";
 
+//props
+const { isHome = false } = Astro.props;
+
 //variables
 const partners = [
   {
@@ -58,39 +61,45 @@ const partners = [
 ---
 
 <!-- START - Partners -->
-<section class="my-16">
-  <div class="container px-6 mx-auto">
-    <!-- Component: Carousel with controls inside -->
-    <div class="relative mx-auto" id="glide-partners">
-      <!-- Slides -->
-      <div class="overflow-hidden" data-glide-el="track">
-        <ul
-          class="relative w-full overflow-hidden p-0 whitespace-no-wrap flex flex-no-wrap [backface-visibility: hidden] [transform-style: preserve-3d] [touch-action: pan-Y] [will-change: transform]"
-        >
-          {
-            partners.map((partner) => (
-              <li class="flex items-center" title={partner.title}>
-                <a
-                  href={partner.link}
-                  target="_blank"
-                  rel="external"
-                  class="block w-full"
-                >
-                  <Icon
-                    name={`logos/${partner.img}`}
-                    class="w-40 h-5 m-auto grayscale opacity-70 transition duration-300 hover:grayscale-0 hover:opacity-90"
-                  />
-                  <span class="sr-only">{partner.title}</span>
-                </a>
-              </li>
-            ))
-          }
-        </ul>
+<div
+  class="mt-20 border-t border-gray-200"
+  class:list={{ "border-t-0": isHome }}
+  data-scroll-animate
+>
+  <section class="my-16">
+    <div class="container px-6 mx-auto">
+      <!-- Component: Carousel with controls inside -->
+      <div class="relative mx-auto" id="glide-partners">
+        <!-- Slides -->
+        <div class="overflow-hidden" data-glide-el="track">
+          <ul
+            class="relative w-full overflow-hidden p-0 whitespace-no-wrap flex flex-no-wrap [backface-visibility: hidden] [transform-style: preserve-3d] [touch-action: pan-Y] [will-change: transform]"
+          >
+            {
+              partners.map((partner) => (
+                <li class="flex items-center" title={partner.title}>
+                  <a
+                    href={partner.link}
+                    target="_blank"
+                    rel="external"
+                    class="block w-full"
+                  >
+                    <Icon
+                      name={`logos/${partner.img}`}
+                      class="w-40 h-5 m-auto grayscale opacity-70 transition duration-300 hover:grayscale-0 hover:opacity-90"
+                    />
+                    <span class="sr-only">{partner.title}</span>
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
       </div>
+      <!-- End Carousel with controls inside -->
     </div>
-    <!-- End Carousel with controls inside -->
-  </div>
-</section>
+  </section>
+</div>
 
 <script>
   import Glide from "@glidejs/glide";

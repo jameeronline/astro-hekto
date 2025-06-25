@@ -221,11 +221,12 @@ const pageHeader = {
           products.map((product) => (
             <div
               key={product.id}
-              class="col-span-4 lg:col-span-3 group rounded-lg overflow-hidden duration-300"
+              class="col-span-4 lg:col-span-3 group rounded-lg overflow-hidden"
               data-scroll-animate
             >
               {/* Product Image */}
-              <div class="relative bg-accent-50/50 hover:bg-[#EBF4F3] aspect-square flex items-center justify-center">
+              <div class="relative bg-accent-50/50 hover:bg-[#EBF4F3] aspect-square flex items-center justify-center transition-all duration-300">
+                {/* Product Image */}
                 <Image
                   src={product.image || "/placeholder.svg"}
                   alt={product.name}
@@ -240,14 +241,14 @@ const pageHeader = {
                   <Button
                     size="sm"
                     variant="ghost"
-                    class="h-8 w-8 p-0 bg-white hover:bg-teritairy-500 hover:text-white rounded-full shadow-md"
+                    class="h-8 w-8 p-0 bg-white hover:bg-tertiary-500 hover:text-white rounded-full shadow-md"
                   >
                     <ShoppingCart class="h-4 w-4" />
                   </Button>
                   <Button
                     size="sm"
                     variant="ghost"
-                    class="h-8 w-8 p-0 bg-white hover:bg-red-500 hover:text-white rounded-full shadow-md"
+                    class="h-8 w-8 p-0 bg-white hover:bg-primary-500 hover:text-white rounded-full shadow-md"
                   >
                     <Heart class="h-4 w-4" />
                   </Button>
