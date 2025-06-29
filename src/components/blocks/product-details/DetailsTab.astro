@@ -1,0 +1,57 @@
+<div x-data="{ tab: 'description' }" class="mb-8">
+  <div class="flex gap-16">
+    <button
+      :class="tab === 'description' ? 'underline underline-offset-4 text-tertiary-900' : 'text-tertiary-900'"
+      class="pb-4 text-2xl font-heading font-medium bg-transparent focus:outline-none"
+      @click="tab = 'description'"
+      type="button"
+    >
+      Description
+    </button>
+    <button
+      :class="tab === 'additional' ? 'underline text-tertiary-900' : 'text-tertiary-900'"
+      class="pb-4 text-2xl font-heading font-medium bg-transparent focus:outline-none"
+      @click="tab = 'additional'"
+      type="button"
+    >
+      Additional Info
+    </button>
+    <button
+      :class="tab === 'reviews' ? 'underline text-tertiary-900' : 'text-tertiary-900'"
+      class="pb-4 text-2xl font-heading font-medium bg-transparent focus:outline-none"
+      @click="tab = 'reviews'"
+      type="button"
+    >
+      Reviews
+    </button>
+    <button
+      :class="tab === 'video' ? 'underline text-tertiary-900' : 'text-tertiary-900'"
+      class="pb-4 text-2xl font-heading font-medium bg-transparent focus:outline-none"
+      @click="tab = 'video'"
+      type="button"
+    >
+      Video
+    </button>
+  </div>
+  <div class="mt-8">
+    <div x-show="tab === 'description'">
+      <h3 class="text-lg font-medium text-tertiary-900 mb-4">Varius tempor.</h3>
+      <p class="leading-relaxed mb-6">
+        Aliquam dis vulputate vulputate integer sagittis. Faucibus dolor ornare
+        faucibus vel sed et eleifend habitasse amet. Montes, mauris varius ac
+        est bibendum. Scelerisque a, risus ac ante. Velit consectetur neque
+        placerat rhoncus est pellentesque. Praesent ornare in lacus, at
+        consectetur lorem. Ut sagittis, libero venenatis at.
+      </p>
+    </div>
+    <div x-show="tab === 'additional'">
+      <p class="text-gray-600">Additional information content would go here.</p>
+    </div>
+    <div x-show="tab === 'reviews'">
+      <p class="text-gray-600">Customer reviews would be displayed here.</p>
+    </div>
+    <div x-show="tab === 'video'">
+      <p class="text-gray-600">Product videos would be embedded here.</p>
+    </div>
+  </div>
+</div>

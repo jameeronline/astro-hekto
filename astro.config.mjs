@@ -10,6 +10,8 @@ import netlify from "@astrojs/netlify";
 import sitemap from "@astrojs/sitemap";
 import alpinejs from "@astrojs/alpinejs";
 
+import react from "@astrojs/react";
+
 // https://astro.build/config
 export default defineConfig({
   site: "https://jameer.online", // Replace with your site's URL
@@ -27,10 +29,11 @@ export default defineConfig({
         "@/styles": path.resolve("./src/styles"),
         "@/config": path.resolve("./src/config"),
         "@/assets": path.resolve("./src/assets"),
+        "@/stores": path.resolve("./src/stores"),
       },
     },
   },
 
-  integrations: [mdx(), sitemap(), alpinejs(), icon()],
+  integrations: [mdx(), sitemap(), alpinejs(), icon(), react()],
   adapter: netlify(),
 });

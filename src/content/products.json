@@ -1,0 +1,206 @@
+[
+  {
+    "id": 1,
+    "name": "Classic Leather Backpack",
+    "image": "/src/assets/products/1.png",
+    "thumbnailImages": [
+      "/src/assets/products/1.png",
+      "/src/assets/products/1.png",
+      "/src/assets/products/1.png"
+    ],
+    "originalPrice": "$89.00",
+    "salePrice": "$69.00",
+    "rating": 4.5,
+    "categories": ["Bags"],
+    "tags": ["furniture"],
+    "inStock": true,
+    "description": "A stylish and durable leather backpack for everyday use."
+  },
+  {
+    "id": 2,
+    "name": "Minimalist Analog Watch",
+    "image": "/src/assets/products/2.png",
+    "thumbnailImages": [
+      "/src/assets/products/2.png",
+      "/src/assets/products/2.png",
+      "/src/assets/products/2.png"
+    ],
+    "originalPrice": "$120.00",
+    "salePrice": "$99.00",
+    "rating": 4,
+    "categories": ["Accessories"],
+    "tags": ["furniture"],
+    "inStock": true,
+    "description": "Sleek analog watch with a minimalist design and leather strap."
+  },
+  {
+    "id": 3,
+    "name": "Cotton Crew Neck T-Shirt",
+    "image": "/src/assets/products/3.png",
+    "thumbnailImages": [
+      "/src/assets/products/3.png",
+      "/src/assets/products/3.png",
+      "/src/assets/products/3.png"
+    ],
+    "originalPrice": "$25.00",
+    "salePrice": "$18.00",
+    "rating": 4.2,
+    "categories": ["Clothing"],
+    "tags": ["furniture"],
+    "inStock": true,
+    "description": "Soft and comfortable cotton t-shirt available in multiple colors."
+  },
+  {
+    "id": 4,
+    "name": "Wireless Bluetooth Earbuds",
+    "image": "/src/assets/products/4.png",
+    "thumbnailImages": [
+      "/src/assets/products/4.png",
+      "/src/assets/products/4.png",
+      "/src/assets/products/4.png"
+    ],
+    "originalPrice": "$59.00",
+    "salePrice": "$45.00",
+    "rating": 4.7,
+    "categories": ["Electronics"],
+    "tags": ["furniture"],
+    "inStock": false,
+    "description": "High-quality wireless earbuds with noise cancellation."
+  },
+  {
+    "id": 5,
+    "name": "Slim Fit Jeans",
+    "image": "/src/assets/products/5.png",
+    "thumbnailImages": [
+      "/src/assets/products/5.png",
+      "/src/assets/products/5.png",
+      "/src/assets/products/5.png"
+    ],
+    "originalPrice": "$70.00",
+    "salePrice": "$54.00",
+    "rating": 4.3,
+    "categories": ["Clothing"],
+    "tags": ["furniture"],
+    "inStock": true,
+    "description": "Trendy slim fit jeans made from stretchable denim."
+  },
+  {
+    "id": 6,
+    "name": "Sports Running Shoes",
+    "image": "/src/assets/products/6.png",
+    "thumbnailImages": [
+      "/src/assets/products/6.png",
+      "/src/assets/products/6.png",
+      "/src/assets/products/6.png"
+    ],
+    "originalPrice": "$110.00",
+    "salePrice": "$89.00",
+    "rating": 4.6,
+    "categories": ["Footwear"],
+    "tags": ["furniture"],
+    "inStock": true,
+    "description": "Lightweight running shoes designed for comfort and performance."
+  },
+  {
+    "id": 7,
+    "name": "Aviator Sunglasses",
+    "image": "/src/assets/products/7.png",
+    "thumbnailImages": [
+      "/src/assets/products/7.png",
+      "/src/assets/products/7.png",
+      "/src/assets/products/7.png"
+    ],
+    "originalPrice": "$45.00",
+    "salePrice": "$32.00",
+    "rating": 4.1,
+    "categories": ["Accessories"],
+    "tags": ["furniture"],
+    "inStock": true,
+    "description": "Classic aviator sunglasses with UV protection."
+  },
+  {
+    "id": 8,
+    "name": "Canvas Tote Bag",
+    "image": "/src/assets/products/8.png",
+    "thumbnailImages": [
+      "/src/assets/products/8.png",
+      "/src/assets/products/8.png",
+      "/src/assets/products/8.png"
+    ],
+    "originalPrice": "$35.00",
+    "salePrice": "$25.00",
+    "rating": 4.4,
+    "categories": ["Bags"],
+    "tags": ["furniture"],
+    "inStock": true,
+    "description": "Eco-friendly canvas tote bag for shopping and daily use."
+  },
+  {
+    "id": 9,
+    "name": "Wool Blend Scarf",
+    "image": "/src/assets/products/9.png",
+    "thumbnailImages": [
+      "/src/assets/products/9.png",
+      "/src/assets/products/9.png",
+      "/src/assets/products/9.png"
+    ],
+    "originalPrice": "$40.00",
+    "salePrice": "$28.00",
+    "rating": 4.8,
+    "categories": ["Accessories"],
+    "tags": ["furniture"],
+    "inStock": true,
+    "description": "Warm and cozy wool blend scarf for winter."
+  },
+  {
+    "id": 10,
+    "name": "Digital Fitness Tracker",
+    "image": "/src/assets/products/10.png",
+    "thumbnailImages": [
+      "/src/assets/products/10.png",
+      "/src/assets/products/10.png",
+      "/src/assets/products/10.png"
+    ],
+    "originalPrice": "$75.00",
+    "salePrice": "$59.00",
+    "rating": 4.5,
+    "categories": ["Electronics"],
+    "tags": ["furniture"],
+    "inStock": true,
+    "description": "Track your fitness goals with this digital fitness tracker."
+  },
+  {
+    "id": 11,
+    "name": "Leather Wallet",
+    "image": "/src/assets/products/11.png",
+    "thumbnailImages": [
+      "/src/assets/products/11.png",
+      "/src/assets/products/11.png",
+      "/src/assets/products/11.png"
+    ],
+    "originalPrice": "$55.00",
+    "salePrice": "$39.00",
+    "rating": 4.2,
+    "categories": ["Accessories"],
+    "tags": ["furniture"],
+    "inStock": true,
+    "description": "Premium leather wallet with multiple compartments."
+  },
+  {
+    "id": 12,
+    "name": "Casual Canvas Sneakers",
+    "image": "/src/assets/products/12.png",
+    "thumbnailImages": [
+      "/src/assets/products/12.png",
+      "/src/assets/products/12.png",
+      "/src/assets/products/12.png"
+    ],
+    "originalPrice": "$60.00",
+    "salePrice": "$44.00",
+    "rating": 4.3,
+    "categories": ["Footwear"],
+    "tags": ["furniture"],
+    "inStock": true,
+    "description": "Comfortable canvas sneakers for everyday wear."
+  }
+]

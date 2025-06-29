@@ -1,0 +1,522 @@
+---
+//astro imports
+import { getCollection } from "astro:content";
+import { Image } from "astro:assets";
+
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+//blocks import
+import PageHeader from "@/components/blocks/PageHeader.astro";
+import Partners from "@/components/blocks/Partners.astro";
+
+//components import
+import { Button } from "@/starwind/button";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/starwind/tabs";
+
+//icons import
+import { Heart, Star, Facebook, Twitter, Instagram } from "@lucide/astro";
+
+//utility import
+import { slugify } from "@/utils/helper";
+
+// Generate static paths for each product based on its slug
+export async function getStaticPaths() {
+  const productsCollection = await getCollection("products");
+
+  return productsCollection.map((product) => ({
+    params: {
+      slug: slugify(product.data.name),
+    },
+    props: { data: product.data },
+  }));
+}
+
+// Find the product matching the slug param
+const { slug } = Astro.params;
+const { data } = Astro.props;
+
+//related products
+const productsCollection = await getCollection("products");
+
+// Find related products by matching at least one category or tag, excluding the current product
+const relatedProducts = productsCollection
+  .filter((product) => {
+    if (product.data.name === data.name) return false;
+    const hasCategory =
+      data.categories &&
+      product.data.categories &&
+      product.data.categories.some((cat) => data.categories.includes(cat));
+    const hasTag =
+      data.tags &&
+      product.data.tags &&
+      product.data.tags.some((tag) => data.tags.includes(tag));
+    return hasCategory || hasTag;
+  })
+  .slice(0, 4) // Limit to 4 related products
+  .map((product) => ({
+    id: product.data.id,
+    name: product.data.name,
+    price: product.data.salePrice || product.data.originalPrice,
+    image: product.data.image || "/placeholder.svg?height=200&width=200",
+    rating: product.data.rating || 5,
+  }));
+
+if (!data) {
+  throw new Error(`Product not found for slug: ${slug}`);
+}
+
+// page header details
+const pageHeader = {
+  title: "Products Details Layout",
+  caption: "",
+  description: "",
+};
+
+// const relatedProducts = [
+//   {
+//     id: 1,
+//     name: "Mens Fashion Wear",
+//     price: "$19.00",
+//     image: "/placeholder.svg?height=200&width=200",
+//     rating: 5,
+//   },
+//   {
+//     id: 2,
+//     name: "Women's Fashion",
+//     price: "$21.00",
+//     image: "/placeholder.svg?height=200&width=200",
+//     rating: 5,
+//   },
+//   {
+//     id: 3,
+//     name: "Web Dummy Fashion",
+//     price: "$67.00",
+//     image: "/placeholder.svg?height=200&width=200",
+//     rating: 5,
+//   },
+//   {
+//     id: 4,
+//     name: "Top Wall Digital Clock",
+//     price: "$51.00",
+//     image: "/placeholder.svg?height=200&width=200",
+//     rating: 5,
+//   },
+// ];
+
+const {
+  id,
+  name,
+  image,
+  thumbnailImages,
+  originalPrice,
+  salePrice,
+  rating,
+  tags,
+  categories,
+  inStock,
+  description,
+} = data;
+
+// Remove the renderStars function from the script section.
+// Instead, render stars directly in the template using an array and .map().
+---
+
+<BaseLayout>
+  <PageHeader headerInfo={pageHeader} slot="pageHeader" />
+
+  <div class="">
+    <div class="bg-white">
+      <div class="container--default">
+        {/* Product Detail Section */}
+        <div
+          class="bg-white rounded-lg p-6 shadow-[0px_0px_32px_0px_rgba(0,0,0,0.08)]"
+        >
+          <div class="grid lg:grid-cols-12 gap-8">
+            {/* Thumbnail Images */}
+            <div class="lg:col-span-2 space-y-4">
+              {
+                thumbnailImages.map((image, index) => (
+                  <a
+                    href={image}
+                    data-fancybox="gallery"
+                    data-caption="Product Thumbnail images"
+                    class="flex bg-gray-100 aspect-square rounded-lg p-2"
+                    key={index}
+                  >
+                    <Image
+                      src={image || "/placeholder.svg"}
+                      alt={`Thumbnail ${index + 1}`}
+                      class="w-full h-full object-contain scale-75 hover:scale-100 transition-transform duration-200"
+                      width={80}
+                      height={80}
+                      loading="lazy"
+                      decoding="async"
+                      format="webp"
+                    />
+                  </a>
+                ))
+              }
+            </div>
+
+            {/* Main Product Image */}
+            <div class="lg:col-span-5">
+              <div
+                class="w-full aspect-square bg-gray-100 rounded-lg p-8 flex items-center justify-center"
+              >
+                <Image
+                  src={image || "/placeholder.svg"}
+                  alt={name || "Product Image"}
+                  class="w-full h-full object-contain"
+                  width={600}
+                  height={600}
+                  loading="lazy"
+                  decoding="async"
+                  format="webp"
+                />
+              </div>
+            </div>
+
+            {/* Product Information */}
+            <div class="lg:col-span-5 space-y-6 lg:py-10">
+              <div>
+                <h1 class="text-3xl font-semibold text-tertiary-900 mb-2">
+                  {name || "Product Name"}
+                </h1>
+                <div class="flex items-center space-x-3 mb-6">
+                  <div class="flex items-center space-x-2 mb-4">
+                    <div class="flex">
+                      {[...Array(5)].map((_, i) => <Star class="w-6 h-6" />)}
+                    </div>
+                    <span class="text-sm text-gray-500">(23)</span>
+                  </div>
+                </div>
+                <div class="flex items-center space-x-3 mb-6">
+                  <span class="text-2xl font-heading text-tertiary-900"
+                    >{originalPrice}</span
+                  >
+                  <span class="text-sm text-primary-500 line-through"
+                    >{salePrice}</span
+                  >
+                </div>
+              </div>
+
+              <div class="space-y-6">
+                <div>
+                  <span
+                    class="text-lg font-heading font-semibold text-tertiary-900"
+                    >Color</span
+                  >
+                  <p class="text-gray-600 leading-relaxed">
+                    {description}
+                  </p>
+                </div>
+
+                <div class="flex items-center space-x-4">
+                  <Button class="btn--primary" id="addToCart"
+                    >Add To Cart</Button
+                  >
+                  <Button variant="outline" size="icon" class="px-4">
+                    <Heart class="h-6 w-6 text-gray-600" />
+                  </Button>
+                </div>
+
+                <div class="space-y-4">
+                  <div>
+                    <span
+                      class="text-lg font-heading font-semibold text-tertiary-900"
+                      >Categories</span
+                    >
+                    <ul class="flex flex-wrap gap-2 mt-2">
+                      {
+                        categories && categories.length > 0 ? (
+                          categories.map((category) => (
+                            <li key={category}>
+                              <a
+                                href={`/shop/category/${slugify(category)}`}
+                                class="text-primary-600 hover:underline text-sm capitalize"
+                              >
+                                {category}
+                              </a>
+                            </li>
+                          ))
+                        ) : (
+                          <li class="text-gray-400 text-sm">No categories</li>
+                        )
+                      }
+                    </ul>
+                  </div>
+                  <div>
+                    <span
+                      class="text-lg font-heading font-semibold text-tertiary-900"
+                      >Tags</span
+                    >
+                    <ul class="flex flex-wrap gap-2 mt-2">
+                      {
+                        tags && tags.length > 0 ? (
+                          tags.map((tag) => (
+                            <li key={tag}>
+                              <a
+                                href={`/shop/tag/${slugify(tag)}`}
+                                class="text-primary-600 hover:underline text-sm capitalize"
+                              >
+                                {tag}
+                              </a>
+                            </li>
+                          ))
+                        ) : (
+                          <li class="text-gray-400 text-sm">No tags</li>
+                        )
+                      }
+                    </ul>
+                  </div>
+                  <div class="flex items-center space-x-3">
+                    <span
+                      class="text-lg font-heading font-semibold text-tertiary-900"
+                      >Share</span
+                    >
+                    <div class="flex space-x-2">
+                      <Button variant="ghost" size="sm" class="p-1">
+                        <Facebook class="h-4 w-4 text-tertiary-600" />
+                      </Button>
+                      <Button variant="ghost" size="sm" class="p-1">
+                        <Instagram class="h-4 w-4 text-primary-500" />
+                      </Button>
+                      <Button variant="ghost" size="sm" class="p-1">
+                        <Twitter class="h-4 w-4 text-tertiary-400" />
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {/* Product Details Tabs */}
+    <div class="mb-16 bg-tertiary-50">
+      <div class="container--default">
+        <!-- Alpine.js Tabs Example -->
+        <div x-data="{ tab: 'description' }" class="mb-8">
+          <div class="flex gap-16">
+            <button
+              :class="tab === 'description' ? 'underline underline-offset-4 text-tertiary-900' : 'text-tertiary-900'"
+              class="pb-4 text-2xl font-heading font-medium bg-transparent focus:outline-none"
+              @click="tab = 'description'"
+              type="button"
+            >
+              Description
+            </button>
+            <button
+              :class="tab === 'additional' ? 'underline text-tertiary-900' : 'text-tertiary-900'"
+              class="pb-4 text-2xl font-heading font-medium bg-transparent focus:outline-none"
+              @click="tab = 'additional'"
+              type="button"
+            >
+              Additional Info
+            </button>
+            <button
+              :class="tab === 'reviews' ? 'underline text-tertiary-900' : 'text-tertiary-900'"
+              class="pb-4 text-2xl font-heading font-medium bg-transparent focus:outline-none"
+              @click="tab = 'reviews'"
+              type="button"
+            >
+              Reviews
+            </button>
+            <button
+              :class="tab === 'video' ? 'underline text-tertiary-900' : 'text-tertiary-900'"
+              class="pb-4 text-2xl font-heading font-medium bg-transparent focus:outline-none"
+              @click="tab = 'video'"
+              type="button"
+            >
+              Video
+            </button>
+          </div>
+          <div class="mt-8">
+            <div x-show="tab === 'description'">
+              <h3 class="text-lg font-medium text-tertiary-900 mb-4">
+                Varius tempor.
+              </h3>
+              <p class="leading-relaxed mb-6">
+                Aliquam dis vulputate vulputate integer sagittis. Faucibus dolor
+                ornare faucibus vel sed et eleifend habitasse amet. Montes,
+                mauris varius ac est bibendum. Scelerisque a, risus ac ante.
+                Velit consectetur neque placerat rhoncus est pellentesque.
+                Praesent ornare in lacus, at consectetur lorem. Ut sagittis,
+                libero venenatis at.
+              </p>
+            </div>
+            <div x-show="tab === 'additional'">
+              <p class="text-gray-600">
+                Additional information content would go here.
+              </p>
+            </div>
+            <div x-show="tab === 'reviews'">
+              <p class="text-gray-600">
+                Customer reviews would be displayed here.
+              </p>
+            </div>
+            <div x-show="tab === 'video'">
+              <p class="text-gray-600">
+                Product videos would be embedded here.
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- <Tabs defaultValue="description" class="w-full">
+          <TabsList class="flex gap-10 rounded-none h-auto p-0 bg-transparent">
+            <TabsTrigger
+              value="description"
+              class="text-tertiary-900 text-2xl font-heading font-medium bg-transparent data-[state=active]:underline data-[state=active]:bg-transparent rounded-none pb-4"
+            >
+              Description
+            </TabsTrigger>
+            <TabsTrigger
+              value="additional"
+              class="text-tertiary-900 font-medium bg-transparent data-[state=active]:underline data-[state=active]:bg-transparent rounded-none pb-4"
+            >
+              Additional Info
+            </TabsTrigger>
+            <TabsTrigger
+              value="reviews"
+              class="text-tertiary-900 font-medium bg-transparent data-[state=active]:underline data-[state=active]:bg-transparent rounded-none pb-4"
+            >
+              Reviews
+            </TabsTrigger>
+            <TabsTrigger
+              value="video"
+              class="text-tertiary-900 font-medium bg-transparent data-[state=active]:underline data-[state=active]:bg-transparent rounded-none pb-4"
+            >
+              Video
+            </TabsTrigger>
+          </TabsList>
+
+          <TabsContent value="description" class="mt-8 space-y-6">
+            <div>
+              <h3 class="text-lg font-medium text-tertiary-900 mb-4">
+                Varius tempor.
+              </h3>
+              <p class="leading-relaxed mb-6">
+                Aliquam dis vulputate vulputate integer sagittis. Faucibus dolor
+                ornare faucibus vel sed et eleifend habitasse amet. Montes,
+                mauris varius ac est bibendum. Scelerisque a, risus ac ante.
+                Velit consectetur neque placerat rhoncus est pellentesque.
+                Praesent ornare in lacus, at consectetur lorem. Ut sagittis,
+                libero venenatis at.
+              </p>
+            </div>
+
+            <div>
+              <h3 class="text-lg font-medium text-tertiary-900 mb-4">
+                More details
+              </h3>
+              <div class="space-y-2">
+                <div class="flex items-start space-x-2">
+                  <span class="text-tertiary-900 mt-1">→</span>
+                  <p class="">
+                    Aliquam dis vulputate vulputate integer sagittis. Faucibus
+                    ds diam arcu, nulla lobortis justo netus dis. Eu in
+                    fringilla vulputate nunc nec. Dui, massa viverr.
+                  </p>
+                </div>
+                <div class="flex items-start space-x-2">
+                  <span class="text-tertiary-900 mt-1">→</span>
+                  <p class="">
+                    Aliquam dis vulputate vulputate integer sagittis. Faucibus
+                    ds diam arcu, nulla lobortis justo netus dis. Eu in
+                    fringilla vulputate nunc nec. Dui, massa viverr.
+                  </p>
+                </div>
+                <div class="flex items-start space-x-2">
+                  <span class="text-tertiary-900 mt-1">→</span>
+                  <p class="">
+                    Aliquam dis vulputate vulputate integer sagittis. Faucibus
+                    ds diam arcu, nulla lobortis justo netus dis. Eu in
+                    fringilla vulputate nunc nec. Dui, massa viverr.
+                  </p>
+                </div>
+                <div class="flex items-start space-x-2">
+                  <span class="text-tertiary-900 mt-1">→</span>
+                  <p class="">
+                    Aliquam dis vulputate vulputate integer sagittis. Faucibus
+                    ds diam arcu, nulla lobortis justo netus dis. Eu in
+                    fringilla vulputate nunc nec. Dui, massa viverr.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </TabsContent>
+
+          <TabsContent value="additional" class="mt-8">
+            <p class="text-gray-600">
+              Additional information content would go here.
+            </p>
+          </TabsContent>
+
+          <TabsContent value="reviews" class="mt-8">
+            <p class="text-gray-600">
+              Customer reviews would be displayed here.
+            </p>
+          </TabsContent>
+
+          <TabsContent value="video" class="mt-8">
+            <p class="text-gray-600">Product videos would be embedded here.</p>
+          </TabsContent>
+        </Tabs> -->
+      </div>
+    </div>
+
+    {/* Related Products Section */}
+    <div class="container--default py-6">
+      <h4 class="mb-8">Related Products</h4>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {
+          relatedProducts.map((product) => (
+            <div key={product.id} class="group cursor-pointer">
+              <a
+                href={`/shop/${slugify(product.name)}`}
+                class="aspect-square bg-gray-100 rounded-lg p-4 mb-4 flex items-center justify-center"
+              >
+                <img
+                  src={product.image || "/placeholder.svg"}
+                  alt={product.name}
+                  class="w-full h-full object-contain"
+                />
+              </a>
+              <div class="text-center">
+                <h3 class="text-tertiary-900 font-medium mb-2 text-sm">
+                  {product.name}
+                </h3>
+                <div class="flex justify-center mb-2">
+                  {/* {renderStars(product.rating)} */}
+                </div>
+                <p class="text-tertiary-900 font-semibold">{product.price}</p>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    {/* Company Logos Section */}
+    <Partners />
+  </div>
+</BaseLayout>
+
+<script>
+  import { addToCart } from "@/stores/cart";
+  import { Fancybox } from "@fancyapps/ui/dist/fancybox/";
+
+  Fancybox.bind("[data-fancybox]", {
+    // Your custom options
+  });
+
+  // Set the store to true when the button is clicked
+  function updateCart() {
+    addToCart();
+  }
+
+  // Add an event listener to the button
+  document.getElementById("addToCart")?.addEventListener("click", updateCart);
+</script>

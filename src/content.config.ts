@@ -25,6 +25,23 @@ const posts = defineCollection({
   }),
 });
 
+const products = defineCollection({
+  loader: file("src/content/products.json"),
+  schema: zod.object({
+    id: zod.number(),
+    name: zod.string(),
+    image: zod.string(),
+    thumbnailImages: zod.array(zod.string()),
+    originalPrice: zod.string(),
+    salePrice: zod.string(),
+    rating: zod.number(),
+    categories: zod.array(zod.string()),
+    tags: zod.array(zod.string()),
+    inStock: zod.boolean(),
+    description: zod.string(),
+  }),
+});
+
 // const works = defineCollection({
 //   loader: glob({ pattern: "**/*.md", base: "src/content/works" }),
 //   schema: zod.object({
@@ -93,4 +110,4 @@ const posts = defineCollection({
 
 // 4. Export a single `collections` object to register your collection(s)
 //export const collections = { posts, projects, teams };
-export const collections = { posts };
+export const collections = { posts, products };

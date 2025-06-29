@@ -5,6 +5,9 @@ import { Button } from "@/starwind/button";
 //image import
 import Header1 from "@/assets/header-banner-1.png";
 
+//blog animation
+import BlobAnimation from "@/assets/animated-svg/blob-animation.svg";
+
 //decorative elements
 import HeadLamp from "@/assets/head-lamp.png";
 ---
@@ -36,7 +39,7 @@ import HeadLamp from "@/assets/head-lamp.png";
               <span class="text-gray-900">Trends in 2020</span>
             </h1>
 
-            <p class="text-lg leading-relaxed max-w-md" data-scroll-animate>
+            <p class="text-lg max-w-md" data-scroll-animate>
               Discover stylish, comfortable furniture designed to elevate your
               home. Explore our latest collection and find the perfect pieces to
               match your unique taste.
@@ -76,17 +79,22 @@ import HeadLamp from "@/assets/head-lamp.png";
                   </svg>
                   <div class="text-center absolute font-heading">
                     <div class="text-white font-bold text-xl">50%</div>
-                    <div class="text-white font-medium text-sm">off</div>
+                    <div class="text-white font-medium">off</div>
                   </div>
                 </div>
               </div>
 
-              <Image
-                src={Header1}
-                alt="primary velvet armchair"
-                class="w-full h-full object-contain"
-                data-scroll-animate
-              />
+              <figure class="bg-blob-bg bg-no-repeat bg-center relative">
+                <BlobAnimation
+                  class="absolute inset-0 w-full h-full z-0 fill-primary-200/60"
+                />
+                <Image
+                  src={Header1}
+                  alt="primary velvet armchair"
+                  class="w-full h-full object-contain"
+                  data-scroll-animate
+                />
+              </figure>
             </div>
           </div>
         </div>

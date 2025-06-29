@@ -1,0 +1,312 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+//components import
+import PageHeader from "@/components/blocks/PageHeader.astro";
+
+import { Button } from "@/starwind/button";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/starwind/tabs";
+import { Heart, Facebook, Twitter, Instagram, Star } from "@lucide/astro";
+import Partners from "@/components/blocks/Partners.astro";
+
+// page header details
+const pageHeader = {
+  title: "Products Listing Grid Layout",
+  caption: "Products Listing",
+  description: "",
+};
+
+const thumbnailImages = [
+  "/placeholder.svg?height=80&width=80",
+  "/placeholder.svg?height=80&width=80",
+  "/placeholder.svg?height=80&width=80",
+];
+
+const relatedProducts = [
+  {
+    id: 1,
+    name: "Mens Fashion Wear",
+    price: "$19.00",
+    image: "/placeholder.svg?height=200&width=200",
+    rating: 5,
+  },
+  {
+    id: 2,
+    name: "Women's Fashion",
+    price: "$21.00",
+    image: "/placeholder.svg?height=200&width=200",
+    rating: 5,
+  },
+  {
+    id: 3,
+    name: "Web Dummy Fashion",
+    price: "$67.00",
+    image: "/placeholder.svg?height=200&width=200",
+    rating: 5,
+  },
+  {
+    id: 4,
+    name: "Top Wall Digital Clock",
+    price: "$51.00",
+    image: "/placeholder.svg?height=200&width=200",
+    rating: 5,
+  },
+];
+
+// Remove the renderStars function from the script section.
+// Instead, render stars directly in the template using an array and .map().
+---
+
+<BaseLayout>
+  <PageHeader headerInfo={pageHeader} slot="pageHeader" />
+
+  <div class="min-h-screen bg-white py-8 px-4">
+    <div class="lg:container mx-auto px-6">
+      {/* Product Detail Section */}
+      <div class="grid lg:grid-cols-12 gap-8 mb-16">
+        {/* Thumbnail Images */}
+        <div class="lg:col-span-2 space-y-4">
+          {
+            thumbnailImages.map((image, index) => (
+              <div
+                key={index}
+                class="w-full aspect-square bg-gray-100 rounded-lg p-2"
+              >
+                <img
+                  src={image || "/placeholder.svg"}
+                  alt={`Thumbnail ${index + 1}`}
+                  class="w-full h-full object-contain"
+                />
+              </div>
+            ))
+          }
+        </div>
+
+        {/* Main Product Image */}
+        <div class="lg:col-span-5">
+          <div
+            class="aspect-square bg-gray-100 rounded-lg p-8 flex items-center justify-center"
+          >
+            <img
+              src="/placeholder.svg?height=400&width=400"
+              alt="Playwood arm chair"
+              class="w-full h-full object-contain"
+            />
+          </div>
+        </div>
+
+        {/* Product Information */}
+        <div class="lg:col-span-5 space-y-6">
+          <div>
+            <h1 class="text-3xl font-semibold text-tertiary-900 mb-2">
+              Playwood arm chair
+            </h1>
+            <div class="flex items-center space-x-2 mb-4">
+              <!-- <div class="flex">{renderStars(5)}</div> -->
+              <span class="text-sm text-gray-500">(23)</span>
+            </div>
+            <div class="flex items-center space-x-3 mb-6">
+              <div class="flex items-center space-x-2 mb-4">
+                <div class="flex">
+                  {[...Array(5)].map((_, i) => <Star class="w-6 h-6" />)}
+                </div>
+                <span class="text-sm text-gray-500">(23)</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="space-y-4">
+            <div>
+              <h3 class="text-sm font-medium text-tertiary-900 mb-2">Color</h3>
+              <p class="text-sm text-gray-600 leading-relaxed">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris
+                tellus porttitor purus, et volutpat sit.
+              </p>
+            </div>
+
+            <div class="flex items-center space-x-4">
+              <Button
+                class="bg-primary-500 hover:bg-primary-600 text-white px-6 py-2 rounded-md"
+                >Add To Cart</Button
+              >
+              <Button variant="ghost" size="sm" class="p-2">
+                <Heart class="h-5 w-5 text-gray-600" />
+              </Button>
+            </div>
+
+            <div class="space-y-3">
+              <div>
+                <span class="text-sm font-medium text-tertiary-900"
+                  >Categories</span
+                >
+              </div>
+              <div>
+                <span class="text-sm font-medium text-tertiary-900">Tags</span>
+              </div>
+              <div class="flex items-center space-x-3">
+                <span class="text-sm font-medium text-tertiary-900">Share</span>
+                <div class="flex space-x-2">
+                  <Button variant="ghost" size="sm" class="p-1">
+                    <Facebook class="h-4 w-4 text-tertiary-600" />
+                  </Button>
+                  <Button variant="ghost" size="sm" class="p-1">
+                    <Instagram class="h-4 w-4 text-primary-500" />
+                  </Button>
+                  <Button variant="ghost" size="sm" class="p-1">
+                    <Twitter class="h-4 w-4 text-tertiary-400" />
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {/* Product Details Tabs */}
+    <div class="mb-16 bg-tertiary-50">
+      <div class="lg:container mx-auto px-6">
+        <Tabs defaultValue="description" class="w-full">
+          <TabsList
+            class="grid w-full grid-cols-4 bg-transparent border-b border-gray-200 rounded-none h-auto p-0"
+          >
+            <TabsTrigger
+              value="description"
+              class="text-tertiary-900 font-medium border-b-2 border-transparent data-[state=active]:border-tertiary-900 data-[state=active]:bg-transparent rounded-none pb-4"
+            >
+              Description
+            </TabsTrigger>
+            <TabsTrigger
+              value="additional"
+              class="text-tertiary-900 font-medium border-b-2 border-transparent data-[state=active]:border-tertiary-900 data-[state=active]:bg-transparent rounded-none pb-4"
+            >
+              Additional Info
+            </TabsTrigger>
+            <TabsTrigger
+              value="reviews"
+              class="text-tertiary-900 font-medium border-b-2 border-transparent data-[state=active]:border-tertiary-900 data-[state=active]:bg-transparent rounded-none pb-4"
+            >
+              Reviews
+            </TabsTrigger>
+            <TabsTrigger
+              value="video"
+              class="text-tertiary-900 font-medium border-b-2 border-transparent data-[state=active]:border-tertiary-900 data-[state=active]:bg-transparent rounded-none pb-4"
+            >
+              Video
+            </TabsTrigger>
+          </TabsList>
+
+          <TabsContent value="description" class="mt-8 space-y-6">
+            <div>
+              <h3 class="text-lg font-medium text-tertiary-900 mb-4">
+                Varius tempor.
+              </h3>
+              <p class="text-sm text-gray-600 leading-relaxed mb-6">
+                Aliquam dis vulputate vulputate integer sagittis. Faucibus dolor
+                ornare faucibus vel sed et eleifend habitasse amet. Montes,
+                mauris varius ac est bibendum. Scelerisque a, risus ac ante.
+                Velit consectetur neque placerat rhoncus est pellentesque.
+                Praesent ornare in lacus, at consectetur lorem. Ut sagittis,
+                libero venenatis at.
+              </p>
+            </div>
+
+            <div>
+              <h3 class="text-lg font-medium text-tertiary-900 mb-4">
+                More details
+              </h3>
+              <div class="space-y-2">
+                <div class="flex items-start space-x-2">
+                  <span class="text-tertiary-900 mt-1">→</span>
+                  <p class="text-sm text-gray-600">
+                    Aliquam dis vulputate vulputate integer sagittis. Faucibus
+                    ds diam arcu, nulla lobortis justo netus dis. Eu in
+                    fringilla vulputate nunc nec. Dui, massa viverr.
+                  </p>
+                </div>
+                <div class="flex items-start space-x-2">
+                  <span class="text-tertiary-900 mt-1">→</span>
+                  <p class="text-sm text-gray-600">
+                    Aliquam dis vulputate vulputate integer sagittis. Faucibus
+                    ds diam arcu, nulla lobortis justo netus dis. Eu in
+                    fringilla vulputate nunc nec. Dui, massa viverr.
+                  </p>
+                </div>
+                <div class="flex items-start space-x-2">
+                  <span class="text-tertiary-900 mt-1">→</span>
+                  <p class="text-sm text-gray-600">
+                    Aliquam dis vulputate vulputate integer sagittis. Faucibus
+                    ds diam arcu, nulla lobortis justo netus dis. Eu in
+                    fringilla vulputate nunc nec. Dui, massa viverr.
+                  </p>
+                </div>
+                <div class="flex items-start space-x-2">
+                  <span class="text-tertiary-900 mt-1">→</span>
+                  <p class="text-sm text-gray-600">
+                    Aliquam dis vulputate vulputate integer sagittis. Faucibus
+                    ds diam arcu, nulla lobortis justo netus dis. Eu in
+                    fringilla vulputate nunc nec. Dui, massa viverr.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </TabsContent>
+
+          <TabsContent value="additional" class="mt-8">
+            <p class="text-gray-600">
+              Additional information content would go here.
+            </p>
+          </TabsContent>
+
+          <TabsContent value="reviews" class="mt-8">
+            <p class="text-gray-600">
+              Customer reviews would be displayed here.
+            </p>
+          </TabsContent>
+
+          <TabsContent value="video" class="mt-8">
+            <p class="text-gray-600">Product videos would be embedded here.</p>
+          </TabsContent>
+        </Tabs>
+      </div>
+    </div>
+
+    {/* Related Products Section */}
+    <div class="lg:container mx-auto px-6">
+      <div class="mb-16">
+        <h2 class="text-2xl font-semibold text-tertiary-900 mb-8">
+          Related Products
+        </h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {
+            relatedProducts.map((product) => (
+              <div key={product.id} class="group cursor-pointer">
+                <div class="aspect-square bg-gray-100 rounded-lg p-4 mb-4 flex items-center justify-center">
+                  <img
+                    src={product.image || "/placeholder.svg"}
+                    alt={product.name}
+                    class="w-full h-full object-contain"
+                  />
+                </div>
+                <div class="text-center">
+                  <h3 class="text-tertiary-900 font-medium mb-2 text-sm">
+                    {product.name}
+                  </h3>
+                  <div class="flex justify-center mb-2">
+                    {/* {renderStars(product.rating)} */}
+                  </div>
+                  <p class="text-tertiary-900 font-semibold">{product.price}</p>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+
+    {/* Company Logos Section */}
+    <div class="mt-20 pt-12 border-t border-gray-200" data-scroll-animate>
+      <Partners />
+    </div>
+  </div>
+</BaseLayout>

@@ -21,7 +21,6 @@ import {
 } from "@/starwind/dropdown";
 
 import PageFindSearch from "./blocks/PageFindSearch.astro";
-
 //navigation items
 const navItems = [
   {
@@ -214,6 +213,11 @@ const lang = [
                 class="text-white font-medium inline-flex gap-2 items-center"
               >
                 <span>Cart</span>
+                <span
+                  class="inline-flex items-center text-xs justify-center w-5 h-5 bg-primary-500 text-white rounded-full"
+                  id="cartCount"
+                >
+                </span>
                 <ShoppingCart class="size-5" />
               </a>
             </li>
@@ -278,7 +282,7 @@ const lang = [
             }
           </ul>
         </nav>
-        <PageFindSearch class="ml-20" />
+        <!-- <PageFindSearch class="ml-20" /> -->
         <form action="" class="flex ml-auto">
           <label for="search" class="sr-only">Enter keywords to search</label>
           <input
@@ -300,3 +304,33 @@ const lang = [
   <!-- end - main header -->
 </header>
 <!-- END - Header -->
+
+<script>
+  import { cartCount } from "@/stores/cart";
+
+  // Listen to changes in the store, and show/hide the dialog accordingly
+  function updateCartCount(count) {
+    const cartCountElem = document.getElementById("cartCount");
+    if (cartCountElem) {
+      if (count > 0) {
+        cartCountElem.style.display = "inline-flex";
+        cartCountElem.textContent = count.toString();
+      } else {
+        cartCountElem.style.display = "none";
+        cartCountElem.textContent = "";
+      }
+    }
+  }
+
+  cartCount.subscribe((count) => {
+    console.log("Cart count updated:", count);
+    updateCartCount(count);
+  });
+
+  // Run once after Astro page rendered
+  if (typeof window !== "undefined") {
+    document.addEventListener("astro:page-load", () => {
+      updateCartCount(cartCount.get());
+    });
+  }
+</script>

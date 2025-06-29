@@ -4,8 +4,8 @@
 
 /* Vendor styles */
 @import "aos/dist/aos.css";
-
 @import "./starwind.css";
+@import "@fancyapps/ui/dist/fancybox/fancybox.css";
 
 /* Design System Tokens */
 @import "./design-system.css";
@@ -173,6 +173,20 @@
 
   h6 {
     @apply text-base md:text-lg lg:text-xl leading-snug;
+  }
+
+  /* Body text variations */
+  .body-lg {
+    @apply font-body text-lg md:text-xl leading-relaxed text-emphasis-900 dark:text-emphasis-50;
+  }
+  .body-base {
+    @apply font-body text-base md:text-lg leading-relaxed text-emphasis-900 dark:text-emphasis-50;
+  }
+  .body-sm {
+    @apply font-body text-sm md:text-base leading-relaxed text-emphasis-900 dark:text-emphasis-50;
+  }
+  .body-xs {
+    @apply font-body text-xs md:text-sm leading-relaxed text-emphasis-900 dark:text-emphasis-50;
   }
 }
 
