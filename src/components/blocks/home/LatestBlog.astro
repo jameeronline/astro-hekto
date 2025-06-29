@@ -13,42 +13,6 @@ import SectionHeader from "@/components/atoms/SectionHeader.astro";
 const posts = (await getCollection("posts"))
   .sort((a, b) => new Date(b.data.pubDate) - new Date(a.data.pubDate))
   .slice(0, 3);
-
-//blog images
-import Blog1 from "@/assets/images/latest-blog-1.jpg";
-import Blog2 from "@/assets/images/latest-blog-2.jpg";
-import Blog3 from "@/assets/images/latest-blog-3.jpg";
-
-//data values
-const blogs = [
-  {
-    image: Blog1,
-    author: "SaberAli",
-    date: "21 August, 2020",
-    title: "Top Essential Trends in 2021",
-    description:
-      "Following the journey of history and culture, is a journey through the beautiful green rice paddies, and endless golden fields! Dotted amongst the countryside are bustling towns, with a vibrant atmosphere and great cafe culture.",
-    link: "#",
-  },
-  {
-    image: Blog2,
-    author: "SaberAli",
-    date: "21 August, 2020",
-    title: "Top Essential Trends in 2021",
-    description:
-      "Following the journey of history and culture, is a journey through the beautiful green rice paddies, and endless golden fields! Dotted amongst the countryside are bustling towns, with a vibrant atmosphere and great cafe culture.",
-    link: "#",
-  },
-  {
-    image: Blog3,
-    author: "SaberAli",
-    date: "21 August, 2020",
-    title: "Top Essential Trends in 2021",
-    description:
-      "Following the journey of history and culture, is a journey through the beautiful green rice paddies, and endless golden fields! Dotted amongst the countryside are bustling towns, with a vibrant atmosphere and great cafe culture.",
-    link: "#",
-  },
-];
 ---
 
 <!-- START - Latest Blogs -->
@@ -64,10 +28,10 @@ const blogs = [
           <div class="col-span-4" data-scroll-animate>
             <article class="overflow-hidden bg-white rounded-lg shadow-[0px_8px_40px_0px_rgba(0,0,0,0.05)] text-slate-500">
               <figure class="overflow-hidden group">
-                {data.image && (
+                {data.cover && (
                   <Image
-                    src={data.image.url}
-                    alt={data.image.alt || data.title}
+                    src={data.cover.image}
+                    alt={data.cover.alt || data.title}
                     width={1600}
                     height={900}
                     loading="lazy"
