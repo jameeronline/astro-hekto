@@ -2,8 +2,8 @@
 title: Beginner’s Guide to Painting Tips and Tricks
 author: Sarah Smith
 description: A beginner-friendly guide to painting your home with confidence, including tips and tricks to achieve a professional-looking finish.
-image:
-  url: "/blog/blog-5.png"
+cover:
+  image: "../../assets/blog/blog-5.png"
   alt: Freshly painted room with vibrant colors
 pubDate: 2025-06-25
 tags: ["painting tips", "home decor", "DIY painting", "beginner guide"]

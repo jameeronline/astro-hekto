@@ -7,22 +7,21 @@ import { glob, file } from "astro/loaders";
 // 3. Define your collection(s)
 const posts = defineCollection({
   loader: glob({ pattern: "**/*.{md,mdx}", base: "src/content/posts" }),
-  schema: zod.object({
-    title: zod.string(),
-    author: zod.string(),
-    description: zod.string(),
-    image: zod
-      .object({
-        url: zod.string(),
+  schema: ({ image }) =>
+    zod.object({
+      title: zod.string(),
+      author: zod.string(),
+      description: zod.string(),
+      cover: zod.object({
+        image: image().optional(),
         alt: zod.string(),
-      })
-      .optional(),
-    pubDate: zod.date(),
-    tags: zod.array(zod.string()),
-    categories: zod.array(zod.string()),
-    featured: zod.boolean().optional(),
-    draft: zod.boolean().optional(),
-  }),
+      }),
+      pubDate: zod.date(),
+      tags: zod.array(zod.string()),
+      categories: zod.array(zod.string()),
+      featured: zod.boolean().optional(),
+      draft: zod.boolean().optional(),
+    }),
 });
 
 const products = defineCollection({
@@ -39,6 +38,39 @@ const products = defineCollection({
     tags: zod.array(zod.string()),
     inStock: zod.boolean(),
     description: zod.string(),
+  }),
+});
+
+const productCollection = defineCollection({
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "src/content/products" }),
+  schema: zod.object({
+    title: zod.string(),
+    slug: zod.string(),
+    price: zod.number(),
+    currency: zod.string(),
+    sku: zod.string(),
+    category: zod.string(),
+    tags: zod.array(zod.string()),
+    brand: zod.string(),
+    availability: zod.enum(["in-stock", "out-of-stock", "pre-order"]),
+    stock: zod.number(),
+    dimensions: zod.object({
+      width: zod.number(),
+      depth: zod.number(),
+      height: zod.number(),
+      unit: zod.string(),
+    }),
+    weight: zod.number(),
+    weightUnit: zod.string(),
+    material: zod.array(zod.string()),
+    color: zod.array(zod.string()),
+    featuredImage: zod.string(),
+    galleryImages: zod.array(zod.string()),
+    rating: zod.number(),
+    reviewCount: zod.number(),
+    publishedAt: zod.date(),
+    updatedAt: zod.date(),
+    isFeatured: zod.boolean(),
   }),
 });
 
@@ -110,4 +142,4 @@ const products = defineCollection({
 
 // 4. Export a single `collections` object to register your collection(s)
 //export const collections = { posts, projects, teams };
-export const collections = { posts, products };
+export const collections = { posts, products, productCollection };

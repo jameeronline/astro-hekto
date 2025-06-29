@@ -64,7 +64,7 @@ const relatedPosts = posts
   .slice(0, 4); // Limit to 4
 
 //access data properties
-const { title, description, image, pubDate, author } = data;
+const { title, description, cover, pubDate, author } = data;
 
 // page header details
 const pageHeader = {
@@ -93,8 +93,8 @@ const pageHeader = {
     >
       <Image
         class="object-cover object-center aspect-video w-full bg-slate-50 transition duration-300 ease-in-out dark:bg-transparent"
-        src={image.url}
-        alt={image.alt || title}
+        src={cover.image}
+        alt={cover.alt || title}
         format="webp"
         loading="lazy"
         width={1600}

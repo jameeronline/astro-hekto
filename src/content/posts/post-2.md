@@ -2,8 +2,8 @@
 title: Beginner’s Guide to Choosing Interior Colors
 author: Sarah Smith
 description: A simple, beginner-friendly guide to picking interior colors that make your home or office feel vibrant, cozy, and uniquely yours.
-image:
-  url: "/blog/blog-2.png"
+cover:
+  image: "../../assets/blog/blog-2.png"
   alt: Cozy living room with vibrant interior colors
 pubDate: 2024-10-27
 tags: ["interior design", "home decor", "colors", "beginner tips"]

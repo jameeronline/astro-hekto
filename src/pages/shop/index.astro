@@ -1,6 +1,6 @@
 ---
 //astro imports
-import { getCollection } from "astro:content";
+import { getCollection, render, getEntry } from "astro:content";
 import { Image } from "astro:assets";
 
 //layout imports
@@ -45,6 +45,7 @@ import Partners from "@/components/blocks/Partners.astro";
 
 //utils import
 import { slugify } from "@/utils/helper";
+import Contact from "../contact.astro";
 
 //products collection import
 const productsCollection = await getCollection("products");
@@ -55,10 +56,18 @@ const pageHeader = {
   caption: "",
   description: "",
 };
+
+const furnitureProducts = await getCollection("productCollection");
+
+const { Content, headings } = await render(furnitureProducts[0]);
 ---
 
 <BaseLayout>
   <PageHeader headerInfo={pageHeader} slot="pageHeader" />
+
+  <!-- <div>
+    <Content />
+  </div> -->
 
   <div class="min-h-screen bg-white py-8">
     <div class="lg:container mx-auto px-6">

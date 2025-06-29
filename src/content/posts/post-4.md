@@ -2,8 +2,8 @@
 title: "A Beginner’s Guide to Furniture: Essential Tips for Choosing the Right Pieces"
 author: "Astro Learner"
 description: "Discover the fundamentals of furniture selection, including style, materials, comfort, and functionality. Learn how to choose the perfect pieces for your home or office."
-image:
-  url: "/blog/blog-1.png"
+cover:
+  image: "../../assets/blog/blog-1.png"
   alt: "A stylish modern living room with elegant furniture."
 pubDate: 2025-01-01
 tags: ["furniture", "interior design", "home decor"]

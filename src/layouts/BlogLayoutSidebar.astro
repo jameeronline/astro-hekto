@@ -1,6 +1,7 @@
 ---
 //astro content import
 import { Astro } from "astro";
+import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 import { Icon } from "astro-icon/components";
 
@@ -36,12 +37,11 @@ const recentPosts = allPosts
     id: idx + 1,
     title: post.data.title,
     date: formatDate(post.data.pubDate),
-    image: post.data.image.url || "/placeholder.svg?height=60&width=60",
+    image: post.data.cover.image || "/placeholder.svg?height=60&width=60",
     url: post.slug ? `/blog/${post.slug}` : "#",
   }));
 
 // Generate categories from all posts with count
-// This will create a map of categories with their respective post counts
 const categoryMap = {};
 allPosts.forEach((post) => {
   const cats = Array.isArray(post.data.categories)
@@ -71,19 +71,19 @@ const saleProducts = [
     id: 1,
     name: "Elit ornare in enim mauris.",
     description: "Aug 09 2020",
-    image: "/placeholder.svg?height=60&width=60",
+    image: "",
   },
   {
     id: 2,
     name: "Viverra pulvinar et enim.",
     description: "Aug 09 2020",
-    image: "/placeholder.svg?height=60&width=60",
+    image: "",
   },
   {
     id: 3,
     name: "Mattis varius donec fdsfd",
     description: "Aug 09 2020",
-    image: "/placeholder.svg?height=60&width=60",
+    image: "",
   },
 ];
 
@@ -93,28 +93,28 @@ const offerProducts = [
     name: "Duis lectus est.",
     originalPrice: "$12.00",
     salePrice: "$15.00",
-    image: "/placeholder.svg?height=80&width=80",
+    image: "",
   },
   {
     id: 2,
     name: "Sed placerat.",
     originalPrice: "$12.00",
     salePrice: "$15.00",
-    image: "/placeholder.svg?height=80&width=80",
+    image: "",
   },
   {
     id: 3,
     name: "Netus proin.",
     originalPrice: "$12.00",
     salePrice: "$15.00",
-    image: "/placeholder.svg?height=80&width=80",
+    image: "",
   },
   {
     id: 4,
     name: "Platea in.",
     originalPrice: "$12.00",
     salePrice: "$15.00",
-    image: "/placeholder.svg?height=80&width=80",
+    image: "",
   },
 ];
 
@@ -203,8 +203,8 @@ const tags = Object.entries(tagMap).map(([name, count]) => ({
             key={post.id}
             class="flex items-start space-x-3 group"
           >
-            <img
-              src={post.image || "/placeholder.svg"}
+            <Image
+              src={post.image}
               alt={post.title}
               class="size-20 object-cover rounded-md bg-gray-100 flex-shrink-0"
             />
@@ -228,7 +228,7 @@ const tags = Object.entries(tagMap).map(([name, count]) => ({
         saleProducts.map((product) => (
           <div key={product.id} class="flex items-start space-x-3">
             <img
-              src={product.image || "/placeholder.svg"}
+              src={product.image}
               alt={product.name}
               class="w-12 h-12 object-cover rounded-md bg-gray-100 flex-shrink-0"
             />
@@ -252,7 +252,7 @@ const tags = Object.entries(tagMap).map(([name, count]) => ({
         offerProducts.map((product) => (
           <div key={product.id} class="text-center">
             <img
-              src={product.image || "/placeholder.svg"}
+              src={product.image}
               alt={product.name}
               class="w-full h-20 object-cover rounded-md bg-gray-100 mb-2"
             />
@@ -297,6 +297,13 @@ const tags = Object.entries(tagMap).map(([name, count]) => ({
         class="size-10 bg-slate-400 hover:bg-slate-500 text-white rounded-full"
       >
         <X class="size-6" />
+      </Button>
+      <Button
+        variant="ghost"
+        size="sm"
+        class="size-10 bg-secondary-400 hover:bg-secondary-500 text-white rounded-full"
+      >
+        <LinkedIn class="size-6" />
       </Button>
     </div>
   </div>

@@ -24,8 +24,8 @@ const categories = post.categories.map((category: string) => category.trim());
   >
     <Image
       class="object-cover object-center aspect-video w-full bg-slate-50 transition duration-300 ease-in-out hover:scale-110 dark:bg-transparent"
-      src={post.image.url}
-      alt={post.image.alt || post.title}
+      src={post.cover.image}
+      alt={post.cover.alt || post.title}
       format="webp"
       loading="lazy"
       width={1600}
