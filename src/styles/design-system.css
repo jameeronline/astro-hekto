@@ -1,6 +1,10 @@
 /* LAYOUT */
 .container--default {
-  @apply lg:container mx-auto px-6 py-8 md:py-12 lg:py-16;
+  @apply w-full xl:container mx-auto px-6 py-8 md:py-12 lg:py-16;
+}
+
+.container--light {
+  @apply w-full xl:container mx-auto px-6;
 }
 
 /* FORM STYLES */
@@ -27,4 +31,10 @@
 
 .btn--tertiary {
   @apply bg-tertiary-900 text-white hover:bg-tertiary-950 focus:ring-2 focus:ring-tertiary-500 focus:ring-offset-2 focus:outline-none rounded-md transition-colors duration-200 font-semibold px-8;
+}
+
+@media (min-width: 1024px) {
+  .off-canvas-menu {
+    display: block !important;
+  }
 }

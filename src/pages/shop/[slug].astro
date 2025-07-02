@@ -1,6 +1,7 @@
 ---
 //astro imports
-import { getCollection } from "astro:content";
+import { getCollection, getEntry, getEntries } from "astro:content";
+
 import { Image } from "astro:assets";
 
 import BaseLayout from "@/layouts/BaseLayout.astro";
@@ -8,6 +9,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 //blocks import
 import PageHeader from "@/components/blocks/PageHeader.astro";
 import Partners from "@/components/blocks/Partners.astro";
+import RelatedProduct from "@/components/blocks/product-detail/RelatedProduct.astro";
 
 //components import
 import { Button } from "@/starwind/button";
@@ -35,6 +37,14 @@ export async function getStaticPaths() {
 const { slug } = Astro.params;
 const { data } = Astro.props;
 
+let categoryDetails = null;
+if (data.categories && data.categories.length > 0) {
+  categoryDetails = await getEntries(data?.categories);
+
+  // Filter out any nulls in case a category was not found
+  console.log("Category entry:", categoryDetails);
+}
+
 //related products
 const productsCollection = await getCollection("products");
 
@@ -42,15 +52,16 @@ const productsCollection = await getCollection("products");
 const relatedProducts = productsCollection
   .filter((product) => {
     if (product.data.name === data.name) return false;
-    const hasCategory =
-      data.categories &&
-      product.data.categories &&
-      product.data.categories.some((cat) => data.categories.includes(cat));
+    // const hasCategory =
+    //   data.categories &&
+    //   product.data.categories &&
+    //   product.data.categories.some((cat) => data.categories.includes(cat));
     const hasTag =
       data.tags &&
       product.data.tags &&
       product.data.tags.some((tag) => data.tags.includes(tag));
-    return hasCategory || hasTag;
+    // return hasCategory || hasTag;
+    return hasTag;
   })
   .slice(0, 4) // Limit to 4 related products
   .map((product) => ({
@@ -72,37 +83,6 @@ const pageHeader = {
   description: "",
 };
 
-// const relatedProducts = [
-//   {
-//     id: 1,
-//     name: "Mens Fashion Wear",
-//     price: "$19.00",
-//     image: "/placeholder.svg?height=200&width=200",
-//     rating: 5,
-//   },
-//   {
-//     id: 2,
-//     name: "Women's Fashion",
-//     price: "$21.00",
-//     image: "/placeholder.svg?height=200&width=200",
-//     rating: 5,
-//   },
-//   {
-//     id: 3,
-//     name: "Web Dummy Fashion",
-//     price: "$67.00",
-//     image: "/placeholder.svg?height=200&width=200",
-//     rating: 5,
-//   },
-//   {
-//     id: 4,
-//     name: "Top Wall Digital Clock",
-//     price: "$51.00",
-//     image: "/placeholder.svg?height=200&width=200",
-//     rating: 5,
-//   },
-// ];
-
 const {
   id,
   name,
@@ -112,7 +92,6 @@ const {
   salePrice,
   rating,
   tags,
-  categories,
   inStock,
   description,
 } = data;
@@ -228,14 +207,14 @@ const {
                     >
                     <ul class="flex flex-wrap gap-2 mt-2">
                       {
-                        categories && categories.length > 0 ? (
-                          categories.map((category) => (
-                            <li key={category}>
+                        categoryDetails && categoryDetails.length > 0 ? (
+                          categoryDetails.map((category) => (
+                            <li key={category.id}>
                               <a
-                                href={`/shop/category/${slugify(category)}`}
+                                href={`/shop/category/${category.id}`}
                                 class="text-primary-600 hover:underline text-sm capitalize"
                               >
-                                {category}
+                                {category.data.name}
                               </a>
                             </li>
                           ))
@@ -470,32 +449,8 @@ const {
     {/* Related Products Section */}
     <div class="container--default py-6">
       <h4 class="mb-8">Related Products</h4>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        {
-          relatedProducts.map((product) => (
-            <div key={product.id} class="group cursor-pointer">
-              <a
-                href={`/shop/${slugify(product.name)}`}
-                class="aspect-square bg-gray-100 rounded-lg p-4 mb-4 flex items-center justify-center"
-              >
-                <img
-                  src={product.image || "/placeholder.svg"}
-                  alt={product.name}
-                  class="w-full h-full object-contain"
-                />
-              </a>
-              <div class="text-center">
-                <h3 class="text-tertiary-900 font-medium mb-2 text-sm">
-                  {product.name}
-                </h3>
-                <div class="flex justify-center mb-2">
-                  {/* {renderStars(product.rating)} */}
-                </div>
-                <p class="text-tertiary-900 font-semibold">{product.price}</p>
-              </div>
-            </div>
-          ))
-        }
+      <div class="grid grid-cols-4 md:grid-cols-8 lg:grid-cols-12 gap-6">
+        {relatedProducts.map((product) => <RelatedProduct product={product} />)}
       </div>
     </div>
 
@@ -506,11 +461,21 @@ const {
 
 <script>
   import { addToCart } from "@/stores/cart";
-  import { Fancybox } from "@fancyapps/ui/dist/fancybox/";
+  // import { Fancybox } from "@fancyapps/ui/dist/fancybox/";
+  // import { Carousel } from "@fancyapps/ui/dist/carousel/";
+  // import { Thumbs } from "@fancyapps/ui/dist/carousel/carousel.thumbs.js";
 
-  Fancybox.bind("[data-fancybox]", {
-    // Your custom options
-  });
+  // const container = document.getElementById("myCarousel");
+  // const options = {
+  //   // Your custom options
+  //   Dots: false,
+  // };
+
+  // Carousel(container, options, { Thumbs }).init();
+
+  // Fancybox.bind("[data-fancybox=gallery]", {
+  //   // Your custom options
+  // });
 
   // Set the store to true when the button is clicked
   function updateCart() {

@@ -9,7 +9,12 @@ import { Icon } from "astro-icon/components";
 import { Input } from "@/starwind/input";
 import { Button } from "@/starwind/button";
 import { Badge } from "@/starwind/badge";
-import { Search } from "@lucide/astro";
+import {
+  Search,
+  EclipseIcon,
+  EllipsisVertical,
+  X as CloseIcon,
+} from "@lucide/astro";
 
 //icons import
 import Facebook from "../icons/brands/facebook.svg";
@@ -152,181 +157,220 @@ const tags = Object.entries(tagMap).map(([name, count]) => ({
 // ];
 ---
 
-<div class="bg-white p-6 space-y-10">
-  {/* Profile Section */}
-  {/* Search Section */}
-  <div class="space-y-3">
-    <h6 class="font-semibold">Search</h6>
-    <div class="relative">
-      <Input
-        type="text"
-        placeholder=""
-        class="w-full h-10 pl-4 pr-10 border border-gray-300 rounded-md bg-white"
-      />
-      <Search
-        class="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400"
-      />
-    </div>
-  </div>
+<div x-data="{ open: false }" class="relative">
+  <!-- Toggle Button -->
+  <button
+    @click="open = true"
+    class="inline-flex lg:hidden p-2 w-10 h-10 hover:bg-primary-500 rounded transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
+  >
+    <EllipsisVertical class="w-6 h-6" />
+  </button>
 
-  {/* Categories Section */}
-  <div class="space-y-3">
-    <h6 class="font-semibold">Categories</h6>
-    <div class="space-y-2">
-      {
-        allCategories.map((category, index) => (
-          <a
-            href={`/blog/category/${slugify(category.name)}`}
-            key={index}
-            class={`flex justify-between items-center py-2 px-3 rounded-md cursor-pointer transition-colors duration-300 ${
-              category.active
-                ? "bg-primary-500 text-white"
-                : "text-tertiary-900 hover:bg-primary-500 hover:text-white"
-            }`}
-          >
-            <span class="text-sm">{category.name}</span>
-            <span class="text-sm">({category.count})</span>
-          </a>
-        ))
-      }
+  <div
+    x-show="open"
+    x-transition:enter="transition-transform duration-300"
+    x-transition:enter-start="-translate-x-full"
+    x-transition:enter-end="translate-x-0"
+    x-transition:leave="transition-transform duration-300"
+    x-transition:leave-start="translate-x-0"
+    x-transition:leave-end="-translate-x-full"
+    class="off-canvas-menu fixed min-h-screen overflow-y-scroll inset-y-0 left-0 z-50 w-full bg-white p-6 transform space-y-10 md:w-1/2 lg:block lg:static lg:w-full lg:translate-x-0"
+    @click.away="open = false"
+    @keydown.escape.window="open = false"
+    style="display: none;"
+  >
+    <button
+      @click="open = false"
+      class="inline-flex gap-1 text-gray-600 lg:hidden p-2"
+    >
+      <CloseIcon class="w-6 h-6" />
+      Close
+    </button>
+    {/* Profile Section */}
+    {/* Search Section */}
+    <div class="space-y-3">
+      <h6 class="font-semibold">Search</h6>
+      <div class="relative">
+        <Input
+          type="text"
+          placeholder=""
+          class="w-full h-10 pl-4 pr-10 border border-gray-300 rounded-md bg-white"
+        />
+        <Search
+          class="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400"
+        />
+      </div>
     </div>
-  </div>
 
-  {/* Recent Post Section */}
-  <div class="space-y-4">
-    <h6 class="font-semibold">Recent Post</h6>
-    <div class="space-y-8">
-      {
-        recentPosts.map((post) => (
-          <a
-            href={post.url}
-            key={post.id}
-            class="flex items-start space-x-3 group"
-          >
-            <Image
-              src={post.image}
-              alt={post.title}
-              class="size-20 object-cover rounded-md bg-gray-100 flex-shrink-0"
-            />
-            <div class="flex-1 min-w-0">
-              <p class="text-sm text-tertiary-900 group-hover:text-primary-500 font-semibold mb-2 transition-colors duration-300">
-                {post.title}
-              </p>
-              <p class="text-xs text-gray-500">{post.date}</p>
-            </div>
-          </a>
-        ))
-      }
+    {/* Categories Section */}
+    <div class="space-y-3">
+      <h6 class="font-semibold">Categories</h6>
+      <div class="space-y-2">
+        {
+          allCategories.map((category, index) => (
+            <a
+              href={`/blog/category/${slugify(category.name)}`}
+              key={index}
+              class={`flex justify-between items-center py-2 px-3 rounded-md cursor-pointer transition-colors duration-300 ${
+                category.active
+                  ? "bg-primary-500 text-white"
+                  : "text-tertiary-900 hover:bg-primary-500 hover:text-white"
+              }`}
+            >
+              <span class="text-sm">{category.name}</span>
+              <span class="text-sm">({category.count})</span>
+            </a>
+          ))
+        }
+      </div>
     </div>
-  </div>
 
-  {/* Sale Product Section */}
-  <div class="space-y-4">
-    <h6 class="font-semibold">Sale Product</h6>
+    {/* Recent Post Section */}
     <div class="space-y-4">
-      {
-        saleProducts.map((product) => (
-          <div key={product.id} class="flex items-start space-x-3">
-            <img
-              src={product.image}
-              alt={product.name}
-              class="w-12 h-12 object-cover rounded-md bg-gray-100 flex-shrink-0"
-            />
-            <div class="flex-1 min-w-0">
-              <h4 class="text-sm font-medium text-tertiary-900 leading-tight mb-1">
+      <h6 class="font-semibold">Recent Post</h6>
+      <div class="space-y-8">
+        {
+          recentPosts.map((post) => (
+            <a
+              href={post.url}
+              key={post.id}
+              class="flex items-start space-x-3 group"
+            >
+              <Image
+                src={post.image}
+                alt={post.title}
+                class="size-20 object-cover rounded-md bg-gray-100 flex-shrink-0"
+              />
+              <div class="flex-1 min-w-0">
+                <p class="text-sm text-tertiary-900 group-hover:text-primary-500 font-semibold mb-2 transition-colors duration-300">
+                  {post.title}
+                </p>
+                <p class="text-xs text-gray-500">{post.date}</p>
+              </div>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+
+    {/* Sale Product Section */}
+    <div class="space-y-4">
+      <h6 class="font-semibold">Sale Product</h6>
+      <div class="space-y-4">
+        {
+          saleProducts.map((product) => (
+            <div key={product.id} class="flex items-start space-x-3">
+              <img
+                src={product.image}
+                alt={product.name}
+                class="w-12 h-12 object-cover rounded-md bg-gray-100 flex-shrink-0"
+              />
+              <div class="flex-1 min-w-0">
+                <h4 class="text-sm font-medium text-tertiary-900 leading-tight mb-1">
+                  {product.name}
+                </h4>
+                <p class="text-xs text-gray-500">{product.description}</p>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    {/* Offer Product Section */}
+    <div class="space-y-4">
+      <h6 class="font-semibold">Offer Product</h6>
+      <div class="grid grid-cols-2 gap-4">
+        {
+          offerProducts.map((product) => (
+            <div key={product.id} class="text-center">
+              <img
+                src={product.image}
+                alt={product.name}
+                class="w-full h-20 object-cover rounded-md bg-gray-100 mb-2"
+              />
+              <h4 class="text-xs font-medium text-tertiary-900 mb-1">
                 {product.name}
               </h4>
-              <p class="text-xs text-gray-500">{product.description}</p>
+              <div class="flex items-center justify-center space-x-2">
+                <span class="text-xs text-tertiary-900 font-medium">
+                  {product.salePrice}
+                </span>
+                <span class="text-xs text-red-500 line-through">
+                  {product.originalPrice}
+                </span>
+              </div>
             </div>
-          </div>
-        ))
-      }
+          ))
+        }
+      </div>
+    </div>
+
+    {/* Follow Section */}
+    <div class="space-y-3">
+      <h6 class="font-semibold">Follow</h6>
+      <div class="flex space-x-3">
+        <Button
+          variant="ghost"
+          size="sm"
+          class="size-10 bg-tertiary-600 hover:bg-tertiary-700 text-white rounded-full"
+        >
+          <Facebook class="size-6" />
+        </Button>
+        <Button
+          variant="ghost"
+          size="sm"
+          class="size-10 bg-primary-500 hover:bg-primary-600 text-white rounded-full"
+        >
+          <Instagram class="size-6" />
+        </Button>
+        <Button
+          variant="ghost"
+          size="sm"
+          class="size-10 bg-slate-400 hover:bg-slate-500 text-white rounded-full"
+        >
+          <X class="size-6" />
+        </Button>
+        <Button
+          variant="ghost"
+          size="sm"
+          class="size-10 bg-secondary-400 hover:bg-secondary-500 text-white rounded-full"
+        >
+          <LinkedIn class="size-6" />
+        </Button>
+      </div>
+    </div>
+
+    {/* Tags Section */}
+    <div class="space-y-3">
+      <h6 class="font-semibold">Tags</h6>
+      <div class="flex flex-wrap gap-4">
+        {
+          tags.map((tag, index) => (
+            <a
+              href={`/blog/tag/${slugify(tag.name)}`}
+              key={index}
+              class={`text-base capitalize cursor-pointer underline underline-offset-4 transition-colors duration-300 ${
+                tag.active
+                  ? "text-primary-500 font-semibold"
+                  : "text-tertiary-900 hover:text-primary-500 hover:underline"
+              }`}
+            >
+              {tag.name} ({tag.count})
+            </a>
+          ))
+        }
+      </div>
     </div>
   </div>
 
-  {/* Offer Product Section */}
-  <div class="space-y-4">
-    <h6 class="font-semibold">Offer Product</h6>
-    <div class="grid grid-cols-2 gap-4">
-      {
-        offerProducts.map((product) => (
-          <div key={product.id} class="text-center">
-            <img
-              src={product.image}
-              alt={product.name}
-              class="w-full h-20 object-cover rounded-md bg-gray-100 mb-2"
-            />
-            <h4 class="text-xs font-medium text-tertiary-900 mb-1">
-              {product.name}
-            </h4>
-            <div class="flex items-center justify-center space-x-2">
-              <span class="text-xs text-tertiary-900 font-medium">
-                {product.salePrice}
-              </span>
-              <span class="text-xs text-red-500 line-through">
-                {product.originalPrice}
-              </span>
-            </div>
-          </div>
-        ))
-      }
-    </div>
-  </div>
-
-  {/* Follow Section */}
-  <div class="space-y-3">
-    <h6 class="font-semibold">Follow</h6>
-    <div class="flex space-x-3">
-      <Button
-        variant="ghost"
-        size="sm"
-        class="size-10 bg-tertiary-600 hover:bg-tertiary-700 text-white rounded-full"
-      >
-        <Facebook class="size-6" />
-      </Button>
-      <Button
-        variant="ghost"
-        size="sm"
-        class="size-10 bg-primary-500 hover:bg-primary-600 text-white rounded-full"
-      >
-        <Instagram class="size-6" />
-      </Button>
-      <Button
-        variant="ghost"
-        size="sm"
-        class="size-10 bg-slate-400 hover:bg-slate-500 text-white rounded-full"
-      >
-        <X class="size-6" />
-      </Button>
-      <Button
-        variant="ghost"
-        size="sm"
-        class="size-10 bg-secondary-400 hover:bg-secondary-500 text-white rounded-full"
-      >
-        <LinkedIn class="size-6" />
-      </Button>
-    </div>
-  </div>
-
-  {/* Tags Section */}
-  <div class="space-y-3">
-    <h6 class="font-semibold">Tags</h6>
-    <div class="flex flex-wrap gap-4">
-      {
-        tags.map((tag, index) => (
-          <a
-            href={`/blog/tag/${slugify(tag.name)}`}
-            key={index}
-            class={`text-base capitalize cursor-pointer underline underline-offset-4 transition-colors duration-300 ${
-              tag.active
-                ? "text-primary-500 font-semibold"
-                : "text-tertiary-900 hover:text-primary-500 hover:underline"
-            }`}
-          >
-            {tag.name} ({tag.count})
-          </a>
-        ))
-      }
-    </div>
+  <!-- Overlay for mobile -->
+  <div
+    x-show="open"
+    x-transition.opacity
+    class="bg-gray-900/50 dark:bg-gray-900/80 fixed inset-0 z-30 lg:hidden"
+    @click="open = false"
+    style="display: none;"
+  >
   </div>
 </div>

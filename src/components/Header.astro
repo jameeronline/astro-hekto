@@ -8,6 +8,7 @@ import {
   Heart,
   Search,
   ShoppingCart,
+  Menu,
 } from "@lucide/astro";
 
 //astro components imports
@@ -48,12 +49,12 @@ const navItems = [
     ],
   },
   {
-    name: "Blog",
-    url: "/blog",
-  },
-  {
     name: "Shop",
     url: "/shop",
+  },
+  {
+    name: "Blog",
+    url: "/blog",
   },
   {
     name: "Contact",
@@ -90,7 +91,7 @@ const lang = [
     <div class="xl:container px-6 mx-auto">
       <div class="flex justify-between">
         <!-- start | left list -->
-        <nav>
+        <nav class="hidden md:block">
           <ul class="flex gap-12 font-medium">
             <li class="inline-flex">
               <a
@@ -232,9 +233,16 @@ const lang = [
   <!-- start - main header -->
   <div class="py-5">
     <div class="xl:container px-6 mx-auto">
-      <div class="flex items-center">
+      <div class="flex items-center justify-between">
         <a href="/" class="text-4xl font-heading font-bold text-black">Hekto</a>
-        <nav class="ml-20">
+
+        <a href="#">
+          <Menu
+            class="size-8 ml-4 text-primary-500 md:hidden"
+            x-on:click="$dispatch('toggle-mobile-menu')"
+          />
+        </a>
+        <nav class="ml-20 hidden md:block">
           <ul class="flex items-center gap-9 font-medium">
             {
               navItems.map((item) =>
@@ -283,7 +291,7 @@ const lang = [
           </ul>
         </nav>
         <!-- <PageFindSearch class="ml-20" /> -->
-        <form action="" class="flex ml-auto">
+        <form action="" class="ml-auto hidden md:flex">
           <label for="search" class="sr-only">Enter keywords to search</label>
           <input
             type="text"

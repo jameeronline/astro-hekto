@@ -1,5 +1,5 @@
 // 1. Import utilities from `astro:content`
-import { defineCollection, z as zod } from "astro:content";
+import { defineCollection, z as zod, reference } from "astro:content";
 
 // 2. Import loader(s)
 import { glob, file } from "astro/loaders";
@@ -24,6 +24,16 @@ const posts = defineCollection({
     }),
 });
 
+const productCategories = defineCollection({
+  loader: file("src/content/product-categories.json"),
+  schema: zod.object({
+    slug: zod.string(),
+    name: zod.string(),
+    image: zod.string(),
+    description: zod.string(),
+  }),
+});
+
 const products = defineCollection({
   loader: file("src/content/products.json"),
   schema: zod.object({
@@ -34,7 +44,7 @@ const products = defineCollection({
     originalPrice: zod.string(),
     salePrice: zod.string(),
     rating: zod.number(),
-    categories: zod.array(zod.string()),
+    categories: zod.array(reference("productCategories").optional()),
     tags: zod.array(zod.string()),
     inStock: zod.boolean(),
     description: zod.string(),
@@ -142,4 +152,9 @@ const productCollection = defineCollection({
 
 // 4. Export a single `collections` object to register your collection(s)
 //export const collections = { posts, projects, teams };
-export const collections = { posts, products, productCollection };
+export const collections = {
+  posts,
+  products,
+  productCollection,
+  productCategories,
+};

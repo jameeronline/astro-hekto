@@ -35,7 +35,7 @@ const title = "Astro E Commerce | Hekto App";
     <meta name="generator" content={Astro.generator} />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <title>{title}</title>
-    <ClientRouter />
+    <!-- <ClientRouter /> -->
   </head>
   <body
     class="relative h-full font-body font-normal text-emphasis-500 dark:bg-slate-900 dark:text-slate-50"
@@ -47,6 +47,10 @@ const title = "Astro E Commerce | Hekto App";
         <slot />
       </main>
       <Footer />
+      <!-- <div
+        id="drawer-backdrop"
+        class="bg-gray-900/50 dark:bg-gray-900/80 fixed inset-0 z-30 lg:hidden"
+      > -->
       <LocalScript />
     </div>
 

@@ -122,9 +122,12 @@ const partners = [
         },
         breakpoints: {
           1024: {
-            perView: 2,
+            perView: 3,
           },
           640: {
+            perView: 2,
+          },
+          480: {
             perView: 1,
           },
         },
@@ -133,5 +136,6 @@ const partners = [
     }
   }
 
-  document.addEventListener("astro:page-load", initSlider);
+  // document.addEventListener("astro:page-load", initSlider);
+  initSlider();
 </script>

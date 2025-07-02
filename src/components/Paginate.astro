@@ -21,11 +21,13 @@ const { currentPage, lastPage, prevUrl, nextUrl } = Astro.props;
   {
     prevUrl ? (
       <Button variant="ghost" href={prevUrl}>
-        <ArrowLeft class="size-4" /> Previous
+        <ArrowLeft class="size-4" />{" "}
+        <span class="hidden md:inline">Previous</span>
       </Button>
     ) : (
       <Button variant="ghost" disabled>
-        <ArrowLeft class="size-4" /> Previous
+        <ArrowLeft class="size-4" />{" "}
+        <span class="hidden md:inline">Previous</span>
       </Button>
     )
   }
@@ -37,11 +39,11 @@ const { currentPage, lastPage, prevUrl, nextUrl } = Astro.props;
   {
     nextUrl ? (
       <Button variant="ghost" href={nextUrl}>
-        Next <ArrowRight class="size-4" />
+        <span class="hidden md:inline">Next</span> <ArrowRight class="size-4" />
       </Button>
     ) : (
       <Button variant="ghost" disabled>
-        Next <ArrowRight class="size-4" />
+        <span class="hidden md:inline">Next</span> <ArrowRight class="size-4" />
       </Button>
     )
   }

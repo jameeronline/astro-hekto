@@ -6,6 +6,23 @@
 @import "aos/dist/aos.css";
 @import "./starwind.css";
 @import "@fancyapps/ui/dist/fancybox/fancybox.css";
+@import "@fancyapps/ui/dist/carousel/carousel.css";
+@import "@fancyapps/ui/dist/carousel/carousel.thumbs.css";
+
+#myCarousel {
+  max-width: 640px;
+}
+
+#myCarousel .f-carousel__slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#myCarousel .f-carousel__slide img {
+  width: 100%;
+  height: auto;
+}
 
 /* Design System Tokens */
 @import "./design-system.css";

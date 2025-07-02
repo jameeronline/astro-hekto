@@ -1,0 +1,68 @@
+[
+  {
+    "slug": "living-room",
+    "name": "Living Room",
+    "image": "/images/categories/living-room.jpg",
+    "description": "Discover stylish sofas, modern coffee tables, TV units, and living room sets to create a cozy and inviting living space. Shop the best living room furniture for comfort and elegance."
+  },
+  {
+    "slug": "bedroom",
+    "name": "Bedroom",
+    "image": "/images/categories/bedroom.jpg",
+    "description": "Explore premium beds, spacious wardrobes, dressers, and nightstands designed for a restful and organized bedroom. Find bedroom furniture that combines comfort, storage, and style."
+  },
+  {
+    "slug": "dining-room",
+    "name": "Dining Room",
+    "image": "/images/categories/dining.jpg",
+    "description": "Browse elegant dining tables, comfortable chairs, and functional storage solutions for memorable family meals and gatherings. Upgrade your dining room with quality furniture."
+  },
+  {
+    "slug": "home-office",
+    "name": "Home Office",
+    "image": "/images/categories/office.jpg",
+    "description": "Shop ergonomic desks, supportive office chairs, and smart storage solutions to boost productivity in your home office. Create a workspace that inspires creativity and focus."
+  },
+  {
+    "slug": "outdoor-patio",
+    "name": "Outdoor & Patio",
+    "image": "/images/categories/outdoor.jpg",
+    "description": "Transform your garden or patio with durable outdoor furniture, including patio sets, garden chairs, and weather-resistant tables. Enjoy outdoor living with stylish and comfortable options."
+  },
+  {
+    "slug": "kids-furniture",
+    "name": "Kids' Furniture",
+    "image": "/images/categories/kids.jpg",
+    "description": "Find fun, safe, and functional furniture for children's rooms, including beds, desks, and storage. Create a playful and organized space for your kids to learn and grow."
+  },
+  {
+    "slug": "bags",
+    "name": "Bags",
+    "image": "/images/categories/bags.jpg",
+    "description": "Shop a wide selection of stylish and functional bags for every occasion, including backpacks, handbags, and travel bags."
+  },
+  {
+    "slug": "accessories",
+    "name": "Accessories",
+    "image": "/images/categories/accessories.jpg",
+    "description": "Discover trendy accessories to complement your style, from jewelry and watches to hats and scarves."
+  },
+  {
+    "slug": "clothing",
+    "name": "Clothing",
+    "image": "/images/categories/clothing.jpg",
+    "description": "Browse the latest fashion in clothing for men, women, and kids. Find outfits for every season and occasion."
+  },
+  {
+    "slug": "electronics",
+    "name": "Electronics",
+    "image": "/images/categories/electronics.jpg",
+    "description": "Explore the newest electronics, including smartphones, laptops, headphones, and smart home devices."
+  },
+  {
+    "slug": "footwear",
+    "name": "Footwear",
+    "image": "/images/categories/footwear.jpg",
+    "description": "Step out in style with our collection of footwear for all ages, featuring sneakers, boots, sandals, and more."
+  }
+]
