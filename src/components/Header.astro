@@ -9,6 +9,7 @@ import {
   Search,
   ShoppingCart,
   Menu,
+  X as CloseIcon,
 } from "@lucide/astro";
 
 //astro components imports
@@ -233,16 +234,32 @@ const lang = [
   <!-- start - main header -->
   <div class="py-5">
     <div class="xl:container px-6 mx-auto">
-      <div class="flex items-center justify-between">
+      <div class="flex items-center justify-between" x-data="{toggle: false}">
         <a href="/" class="text-4xl font-heading font-bold text-black">Hekto</a>
 
-        <a href="#">
-          <Menu
-            class="size-8 ml-4 text-primary-500 md:hidden"
-            x-on:click="$dispatch('toggle-mobile-menu')"
-          />
-        </a>
-        <nav class="ml-20 hidden md:block">
+        <button @click="toggle = !toggle" class="lg:hidden">
+          <Menu class="size-8 ml-4 text-primary-500" />
+        </button>
+        <nav
+          x-show="toggle"
+          x-transition:enter="transition-transform duration-300"
+          x-transition:enter-start="-translate-x-full"
+          x-transition:enter-end="translate-x-0"
+          x-transition:leave="transition-transform duration-300"
+          x-transition:leave-start="translate-x-0"
+          x-transition:leave-end="-translate-x-full"
+          class="off-canvas-menu fixed min-h-screen overflow-y-scroll inset-y-0 left-0 z-50 w-full m-0 bg-white p-6 transform space-y-10 md:w-1/2 lg:p-0 lg:bg-transparent lg:overflow-visible lg:min-h-auto lg:block lg:relative lg:w-full lg:translate-x-0 lg:ml-20"
+          @click.away="toggle = false"
+          @keydown.escape.window="toggle = false"
+          style="display: none;"
+        >
+          <button
+            @click="toggle = false"
+            class="inline-flex gap-1 text-gray-600 lg:hidden p-2"
+          >
+            <CloseIcon class="w-6 h-6" />
+            Close
+          </button>
           <ul class="flex items-center gap-9 font-medium">
             {
               navItems.map((item) =>
@@ -306,39 +323,49 @@ const lang = [
             <Search class="size-6" />
           </button>
         </form>
+
+        <!-- Overlay for mobile -->
+        <div
+          x-show="toggle"
+          x-transition.opacity
+          class="off-canvas-menu__backdrop"
+          @click="toggle = false"
+          style="display: none;"
+        >
+        </div>
       </div>
     </div>
+    <!-- end - main header -->
   </div>
-  <!-- end - main header -->
-</header>
-<!-- END - Header -->
+  <!-- END - Header -->
 
-<script>
-  import { cartCount } from "@/stores/cart";
+  <script>
+    import { cartCount } from "@/stores/cart";
 
-  // Listen to changes in the store, and show/hide the dialog accordingly
-  function updateCartCount(count) {
-    const cartCountElem = document.getElementById("cartCount");
-    if (cartCountElem) {
-      if (count > 0) {
-        cartCountElem.style.display = "inline-flex";
-        cartCountElem.textContent = count.toString();
-      } else {
-        cartCountElem.style.display = "none";
-        cartCountElem.textContent = "";
+    // Listen to changes in the store, and show/hide the dialog accordingly
+    function updateCartCount(count) {
+      const cartCountElem = document.getElementById("cartCount");
+      if (cartCountElem) {
+        if (count > 0) {
+          cartCountElem.style.display = "inline-flex";
+          cartCountElem.textContent = count.toString();
+        } else {
+          cartCountElem.style.display = "none";
+          cartCountElem.textContent = "";
+        }
       }
     }
-  }
 
-  cartCount.subscribe((count) => {
-    console.log("Cart count updated:", count);
-    updateCartCount(count);
-  });
-
-  // Run once after Astro page rendered
-  if (typeof window !== "undefined") {
-    document.addEventListener("astro:page-load", () => {
-      updateCartCount(cartCount.get());
+    cartCount.subscribe((count) => {
+      console.log("Cart count updated:", count);
+      updateCartCount(count);
     });
-  }
-</script>
+
+    // Run once after Astro page rendered
+    if (typeof window !== "undefined") {
+      document.addEventListener("astro:page-load", () => {
+        updateCartCount(cartCount.get());
+      });
+    }
+  </script>
+</header>

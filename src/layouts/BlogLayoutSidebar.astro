@@ -368,7 +368,7 @@ const tags = Object.entries(tagMap).map(([name, count]) => ({
   <div
     x-show="open"
     x-transition.opacity
-    class="bg-gray-900/50 dark:bg-gray-900/80 fixed inset-0 z-30 lg:hidden"
+    class="off-canvas-menu__backdrop"
     @click="open = false"
     style="display: none;"
   >

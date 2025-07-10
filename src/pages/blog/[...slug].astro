@@ -77,11 +77,11 @@ const pageHeader = {
 <BlogLayout title={title}>
   <PageHeader headerInfo={pageHeader} slot="pageHeader" />
   <article class="rounded-xl transition-all" data-scroll-animate>
-    <header class="mb-10" data-scroll-animate>
+    <header class="mb-8" data-scroll-animate>
       <BlogMeta categories={categories} post={data} />
 
       <h1
-        class="mb-4 text-2xl font-bold leading-snug text-tertiary-900 lg:text-4xl dark:text-slate-100"
+        class="mb-0 text-2xl font-bold leading-snug text-tertiary-900 lg:text-4xl dark:text-slate-100"
       >
         {title}
       </h1>
@@ -103,14 +103,14 @@ const pageHeader = {
     </div>
 
     <p
-      class="leading-relaxed text-xl mb-10 text-emphasis-500 line-clamp-3 dark:text-slate-400"
+      class="leading-relaxed text-xl lg:text-2xl mb-10 text-emphasis-800 line-clamp-3 dark:text-slate-400"
       data-scroll-animate
     >
       {description}
     </p>
 
     <div
-      class="prose prose-sky max-w-none prose-p:text-emphasis-500 prose-headings:text-emphasis-800 prose-a:text-primary-500 dark:prose-invert"
+      class="prose prose-custom lg:prose-lg max-w-none dark:prose-invert"
       data-scroll-animate
     >
       <Content />

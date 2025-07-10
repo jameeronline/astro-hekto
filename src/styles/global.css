@@ -31,8 +31,8 @@
   /* fonts */
   --font-heading: "Josefin Sans Variable", sans-serif;
   --font-body: "Lato", sans-serif;
-  /* --font-heading: "IBM Plex Sans Variable", sans-serif; */
-  /* --font-body: "IBM Plex Sans Variable", sans-serif; */
+  /* --font-heading: "IBM Plex Sans Variable", sans-serif;
+  --font-body: "IBM Plex Sans Variable", sans-serif; */
 
   /* screen sizes */
   --screen-xs: 375px;
@@ -213,4 +213,68 @@
   .scroll-animation [data-scroll-animate] {
     @apply translate-y-4 transform opacity-0 transition-all duration-1000 [&.scroll-animated]:translate-y-0 [&.scroll-animated]:opacity-100 [&:nth-child(1)]:delay-[50ms] [&:nth-child(10)]:delay-[725ms] [&:nth-child(11)]:delay-[800ms] [&:nth-child(12)]:delay-[875ms] [&:nth-child(2)]:delay-[125ms] [&:nth-child(3)]:delay-[200ms] [&:nth-child(4)]:delay-[275ms] [&:nth-child(5)]:delay-[350ms] [&:nth-child(6)]:delay-[425ms] [&:nth-child(7)]:delay-[500ms] [&:nth-child(8)]:delay-[575ms] [&:nth-child(9)]:delay-[650ms];
   }
+}
+
+@utility prose-custom {
+  --tw-prose-body: var(--color-emphasis-700);
+  --tw-prose-headings: var(--color-emphasis-800);
+  --tw-prose-lead: var(--color-emphasis-600);
+  --tw-prose-links: var(--color-primary-500);
+  --tw-prose-bold: var(--color-emphasis-800);
+  --tw-prose-counters: var(--color-emphasis-400);
+  --tw-prose-bullets: var(--color-emphasis-400);
+  --tw-prose-hr: color-mix(in srgb, var(--color-emphasis-300) 50%, transparent);
+  --tw-prose-quotes: var(--color-emphasis-700);
+  --tw-prose-quote-borders: var(--color-emphasis-400);
+  --tw-prose-captions: color-mix(
+    in srgb,
+    var(--color-emphasis-600) 80%,
+    transparent
+  );
+  --tw-prose-code: var(--color-emphasis-800);
+  --tw-prose-pre-code: var(--color-emphasis-100);
+  --tw-prose-pre-bg: color-mix(
+    in srgb,
+    var(--color-emphasis-950) 10%,
+    transparent
+  );
+  --tw-prose-th-borders: var(--color-emphasis-300);
+  --tw-prose-td-borders: color-mix(
+    in srgb,
+    var(--color-emphasis-200) 50%,
+    transparent
+  );
+  /* Dark mode support */
+  /* --tw-prose-invert-body: var(--color-tertiary-100);
+  --tw-prose-invert-headings: var(--color-tertiary-50);
+  --tw-prose-invert-lead: var(--color-tertiary-200);
+  --tw-prose-invert-links: var(--color-tertiary-400);
+  --tw-prose-invert-bold: var(--color-tertiary-50);
+  --tw-prose-invert-counters: var(--color-tertiary-300);
+  --tw-prose-invert-bullets: var(--color-tertiary-300);
+  --tw-prose-invert-hr: color-mix(
+    in srgb,
+    var(--color-tertiary-400) 40%,
+    transparent
+  );
+  --tw-prose-invert-quotes: var(--color-tertiary-100);
+  --tw-prose-invert-quote-borders: var(--color-tertiary-300);
+  --tw-prose-invert-captions: color-mix(
+    in srgb,
+    var(--color-tertiary-200) 80%,
+    transparent
+  );
+  --tw-prose-invert-code: var(--color-tertiary-50);
+  --tw-prose-invert-pre-code: var(--color-tertiary-50);
+  --tw-prose-invert-pre-bg: color-mix(
+    in srgb,
+    var(--color-tertiary-900) 20%,
+    transparent
+  );
+  --tw-prose-invert-th-borders: var(--color-tertiary-300);
+  --tw-prose-invert-td-borders: color-mix(
+    in srgb,
+    var(--color-tertiary-400) 50%,
+    transparent
+  ); */
 }

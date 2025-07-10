@@ -51,37 +51,57 @@ const products = defineCollection({
   }),
 });
 
-const productCollection = defineCollection({
-  loader: glob({ pattern: "**/*.{md,mdx}", base: "src/content/products" }),
-  schema: zod.object({
-    title: zod.string(),
-    slug: zod.string(),
-    price: zod.number(),
-    currency: zod.string(),
-    sku: zod.string(),
-    category: zod.string(),
-    tags: zod.array(zod.string()),
-    brand: zod.string(),
-    availability: zod.enum(["in-stock", "out-of-stock", "pre-order"]),
-    stock: zod.number(),
-    dimensions: zod.object({
-      width: zod.number(),
-      depth: zod.number(),
-      height: zod.number(),
-      unit: zod.string(),
-    }),
-    weight: zod.number(),
-    weightUnit: zod.string(),
-    material: zod.array(zod.string()),
-    color: zod.array(zod.string()),
-    featuredImage: zod.string(),
-    galleryImages: zod.array(zod.string()),
-    rating: zod.number(),
-    reviewCount: zod.number(),
-    publishedAt: zod.date(),
-    updatedAt: zod.date(),
-    isFeatured: zod.boolean(),
+const furnitureCollections = defineCollection({
+  loader: glob({
+    pattern: "**/*.{md,mdx}",
+    base: "src/content/products",
   }),
+  schema: ({ image }) =>
+    zod.object({
+      title: zod.string(),
+      slug: zod.string(),
+      description: zod.string(),
+      price: zod.number(),
+      currency: zod.string(),
+      sku: zod.string(),
+      categories: zod.array(reference("productCategories").optional()),
+      tags: zod.array(zod.string()),
+      brand: zod.string(),
+      availability: zod.enum(["in-stock", "out-of-stock", "pre-order"]),
+      stock: zod.number(),
+      dimensions: zod.object({
+        width: zod.number(),
+        depth: zod.number(),
+        height: zod.number(),
+        unit: zod.string(),
+      }),
+      weight: zod.number(),
+      weightUnit: zod.string(),
+      material: zod.array(zod.string()),
+      color: zod.array(zod.string()),
+      featuredImage: image(),
+      galleryImages: zod.array(zod.string()),
+      rating: zod.number(),
+      reviewCount: zod.number(),
+      publishedAt: zod.date(),
+      updatedAt: zod.date(),
+      isFeatured: zod.boolean(),
+      specifications: zod.object({
+        seatingCapacity: zod.string(),
+        assembly: zod.string(),
+        careInstructions: zod.string(),
+        warranty: zod.string(),
+        shipping: zod.string(),
+      }),
+      reviews: zod.array(
+        zod.object({
+          rating: zod.number(),
+          text: zod.string(),
+          reviewer: zod.string(),
+          date: zod.string(),
+        })
+      ),
+    }),
 });
 
 // const works = defineCollection({
@@ -155,6 +175,6 @@ const productCollection = defineCollection({
 export const collections = {
   posts,
   products,
-  productCollection,
+  furnitureCollections,
   productCategories,
 };

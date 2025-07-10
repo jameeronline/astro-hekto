@@ -24,10 +24,10 @@
     "description": "Shop ergonomic desks, supportive office chairs, and smart storage solutions to boost productivity in your home office. Create a workspace that inspires creativity and focus."
   },
   {
-    "slug": "outdoor-patio",
-    "name": "Outdoor & Patio",
+    "slug": "outdoor-furniture",
+    "name": "Outdoor & furniture",
     "image": "/images/categories/outdoor.jpg",
-    "description": "Transform your garden or patio with durable outdoor furniture, including patio sets, garden chairs, and weather-resistant tables. Enjoy outdoor living with stylish and comfortable options."
+    "description": "Transform your garden or furniture with durable outdoor furniture, including furniture sets, garden chairs, and weather-resistant tables. Enjoy outdoor living with stylish and comfortable options."
   },
   {
     "slug": "kids-furniture",
@@ -64,5 +64,23 @@
     "name": "Footwear",
     "image": "/images/categories/footwear.jpg",
     "description": "Step out in style with our collection of footwear for all ages, featuring sneakers, boots, sandals, and more."
+  },
+  {
+    "slug": "tables",
+    "name": "Tables",
+    "image": "/images/categories/tables.jpg",
+    "description": "Discover a wide range of tables for every room, including dining tables, coffee tables, side tables, and desks. Find the perfect table to match your style and needs."
+  },
+  {
+    "slug": "storage",
+    "name": "Storage",
+    "image": "/images/categories/storage.jpg",
+    "description": "Organize your home with our selection of storage solutions, including shelves, cabinets, bookcases, and storage boxes. Find practical and stylish options for every room."
+  },
+  {
+    "slug": "beds",
+    "name": "Beds",
+    "image": "/images/categories/beds.jpg",
+    "description": "Shop a variety of beds including single, double, queen, and king sizes. Find the perfect bed frame and mattress for comfort, style, and restful sleep."
   }
 ]

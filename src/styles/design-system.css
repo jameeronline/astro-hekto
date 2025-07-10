@@ -9,13 +9,16 @@
 
 /* FORM STYLES */
 .as-form-control {
-  @apply w-full h-12 px-4 border border-gray-200 rounded-md bg-white text-gray-700 placeholder:text-gray-400;
+  @apply bg-gray-50 h-12 border border-gray-200 text-gray-900 rounded-md focus:ring-tertiary-500 focus:border-tertiary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-tertiary-500 dark:focus:border-tertiary-500;
+  /* @apply w-full h-12 px-4 border border-gray-200 rounded-md bg-white text-gray-700 placeholder:text-gray-400; */
   /* @apply w-full h-12 px-4 rounded-md bg-emphasis-50 dark:bg-emphasis-900 border-emphasis-200 dark:border-emphasis-700 text-emphasis-900 dark:text-emphasis-50 placeholder:text-emphasis-500 dark:placeholder:text-emphasis-400 focus:ring-2 focus:ring-primary-500
       focus:border-primary-500 focus:outline-none transition-colors duration-200; */
 }
 
 .as-form-textarea {
-  @apply w-full h-32 px-4 border border-gray-200 rounded-md bg-white text-gray-700 placeholder:text-gray-400  resize-none;
+  @apply w-full h-32 bg-gray-50 border border-gray-200 text-gray-900 rounded-md focus:ring-tertiary-500 focus:border-tertiary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-tertiary-500 dark:focus:border-tertiary-500;
+
+  /* @apply w-full h-32 px-4 border border-gray-200 rounded-md bg-white text-gray-700 placeholder:text-gray-400  resize-none; */
   /* @apply w-full h-32 px-4 rounded-md bg-emphasis-50 dark:bg-emphasis-900 border-emphasis-200 dark:border-emphasis-700 text-emphasis-900 dark:text-emphasis-50 placeholder:text-emphasis-500 dark:placeholder:text-emphasis-400 focus:ring-2 focus:ring-primary-500
       focus:border-primary-500 focus:outline-none transition-colors duration-200; */
 }
@@ -37,4 +40,8 @@
   .off-canvas-menu {
     display: block !important;
   }
+}
+
+.off-canvas-menu__backdrop {
+  @apply bg-gray-900/50 dark:bg-gray-900/80 fixed inset-0 z-30 lg:hidden;
 }

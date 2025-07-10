@@ -1,6 +1,6 @@
 ---
 //astro imports
-import { getCollection, getEntry, getEntries } from "astro:content";
+import { getCollection, getEntry, getEntries, render } from "astro:content";
 
 import { Image } from "astro:assets";
 
@@ -20,61 +20,81 @@ import { Heart, Star, Facebook, Twitter, Instagram } from "@lucide/astro";
 
 //utility import
 import { slugify } from "@/utils/helper";
+import { date } from "astro:schema";
 
 // Generate static paths for each product based on its slug
 export async function getStaticPaths() {
-  const productsCollection = await getCollection("products");
+  const furnitureCollection = await getCollection("furnitureCollections");
 
-  return productsCollection.map((product) => ({
+  return furnitureCollection.map((product) => ({
     params: {
-      slug: slugify(product.data.name),
+      slug: slugify(product.data.title),
     },
-    props: { data: product.data },
+    props: { id: product.id, product: product },
   }));
 }
 
 // Find the product matching the slug param
 const { slug } = Astro.params;
-const { data } = Astro.props;
+const { id, product } = Astro.props;
+const data = product.data;
 
-let categoryDetails = null;
-if (data.categories && data.categories.length > 0) {
+let categoryDetails: Awaited<ReturnType<typeof getEntries>> = [];
+let tags: string[] = Array.isArray(data?.tags) ? data.tags : [];
+
+// Fetch category details for the product's categories
+if (Array.isArray(data?.categories) && data?.categories.length > 0) {
   categoryDetails = await getEntries(data?.categories);
-
-  // Filter out any nulls in case a category was not found
-  console.log("Category entry:", categoryDetails);
 }
 
+// if (data.categories && data.categories.length > 0) {
+//   // Fetch category details for each category in the product
+
+//   const categoryItems = data?.categories.map(async (category) => {
+//     console.log("Fetching category:", category);
+//     return await getEntry("productCategories", slugify(category));
+//   });
+
+//   // Wait for all category details to be fetched
+//   categoryDetails = await getEntries("productCategories", categoryItems);
+
+//   // Filter out any nulls in case a category was not found
+//   console.log("Category entry:", categoryDetails);
+// }
+
 //related products
-const productsCollection = await getCollection("products");
+// const productsCollection = await getCollection("products");
 
 // Find related products by matching at least one category or tag, excluding the current product
-const relatedProducts = productsCollection
-  .filter((product) => {
-    if (product.data.name === data.name) return false;
-    // const hasCategory =
-    //   data.categories &&
-    //   product.data.categories &&
-    //   product.data.categories.some((cat) => data.categories.includes(cat));
-    const hasTag =
-      data.tags &&
-      product.data.tags &&
-      product.data.tags.some((tag) => data.tags.includes(tag));
-    // return hasCategory || hasTag;
-    return hasTag;
-  })
-  .slice(0, 4) // Limit to 4 related products
-  .map((product) => ({
-    id: product.data.id,
-    name: product.data.name,
-    price: product.data.salePrice || product.data.originalPrice,
-    image: product.data.image || "/placeholder.svg?height=200&width=200",
-    rating: product.data.rating || 5,
-  }));
+// const relatedProducts = productsCollection
+//   .filter((product) => {
+//     if (product.data.name === data.name) return false;
+//     // const hasCategory =
+//     //   data.categories &&
+//     //   product.data.categories &&
+//     //   product.data.categories.some((cat) => data.categories.includes(cat));
+//     const hasTag =
+//       data.tags &&
+//       product.data.tags &&
+//       product.data.tags.some((tag) => data.tags.includes(tag));
+//     // return hasCategory || hasTag;
+//     return hasTag;
+//   })
+//   .slice(0, 4) // Limit to 4 related products
+//   .map((product) => ({
+//     id: product.data.id,
+//     name: product.data.name,
+//     price: product.data.salePrice || product.data.originalPrice,
+//     image: product.data.image || "/placeholder.svg?height=200&width=200",
+//     rating: product.data.rating || 5,
+//   }));
 
 if (!data) {
   throw new Error(`Product not found for slug: ${slug}`);
 }
+
+// Extract data and content from the post
+const { Content, headings } = await render(product);
 
 // page header details
 const pageHeader = {
@@ -82,19 +102,6 @@ const pageHeader = {
   caption: "",
   description: "",
 };
-
-const {
-  id,
-  name,
-  image,
-  thumbnailImages,
-  originalPrice,
-  salePrice,
-  rating,
-  tags,
-  inStock,
-  description,
-} = data;
 
 // Remove the renderStars function from the script section.
 // Instead, render stars directly in the template using an array and .map().
@@ -114,7 +121,7 @@ const {
             {/* Thumbnail Images */}
             <div class="lg:col-span-2 space-y-4">
               {
-                thumbnailImages.map((image, index) => (
+                data.galleryImages.map((image, index) => (
                   <a
                     href={image}
                     data-fancybox="gallery"
@@ -123,7 +130,7 @@ const {
                     key={index}
                   >
                     <Image
-                      src={image || "/placeholder.svg"}
+                      src={data.featuredImage || "/placeholder.svg"}
                       alt={`Thumbnail ${index + 1}`}
                       class="w-full h-full object-contain scale-75 hover:scale-100 transition-transform duration-200"
                       width={80}
@@ -143,8 +150,8 @@ const {
                 class="w-full aspect-square bg-gray-100 rounded-lg p-8 flex items-center justify-center"
               >
                 <Image
-                  src={image || "/placeholder.svg"}
-                  alt={name || "Product Image"}
+                  src={data.featuredImage || "/placeholder.svg"}
+                  alt={data.title || "Product Image"}
                   class="w-full h-full object-contain"
                   width={600}
                   height={600}
@@ -159,7 +166,7 @@ const {
             <div class="lg:col-span-5 space-y-6 lg:py-10">
               <div>
                 <h1 class="text-3xl font-semibold text-tertiary-900 mb-2">
-                  {name || "Product Name"}
+                  {data.title || "Product Name"}
                 </h1>
                 <div class="flex items-center space-x-3 mb-6">
                   <div class="flex items-center space-x-2 mb-4">
@@ -171,10 +178,10 @@ const {
                 </div>
                 <div class="flex items-center space-x-3 mb-6">
                   <span class="text-2xl font-heading text-tertiary-900"
-                    >{originalPrice}</span
+                    >${data.price}</span
                   >
                   <span class="text-sm text-primary-500 line-through"
-                    >{salePrice}</span
+                    >${data.price}</span
                   >
                 </div>
               </div>
@@ -186,7 +193,7 @@ const {
                     >Color</span
                   >
                   <p class="text-gray-600 leading-relaxed">
-                    {description}
+                    {data.color}
                   </p>
                 </div>
 
@@ -314,145 +321,109 @@ const {
           </div>
           <div class="mt-8">
             <div x-show="tab === 'description'">
-              <h3 class="text-lg font-medium text-tertiary-900 mb-4">
-                Varius tempor.
-              </h3>
-              <p class="leading-relaxed mb-6">
-                Aliquam dis vulputate vulputate integer sagittis. Faucibus dolor
-                ornare faucibus vel sed et eleifend habitasse amet. Montes,
-                mauris varius ac est bibendum. Scelerisque a, risus ac ante.
-                Velit consectetur neque placerat rhoncus est pellentesque.
-                Praesent ornare in lacus, at consectetur lorem. Ut sagittis,
-                libero venenatis at.
-              </p>
+              <div
+                class="prose prose-custom prose-headings:text-emphasis-800 max-w-none dark:prose-invert"
+              >
+                <Content />
+              </div>
             </div>
-            <div x-show="tab === 'additional'">
-              <p class="text-gray-600">
-                Additional information content would go here.
-              </p>
+            <div
+              x-show="tab === 'additional'"
+              class="prose prose-custom lg:prose-lg prose-table:border-0 prose-tr:border-0 prose-th:border-0 prose-td:border-0"
+            >
+              {
+                data.specifications &&
+                Object.keys(data.specifications).length > 0 ? (
+                  <table class="min-w-full divide-y divide-gray-200 text-sm">
+                    <tbody>
+                      {Object.entries(data.specifications).map(
+                        ([key, value]) => (
+                          <tr>
+                            <td class="py-2 pr-4 font-medium text-tertiary-900 capitalize">
+                              {key.replace(/_/g, " ")}
+                            </td>
+                            <td class="py-2 text-gray-700">{value}</td>
+                          </tr>
+                        )
+                      )}
+                    </tbody>
+                  </table>
+                ) : (
+                  <p class="text-gray-600">
+                    No additional specification details available.
+                  </p>
+                )
+              }
             </div>
             <div x-show="tab === 'reviews'">
-              <p class="text-gray-600">
-                Customer reviews would be displayed here.
-              </p>
+              {
+                data.reviews && data.reviews.length > 0 ? (
+                  <div class="space-y-8">
+                    {data.reviews.map((review, idx) => (
+                      <div
+                        key={idx}
+                        class={`pb-6${idx !== data.reviews.length - 1 ? " border-b" : ""}`}
+                      >
+                        <div class="flex items-center mb-2">
+                          <span class="font-semibold text-tertiary-900 mr-2">
+                            {review.reviewer || "Anonymous"}
+                          </span>
+                          <span class="text-xs text-gray-500">
+                            {review.date || ""}
+                          </span>
+                        </div>
+                        <div class="flex items-center mb-2">
+                          {[...Array(review.rating || 0)].map((_, i) => (
+                            <Star class="w-4 h-4 text-yellow-400" key={i} />
+                          ))}
+                          {[...Array(5 - (review.rating || 0))].map((_, i) => (
+                            <Star
+                              class="w-4 h-4 text-gray-300"
+                              key={i + (review.rating || 0)}
+                            />
+                          ))}
+                        </div>
+                        <p class="text-gray-700">{review.text}</p>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <p class="text-gray-600">No reviews yet.</p>
+                )
+              }
             </div>
             <div x-show="tab === 'video'">
-              <p class="text-gray-600">
-                Product videos would be embedded here.
-              </p>
+              {
+                data.video ? (
+                  <div class="aspect-w-16 aspect-h-9">
+                    <iframe
+                      src={`https://www.youtube.com/embed/${data.video}`}
+                      title="Product Video"
+                      frameborder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowfullscreen
+                      class="w-full h-full rounded-lg"
+                    />
+                  </div>
+                ) : (
+                  <p class="text-gray-600">
+                    Product videos would be embedded here.
+                  </p>
+                )
+              }
             </div>
           </div>
         </div>
-        <!-- <Tabs defaultValue="description" class="w-full">
-          <TabsList class="flex gap-10 rounded-none h-auto p-0 bg-transparent">
-            <TabsTrigger
-              value="description"
-              class="text-tertiary-900 text-2xl font-heading font-medium bg-transparent data-[state=active]:underline data-[state=active]:bg-transparent rounded-none pb-4"
-            >
-              Description
-            </TabsTrigger>
-            <TabsTrigger
-              value="additional"
-              class="text-tertiary-900 font-medium bg-transparent data-[state=active]:underline data-[state=active]:bg-transparent rounded-none pb-4"
-            >
-              Additional Info
-            </TabsTrigger>
-            <TabsTrigger
-              value="reviews"
-              class="text-tertiary-900 font-medium bg-transparent data-[state=active]:underline data-[state=active]:bg-transparent rounded-none pb-4"
-            >
-              Reviews
-            </TabsTrigger>
-            <TabsTrigger
-              value="video"
-              class="text-tertiary-900 font-medium bg-transparent data-[state=active]:underline data-[state=active]:bg-transparent rounded-none pb-4"
-            >
-              Video
-            </TabsTrigger>
-          </TabsList>
-
-          <TabsContent value="description" class="mt-8 space-y-6">
-            <div>
-              <h3 class="text-lg font-medium text-tertiary-900 mb-4">
-                Varius tempor.
-              </h3>
-              <p class="leading-relaxed mb-6">
-                Aliquam dis vulputate vulputate integer sagittis. Faucibus dolor
-                ornare faucibus vel sed et eleifend habitasse amet. Montes,
-                mauris varius ac est bibendum. Scelerisque a, risus ac ante.
-                Velit consectetur neque placerat rhoncus est pellentesque.
-                Praesent ornare in lacus, at consectetur lorem. Ut sagittis,
-                libero venenatis at.
-              </p>
-            </div>
-
-            <div>
-              <h3 class="text-lg font-medium text-tertiary-900 mb-4">
-                More details
-              </h3>
-              <div class="space-y-2">
-                <div class="flex items-start space-x-2">
-                  <span class="text-tertiary-900 mt-1">→</span>
-                  <p class="">
-                    Aliquam dis vulputate vulputate integer sagittis. Faucibus
-                    ds diam arcu, nulla lobortis justo netus dis. Eu in
-                    fringilla vulputate nunc nec. Dui, massa viverr.
-                  </p>
-                </div>
-                <div class="flex items-start space-x-2">
-                  <span class="text-tertiary-900 mt-1">→</span>
-                  <p class="">
-                    Aliquam dis vulputate vulputate integer sagittis. Faucibus
-                    ds diam arcu, nulla lobortis justo netus dis. Eu in
-                    fringilla vulputate nunc nec. Dui, massa viverr.
-                  </p>
-                </div>
-                <div class="flex items-start space-x-2">
-                  <span class="text-tertiary-900 mt-1">→</span>
-                  <p class="">
-                    Aliquam dis vulputate vulputate integer sagittis. Faucibus
-                    ds diam arcu, nulla lobortis justo netus dis. Eu in
-                    fringilla vulputate nunc nec. Dui, massa viverr.
-                  </p>
-                </div>
-                <div class="flex items-start space-x-2">
-                  <span class="text-tertiary-900 mt-1">→</span>
-                  <p class="">
-                    Aliquam dis vulputate vulputate integer sagittis. Faucibus
-                    ds diam arcu, nulla lobortis justo netus dis. Eu in
-                    fringilla vulputate nunc nec. Dui, massa viverr.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </TabsContent>
-
-          <TabsContent value="additional" class="mt-8">
-            <p class="text-gray-600">
-              Additional information content would go here.
-            </p>
-          </TabsContent>
-
-          <TabsContent value="reviews" class="mt-8">
-            <p class="text-gray-600">
-              Customer reviews would be displayed here.
-            </p>
-          </TabsContent>
-
-          <TabsContent value="video" class="mt-8">
-            <p class="text-gray-600">Product videos would be embedded here.</p>
-          </TabsContent>
-        </Tabs> -->
       </div>
     </div>
 
     {/* Related Products Section */}
-    <div class="container--default py-6">
+    <!-- <div class="container--default py-6">
       <h4 class="mb-8">Related Products</h4>
       <div class="grid grid-cols-4 md:grid-cols-8 lg:grid-cols-12 gap-6">
         {relatedProducts.map((product) => <RelatedProduct product={product} />)}
       </div>
-    </div>
+    </div> -->
 
     {/* Company Logos Section */}
     <Partners />

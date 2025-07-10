@@ -1,0 +1,151 @@
+---
+import Button from "@/starwind/button";
+import {
+  Dialog,
+  DialogTrigger,
+  DialogContent,
+  DialogHeader,
+  DialogFooter,
+  DialogTitle,
+  DialogDescription,
+  DialogClose,
+} from "@/starwind/dialog";
+
+//utils import
+import { isValidEmail } from "@/utils/helper";
+
+const errors = { username: "", email: "", password: "" };
+
+console.log("GMAIL_PASS:", import.meta.env.GMAIL_PASS);
+
+// if (Astro.request.method === "POST") {
+//   try {
+//     const data = await Astro.request.formData();
+//     console.log("Form Data:", data);
+//     const name = data.get("username");
+//     const email = data.get("email");
+//     const subject = data.get("subject");
+//     const message = data.get("message");
+
+//     if (typeof name !== "string" || name.length < 4) {
+//       errors.username += "Please enter a username. ";
+//     }
+//     if (typeof email !== "string" || !isValidEmail(email)) {
+//       errors.email += "Email is not valid. ";
+//     }
+
+//     // Do something with the data
+//   } catch (error) {
+//     if (error instanceof Error) {
+//       console.error(error.message);
+//     }
+//   }
+// }
+---
+
+{/* Ask a Question Section */}
+<div class="col-span-4 md:col-span-8 lg:col-span-6" data-scroll-animate>
+  <div class="space-y-6 bg-brand-100/50 p-12">
+    <Dialog>
+      <DialogTrigger asChild>
+        <Button id="open-dialog-trigger" class="hidden">Open Dialog</Button>
+      </DialogTrigger>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Message Sent!</DialogTitle>
+          <DialogDescription>
+            Thank you for contacting us. Your message has been successfully
+            sent. We will get back to you soon.
+          </DialogDescription>
+        </DialogHeader>
+        <div class="py-4 text-green-600 font-semibold text-center">
+          Your message was sent successfully.
+        </div>
+        <DialogFooter>
+          <DialogClose asChild>
+            <Button variant="outline">Close</Button>
+          </DialogClose>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+
+    <h4 class="mb-8" data-scroll-animate>Ask a Question</h4>
+
+    <form class="space-y-6" method="POST" data-scroll-animate id="contact-form">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <input
+            name="name"
+            type="text"
+            placeholder="Your Name"
+            required
+            class="as-form-control"
+          />
+          <!-- {errors.username && <p>{errors.username}</p>} -->
+        </div>
+
+        <div>
+          <input
+            name="email"
+            type="email"
+            placeholder="Your Email"
+            required
+            class="as-form-control"
+          />
+        </div>
+      </div>
+
+      <div>
+        <input
+          name="subject"
+          type="text"
+          required
+          minlength="12"
+          placeholder="Subject"
+          class="as-form-control"
+        />
+      </div>
+
+      <div>
+        <textarea
+          name="message"
+          required
+          minlength="40"
+          maxlength="500"
+          id="message"
+          placeholder="Type Your Message"
+          rows={6}
+          class="as-form-textarea"></textarea>
+      </div>
+
+      <Button type="submit" class="btn--primary"> Send Mail </Button>
+    </form>
+  </div>
+</div>
+
+<script type="module">
+  document
+    .getElementById("contact-form")
+    .addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const form = e.target;
+      const formData = new FormData(form);
+
+      console.log("Form Data:", formData);
+
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        body: formData,
+      });
+
+      const result = await res.json();
+      console.log("Response:", result);
+      if (result.success) {
+        document.getElementById("open-dialog-trigger").click();
+        console.log("Message sent!");
+        form.reset();
+      } else {
+        alert("There was an error.");
+      }
+    });
+</script>

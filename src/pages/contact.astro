@@ -1,10 +1,14 @@
 ---
+export const prerender = false; // Not needed in 'server' mode
+
 import BaseLayout from "@/layouts/BaseLayout.astro";
 
 //components import
 import PageHeader from "@/components/blocks/PageHeader.astro";
 import Partners from "@/components/blocks/Partners.astro";
-import { Button } from "@/starwind/button";
+
+//blocks import
+import ContactForm from "@/components/blocks/contact/ContactForm.astro";
 
 const faqs = [
   {
@@ -63,41 +67,7 @@ const pageHeader = {
         </div>
       </div>
 
-      {/* Ask a Question Section */}
-      <div class="col-span-4 md:col-span-8 lg:col-span-6" data-scroll-animate>
-        <div class="space-y-6 bg-brand-100/50 p-12">
-          <h4 class="mb-8" data-scroll-animate>Ask a Question</h4>
-
-          <form class="space-y-6" data-scroll-animate>
-            <div>
-              <input
-                type="text"
-                placeholder="Your Name"
-                class="as-form-control"
-              />
-            </div>
-
-            <div>
-              <input
-                type="text"
-                placeholder="Subject"
-                class="as-form-control"
-              />
-            </div>
-
-            <div>
-              <textarea
-                name="message"
-                id="message"
-                placeholder="Type Your Message"
-                rows={6}
-                class="as-form-textarea"></textarea>
-            </div>
-
-            <Button type="submit" class="btn--primary"> Send Mail </Button>
-          </form>
-        </div>
-      </div>
+      <ContactForm />
     </div>
   </div>
   {/* Company Logos Section */}

@@ -1,0 +1,178 @@
+---
+//astro imports
+import { getCollection, render, getEntry, paginate } from "astro:content";
+import { Image } from "astro:assets";
+
+//layout imports
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHeader from "@/components/blocks/PageHeader.astro";
+import Paginate from "@/components/Paginate.astro";
+
+//components imports
+import { Button } from "@/starwind/button";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectSeparator,
+  SelectTrigger,
+  SelectValue,
+} from "@/starwind/select";
+
+//icons imports
+import { Grid, List, Heart, ShoppingCart, Search, Share } from "@lucide/astro";
+
+//blocks import
+import Partners from "@/components/blocks/Partners.astro";
+import ProductCard from "@/components/blocks/shop/ProductCard.astro";
+
+//utils import
+import { slugify } from "@/utils/helper";
+
+//site config
+import { siteConfig } from "@/config/siteconfig";
+
+// Pagination setup
+export async function getStaticPaths({ paginate }) {
+  // Get all furniture
+  const furnitureCollection = await getCollection("furnitureCollections");
+  const { pageLength } = siteConfig;
+
+  return paginate(furnitureCollection, {
+    pageSize: 12, // Number of posts per page
+  });
+}
+
+//props
+const { page } = Astro.props;
+const furnitureItems = page?.data;
+
+//url parameters
+const layout = Astro.url?.searchParams.get("layout") ?? "grid";
+console.log("Layout:", layout);
+
+// page header details
+const pageHeader = {
+  title: "Shop Grid Default",
+  caption: "",
+  description: "",
+};
+---
+
+<BaseLayout>
+  <PageHeader headerInfo={pageHeader} slot="pageHeader" />
+
+  <!-- <div>
+    <Content />
+  </div> -->
+
+  <div class="min-h-screen bg-white py-8">
+    <div class="lg:container mx-auto px-6">
+      {/* Header */}
+      <div class="flex items-center justify-between my-16" data-scroll-animate>
+        <div>
+          <h2 class="text-2xl font-semibold text-tertiary-900 mb-1">
+            Ecommerce Accesories & Fashion Item
+          </h2>
+          <p class="text-sm text-gray-500">
+            About 9,620 results (0.62 seconds)
+          </p>
+        </div>
+
+        <div class="flex items-center space-x-6">
+          <div class="flex items-center space-x-2">
+            <span class="text-sm text-gray-600">Per Page:</span>
+            <Select defaultValue="12">
+              <SelectTrigger class="h-10 w-16 text-sm border-gray-300">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="12">12</SelectItem>
+                <SelectItem value="24">24</SelectItem>
+                <SelectItem value="48">48</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+
+          <div class="flex items-center space-x-4">
+            <span class="text-sm text-gray-600">Sort By:</span>
+            <Select defaultValue="best-match">
+              <SelectTrigger class="h-10 w-32 text-sm border-gray-300">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="best-match">Best Match</SelectItem>
+                <SelectItem value="price-low">Price: Low to High</SelectItem>
+                <SelectItem value="price-high">Price: High to Low</SelectItem>
+                <SelectItem value="newest">Newest</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+
+          <div class="flex items-center space-x-2">
+            <span class="text-sm text-gray-600">View:</span>
+            <div class="flex border border-gray-300 rounded">
+              <Button
+                href={`?layout=grid`}
+                variant="ghost"
+                size="sm"
+                class:list={{
+                  "h-10 w-10 p-0": true,
+                  "bg-tertiary-500 text-white hover:bg-tertiary-600":
+                    layout === "grid",
+                  "hover:bg-gray-100": layout !== "grid",
+                }}
+              >
+                <Grid class="h-4 w-4" />
+              </Button>
+              <Button
+                href={`?layout=list`}
+                variant="ghost"
+                size="sm"
+                class:list={{
+                  "h-10 w-10 p-0": true,
+                  "bg-tertiary-500 text-white hover:bg-tertiary-600":
+                    layout === "list",
+                  "hover:bg-gray-100": layout !== "list",
+                }}
+              >
+                <List class="h-4 w-4" />
+              </Button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Product Grid Collection */}
+      <div
+        class="grid grid-cols-4 gap-4 md:grid-cols-8 md:gap-6 lg:grid-cols-12 lg:gap-10"
+        data-scroll-animate
+      >
+        {
+          furnitureItems.map(({ data, id }) => (
+            <div
+              key={id}
+              class="col-span-4 lg:col-span-3 group rounded-lg overflow-hidden"
+              data-scroll-animate
+            >
+              <ProductCard product={data} />
+            </div>
+          ))
+        }
+      </div>
+
+      {/* Pagination */}
+      <Paginate
+        currentPage={page.currentPage}
+        lastPage={page.lastPage}
+        prevUrl={page.url.prev}
+        nextUrl={page.url.next}
+      />
+    </div>
+
+    {/* Company Logos Section */}
+    <Partners />
+  </div>
+</BaseLayout>
