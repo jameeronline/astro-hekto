@@ -5,7 +5,7 @@ description: "A stylish and durable six-piece outdoor dining set featuring weath
 price: 1999.00
 currency: "USD"
 sku: "DIN-WCK-OUT-007"
-categories: ["outdoor-furniture", "dining"]
+categories: ["outdoor-furniture"]
 tags: ["wicker", "dining set", "outdoor", "weather-resistant"]
 brand: "NordicCraft"
 availability: "in-stock"
