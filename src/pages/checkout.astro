@@ -2,7 +2,6 @@
 import BaseLayout from "@/layouts/BaseLayout.astro";
 
 import { Button } from "@/starwind/button";
-import { Input } from "@/starwind/input";
 import { Checkbox } from "@/starwind/checkbox";
 import {
   Select,
@@ -90,9 +89,9 @@ const orderItems = [
           <div class="flex items-center space-x-2">
             <Checkbox
               id="offers"
-              class="border-green-500 data-[state=checked]:bg-green-500"
+              class="border-primary-500 data-[state=checked]:bg-primary-500"
             />
-            <label htmlFor="offers" class="text-sm text-green-600">
+            <label for="offers" class="text-sm text-primary-500">
               Keep me up to date on news and exclusive offers
             </label>
           </div>
@@ -103,31 +102,31 @@ const orderItems = [
           <h3 class="text-lg font-medium text-blue-900">Shipping address</h3>
 
           <div class="grid grid-cols-2 gap-4">
-            <Input
+            <input
               type="text"
               placeholder="First name (optional)"
               class="as-form-control"
             />
-            <Input
+            <input
               type="text"
               placeholder="Last name"
               class="as-form-control"
             />
           </div>
 
-          <Input
+          <input
             type="text"
             placeholder="Address"
             class="w-full h-12 px-4 border border-gray-300 rounded-md bg-white text-gray-700 placeholder:text-gray-400"
           />
 
-          <Input
+          <input
             type="text"
             placeholder="Apartment, suite, etc. (optional)"
             class="w-full h-12 px-4 border border-gray-300 rounded-md bg-white text-gray-700 placeholder:text-gray-400"
           />
 
-          <Input
+          <input
             type="text"
             placeholder="City"
             class="w-full h-12 px-4 border border-gray-300 rounded-md bg-white text-gray-700 placeholder:text-gray-400"
@@ -144,7 +143,7 @@ const orderItems = [
                 <SelectItem value="pakistan">Pakistan</SelectItem>
               </SelectContent>
             </Select>
-            <Input
+            <input
               type="text"
               placeholder="Postal Code"
               class="h-12 px-4 border border-gray-300 rounded-md bg-white text-gray-700 placeholder:text-gray-400"
@@ -152,11 +151,7 @@ const orderItems = [
           </div>
         </div>
 
-        <Button
-          class="bg-pink-500 hover:bg-pink-600 text-white px-8 py-3 rounded-md font-medium"
-        >
-          Continue Shipping
-        </Button>
+        <Button class="btn--primary"> Continue Shipping </Button>
       </div>
 
       {/* Right Column - Order Summary */}
@@ -212,11 +207,7 @@ const orderItems = [
         </div>
 
         {/* Checkout Button */}
-        <Button
-          class="w-full bg-tertiary-900 hover:bg-tertiary-950 text-white py-4 rounded-md font-medium text-lg"
-        >
-          Proceed To Checkout
-        </Button>
+        <Button class="w-full btn--tertiary"> Proceed To Checkout </Button>
       </div>
     </div>
   </div>

@@ -45,3 +45,8 @@
 .off-canvas-menu__backdrop {
   @apply bg-gray-900/50 dark:bg-gray-900/80 fixed inset-0 z-30 lg:hidden;
 }
+
+/* ADDONAL STYLES */
+[x-cloak] {
+  display: none !important;
+}

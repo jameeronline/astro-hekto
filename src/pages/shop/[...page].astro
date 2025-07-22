@@ -24,6 +24,19 @@ import {
 //icons imports
 import { Grid, List, Heart, ShoppingCart, Search, Share } from "@lucide/astro";
 
+const params = new URLSearchParams(Astro.url.searchParams);
+
+function withLayoutParam(url) {
+  if (!url) return "#";
+  // Remove any existing query string from the pagination URL
+  const [base] = url.split("?");
+  // Set the current layout param (or any others you want to preserve)
+  if (params.has("layout")) {
+    return `${base}?${params.toString()}`;
+  }
+  return base;
+}
+
 //blocks import
 import Partners from "@/components/blocks/Partners.astro";
 import ProductCard from "@/components/blocks/shop/ProductCard.astro";
@@ -167,8 +180,8 @@ const pageHeader = {
       <Paginate
         currentPage={page.currentPage}
         lastPage={page.lastPage}
-        prevUrl={page.url.prev}
-        nextUrl={page.url.next}
+        prevUrl={withLayoutParam(page.url.prev)}
+        nextUrl={withLayoutParam(page.url.next)}
       />
     </div>
 
