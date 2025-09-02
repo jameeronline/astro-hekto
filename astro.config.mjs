@@ -1,6 +1,15 @@
 // @ts-check
 import { defineConfig } from "astro/config";
 
+//environment variables
+import { loadEnv } from "vite";
+
+const { SANITY_PROJECT_ID, SANITY_DATASET, SANITY_USE_CDN } = loadEnv(
+  process.env.NODE_ENV,
+  process.cwd(),
+  ""
+);
+
 import path from "path";
 import tailwindcss from "@tailwindcss/vite";
 
@@ -12,9 +21,11 @@ import alpinejs from "@astrojs/alpinejs";
 
 import react from "@astrojs/react";
 
+import sanity from "@sanity/astro";
+
 // https://astro.build/config
 export default defineConfig({
-  site: "https://jameer.online", // Replace with your site's URL
+  site: import.meta.env.ASTRO_SITE_URL || "https://jameer.online", // Use env var or fallback
   vite: {
     plugins: [tailwindcss()],
     resolve: {
@@ -34,6 +45,17 @@ export default defineConfig({
     },
   },
 
-  integrations: [mdx(), sitemap(), alpinejs(), icon(), react()],
+  integrations: [
+    mdx(),
+    sitemap(),
+    alpinejs(),
+    icon(),
+    react(),
+    sanity({
+      projectId: SANITY_PROJECT_ID,
+      dataset: SANITY_DATASET,
+      useCdn: SANITY_USE_CDN, // expects "true" or "false"
+    }),
+  ],
   adapter: netlify(),
 });
