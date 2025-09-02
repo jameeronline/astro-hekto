@@ -30,14 +30,32 @@
     initializeObserver();
   });
 
-  //blog sidebar off canvas menu
-  // document.addEventListener("DOMContentLoaded", () => {
-  //   const hamburger = document.querySelector("#blog-sidebar");
-  //   const navLinks = document.querySelector("#toggle-blog-sidebar");
-  //   if (hamburger && navLinks) {
-  //     navLinks.addEventListener("click", () => {
-  //       hamburger.setAttribute("data-toggle-sidebar", "true");
-  //     });
-  //   }
-  // });
+  //currency update
+  import { configStore } from "@/stores/config";
+
+  function updateConfigDetails(config) {
+    const currencyElem = document.querySelectorAll(".currency-symbol");
+
+    if (config.currencySymbol && currencyElem.length) {
+      currencyElem.forEach((el) => {
+        // Assuming config.currency contains the icon's HTML (e.g., SVG or <img>)
+        el.innerHTML = config.currencySymbol;
+      });
+    }
+    // if (config.lang && langElem.length) {
+    //   langElem.forEach((el) => (el.textContent = config.lang));
+    // }
+  }
+
+  //Listen changes
+  configStore.subscribe(() => {
+    updateConfigDetails(configStore.get());
+  });
+
+  // Run once after Astro page rendered
+  if (typeof window !== "undefined") {
+    document.addEventListener("astro:page-load", () => {
+      updateConfigDetails(configStore.get());
+    });
+  }
 </script>

@@ -4,6 +4,7 @@ import { persistentAtom } from "@nanostores/persistent";
 // Define the shape of your config store
 export interface ConfigStore {
   currency: string;
+  currencySymbol: string;
   lang: string;
   theme: "light" | "dark";
   [key: string]: any;
@@ -12,6 +13,7 @@ export interface ConfigStore {
 // Default config values
 const defaultConfig: ConfigStore = {
   currency: "USD",
+  currencySymbol: "$",
   lang: "en",
   theme: "light",
 };
@@ -29,6 +31,9 @@ export const configStore = persistentAtom<ConfigStore>(
 // Update functions
 export function setCurrency(currency: string) {
   configStore.set({ ...configStore.get(), currency });
+}
+export function setCurrencySymbol(currencySymbol: string) {
+  configStore.set({ ...configStore.get(), currencySymbol });
 }
 
 export function setLang(lang: string) {

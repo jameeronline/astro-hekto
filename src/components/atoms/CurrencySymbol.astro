@@ -1,0 +1,28 @@
+---
+const { price } = Astro.props;
+
+import {
+  DollarSign,
+  Euro,
+  SaudiRiyal,
+  IndianRupee,
+  PoundSterling,
+} from "@lucide/astro";
+---
+
+<span class="currency-details"> </span>
+
+<script>
+  import { configStore } from "@/stores/config";
+
+  //Listen changes
+  configStore.subscribe(() => {
+    const priceInfo = configStore.get().currency;
+    console.log("currency", priceInfo);
+    const currencyElement = document.querySelector(".currency-details");
+    console.log("currencyElement", currencyElement);
+    if (currencyElement) {
+      currencyElement.innerHTML = priceInfo;
+    }
+  });
+</script>

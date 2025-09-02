@@ -19,31 +19,33 @@ import Product13 from "@/assets/products/13.png";
 import Product14 from "@/assets/products/14.png";
 import Product15 from "@/assets/products/15.png";
 
+import CurrencySymbol from "@/components/atoms/CurrencySymbol";
+
 //data imports
 const trendingProducts = [
   {
     image: Product10,
     title: "Modern Lounge Chair",
-    price: "$199.00",
-    oldPrice: "$249.00",
+    price: "199.00",
+    oldPrice: "249.00",
   },
   {
     image: Product11,
     title: "Ergonomic Office Chair",
-    price: "$149.00",
-    oldPrice: "$199.00",
+    price: "149.00",
+    oldPrice: "199.00",
   },
   {
     image: Product12,
     title: "Classic Wooden Armchair",
-    price: "$179.00",
-    oldPrice: "$229.00",
+    price: "179.00",
+    oldPrice: "229.00",
   },
   {
     image: Product13,
     title: "Minimalist Dining Chair",
-    price: "$89.00",
-    oldPrice: "$129.00",
+    price: "89.00",
+    oldPrice: "129.00",
   },
 ];
 ---
@@ -81,12 +83,13 @@ const trendingProducts = [
                   </figure>
                   <div class="p-6 text-center transition-colors">
                     <header class="mb-4">
-                      <h3 class="text-lg font-bold text-tertiary-900 group-hover:text-primary-500">
+                      <h3 class="text-base font-semibold text-tertiary-900 group-hover:text-primary-500">
                         {product.title}
                       </h3>
                     </header>
                     <p class="text-blue-950">
-                      {product.price}
+                      <span class="currency-symbol" />
+                      <span class="font-semibold">{product.price}</span>
                       <em class="not-italic text-sm text-primary-500 line-through">
                         {product.oldPrice}
                       </em>

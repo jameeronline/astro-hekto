@@ -1,0 +1,94 @@
+---
+import { Button } from "@/starwind/button";
+import { Checkbox } from "@/starwind/checkbox";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/starwind/select";
+---
+
+{/* Left Column - Checkout Form */}
+<div class="space-y-8 bg-brand-100/50 p-4 md:p-8 lg:p-12 rounded-lg">
+  {/* Breadcrumb */}
+  <div>
+    <h2 class="text-xl font-semibold text-blue-900 mb-2">
+      Billing Information
+    </h2>
+    <p class="text-sm text-gray-500">Cart / Information / Shipping / Payment</p>
+  </div>
+
+  {/* Contact Information */}
+  <div class="space-y-4">
+    <h3 class="text-lg font-medium text-blue-900">Contact Information</h3>
+    <input
+      type="email"
+      placeholder="Email or mobile phone number"
+      class="w-full as-form-control"
+      required
+    />
+    <div class="flex items-center space-x-2">
+      <Checkbox
+        id="offers"
+        class="border-primary-500 data-[state=checked]:bg-primary-500"
+      />
+      <label for="offers" class="text-sm text-primary-500">
+        Keep me up to date on news and exclusive offers
+      </label>
+    </div>
+  </div>
+
+  {/* Shipping Address */}
+  <div class="space-y-4">
+    <h3 class="text-lg font-medium text-blue-900">Shipping address</h3>
+
+    <div class="grid grid-cols-2 gap-4">
+      <input
+        type="text"
+        placeholder="First name (optional)"
+        class="as-form-control"
+      />
+      <input type="text" placeholder="Last name" class="as-form-control" />
+    </div>
+
+    <input
+      type="text"
+      placeholder="Address"
+      class="w-full h-12 px-4 border border-gray-300 rounded-md bg-white text-gray-700 placeholder:text-gray-400"
+    />
+
+    <input
+      type="text"
+      placeholder="Apartment, suite, etc. (optional)"
+      class="w-full h-12 px-4 border border-gray-300 rounded-md bg-white text-gray-700 placeholder:text-gray-400"
+    />
+
+    <input
+      type="text"
+      placeholder="City"
+      class="w-full h-12 px-4 border border-gray-300 rounded-md bg-white text-gray-700 placeholder:text-gray-400"
+    />
+
+    <div class="grid grid-cols-2 gap-4">
+      <Select class="w-full">
+        <SelectTrigger class="h-12 border-gray-300 w-full">
+          <SelectValue placeholder="Bangladesh" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem value="bangladesh">Bangladesh</SelectItem>
+          <SelectItem value="india">India</SelectItem>
+          <SelectItem value="pakistan">Pakistan</SelectItem>
+        </SelectContent>
+      </Select>
+      <input
+        type="text"
+        placeholder="Postal Code"
+        class="h-12 px-4 border border-gray-300 rounded-md bg-white text-gray-700 placeholder:text-gray-400"
+      />
+    </div>
+  </div>
+
+  <Button class="btn--primary w-full md:w-auto"> Continue Shipping </Button>
+</div>

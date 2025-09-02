@@ -13,7 +13,7 @@ import HeadLamp from "@/assets/head-lamp.png";
 ---
 
 <div
-  class="relative bg-gradient-to-br from-purple-100 to-primary-50 overflow-hidden"
+  class="relative bg-gradient-to-br from-purple-200 to-primary-50 overflow-hidden"
 >
   {/* Main Content Container */}
   <div class="relative mx-auto px-8 py-16 flex items-center">
@@ -27,7 +27,7 @@ import HeadLamp from "@/assets/head-lamp.png";
               class="text-primary-500 font-medium tracking-wide"
               data-scroll-animate
             >
-              Best Furniture For Your Castle....
+              Best Furniture For Your Castle
             </p>
 
             <h1
@@ -39,15 +39,18 @@ import HeadLamp from "@/assets/head-lamp.png";
               <span class="text-gray-900">Trends in 2020</span>
             </h1>
 
-            <p class="text-lg max-w-md" data-scroll-animate>
+            <p class="text-lg max-w-md text-gray-800" data-scroll-animate>
               Discover stylish, comfortable furniture designed to elevate your
               home. Explore our latest collection and find the perfect pieces to
               match your unique taste.
             </p>
           </div>
 
-          <footer data-scroll-animate>
+          <footer data-scroll-animate class="flex items-center gap-6">
             <Button class="btn--primary" size="lg">Shop Now</Button>
+            <a href="/shop" class="text-primary-500 font-medium underline"
+              >View All</a
+            >
           </footer>
 
           {/* Pagination Dots */}
@@ -68,9 +71,7 @@ import HeadLamp from "@/assets/head-lamp.png";
             <div class="w-96 h-96 relative">
               {/* 50% Off Badge - Top Right */}
               <div class="absolute top-2 right-2 z-20" data-scroll-animate>
-                <div
-                  class="w-24 h-24 flex items-center justify-center relative"
-                >
+                <div class="size-24 flex items-center justify-center relative">
                   <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
                     <path
                       class="fill-accent-600"

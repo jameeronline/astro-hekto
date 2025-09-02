@@ -12,6 +12,15 @@ import {
   X as CloseIcon,
 } from "@lucide/astro";
 
+//currency
+import {
+  DollarSign,
+  Euro,
+  SaudiRiyal,
+  IndianRupee,
+  PoundSterling,
+} from "@lucide/astro";
+
 //astro components imports
 import {
   Dropdown,
@@ -21,6 +30,14 @@ import {
   DropdownLabel,
   DropdownSeparator,
 } from "@/starwind/dropdown";
+
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/starwind/select";
 
 import PageFindSearch from "./blocks/PageFindSearch.astro";
 //navigation items
@@ -66,12 +83,33 @@ const navItems = [
 const currency = [
   {
     name: "USD",
-  },
-  {
-    name: "SAR",
+    icon: "DollarSign",
+    symbol: "$",
+    exchangeRate: 1.0,
   },
   {
     name: "INR",
+    icon: "IndianRupee",
+    symbol: "₹",
+    exchangeRate: 83.2,
+  },
+  {
+    name: "EUR",
+    icon: "Euro",
+    symbol: "€",
+    exchangeRate: 0.92,
+  },
+  {
+    name: "GBP",
+    icon: "PoundSterling",
+    symbol: "£",
+    exchangeRate: 0.78,
+  },
+  {
+    name: "SAR",
+    icon: "SaudiRiyal",
+    symbol: "﷼",
+    exchangeRate: 3.75,
   },
 ];
 
@@ -82,14 +120,29 @@ const lang = [
   {
     name: "Arabic",
   },
+  {
+    name: "French",
+  },
+  {
+    name: "Spanish",
+  },
 ];
+
+// Create a mapping of icon names to components
+const iconMap = {
+  DollarSign,
+  IndianRupee,
+  Euro,
+  PoundSterling,
+  SaudiRiyal,
+};
 ---
 
 <!-- START - Header -->
 <header>
   <!-- start - top header -->
-  <div class="bg-brand-700 py-4">
-    <div class="xl:container px-6 mx-auto">
+  <div class="bg-brand-700 py-4 z-100">
+    <div class="xl:container px-4 md:px-6 mx-auto">
       <div class="flex justify-between">
         <!-- start | left list -->
         <nav class="hidden md:block">
@@ -116,95 +169,61 @@ const lang = [
         </nav>
         <!-- end | left list -->
 
+        <!-- Render in UI -->
+        <!-- {
+          currency.map((item) => {
+            const IconComponent = iconMap[item.icon];
+            return <IconComponent class="w-4 h-4 inline mr-2" />;
+          })
+        } -->
+
         <!-- start | right list -->
         <nav>
           <ul class="flex gap-5 font-medium">
-            <!-- Component: Basic dropdown menu -->
-            <li class="relative inline-flex" x-data="{open: false}">
-              <!--  Start Dropdown trigger -->
-              <a
-                href="javascript:void(0)"
-                x-on:click="open = ! open"
-                x-on:click.outside="open = false"
-                class="inline-flex items-center justify-center gap-1 tracking-wide text-white focus-visible:outline-none whitespace-nowrap disabled:cursor-not-allowed disabled:border-emerald-300 disabled:bg-emerald-300 disabled:shadow-none"
-              >
-                <span class="lead">English</span>
-                <span class="relative only:-mx-5">
-                  <ChevronDown class="size-5" />
-                </span>
-              </a>
-              <!--  End Dropdown trigger -->
-              <!-- Start Menu list -->
-              <ul
-                x-bind:class="! open ? 'hidden' : ''"
-                x-cloak
-                class="absolute z-20 flex flex-col py-2 mt-1 list-none bg-white rounded shadow-md top-full shadow-slate-500/10"
+            <li class="relative inline-flex">
+              <select
+                name="language"
+                id="language-select"
+                class="bg-transparent text-white border-0 gap-1 p-0 h-auto tracking-wide focus-visible:outline-none whitespace-nowrap disabled:cursor-not-allowed disabled:border-emerald-300 disabled:bg-emerald-300 disabled:shadow-none"
               >
                 {
                   lang.map((item) => (
-                    <li>
-                      <a
-                        class="flex items-start justify-start gap-2 p-2 px-5 transition-colors duration-300 hover:text-brand-500 focus:bg-brand-500/50 focus:text-brand-500 focus:outline-none focus-visible:outline-none"
-                        href="#"
-                      >
-                        <span class="leading-5 truncate">{item.name}</span>
-                      </a>
-                    </li>
+                    <option value={item.name}>{item.name}</option>
                   ))
                 }
-              </ul>
-              <!-- End Menu list -->
+              </select>
             </li>
-            <!-- End Basic dropdown menu-->
-            <!-- Component: Basic dropdown menu -->
-            <li class="relative inline-flex" x-data="{open: false}">
-              <!--  Start Dropdown trigger -->
-              <a
-                href="javascript:void(0)"
-                x-on:click="open = ! open"
-                x-on:click.outside="open = false"
-                class="inline-flex items-center justify-center gap-1 tracking-wide text-white focus-visible:outline-none whitespace-nowrap disabled:cursor-not-allowed disabled:border-emerald-300 disabled:bg-emerald-300 disabled:shadow-none"
-              >
-                <span>USD</span>
-                <span class="relative only:-mx-5">
-                  <ChevronDown class="size-5" />
-                </span>
-              </a>
-              <!--  End Dropdown trigger -->
-              <!-- Start Menu list -->
-              <ul
-                x-bind:class="! open ? 'hidden' : ''"
-                x-cloak
-                class="absolute z-20 flex flex-col py-2 mt-1 list-none bg-white rounded shadow-md top-full shadow-slate-500/10"
+            <li class="relative inline-flex">
+              <select
+                name="currency"
+                id="currency-select"
+                class="bg-transparent text-white border-0 gap-1 p-0 h-auto tracking-wide focus-visible:outline-none whitespace-nowrap disabled:cursor-not-allowed disabled:border-emerald-300 disabled:bg-emerald-300 disabled:shadow-none"
               >
                 {
                   currency.map((item) => (
-                    <li>
-                      <a
-                        class="flex items-start justify-start gap-2 p-2 px-5 transition-colors duration-300 hover:text-brand-500 focus:bg-brand-500/50 focus:text-brand-500 focus:outline-none focus-visible:outline-none"
-                        href="#"
-                      >
-                        <span class="leading-5 truncate">{item.name}</span>
-                      </a>
-                    </li>
+                    <option
+                      value={item.name}
+                      data-symbol={item.symbol}
+                      data-exchange={item.exchangeRate}
+                    >
+                      {item.name} ({item.symbol})
+                    </option>
                   ))
                 }
-              </ul>
-              <!-- End Menu list -->
+              </select>
             </li>
-            <!-- End Basic dropdown menu-->
             <li class="inline-flex">
               <a
-                href="#"
+                href="/auth/login"
                 class="text-white font-medium inline-flex gap-2 items-center"
               >
                 <span>Login</span>
                 <CircleUserRound class="size-5" />
               </a>
             </li>
-            <li class="inline-flex">
+            <li class="hidden md:inline-flex">
               <a
-                href="#"
+                href="/wishlist"
                 class="text-white font-medium inline-flex gap-2 items-center"
               >
                 <span>Wishlist</span>
@@ -235,7 +254,7 @@ const lang = [
 
   <!-- start - main header -->
   <div class="py-5">
-    <div class="xl:container px-6 mx-auto">
+    <div class="xl:container px-4 md:px-6 mx-auto">
       <div class="flex items-center justify-between" x-data="{toggle: false}">
         <a href="/" class="text-4xl font-heading font-bold text-black">Hekto</a>
 
@@ -278,7 +297,7 @@ const lang = [
                       <ChevronDown class="size-5" />
                     </a>
                     <ul
-                      class="absolute left-0 top-full mt-2 min-w-[180px] bg-white rounded shadow-md z-20"
+                      class="absolute left-0 top-full mt-2 min-w-[180px] p-2 bg-white rounded shadow-xl z-20"
                       x-bind:class="! open ? 'hidden' : ''"
                       x-transition:enter="transition ease-out duration-200"
                       x-transition:enter-start="opacity-0"
@@ -288,7 +307,7 @@ const lang = [
                         <li>
                           <a
                             href={sub.url}
-                            class="block px-5 py-2 text-ghost-950 hover:text-primary-500 hover:bg-slate-50 transition-colors duration-300"
+                            class="block px-4 py-2 text-ghost-950 hover:text-primary-500 hover:bg-slate-50 transition-colors duration-300"
                           >
                             {sub.name}
                           </a>
@@ -344,6 +363,7 @@ const lang = [
 
   <script>
     import { cartCount } from "@/stores/cart";
+    import { configStore, updateConfig } from "@/stores/config";
 
     // Listen to changes in the store, and show/hide the dialog accordingly
     function updateCartCount(count) {
@@ -370,5 +390,65 @@ const lang = [
         updateCartCount(cartCount.get());
       });
     }
+
+    function updateConfigUI(config) {
+      const currencySelect = document.getElementById("currency-select");
+      const langSelect = document.getElementById("language-select");
+
+      if (config.currency && currencySelect.length) {
+        currencySelect.value = config.currency;
+      }
+
+      if (config.lang && langSelect.length) {
+        langSelect.value = config.lang;
+      }
+    }
+
+    //Listen changes
+    configStore.subscribe(() => {
+      updateConfigUI(configStore.get());
+    });
+
+    // Run once after Astro page rendered
+    if (typeof window !== "undefined") {
+      document.addEventListener("astro:page-load", () => {
+        updateConfigUI(configStore.get());
+      });
+    }
+
+    document
+      .querySelector("#language-select")
+      ?.addEventListener("change", (event) => {
+        const selectedLanguage =
+          event.target && event.target.value ? event.target.value : "";
+        configStore.set({ ...configStore.get(), lang: selectedLanguage });
+      });
+
+    document
+      .querySelector("#currency-select")
+      ?.addEventListener("change", (event) => {
+        const selectedOption = event.target.selectedOptions[0];
+
+        //selected currency information
+        const selectedCurrency =
+          event.target && event.target.value ? event.target.value : "";
+
+        //selected currency exchange rate
+        const selectedCurrencyExchange =
+          selectedOption && selectedOption.dataset.exchange
+            ? selectedOption.dataset.exchange
+            : "";
+        //selected currency symbol
+        const selectedCurrencySymbol =
+          selectedOption && selectedOption.dataset.symbol
+            ? selectedOption.dataset.symbol
+            : "";
+        //update currency information
+        configStore.set({
+          ...configStore.get(),
+          currency: selectedCurrency,
+          currencySymbol: selectedCurrencySymbol,
+        });
+      });
   </script>
 </header>

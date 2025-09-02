@@ -29,10 +29,10 @@
 
 @theme {
   /* fonts */
-  --font-heading: "Josefin Sans Variable", sans-serif;
-  --font-body: "Lato", sans-serif;
-  /* --font-heading: "IBM Plex Sans Variable", sans-serif;
-  --font-body: "IBM Plex Sans Variable", sans-serif; */
+  /* --font-heading: "Josefin Sans Variable", sans-serif;
+  --font-body: "Lato", sans-serif; */
+  --font-heading: "IBM Plex Sans Variable", sans-serif;
+  --font-body: "IBM Plex Sans Variable", sans-serif;
 
   /* screen sizes */
   --screen-xs: 375px;
@@ -216,8 +216,8 @@
 }
 
 @utility prose-custom {
-  --tw-prose-body: var(--color-emphasis-700);
-  --tw-prose-headings: var(--color-emphasis-800);
+  --tw-prose-body: var(--color-emphasis-800);
+  --tw-prose-headings: var(--color-emphasis-900);
   --tw-prose-lead: var(--color-emphasis-600);
   --tw-prose-links: var(--color-primary-500);
   --tw-prose-bold: var(--color-emphasis-800);
