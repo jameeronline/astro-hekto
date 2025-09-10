@@ -4,9 +4,101 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 //components import
 import PageHeader from "@/components/blocks/PageHeader.astro";
 
+//starwind components imports
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/starwind/accordion";
+
+// Categorized FAQ data for an online store
+const faqData = [
+  {
+    category: "General FAQ",
+    items: [
+      {
+        question: "What is your online store about?",
+        answer:
+          "Our online store offers a wide range of products, from electronics and fashion to home essentials. We aim to provide a seamless shopping experience with fast delivery and excellent customer support.",
+      },
+      {
+        question: "Do you have a physical store location?",
+        answer:
+          "Currently, we operate exclusively online. This allows us to offer a broader selection of products and competitive prices to our customers.",
+      },
+      {
+        question: "How can I contact customer support?",
+        answer:
+          "You can reach our customer support team via email, live chat, or phone. Visit our Contact Us page for more details and operating hours.",
+      },
+    ],
+  },
+  {
+    category: "Account FAQ",
+    items: [
+      {
+        question: "How do I create an account?",
+        answer:
+          "To create an account, click on the 'Sign Up' button at the top right corner of our website and fill in the required information. You will receive a confirmation email to activate your account.",
+      },
+      {
+        question: "I forgot my password. What should I do?",
+        answer:
+          "Click on the 'Forgot Password?' link on the login page. Enter your registered email address, and we will send you instructions to reset your password.",
+      },
+      {
+        question: "Can I update my account information?",
+        answer:
+          "Yes, you can update your personal information, shipping address, and payment methods by logging into your account and navigating to the 'Account Settings' section.",
+      },
+    ],
+  },
+  {
+    category: "Payment FAQ",
+    items: [
+      {
+        question: "What payment methods do you accept?",
+        answer:
+          "We accept various payment methods including credit/debit cards, PayPal, Apple Pay, and Google Pay. All transactions are securely processed.",
+      },
+      {
+        question: "Is it safe to use my credit card on your website?",
+        answer:
+          "Absolutely. We use industry-standard SSL encryption to protect your payment information and ensure a secure shopping experience.",
+      },
+      {
+        question: "Can I use multiple payment methods for a single order?",
+        answer:
+          "Currently, we only support one payment method per order. Please choose your preferred payment option during checkout.",
+      },
+    ],
+  },
+  {
+    category: "Communication FAQ",
+    items: [
+      {
+        question: "How will I receive updates about my order?",
+        answer:
+          "You will receive email notifications regarding your order status, including confirmation, shipping, and delivery updates. You can also track your order in your account dashboard.",
+      },
+      {
+        question: "Can I subscribe to your newsletter?",
+        answer:
+          "Yes! You can subscribe to our newsletter by entering your email address at the bottom of our homepage. Stay updated on the latest products, offers, and news.",
+      },
+      {
+        question: "How do I unsubscribe from promotional emails?",
+        answer:
+          "To unsubscribe, click the 'Unsubscribe' link at the bottom of any promotional email you receive from us. You can also manage your email preferences in your account settings.",
+      },
+    ],
+  },
+];
+
 // page header details
 const pageHeader = {
-  title: "FAQ",
+  title: "FAQ - 1",
   caption: "",
   description: "",
 };
@@ -14,4 +106,24 @@ const pageHeader = {
 
 <BaseLayout>
   <PageHeader headerInfo={pageHeader} slot="pageHeader" />
+  <div class="xl:container px-6 mx-auto mb-24">
+    {
+      faqData.map((section, sectionIdx) => (
+        <section class="mb-10" key={section.category}>
+          <h2 class="text-2xl font-semibold mb-4">{section.category}</h2>
+          <Accordion type="multiple" defaultValue={`item-0-0`}>
+            {section.items.map((item, itemIdx) => (
+              <AccordionItem
+                value={`item-${sectionIdx}-${itemIdx}`}
+                key={item.question}
+              >
+                <AccordionTrigger>{item.question}</AccordionTrigger>
+                <AccordionContent>{item.answer}</AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </section>
+      ))
+    }
+  </div>
 </BaseLayout>

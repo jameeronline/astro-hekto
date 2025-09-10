@@ -35,27 +35,37 @@
 
   function updateConfigDetails(config) {
     const currencyElem = document.querySelectorAll(".currency-symbol");
+    console.log("Updating currency symbols to:", config.currencySymbol);
 
     if (config.currencySymbol && currencyElem.length) {
       currencyElem.forEach((el) => {
-        // Assuming config.currency contains the icon's HTML (e.g., SVG or <img>)
         el.innerHTML = config.currencySymbol;
       });
     }
-    // if (config.lang && langElem.length) {
-    //   langElem.forEach((el) => (el.textContent = config.lang));
-    // }
   }
 
   //Listen changes
   configStore.subscribe(() => {
+    console.log("Astro store config - subscribe triggered");
     updateConfigDetails(configStore.get());
   });
 
   // Run once after Astro page rendered
   if (typeof window !== "undefined") {
     document.addEventListener("astro:page-load", () => {
+      console.log("Astro page loaded");
       updateConfigDetails(configStore.get());
     });
   }
+
+  // Initial run on DOMContentLoaded
+  document.addEventListener("DOMContentLoaded", () => {
+    console.log("Astro page DOMContentLoaded");
+    updateConfigDetails(configStore.get());
+  });
+
+  document.addEventListener("astro:after-swap", () => {
+    console.log("Astro page after-swap");
+    updateConfigDetails(configStore.get());
+  });
 </script>

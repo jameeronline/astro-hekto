@@ -4,15 +4,17 @@ import SectionHeader from "@/components/atoms/SectionHeader.astro";
 ---
 
 <!-- START - newsletter -->
-<section class="relative bg-emphasis-50 bg-news-lettern bg-cover">
+<section
+  class="relative bg-emphasis-50 bg-news-lettern bg-cover bg-gradient-to-r from-primary-50 to-primary-100"
+>
   <div class="container px-6 mx-auto">
     <div
-      class="mx-auto flex flex-col items-center justify-center gap-6 py-14 lg:py-24 md:max-w-lg"
+      class="mx-auto flex flex-col items-center justify-center gap-6 py-10 lg:py-20 md:max-w-lg"
       data-scroll-animate
     >
-      <SectionHeader class="mb-6">
+      <h3 class="mb-2 text-center">
         Get Latest Update By Subscribe 0ur Newsletter
-      </SectionHeader>
+      </h3>
       <!-- Component: Large primary basic button -->
       <Button class="btn--primary" data-scroll-animate>
         <span>Shop Now</span>

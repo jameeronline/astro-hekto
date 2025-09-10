@@ -13,17 +13,19 @@ import TrendingProducts from "@/components/blocks/home/TrendingProducts.astro";
 import TopCategories from "@/components/blocks/home/TopCategories.astro";
 import Newsletter from "@/components/blocks/home/Newsletter.astro";
 import Partners from "@/components/blocks/Partners.astro";
+import Isotope from "@/components/blocks/home/Isotope.astro";
 ---
 
 <BaseLayout>
   <HomeBanner />
   <!-- <FeaturedProducts /> -->
   <LatestProducts />
+  <!-- <Isotope /> -->
   <Offers />
   <TrendingBanner />
   <TrendingProducts />
   <TopCategories />
   <Newsletter />
-  <Partners isHome={true} />
   <LatestBlog />
+  <Partners isHome={true} />
 </BaseLayout>

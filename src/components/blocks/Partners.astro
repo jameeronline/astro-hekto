@@ -61,11 +61,14 @@ const partners = [
 ---
 
 <!-- START - Partners -->
-<div class="border-t border-gray-200" data-scroll-animate>
-  <section class="my-16">
+<div data-scroll-animate>
+  <section class="">
     <div class="container px-4 md:px-6 mx-auto">
       <!-- Component: Carousel with controls inside -->
-      <div class="relative mx-auto" id="glide-partners">
+      <div
+        class="relative mx-auto py-16 border-t border-gray-200"
+        id="glide-partners"
+      >
         <!-- Slides -->
         <div class="overflow-hidden" data-glide-el="track">
           <ul
@@ -132,6 +135,6 @@ const partners = [
     }
   }
 
-  // document.addEventListener("astro:page-load", initSlider);
-  initSlider();
+  document.addEventListener("astro:page-load", initSlider);
+  //initSlider();
 </script>

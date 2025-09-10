@@ -1,0 +1,360 @@
+---
+//astro imports
+import { Image } from "astro:assets";
+import { Icon } from "astro-icon/components";
+
+//icons import
+import { Heart, ShoppingCart, ZoomIn } from "@lucide/astro";
+
+//components import
+import SectionHeader from "@/components/atoms/SectionHeader.astro";
+
+//blog images
+import Product1 from "@/assets/products/1.png";
+import Product2 from "@/assets/products/2.png";
+import Product3 from "@/assets/products/3.png";
+import Product4 from "@/assets/products/4.png";
+import Product5 from "@/assets/products/5.png";
+import Product6 from "@/assets/products/6.png";
+import Product7 from "@/assets/products/7.png";
+import Product8 from "@/assets/products/8.png";
+import Product9 from "@/assets/products/9.png";
+import Product10 from "@/assets/products/10.png";
+import Product11 from "@/assets/products/11.png";
+import Product12 from "@/assets/products/12.png";
+import Product13 from "@/assets/products/13.png";
+import Product14 from "@/assets/products/14.png";
+import Product15 from "@/assets/products/15.png";
+
+const products = [
+  {
+    id: 1,
+    category: "new",
+    name: "Modern Wooden Chair",
+    price: 49.99,
+    oldPrice: 69.99,
+    image: Product1, // Reference to imported image
+    description: "A stylish and comfortable wooden chair for your living room.",
+    rating: 4.5,
+    stock: 12,
+  },
+  {
+    id: 2,
+    category: "bestseller",
+    name: "Elegant Sofa Set",
+    price: 299.0,
+    oldPrice: 349.0,
+    image: Product2,
+    description: "Elegant 3-piece sofa set with premium fabric.",
+    rating: 4.8,
+    stock: 5,
+  },
+  {
+    id: 3,
+    category: "featured",
+    name: "Minimalist Study Desk",
+    price: 120.0,
+    oldPrice: 150.0,
+    image: Product3,
+    description: "Spacious desk with minimalist design for home office.",
+    rating: 4.2,
+    stock: 8,
+  },
+  {
+    id: 4,
+    category: "special-offer",
+    name: "Classic Nightstand",
+    price: 39.0,
+    oldPrice: 59.0,
+    image: Product4,
+    description: "Classic nightstand with drawer and shelf.",
+    rating: 4.0,
+    stock: 20,
+  },
+  {
+    id: 5,
+    category: "new",
+    name: "Luxury Bed Frame",
+    price: 450.0,
+    oldPrice: 520.0,
+    image: Product5,
+    description: "King size luxury bed frame with headboard.",
+    rating: 4.9,
+    stock: 3,
+  },
+  {
+    id: 6,
+    category: "bestseller",
+    name: "Ergonomic Office Chair",
+    price: 89.99,
+    oldPrice: 120.0,
+    image: Product6,
+    description: "Ergonomic chair for long working hours.",
+    rating: 4.7,
+    stock: 10,
+  },
+  {
+    id: 7,
+    category: "featured",
+    name: "Round Coffee Table",
+    price: 75.0,
+    oldPrice: 99.0,
+    image: Product7,
+    description: "Modern round coffee table with glass top.",
+    rating: 4.3,
+    stock: 7,
+  },
+  {
+    id: 8,
+    category: "special-offer",
+    name: "Bookshelf Organizer",
+    price: 55.0,
+    oldPrice: 80.0,
+    image: Product8,
+    description: "Multi-layer bookshelf for home or office.",
+    rating: 4.1,
+    stock: 15,
+  },
+  {
+    id: 9,
+    category: "new",
+    name: "Kids Study Table",
+    price: 60.0,
+    oldPrice: 85.0,
+    image: Product9,
+    description: "Colorful study table for kids.",
+    rating: 4.6,
+    stock: 9,
+  },
+  {
+    id: 10,
+    category: "bestseller",
+    name: "Recliner Armchair",
+    price: 210.0,
+    oldPrice: 250.0,
+    image: Product10,
+    description: "Comfortable recliner armchair for relaxation.",
+    rating: 4.8,
+    stock: 4,
+  },
+  {
+    id: 11,
+    category: "featured",
+    name: "Dining Table Set",
+    price: 350.0,
+    oldPrice: 420.0,
+    image: Product11,
+    description: "6-seater dining table set with chairs.",
+    rating: 4.4,
+    stock: 6,
+  },
+  {
+    id: 12,
+    category: "special-offer",
+    name: "Wall Mounted Shelf",
+    price: 25.0,
+    oldPrice: 40.0,
+    image: Product12,
+    description: "Space-saving wall mounted shelf.",
+    rating: 4.2,
+    stock: 18,
+  },
+  {
+    id: 13,
+    category: "new",
+    name: "Outdoor Patio Set",
+    price: 199.0,
+    oldPrice: 250.0,
+    image: Product13,
+    description: "Weather-resistant patio set for outdoor use.",
+    rating: 4.7,
+    stock: 5,
+  },
+  {
+    id: 14,
+    category: "bestseller",
+    name: "Vintage Dresser",
+    price: 130.0,
+    oldPrice: 170.0,
+    image: Product14,
+    description: "Vintage style dresser with mirror.",
+    rating: 4.5,
+    stock: 7,
+  },
+  {
+    id: 15,
+    category: "featured",
+    name: "Modern Floor Lamp",
+    price: 45.0,
+    oldPrice: 60.0,
+    image: Product15,
+    description: "Sleek floor lamp for modern interiors.",
+    rating: 4.6,
+    stock: 11,
+  },
+];
+
+const productIcons = [
+  {
+    icon: ShoppingCart,
+    label: "Add to Cart",
+    href: "#",
+  },
+  {
+    icon: Heart,
+    label: "Add to Wishlist",
+    href: "#",
+  },
+  {
+    icon: ZoomIn,
+    label: "View Details",
+    href: "#",
+  },
+];
+---
+
+<!-- START - Latest Products -->
+<section class="my-16">
+  <div class="xl:container px-6 mx-auto" data-scroll-animate>
+    <SectionHeader>Latest Products(Isotope)</SectionHeader>
+
+    <nav
+      class="flex justify-center gap-6 mb-8"
+      data-scroll-animate
+      id="isotope-filters"
+    >
+      <a
+        data-filter="*"
+        href="javascript:void(0)"
+        class="transition-colors duration-300 hover:text-primary-500 hover:underline"
+        :class="filter == '*' ? 'text-primary-500':'text-tertiary-950'">All</a
+      >
+      <a
+        data-filter="new"
+        href="javascript:void(0)"
+        class="transition-colors duration-300 hover:text-primary-500 hover:underline"
+        :class="filter == 'new' ? 'text-primary-500':'text-tertiary-950'"
+        >New Arrival</a
+      >
+      <a
+        data-filter="bestseller"
+        href="javascript:void(0)"
+        class="transition-colors duration-300 hover:text-primary-500 hover:underline"
+        :class="filter == 'bestseller' ? 'text-primary-500':'text-tertiary-950'"
+        >Best Seller</a
+      >
+      <a
+        data-filter="featured"
+        href="javascript:void(0)"
+        class="transition-colors duration-300 hover:text-primary-500 hover:underline"
+        :class="filter == 'featured' ? 'text-primary-500':'text-tertiary-950'"
+        >Featured</a
+      >
+      <a
+        data-filter="special-offer"
+        href="javascript:void(0)"
+        class="transition-colors duration-300 hover:text-primary-500 hover:underline"
+        :class="filter == 'special-offer' ? 'text-primary-500':'text-tertiary-950'"
+        >Special Offer</a
+      >
+    </nav>
+
+    <!-- Component: grid -->
+    <div class="relative overflow-hidden w-full">
+      <ul
+        class="list grid grid-cols-4 gap-6 md:grid-cols-8 lg:grid-cols-12 lg:gap-10"
+        id="isotope-grid"
+      >
+        {
+          products.slice(0, 6).map((product) => (
+            <li
+              class="col-span-4 md:col-span-4 size-96"
+              key={product.id}
+              data-category={product.category}
+              class:list={product.category}
+            >
+              <article class="group overflow-hidden">
+                <figure class="relative overflow-hidden aspect-[4/3] w-full bg-neutral-50 rounded-lg lg:rounded-none flex items-center justify-center transition-colors duration-200 group-hover:bg-emphasis-200">
+                  <ul class="list-none inline-flex flex-col-reverse absolute z-10 -bottom-3 left-3 opacity-0 transition-all group-hover:opacity-100 group-hover:bottom-3">
+                    {productIcons.map((icon) => (
+                      <li key={icon.label}>
+                        <a
+                          href={icon.href}
+                          class="inline-flex w-8 h-8 items-center justify-center rounded-full text-tertiary-800 transition-colors hover:bg-tertiary-200"
+                          aria-label={icon.label}
+                        >
+                          <icon.icon class="size-4" />
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                  <img
+                    src={product.image.src}
+                    alt="card image"
+                    class="transition-transform duration-300 size-48 group-hover:scale-75 group-hover:-rotate-6"
+                  />
+                </figure>
+                <div class="py-6 text-center">
+                  <header class="flex items-center justify-between">
+                    <h6 class="font-bold text-tertiary-900 underline underline-offset-8 decoration-tertiary-900/10">
+                      {product.name}
+                    </h6>
+                    <p class="inline-flex gap-2 items-center">
+                      <span class="currency-symbol" />
+                      <span class="text-tertiary-900 font-semibold">
+                        {product.price.toFixed(2)}
+                      </span>
+                      <span class="text-primary-600 text-xs line-through">
+                        {product.oldPrice.toFixed(2)}
+                      </span>
+                    </p>
+                  </header>
+                </div>
+              </article>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</section>
+<!-- END - Latest Products -->
+
+<script>
+  import Isotope from "isotope-layout";
+  // This script runs on the client after the page loads
+  window.addEventListener("DOMContentLoaded", () => {
+    var elem = document.querySelector("#isotope-grid");
+    var iso = new Isotope(elem, {
+      itemSelector: ".col-span-4",
+      layoutMode: "masonry",
+      getSortData: {
+        category: "[data-category]",
+      },
+    });
+
+    // Vanilla JS for filter buttons
+    var buttonGroup = document.querySelector("#isotope-filters");
+    if (buttonGroup) {
+      buttonGroup.addEventListener("click", function (event) {
+        // Remove active class from all buttons
+        var buttons = buttonGroup.querySelectorAll("a");
+        buttons.forEach((btn) => btn.classList.remove("text-primary-500"));
+
+        var target = event.target;
+        // Add active class to clicked button
+        target.classList.add("text-primary-500");
+
+        if (target.tagName === "A") {
+          // Should be
+          var filterValue = target.getAttribute("data-filter");
+          if (filterValue === "*") {
+            iso.arrange({ filter: "*" });
+          } else {
+            iso.arrange({ filter: "." + filterValue });
+          }
+        }
+      });
+    }
+  });
+</script>
