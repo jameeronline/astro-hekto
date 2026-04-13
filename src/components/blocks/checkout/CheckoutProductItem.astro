@@ -1,4 +1,18 @@
 ---
+interface CartItem {
+  id: string;
+  name: string;
+  price: number;
+  quantity?: number;
+  image?: string;
+  color?: string;
+  size?: string;
+}
+
+interface Props {
+  item: CartItem;
+}
+
 const { item } = Astro.props;
 ---
 
@@ -8,9 +22,13 @@ const { item } = Astro.props;
   <div class="flex items-center space-x-4">
     <div class="relative flex-none">
       <img
-        src={item.image || "/placeholder.svg"}
-        alt={item.name}
+        src={item.image || "/placeholder.svg?height=80&width=80"}
+        alt={`${item.name} - Product image`}
         class="size-20 flex-none object-cover rounded-md bg-gray-200"
+        width="80"
+        height="80"
+        loading="lazy"
+        decoding="async"
       />
     </div>
     <div>

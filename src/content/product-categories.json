@@ -25,9 +25,9 @@
   },
   {
     "slug": "outdoor-furniture",
-    "name": "Outdoor & furniture",
+    "name": "Outdoor Furniture",
     "image": "/images/categories/outdoor.jpg",
-    "description": "Transform your garden or furniture with durable outdoor furniture, including furniture sets, garden chairs, and weather-resistant tables. Enjoy outdoor living with stylish and comfortable options."
+    "description": "Transform your garden or patio with durable outdoor furniture, including lounge chairs, dining sets, and weather-resistant tables. Enjoy outdoor living with stylish and comfortable options."
   },
   {
     "slug": "kids-furniture",
@@ -36,34 +36,16 @@
     "description": "Find fun, safe, and functional furniture for children's rooms, including beds, desks, and storage. Create a playful and organized space for your kids to learn and grow."
   },
   {
-    "slug": "bags",
-    "name": "Bags",
-    "image": "/images/categories/bags.jpg",
-    "description": "Shop a wide selection of stylish and functional bags for every occasion, including backpacks, handbags, and travel bags."
+    "slug": "sofas",
+    "name": "Sofas & Couches",
+    "image": "/images/categories/sofas.jpg",
+    "description": "Explore our collection of modern sofas, couches, and sectionals. Find the perfect seating solution for your living room in various styles and materials."
   },
   {
-    "slug": "accessories",
-    "name": "Accessories",
-    "image": "/images/categories/accessories.jpg",
-    "description": "Discover trendy accessories to complement your style, from jewelry and watches to hats and scarves."
-  },
-  {
-    "slug": "clothing",
-    "name": "Clothing",
-    "image": "/images/categories/clothing.jpg",
-    "description": "Browse the latest fashion in clothing for men, women, and kids. Find outfits for every season and occasion."
-  },
-  {
-    "slug": "electronics",
-    "name": "Electronics",
-    "image": "/images/categories/electronics.jpg",
-    "description": "Explore the newest electronics, including smartphones, laptops, headphones, and smart home devices."
-  },
-  {
-    "slug": "footwear",
-    "name": "Footwear",
-    "image": "/images/categories/footwear.jpg",
-    "description": "Step out in style with our collection of footwear for all ages, featuring sneakers, boots, sandals, and more."
+    "slug": "chairs",
+    "name": "Chairs & Seating",
+    "image": "/images/categories/chairs.jpg",
+    "description": "Browse dining chairs, armchairs, office chairs, and more. Find comfortable seating options for every room in your home."
   },
   {
     "slug": "tables",
@@ -73,13 +55,13 @@
   },
   {
     "slug": "storage",
-    "name": "Storage",
+    "name": "Storage & Organization",
     "image": "/images/categories/storage.jpg",
-    "description": "Organize your home with our selection of storage solutions, including shelves, cabinets, bookcases, and storage boxes. Find practical and stylish options for every room."
+    "description": "Organize your home with our selection of storage solutions, including shelves, cabinets, bookcases, and dressers. Find practical and stylish options for every room."
   },
   {
     "slug": "beds",
-    "name": "Beds",
+    "name": "Beds & Mattresses",
     "image": "/images/categories/beds.jpg",
     "description": "Shop a variety of beds including single, double, queen, and king sizes. Find the perfect bed frame and mattress for comfort, style, and restful sleep."
   }

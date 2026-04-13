@@ -1,18 +1,21 @@
 ---
-//astro imports
 import { Image } from "astro:assets";
-
-//utils imports
 import { slugify } from "@/utils/helper";
-
-//components imports
 import { Heart, ShoppingCart, Share } from "@lucide/astro";
 import { Button } from "@/starwind/button";
 
-//props
-const { product } = Astro.props;
+interface Props {
+  product: {
+    title: string;
+    featuredImage: string;
+    price: string;
+    originalPrice?: string;
+    rating?: number;
+  };
+}
 
-const { title, featuredImage, price, originalPrice } = product;
+const { product } = Astro.props;
+const { title, featuredImage, price } = product;
 ---
 
 {/* Product Image */}

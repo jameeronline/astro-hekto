@@ -10,15 +10,18 @@ import {
 
 interface HeaderInfo {
   title: string;
-  caption: string;
-  description: string;
+  caption?: string;
+  description?: string;
 }
 
-const { headerInfo: HeaderInfo } = Astro.props;
-const { title, caption, description } = HeaderInfo || {
+interface Props {
+  headerInfo: HeaderInfo;
+}
+
+const { headerInfo } = Astro.props;
+const { title, caption } = headerInfo ?? {
   title: "Page Title",
   caption: "Page Caption",
-  description: "Page Description",
 };
 ---
 

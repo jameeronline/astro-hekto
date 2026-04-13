@@ -10,6 +10,9 @@ import Partners from "@/components/blocks/Partners.astro";
 //blocks import
 import ContactForm from "@/components/blocks/contact/ContactForm.astro";
 
+//react contact form
+import ReactContactForm from "@/components/blocks/ReactContactForm";
+
 const faqs = [
   {
     question: "How can I get in touch with your support team?",
@@ -65,6 +68,8 @@ const pageHeader = {
             ))
           }
         </div>
+
+        <ReactContactForm client:load />
       </div>
 
       <ContactForm />

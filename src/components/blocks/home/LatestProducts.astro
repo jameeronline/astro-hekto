@@ -1,12 +1,6 @@
 ---
-//astro imports
-import { Image } from "astro:assets";
-import { Icon } from "astro-icon/components";
-
-//icons import
 import { Heart, ShoppingCart, ZoomIn } from "@lucide/astro";
 
-//components import
 import SectionHeader from "@/components/atoms/SectionHeader.astro";
 
 //blog images
@@ -330,8 +324,12 @@ const productIcons = [
 
                 <img
                   :src="product.image.src"
-                  alt="card image"
+                  :alt="`${product.name} - Product image`"
                   class="transition-transform duration-300 size-48 group-hover:scale-75 group-hover:-rotate-6"
+                  width="400"
+                  height="300"
+                  loading="lazy"
+                  decoding="async"
                 />
               </figure>
               <div class="py-6 text-center">

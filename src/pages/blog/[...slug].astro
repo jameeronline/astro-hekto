@@ -1,32 +1,15 @@
 ---
-//astro imports
 import { Image } from "astro:assets";
-import { Breadcrumbs } from "astro-breadcrumbs";
 import { getCollection, getEntry, render } from "astro:content";
-import { Icon } from "astro-icon/components";
 
-//components import
 import BlogLayout from "@/layouts/BlogLayout.astro";
 import PageHeader from "@/components/blocks/PageHeader.astro";
-// import BlogAside from "@blocks/BlogAside.astro";
-// import BlogGrid from "@blocks/BlogGrid.astro";
-// import Badge from "@components/ui/Badge.astro";
-// import BackButton from "@components/BackButton.astro";
-// import RelatedBlogCard from "@components/RelatedBlogCard.astro";
 
 import { Badge } from "@/starwind/badge";
 
-//icons import
-import { ArrowLeft } from "@lucide/astro";
-
-//vendor style imports
-// import "astro-breadcrumbs/breadcrumbs.css";
-
-//utils import
-import { slugify, formatDate } from "@/utils/helper";
+import { slugify } from "@/utils/helper";
 import BlogMeta from "@/components/blocks/BlogMeta.astro";
 
-//define static paths for dynamic routing
 export async function getStaticPaths() {
   const posts = await getCollection("posts");
   return posts.map((post) => ({
@@ -35,38 +18,22 @@ export async function getStaticPaths() {
   }));
 }
 
-const { slug } = Astro.params;
 const { id, posts } = Astro.props;
 
-// Fetch the post entry using the ID from the dynamic route
 const post = await getEntry("posts", id);
 
-// If the post is not found, throw an error
 if (!post) {
   throw new Error("Post not found");
 }
 
-// Extract data and content from the post
 const { data } = post;
-const { Content, headings } = await render(post);
+const { Content } = await render(post);
 
 const tags = data.tags.map((tag) => tag.trim());
 const categories = data.categories.map((category) => category.trim());
 
-// Get related posts: share at least one tag or category, exclude current post
-const relatedPosts = posts
-  .filter(
-    (p) =>
-      p.id !== post.id &&
-      (p.data.tags.some((tag) => tags.includes(tag.trim())) ||
-        p.data.categories.some((cat) => categories.includes(cat.trim())))
-  )
-  .slice(0, 4); // Limit to 4
+const { title, description, cover } = data;
 
-//access data properties
-const { title, description, cover, pubDate, author } = data;
-
-// page header details
 const pageHeader = {
   title: "Blog Details",
   caption: "",

@@ -1,11 +1,6 @@
 ---
-//astro imports
 import { Icon } from "astro-icon/components";
 
-//icon imports
-import { ChevronDown } from "@lucide/astro";
-
-//components imports
 import {
   Accordion,
   AccordionContent,
@@ -18,11 +13,11 @@ const footerLinks = [
     heading: "Categories",
     id: "footer-product-dark",
     links: [
-      { label: "Laptops & Computers", link: "#" },
-      { label: "Cameras & Photography", link: "#" },
-      { label: "Smart Phones & Tablets", link: "#" },
-      { label: "Video Games & Consoles", link: "#" },
-      { label: "Waterproof Headphones", link: "#" },
+      { label: "Living Room", link: "/products/list?category=living-room" },
+      { label: "Bedroom", link: "/products/list?category=bedroom" },
+      { label: "Dining Room", link: "/products/list?category=dining-room" },
+      { label: "Office", link: "/products/list?category=office" },
+      { label: "Outdoor", link: "/products/list?category=outdoor" },
     ],
   },
   {
@@ -30,24 +25,22 @@ const footerLinks = [
     id: "footer-about-dark",
     links: [
       { label: "Blog", link: "/blog" },
-      { label: "About", link: "/pages/about" },
-      // { label: "Browse the Shop", link: "/shop" },
-      { label: "Category", link: "/category" },
-      { label: "Pre-Built Pages", link: "/pre-built" },
-      { label: "Visual Composer Elements", link: "/visual-composer" },
+      { label: "About", link: "/about" },
+      { label: "Services", link: "/pages/services" },
+      { label: "Features", link: "/pages/features" },
+      { label: "FAQ", link: "/faq" },
+      { label: "Contact", link: "/contact" },
     ],
   },
   {
     heading: "Customer Care",
     id: "footer-docs-dark",
     links: [
-      // { label: "Support", link: "/support" },
-      { label: "My Account", link: "/my-account" },
-      { label: "Wishlist", link: "/wishlist" },
-      { label: "Discount", link: "/discount" },
-      { label: "Returns", link: "/returns" },
-      { label: "Orders History", link: "/orders-history" },
-      // { label: "Order Tracking", link: "#" },
+      { label: "Contact Us", link: "/contact" },
+      { label: "FAQ", link: "/faq" },
+      { label: "Returns Policy", link: "/faq#returns" },
+      { label: "Shipping Info", link: "/pages/services#shipping" },
+      { label: "Track Order", link: "/orders-history" },
     ],
   },
 ];
@@ -118,7 +111,7 @@ const socialLinks = [
             class="md:hidden border-0"
           >
             {
-              footerLinks.map(({ heading, id, links }, idx) => (
+              footerLinks.map(({ heading, links }, idx) => (
                 <AccordionItem
                   value={`item-${idx + 1}`}
                   class="border-0 first:border-0 last:border-0"

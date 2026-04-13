@@ -1,206 +1,206 @@
 [
   {
     "id": 1,
-    "name": "Classic Leather Backpack",
+    "name": "Velvet Upholstered Sofa",
     "image": "/src/assets/products/1.png",
     "thumbnailImages": [
       "/src/assets/products/1.png",
       "/src/assets/products/1.png",
       "/src/assets/products/1.png"
     ],
-    "originalPrice": "89.00",
-    "salePrice": "69.00",
-    "rating": 4.5,
-    "categories": ["bags", "accessories"],
-    "tags": ["leather", "backpack", "classic", "durable"],
+    "originalPrice": "1599.00",
+    "salePrice": "1299.00",
+    "rating": 4.6,
+    "categories": ["living-room", "sofas"],
+    "tags": ["sofa", "velvet", "upholstered", "modern", "living-room"],
     "inStock": true,
-    "description": "A stylish and durable leather backpack for everyday use."
+    "description": "A luxurious velvet sofa with plush upholstery and solid wood frame. Perfect for modern living rooms."
   },
   {
     "id": 2,
-    "name": "Minimalist Analog Watch",
+    "name": "Walnut Dining Table",
     "image": "/src/assets/products/2.png",
     "thumbnailImages": [
       "/src/assets/products/2.png",
       "/src/assets/products/2.png",
       "/src/assets/products/2.png"
     ],
-    "originalPrice": "120.00",
-    "salePrice": "99.00",
-    "rating": 4,
-    "categories": ["accessories"],
-    "tags": ["watch", "analog", "minimalist", "leather strap"],
+    "originalPrice": "899.00",
+    "salePrice": "749.00",
+    "rating": 4.5,
+    "categories": ["dining-room", "tables"],
+    "tags": ["dining table", "walnut", "wood", "modern", "dining-room"],
     "inStock": true,
-    "description": "Sleek analog watch with a minimalist design and leather strap."
+    "description": "Elegant solid walnut dining table seating up to 8. Crafted for family gatherings."
   },
   {
     "id": 3,
-    "name": "Cotton Crew Neck T-Shirt",
+    "name": "Leather Executive Armchair",
     "image": "/src/assets/products/3.png",
     "thumbnailImages": [
       "/src/assets/products/3.png",
       "/src/assets/products/3.png",
       "/src/assets/products/3.png"
     ],
-    "originalPrice": "25.00",
-    "salePrice": "18.00",
-    "rating": 4.2,
-    "categories": ["clothing"],
-    "tags": ["t-shirt", "cotton", "crew neck", "casual"],
+    "originalPrice": "649.00",
+    "salePrice": "499.00",
+    "rating": 4.4,
+    "categories": ["living-room", "chairs"],
+    "tags": ["armchair", "leather", "executive", "office", "living-room"],
     "inStock": true,
-    "description": "Soft and comfortable cotton t-shirt available in multiple colors."
+    "description": "Premium leather executive armchair with lumbar support. Adds sophistication to any space."
   },
   {
     "id": 4,
-    "name": "Wireless Bluetooth Earbuds",
+    "name": "Mid-Century Coffee Table",
     "image": "/src/assets/products/4.png",
     "thumbnailImages": [
       "/src/assets/products/4.png",
       "/src/assets/products/4.png",
       "/src/assets/products/4.png"
     ],
-    "originalPrice": "59.00",
-    "salePrice": "45.00",
+    "originalPrice": "449.00",
+    "salePrice": "349.00",
     "rating": 4.7,
-    "categories": ["electronics"],
-    "tags": ["earbuds", "wireless", "bluetooth", "noise cancellation"],
+    "categories": ["living-room", "tables"],
+    "tags": ["coffee table", "mid-century", "modern", "wood", "living-room"],
     "inStock": false,
-    "description": "High-quality wireless earbuds with noise cancellation."
+    "description": "Sleek mid-century modern coffee table with solid oak legs. A timeless living room centerpiece."
   },
   {
     "id": 5,
-    "name": "Slim Fit Jeans",
+    "name": "Upholstered Dining Chairs Set",
     "image": "/src/assets/products/5.png",
     "thumbnailImages": [
       "/src/assets/products/5.png",
       "/src/assets/products/5.png",
       "/src/assets/products/5.png"
     ],
-    "originalPrice": "70.00",
-    "salePrice": "54.00",
+    "originalPrice": "399.00",
+    "salePrice": "299.00",
     "rating": 4.3,
-    "categories": ["clothing"],
-    "tags": ["jeans", "slim fit", "denim", "stretchable"],
+    "categories": ["dining-room", "chairs"],
+    "tags": ["dining chairs", "upholstered", "set", "modern", "dining-room"],
     "inStock": true,
-    "description": "Trendy slim fit jeans made from stretchable denim."
+    "description": "Set of 2 upholstered dining chairs with elegant fabric. Comfort meets contemporary style."
   },
   {
     "id": 6,
-    "name": "Sports Running Shoes",
+    "name": "Scandinavian Oak Sideboard",
     "image": "/src/assets/products/6.png",
     "thumbnailImages": [
       "/src/assets/products/6.png",
       "/src/assets/products/6.png",
       "/src/assets/products/6.png"
     ],
-    "originalPrice": "110.00",
-    "salePrice": "89.00",
+    "originalPrice": "799.00",
+    "salePrice": "649.00",
     "rating": 4.6,
-    "categories": ["footwear"],
-    "tags": ["shoes", "running", "sports", "lightweight"],
+    "categories": ["storage", "dining-room"],
+    "tags": ["sideboard", "scandinavian", "oak", "storage", "dining-room"],
     "inStock": true,
-    "description": "Lightweight running shoes designed for comfort and performance."
+    "description": "Minimalist Scandinavian sideboard in solid oak. Perfect storage for dining essentials."
   },
   {
     "id": 7,
-    "name": "Aviator Sunglasses",
+    "name": "Minimalist Bed Frame",
     "image": "/src/assets/products/7.png",
     "thumbnailImages": [
       "/src/assets/products/7.png",
       "/src/assets/products/7.png",
       "/src/assets/products/7.png"
     ],
-    "originalPrice": "45.00",
-    "salePrice": "32.00",
+    "originalPrice": "549.00",
+    "salePrice": "429.00",
     "rating": 4.1,
-    "categories": ["accessories"],
-    "tags": ["sunglasses", "aviator", "UV protection", "classic"],
+    "categories": ["bedroom", "beds"],
+    "tags": ["bed frame", "minimalist", "modern", "wood", "bedroom"],
     "inStock": true,
-    "description": "Classic aviator sunglasses with UV protection."
+    "description": "Clean-lined minimalist bed frame in solid pine. A simple, elegant bedroom foundation."
   },
   {
     "id": 8,
-    "name": "Canvas Tote Bag",
+    "name": "Oak Bookshelf",
     "image": "/src/assets/products/8.png",
     "thumbnailImages": [
       "/src/assets/products/8.png",
       "/src/assets/products/8.png",
       "/src/assets/products/8.png"
     ],
-    "originalPrice": "35.00",
-    "salePrice": "25.00",
+    "originalPrice": "349.00",
+    "salePrice": "279.00",
     "rating": 4.4,
-    "categories": ["bags"],
-    "tags": ["tote", "canvas", "eco-friendly", "bag"],
+    "categories": ["storage", "living-room"],
+    "tags": ["bookshelf", "oak", "storage", "display", "living-room"],
     "inStock": true,
-    "description": "Eco-friendly canvas tote bag for shopping and daily use."
+    "description": "5-tier oak bookshelf with adjustable shelves. Display books and décor in style."
   },
   {
     "id": 9,
-    "name": "Wool Blend Scarf",
+    "name": "Ergonomic Office Desk Chair",
     "image": "/src/assets/products/9.png",
     "thumbnailImages": [
       "/src/assets/products/9.png",
       "/src/assets/products/9.png",
       "/src/assets/products/9.png"
     ],
-    "originalPrice": "40.00",
-    "salePrice": "28.00",
+    "originalPrice": "449.00",
+    "salePrice": "349.00",
     "rating": 4.8,
-    "categories": ["accessories"],
-    "tags": ["scarf", "wool blend", "winter", "warm"],
+    "categories": ["home-office", "chairs"],
+    "tags": ["office chair", "ergonomic", "adjustable", "modern", "home-office"],
     "inStock": true,
-    "description": "Warm and cozy wool blend scarf for winter."
+    "description": "Fully ergonomic office chair with lumbar support, adjustable armrests, and breathable mesh."
   },
   {
     "id": 10,
-    "name": "Digital Fitness Tracker",
+    "name": "Standing Adjustable Desk",
     "image": "/src/assets/products/10.png",
     "thumbnailImages": [
       "/src/assets/products/10.png",
       "/src/assets/products/10.png",
       "/src/assets/products/10.png"
     ],
-    "originalPrice": "75.00",
-    "salePrice": "59.00",
+    "originalPrice": "599.00",
+    "salePrice": "479.00",
     "rating": 4.5,
-    "categories": ["electronics"],
-    "tags": ["fitness tracker", "digital", "activity", "wearable"],
+    "categories": ["home-office", "tables"],
+    "tags": ["standing desk", "adjustable", "electric", "modern", "home-office"],
     "inStock": true,
-    "description": "Track your fitness goals with this digital fitness tracker."
+    "description": "Electric height-adjustable standing desk. Switch between sitting and standing effortlessly."
   },
   {
     "id": 11,
-    "name": "Leather Wallet",
+    "name": "Nightstand with Drawer",
     "image": "/src/assets/products/11.png",
     "thumbnailImages": [
       "/src/assets/products/11.png",
       "/src/assets/products/11.png",
       "/src/assets/products/11.png"
     ],
-    "originalPrice": "55.00",
-    "salePrice": "39.00",
+    "originalPrice": "199.00",
+    "salePrice": "149.00",
     "rating": 4.2,
-    "categories": ["accessories"],
-    "tags": ["wallet", "leather", "premium", "compartments"],
+    "categories": ["bedroom", "storage"],
+    "tags": ["nightstand", "bedside", "drawer", "modern", "bedroom"],
     "inStock": true,
-    "description": "Premium leather wallet with multiple compartments."
+    "description": "Modern nightstand with soft-close drawer. Perfect bedside storage for essentials."
   },
   {
     "id": 12,
-    "name": "Casual Canvas Sneakers",
+    "name": "Outdoor Teak Lounge Chair",
     "image": "/src/assets/products/12.png",
     "thumbnailImages": [
       "/src/assets/products/12.png",
       "/src/assets/products/12.png",
       "/src/assets/products/12.png"
     ],
-    "originalPrice": "60.00",
-    "salePrice": "44.00",
+    "originalPrice": "549.00",
+    "salePrice": "429.00",
     "rating": 4.3,
-    "categories": ["footwear"],
-    "tags": ["sneakers", "canvas", "casual", "shoes"],
+    "categories": ["outdoor-furniture", "chairs"],
+    "tags": ["lounge chair", "outdoor", "teak", "weather-resistant", "outdoor"],
     "inStock": true,
-    "description": "Comfortable canvas sneakers for everyday wear."
+    "description": "Premium outdoor lounge chair in natural teak. Weather-resistant for years of outdoor use."
   }
 ]

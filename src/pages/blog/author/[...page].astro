@@ -1,28 +1,17 @@
 ---
-//astro imports
 import { getCollection } from "astro:content";
 
-//components imports
 import BlogLayout from "@/layouts/BlogLayout.astro";
 import BlogGrid from "@/blocks/BlogGrid.astro";
-// import TagFilter from "@components/TagFilter.astro";
 import Paginate from "@/components/Paginate.astro";
-
-//config imports
-import { siteConfig } from "@/config/siteconfig"; // Make sure you have pageLength here
-
-const { tag } = Astro.params;
-
-const selected = "all";
 
 export async function getStaticPaths({ paginate }) {
   const allPosts = await getCollection("posts");
-  const pageSize = siteConfig.pageLength || 6; // Or your preferred page size
-  return paginate(allPosts, { pageSize: pageSize });
+  return paginate(allPosts, { pageSize: 6 });
 }
 
 const { page } = Astro.props;
-const { data: filteredPosts, currentPage, totalPages } = page;
+const { data: filteredPosts } = page;
 const noPosts = !filteredPosts || filteredPosts.length === 0;
 ---
 

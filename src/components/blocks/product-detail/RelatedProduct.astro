@@ -1,11 +1,18 @@
 ---
-//utils import
 import { slugify } from "@/utils/helper";
 
-//astro props
-const { product } = Astro.props;
+interface Product {
+  id: string | number;
+  name: string;
+  image: string;
+  price: string;
+}
 
-//de structure product details
+interface Props {
+  product: Product;
+}
+
+const { product } = Astro.props;
 const { id, name, image, price } = product;
 ---
 
@@ -16,9 +23,13 @@ const { id, name, image, price } = product;
   >
     <figure class="w-full aspect-square bg-gray-100 rounded-lg mb-4">
       <img
-        src={image || "/placeholder.svg"}
-        alt={name}
+        src={image || "/placeholder.svg?height=300&width=300"}
+        alt={`${name} - Product image`}
         class="w-full h-full object-contain scale-75 group-hover:scale-85 transition-transform duration-200"
+        width="300"
+        height="300"
+        loading="lazy"
+        decoding="async"
       />
     </figure>
     <div class="text-center">

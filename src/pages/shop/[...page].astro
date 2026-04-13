@@ -1,62 +1,43 @@
 ---
-//astro imports
-import { getCollection, render, getEntry, paginate } from "astro:content";
-import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+import type { GetStaticPaths } from "astro";
 
-//layout imports
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import PageHeader from "@/components/blocks/PageHeader.astro";
 import Paginate from "@/components/Paginate.astro";
 
-//components imports
 import { Button } from "@/starwind/button";
 import {
   Select,
   SelectContent,
-  SelectGroup,
   SelectItem,
-  SelectLabel,
-  SelectSeparator,
   SelectTrigger,
   SelectValue,
 } from "@/starwind/select";
 
-//icons imports
-import { Grid, List, Heart, ShoppingCart, Search, Share } from "@lucide/astro";
+import { Grid, List } from "@lucide/astro";
 
 const params = new URLSearchParams(Astro.url.searchParams);
 
-function withLayoutParam(url) {
+function withLayoutParam(url: string | undefined | null) {
   if (!url) return "#";
-  // Remove any existing query string from the pagination URL
   const [base] = url.split("?");
-  // Set the current layout param (or any others you want to preserve)
   if (params.has("layout")) {
     return `${base}?${params.toString()}`;
   }
   return base;
 }
 
-//blocks import
 import Partners from "@/components/blocks/Partners.astro";
 import ProductCard from "@/components/blocks/shop/ProductCard.astro";
 
-//utils import
-import { slugify } from "@/utils/helper";
-
-//site config
-import { siteConfig } from "@/config/siteconfig";
-
-// Pagination setup
-export async function getStaticPaths({ paginate }) {
-  // Get all furniture
+export const getStaticPaths: GetStaticPaths = async ({ paginate }) => {
   const furnitureCollection = await getCollection("furnitureCollections");
-  const { pageLength } = siteConfig;
 
   return paginate(furnitureCollection, {
-    pageSize: 12, // Number of posts per page
+    pageSize: 12,
   });
-}
+};
 
 //props
 const { page } = Astro.props;
@@ -64,7 +45,6 @@ const furnitureItems = page?.data;
 
 //url parameters
 const layout = Astro.url?.searchParams.get("layout") ?? "grid";
-console.log("Layout:", layout);
 
 // page header details
 const pageHeader = {

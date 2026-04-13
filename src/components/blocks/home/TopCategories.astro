@@ -1,24 +1,26 @@
 ---
 import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+import { Image } from "astro:assets";
 
-//utilities import
-import { slugify } from "@/utils/helper";
-
-//components import
 import SectionHeader from "@/components/atoms/SectionHeader.astro";
-import Button from "@/starwind/button";
 
-// Fetch all posts from the "posts" collection
-const posts = await getCollection("posts");
+// Fetch product categories from content collection
+const allCategories = await getCollection("productCategories") as CollectionEntry<"productCategories">[];
 
-const categorySet = new Set();
-posts.forEach((post) => {
-  (post.data.categories || []).forEach((category) => {
-    categorySet.add(category);
-  });
-});
+const categories = allCategories
+  .sort((a, b) => a.data.name.localeCompare(b.data.name))
+  .slice(0, 6);
 
-const categories = Array.from(categorySet).sort((a, b) => a.localeCompare(b));
+// Placeholder images for categories without images
+const placeholderImages = [
+  "/placeholder.svg?height=200&width=200",
+  "/placeholder.svg?height=200&width=200",
+  "/placeholder.svg?height=200&width=200",
+  "/placeholder.svg?height=200&width=200",
+  "/placeholder.svg?height=200&width=200",
+  "/placeholder.svg?height=200&width=200",
+];
 ---
 
 <!-- START - Top Categories -->
@@ -33,25 +35,26 @@ const categories = Array.from(categorySet).sort((a, b) => a.localeCompare(b));
           class="whitespace-no-wrap flex-no-wrap [backface-visibility: hidden] [transform-style: preserve-3d] [touch-action: pan-Y] [will-change: transform] relative flex w-full overflow-hidden p-0"
         >
           {
-            categories.map((category) => (
+            categories.map((category, idx) => (
               <li>
                 <a
-                  href={`/blog/category/${slugify(category)}`}
+                  href={`/shop/${category.data.slug}`}
                   class="overflow-hidden group"
                 >
                   <figure class="rounded-lg lg:rounded-full overflow-hidden aspect-square bg-slate-100 group-hover:bg-slate-200 relative flex items-center justify-center">
-                    {/* <img
-                      src={`./src/images/furniture/top-categories/${(idx % 3) + 1}.png`}
-                      alt={`${category} image`}
+                    <Image
+                      src={category.data.image.startsWith('/') 
+                        ? category.data.image 
+                        : placeholderImages[idx % placeholderImages.length]}
+                      alt={`${String(category.data.name)} category image`}
+                      width={200}
+                      height={200}
                       class="w-44 transition-transform duration-300 group-hover:scale-110"
-                    /> */}
-                    {/* <Button class="btn--secondary absolute bottom-0 opacity-0 transition-all duration-300 rounded group-hover:opacity-100 group-hover:bottom-8 whitespace-nowrap ">
-                      <span>View Shop</span>
-                    </Button> */}
+                    />
                   </figure>
                   <div class="px-6 pt-5 pb-9">
                     <header class="text-center">
-                      <h3 class="text-xl font-semibold">{category}</h3>
+                      <h3 class="text-xl font-semibold">{String(category.data.name)}</h3>
                     </header>
                   </div>
                 </a>
@@ -70,7 +73,7 @@ const categories = Array.from(categorySet).sort((a, b) => a.localeCompare(b));
             <button
               class="p-2 group"
               data-glide-dir={`=${idx}`}
-              aria-label={`goto slide ${idx + 1}`}
+              aria-label={`Go to slide ${idx + 1}`}
             >
               <span class="block w-2 h-2 transition-colors duration-300 rounded-full opacity-70 ring-1 ring-primary-500 bg-white/20 focus:outline-none" />
             </button>
@@ -115,6 +118,5 @@ const categories = Array.from(categorySet).sort((a, b) => a.localeCompare(b));
     }
   }
 
-  //document.addEventListener("astro:page-load", initSlider);
-  initSlider();
+  document.addEventListener("astro:page-load", initSlider);
 </script>

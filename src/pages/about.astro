@@ -134,9 +134,13 @@ const clientImages = [
               clientImages.map((image, index) => (
                 <div key={index} class="relative">
                   <img
-                    src={image || "/placeholder.svg"}
+                    src={image || "/placeholder.svg?height=64&width=64"}
                     alt={`Client ${index + 1}`}
                     class="w-16 h-16 rounded-full object-cover border-2 border-gray-200"
+                    width="64"
+                    height="64"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
               ))

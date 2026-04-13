@@ -1,10 +1,7 @@
 ---
-//layout imports
 import BaseLayout from "@/layouts/BaseLayout.astro";
 
-//blocks imports
 import HomeBanner from "@/components/blocks/home/HomeBanner.astro";
-import FeaturedProducts from "@/components/blocks/home/FeaturedProducts.astro";
 import LatestProducts from "@/components/blocks/home/LatestProducts.astro";
 import LatestBlog from "@/components/blocks/home/LatestBlog.astro";
 import Offers from "@/components/blocks/home/Offers.astro";
@@ -13,7 +10,6 @@ import TrendingProducts from "@/components/blocks/home/TrendingProducts.astro";
 import TopCategories from "@/components/blocks/home/TopCategories.astro";
 import Newsletter from "@/components/blocks/home/Newsletter.astro";
 import Partners from "@/components/blocks/Partners.astro";
-import Isotope from "@/components/blocks/home/Isotope.astro";
 ---
 
 <BaseLayout>
@@ -27,5 +23,5 @@ import Isotope from "@/components/blocks/home/Isotope.astro";
   <TopCategories />
   <Newsletter />
   <LatestBlog />
-  <Partners isHome={true} />
+  <!-- <Partners isHome={true} /> -->
 </BaseLayout>

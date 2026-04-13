@@ -1,37 +1,22 @@
 ---
-//astro imports
 import { getCollection } from "astro:content";
 
-//components import
-import BaseLayout from "@/layouts/BaseLayout.astro";
 import BlogLayout from "@/layouts/BlogLayout.astro";
-import BlogCard from "@/blocks/BlogCard.astro";
 import BlogGrid from "@/blocks/BlogGrid.astro";
 import PageHeader from "@/blocks/PageHeader.astro";
 import Paginate from "@/components/Paginate.astro";
 
-//utils import
-import { slugify } from "@/utils/helper";
-
-//site config
-import { siteConfig } from "@/config/siteconfig";
-
-//page meta data
 const pageTitle = "Latest Blog";
 
-// Pagination setup
 export async function getStaticPaths({ paginate }) {
-  // Get all posts (you can add sorting/filtering here)
   const allPosts = await getCollection("posts");
-  const { pageLength } = siteConfig;
 
-  // Sort posts by date (newest first)
   const sortedPosts = allPosts.sort(
     (a, b) => new Date(b.data.pubDate) - new Date(a.data.pubDate)
   );
 
   return paginate(sortedPosts, {
-    pageSize: 3, // Number of posts per page
+    pageSize: 3,
   });
 }
 

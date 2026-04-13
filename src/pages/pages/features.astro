@@ -1,17 +1,456 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 
-//components import
 import PageHeader from "@/components/blocks/PageHeader.astro";
+import { Button } from "@/starwind/button";
+import {
+  Zap,
+  Globe,
+  CreditCard,
+  Smartphone,
+  BarChart3,
+  Lock,
+  Palette,
+  Bell,
+  Cloud,
+  Users,
+  Shield,
+  Sparkles,
+} from "@lucide/astro";
 
-// page header details
+const coreFeatures = [
+  {
+    icon: Zap,
+    title: "Lightning Fast",
+    description:
+      "Experience blazing fast page loads and smooth navigation optimized for performance.",
+    color: "bg-yellow-100 text-yellow-600",
+  },
+  {
+    icon: Globe,
+    title: "Global Reach",
+    description:
+      "Sell worldwide with multi-currency support and international shipping options.",
+    color: "bg-blue-100 text-blue-600",
+  },
+  {
+    icon: CreditCard,
+    title: "Multiple Payment Options",
+    description:
+      "Accept payments via credit cards, PayPal, Apple Pay, Google Pay, and more.",
+    color: "bg-green-100 text-green-600",
+  },
+  {
+    icon: Smartphone,
+    title: "Mobile First",
+    description:
+      "Fully responsive design that looks perfect on any device, from desktop to mobile.",
+    color: "bg-purple-100 text-purple-600",
+  },
+  {
+    icon: Shield,
+    title: "Secure Platform",
+    description:
+      "Enterprise-grade security with SSL encryption and PCI compliance.",
+    color: "bg-red-100 text-red-600",
+  },
+  {
+    icon: BarChart3,
+    title: "Analytics Dashboard",
+    description:
+      "Track sales, visitors, and conversions with comprehensive analytics tools.",
+    color: "bg-indigo-100 text-indigo-600",
+  },
+];
+
+const advancedFeatures = [
+  {
+    icon: Palette,
+    title: "Customizable Design",
+    description:
+      "Personalize your store with custom themes, colors, and layouts that match your brand.",
+  },
+  {
+    icon: Bell,
+    title: "Smart Notifications",
+    description:
+      "Send automated email and push notifications for orders, shipping, and promotions.",
+  },
+  {
+    icon: Cloud,
+    title: "Cloud Backup",
+    description:
+      "Automatic cloud backups ensure your data is always safe and recoverable.",
+  },
+  {
+    icon: Users,
+    title: "Team Collaboration",
+    description:
+      "Invite team members with role-based access to manage your store together.",
+  },
+  {
+    icon: Sparkles,
+    title: "AI-Powered Search",
+    description:
+      "Intelligent search with auto-complete and semantic understanding of customer queries.",
+  },
+  {
+    icon: Lock,
+    title: "GDPR Compliant",
+    description:
+      "Built-in features to help you comply with GDPR and other privacy regulations.",
+  },
+];
+
+const comparisonData = [
+  {
+    feature: "Page Load Time",
+    basic: "~3s",
+    premium: "<1s",
+    enterprise: "<0.5s",
+  },
+  {
+    feature: "Storage Space",
+    basic: "5 GB",
+    premium: "50 GB",
+    enterprise: "Unlimited",
+  },
+  {
+    feature: "Products",
+    basic: "Up to 100",
+    premium: "Up to 10,000",
+    enterprise: "Unlimited",
+  },
+  {
+    feature: "Payment Gateways",
+    basic: "2",
+    premium: "10+",
+    enterprise: "Custom",
+  },
+  {
+    feature: "Support",
+    basic: "Email",
+    premium: "24/7 Chat",
+    enterprise: "Dedicated Manager",
+  },
+  {
+    feature: "API Access",
+    basic: false,
+    premium: true,
+    enterprise: true,
+  },
+];
+
 const pageHeader = {
-  title: "Features",
-  caption: "",
-  description: "",
+  title: "Our Features",
+  caption: "Features",
+  description:
+    "Explore the powerful features that make Hekto the best choice for your online store.",
 };
 ---
 
-<BaseLayout>
+<BaseLayout title="Features - Hekto">
   <PageHeader headerInfo={pageHeader} slot="pageHeader" />
+
+  <div class="min-h-screen bg-white">
+    {/* Hero Section */}
+    <section class="py-16 lg:py-24 bg-gradient-to-b from-brand-50 to-white">
+      <div class="xl:container px-6 mx-auto">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <h1 class="text-4xl lg:text-5xl font-bold text-tertiary-900 mb-6">
+            Everything You Need to Succeed Online
+          </h1>
+          <p class="text-lg text-emphasis-500 mb-8">
+            From lightning-fast performance to enterprise-grade security, Hekto
+            provides all the tools you need to build and grow your online business.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button class="bg-primary-500 hover:bg-primary-600 text-white px-8 py-3">
+              Start Free Trial
+            </Button>
+            <Button
+              variant="outline"
+              class="border-primary-500 text-primary-500 hover:bg-primary-50 px-8 py-3"
+            >
+              View Demo
+            </Button>
+          </div>
+        </div>
+
+        {/* Feature Grid */}
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {
+            coreFeatures.map((feature) => (
+              <div class="bg-white rounded-xl p-8 shadow-sm border border-gray-100 hover:shadow-lg hover:border-primary-100 transition-all duration-300">
+                <div
+                  class={`w-14 h-14 ${feature.color} rounded-lg flex items-center justify-center mb-6`}
+                >
+                  <feature.icon class="w-7 h-7" />
+                </div>
+                <h3 class="text-xl font-semibold text-tertiary-900 mb-3">
+                  {feature.title}
+                </h3>
+                <p class="text-emphasis-500 leading-relaxed">
+                  {feature.description}
+                </p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    {/* Advanced Features */}
+    <section class="py-16 lg:py-24">
+      <div class="xl:container px-6 mx-auto">
+        <div class="grid lg:grid-cols-2 gap-16 items-center">
+          <div>
+            <div class="inline-block bg-primary-100 text-primary-700 px-4 py-2 rounded-full text-sm font-medium mb-6">
+              Advanced Capabilities
+            </div>
+            <h2 class="text-3xl lg:text-4xl font-bold text-tertiary-900 mb-6">
+              Power-Packed Features for Modern E-Commerce
+            </h2>
+            <p class="text-emphasis-500 mb-8 leading-relaxed">
+              Our platform goes beyond basics to offer advanced features that give
+              you a competitive edge in the e-commerce landscape.
+            </p>
+            <ul class="space-y-6">
+              {
+                advancedFeatures.map((feature) => (
+                  <li class="flex gap-4">
+                    <div class="w-10 h-10 bg-primary-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <feature.icon class="w-5 h-5 text-primary-600" />
+                    </div>
+                    <div>
+                      <h4 class="font-semibold text-tertiary-900 mb-1">
+                        {feature.title}
+                      </h4>
+                      <p class="text-emphasis-500 text-sm">
+                        {feature.description}
+                      </p>
+                    </div>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+          <div class="relative">
+            <div class="aspect-square bg-gradient-to-br from-tertiary-100 to-primary-50 rounded-2xl p-8 flex items-center justify-center">
+              <div class="grid grid-cols-2 gap-4 w-full max-w-sm">
+                <div class="bg-white rounded-xl p-6 shadow-md">
+                  <Zap class="w-8 h-8 text-yellow-500 mb-2" />
+                  <p class="text-sm font-medium text-tertiary-900">Speed</p>
+                  <p class="text-xs text-emphasis-500">Optimized</p>
+                </div>
+                <div class="bg-white rounded-xl p-6 shadow-md">
+                  <Shield class="w-8 h-8 text-green-500 mb-2" />
+                  <p class="text-sm font-medium text-tertiary-900">Security</p>
+                  <p class="text-xs text-emphasis-500">Protected</p>
+                </div>
+                <div class="bg-white rounded-xl p-6 shadow-md">
+                  <Globe class="w-8 h-8 text-blue-500 mb-2" />
+                  <p class="text-sm font-medium text-tertiary-900">Global</p>
+                  <p class="text-xs text-emphasis-500">190+ Countries</p>
+                </div>
+                <div class="bg-white rounded-xl p-6 shadow-md">
+                  <BarChart3 class="w-8 h-8 text-purple-500 mb-2" />
+                  <p class="text-sm font-medium text-tertiary-900">Analytics</p>
+                  <p class="text-xs text-emphasis-500">Real-time</p>
+                </div>
+              </div>
+            </div>
+            <div class="absolute -top-4 -right-4 bg-white rounded-xl shadow-lg p-4 flex items-center gap-3">
+              <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
+                <svg
+                  class="w-5 h-5 text-green-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"></path>
+                </svg>
+              </div>
+              <div>
+                <p class="font-semibold text-tertiary-900">99.9% Uptime</p>
+                <p class="text-xs text-emphasis-500">Guaranteed</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* Pricing Comparison */}
+    <section class="py-16 lg:py-24 bg-brand-50">
+      <div class="xl:container px-6 mx-auto">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl lg:text-4xl font-bold text-tertiary-900 mb-4">
+            Feature Comparison
+          </h2>
+          <p class="text-emphasis-500 max-w-2xl mx-auto">
+            See how our features scale across different plans to find the perfect fit
+            for your business.
+          </p>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full bg-white rounded-xl shadow-sm overflow-hidden">
+            <thead>
+              <tr class="bg-tertiary-900 text-white">
+                <th class="px-6 py-4 text-left font-semibold">Feature</th>
+                <th class="px-6 py-4 text-center font-semibold">Basic</th>
+                <th class="px-6 py-4 text-center font-semibold bg-primary-600">
+                  Premium
+                </th>
+                <th class="px-6 py-4 text-center font-semibold">Enterprise</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-100">
+              {
+                comparisonData.map((row, index) => (
+                  <tr
+                    class={index % 2 === 0 ? "bg-gray-50" : "bg-white"}
+                  >
+                    <td class="px-6 py-4 font-medium text-tertiary-900">
+                      {row.feature}
+                    </td>
+                    <td class="px-6 py-4 text-center text-emphasis-500">
+                      {typeof row.basic === "boolean" ? (
+                        row.basic ? (
+                          <svg
+                            class="w-5 h-5 text-green-500 mx-auto"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M5 13l4 4L19 7"></path>
+                          </svg>
+                        ) : (
+                          <svg
+                            class="w-5 h-5 text-red-400 mx-auto"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M6 18L18 6M6 6l12 12"></path>
+                          </svg>
+                        )
+                      ) : (
+                        row.basic
+                      )}
+                    </td>
+                    <td class="px-6 py-4 text-center bg-primary-50 font-medium text-tertiary-900">
+                      {typeof row.premium === "boolean" ? (
+                        row.premium ? (
+                          <svg
+                            class="w-5 h-5 text-green-500 mx-auto"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M5 13l4 4L19 7"></path>
+                          </svg>
+                        ) : (
+                          <svg
+                            class="w-5 h-5 text-red-400 mx-auto"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M6 18L18 6M6 6l12 12"></path>
+                          </svg>
+                        )
+                      ) : (
+                        row.premium
+                      )}
+                    </td>
+                    <td class="px-6 py-4 text-center text-emphasis-500">
+                      {typeof row.enterprise === "boolean" ? (
+                        row.enterprise ? (
+                          <svg
+                            class="w-5 h-5 text-green-500 mx-auto"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M5 13l4 4L19 7"></path>
+                          </svg>
+                        ) : (
+                          <svg
+                            class="w-5 h-5 text-red-400 mx-auto"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M6 18L18 6M6 6l12 12"></path>
+                          </svg>
+                        )
+                      ) : (
+                        row.enterprise
+                      )}
+                    </td>
+                  </tr>
+                ))
+              }
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    {/* CTA Section */}
+    <section class="py-16 lg:py-24">
+      <div class="xl:container px-6 mx-auto">
+        <div class="bg-gradient-to-r from-tertiary-900 to-primary-700 rounded-2xl p-12 lg:p-16 text-center">
+          <h2 class="text-3xl lg:text-4xl font-bold text-white mb-6">
+            Ready to Get Started?
+          </h2>
+          <p class="text-white/90 max-w-2xl mx-auto mb-8">
+            Join thousands of successful businesses using Hekto to power their online
+            stores. Start your free trial today.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button class="bg-white text-tertiary-900 hover:bg-gray-100 px-8 py-3 font-semibold">
+              Start Free Trial
+            </Button>
+            <Button
+              variant="outline"
+              class="border-white text-white hover:bg-white/10 px-8 py-3 font-semibold"
+            >
+              Schedule Demo
+            </Button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
 </BaseLayout>

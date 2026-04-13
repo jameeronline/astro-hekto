@@ -10,40 +10,8 @@ import {
   DialogDescription,
   DialogClose,
 } from "@/starwind/dialog";
-
-//utils import
-import { isValidEmail } from "@/utils/helper";
-
-const errors = { username: "", email: "", password: "" };
-
-console.log("GMAIL_PASS:", import.meta.env.GMAIL_PASS);
-
-// if (Astro.request.method === "POST") {
-//   try {
-//     const data = await Astro.request.formData();
-//     console.log("Form Data:", data);
-//     const name = data.get("username");
-//     const email = data.get("email");
-//     const subject = data.get("subject");
-//     const message = data.get("message");
-
-//     if (typeof name !== "string" || name.length < 4) {
-//       errors.username += "Please enter a username. ";
-//     }
-//     if (typeof email !== "string" || !isValidEmail(email)) {
-//       errors.email += "Email is not valid. ";
-//     }
-
-//     // Do something with the data
-//   } catch (error) {
-//     if (error instanceof Error) {
-//       console.error(error.message);
-//     }
-//   }
-// }
 ---
 
-{/* Ask a Question Section */}
 <div class="col-span-4 md:col-span-8 lg:col-span-6" data-scroll-animate>
   <div class="space-y-6 bg-brand-100/50 p-4 md:p-8 lg:p-12">
     <Dialog>
@@ -58,7 +26,7 @@ console.log("GMAIL_PASS:", import.meta.env.GMAIL_PASS);
             sent. We will get back to you soon.
           </DialogDescription>
         </DialogHeader>
-        <div class="py-4 text-green-600 font-semibold text-center">
+        <div class="py-4 text-green-600 font-semibold text-center" role="alert">
           Your message was sent successfully.
         </div>
         <DialogFooter>
@@ -69,52 +37,62 @@ console.log("GMAIL_PASS:", import.meta.env.GMAIL_PASS);
       </DialogContent>
     </Dialog>
 
-    <h4 class="mb-8" data-scroll-animate>Ask a Question</h4>
+    <h2 class="mb-8 text-2xl font-semibold" data-scroll-animate>Ask a Question</h2>
 
-    <form class="space-y-6" method="POST" data-scroll-animate id="contact-form">
+    <form class="space-y-6" method="POST" data-scroll-animate id="contact-form" novalidate>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div>
+        <div class="space-y-2">
+          <label for="contact-name" class="font-medium text-gray-700">Your Name</label>
           <input
+            id="contact-name"
             name="name"
             type="text"
             placeholder="Your Name"
             required
+            aria-required="true"
             class="as-form-control"
           />
-          <!-- {errors.username && <p>{errors.username}</p>} -->
         </div>
 
-        <div>
+        <div class="space-y-2">
+          <label for="contact-email" class="font-medium text-gray-700">Your Email</label>
           <input
+            id="contact-email"
             name="email"
             type="email"
             placeholder="Your Email"
             required
+            aria-required="true"
             class="as-form-control"
           />
         </div>
       </div>
 
-      <div>
+      <div class="space-y-2">
+        <label for="contact-subject" class="font-medium text-gray-700">Subject</label>
         <input
+          id="contact-subject"
           name="subject"
           type="text"
           required
           minlength="12"
           placeholder="Subject"
+          aria-required="true"
           class="as-form-control"
         />
       </div>
 
-      <div>
+      <div class="space-y-2">
+        <label for="contact-message" class="font-medium text-gray-700">Your Message</label>
         <textarea
+          id="contact-message"
           name="message"
           required
           minlength="40"
           maxlength="500"
-          id="message"
           placeholder="Type Your Message"
           rows={6}
+          aria-required="true"
           class="as-form-textarea resize-none"></textarea>
       </div>
 
@@ -128,12 +106,10 @@ console.log("GMAIL_PASS:", import.meta.env.GMAIL_PASS);
 <script type="module">
   document
     .getElementById("contact-form")
-    .addEventListener("submit", async (e) => {
+    ?.addEventListener("submit", async (e) => {
       e.preventDefault();
       const form = e.target;
       const formData = new FormData(form);
-
-      console.log("Form Data:", formData);
 
       const res = await fetch("/api/contact", {
         method: "POST",
@@ -141,13 +117,11 @@ console.log("GMAIL_PASS:", import.meta.env.GMAIL_PASS);
       });
 
       const result = await res.json();
-      console.log("Response:", result);
       if (result.success) {
-        document.getElementById("open-dialog-trigger").click();
-        console.log("Message sent!");
+        document.getElementById("open-dialog-trigger")?.click();
         form.reset();
       } else {
-        alert("There was an error.");
+        alert("There was an error sending your message. Please try again.");
       }
     });
 </script>

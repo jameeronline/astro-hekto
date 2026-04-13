@@ -1,11 +1,13 @@
 ---
-//icons import
-import { Calendar, Pen, Group, PenTool } from "@lucide/astro";
-
-// utils import
+import type { CollectionEntry } from "astro:content";
+import { Calendar, Group, PenTool } from "@lucide/astro";
 import { slugify, formatDate } from "@/utils/helper";
 
-//props
+interface Props {
+  post: CollectionEntry<"posts">["data"];
+  categories?: string[];
+}
+
 const { post, categories = [] } = Astro.props;
 ---
 
@@ -15,10 +17,9 @@ const { post, categories = [] } = Astro.props;
   {
     categories.length > 0 && (
       <div class="flex gap-2">
-        {categories.map((category) => (
+        {categories.map((category: string) => (
           <a
             href={`/blog/category/${slugify(category)}`}
-            key={category}
             class="inline-flex flex-nowrap items-center"
           >
             <Group class="inline me-2 text-secondary-500 size-4" />

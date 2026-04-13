@@ -1,33 +1,18 @@
 ---
-//astro imports
 import { getCollection } from "astro:content";
 
-//components imports
 import BlogLayout from "@/layouts/BlogLayout.astro";
 import BlogGrid from "@/components/blocks/BlogGrid.astro";
 import PageHeader from "@/components/blocks/PageHeader.astro";
 import Paginate from "@/components/Paginate.astro";
 
-//utils imports
-import { slugify } from "@/utils/helper";
-
-//config imports
-import { siteConfig } from "@/config/siteconfig"; // Make sure you have pageLength here
-
-// const { category } = Astro.params;
-
-// const selected = "all";
-
 export async function getStaticPaths({ paginate }) {
   const allPosts = await getCollection("posts");
-  const pageSize = siteConfig.pageLength || 6; // Or your preferred page size
-  return paginate(allPosts, { pageSize: pageSize });
+  return paginate(allPosts, { pageSize: 6 });
 }
 
 const { page } = Astro.props;
-const postsData = page?.data || [];
-
-const { data: filteredPosts, currentPage, totalPages } = page;
+const { data: filteredPosts } = page;
 const noPosts = !filteredPosts || filteredPosts.length === 0;
 ---
 
@@ -42,7 +27,7 @@ const noPosts = !filteredPosts || filteredPosts.length === 0;
   />
 
   <!-- <TagFilter selected={selected} /> -->
-  <BlogGrid posts={postsData} />
+  <BlogGrid posts={filteredPosts} />
 
   <Paginate
     currentPage={page.currentPage}

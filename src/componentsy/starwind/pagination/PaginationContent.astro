@@ -3,15 +3,14 @@ import type { HTMLAttributes } from "astro/types";
 import { tv } from "tailwind-variants";
 
 type Props = HTMLAttributes<"ul"> & {
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	children: any;
+  children: any;
 };
 
-const paginationContent = tv({ base: "flex flex-row items-center gap-1" });
+export const paginationContent = tv({ base: "flex flex-row items-center gap-1" });
 
 const { class: className, ...rest } = Astro.props;
 ---
 
-<ul class={paginationContent({ class: className })} {...rest}>
-	<slot />
+<ul class={paginationContent({ class: className })} {...rest} data-slot="pagination-content">
+  <slot />
 </ul>

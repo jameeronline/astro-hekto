@@ -1,8 +1,6 @@
-export const prerender = false; // Not needed in 'server' mode
+export const prerender = false;
 import type { APIRoute } from "astro";
 import nodemailer from "nodemailer";
-
-import Success from "../success.astro";
 
 export const POST: APIRoute = async ({ request }) => {
   const data = await request.formData();

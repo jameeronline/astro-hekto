@@ -1,19 +1,15 @@
 ---
-//astro import
+import type { CollectionEntry } from "astro:content";
 import { Image } from "astro:assets";
-import { Icon } from "astro-icon/components";
-
-//components import
 import BlogMeta from "@/components/blocks/BlogMeta.astro";
 
-// utils import
-import { slugify, formatDate } from "@/utils/helper";
+interface Props {
+  post: CollectionEntry<"posts">["data"];
+  url?: string;
+}
 
-// Astro props
 const { post, url = "#" } = Astro.props;
 
-// get tags and categories from post
-const tags = post.tags.map((tag: string) => tag.trim());
 const categories = post.categories.map((category: string) => category.trim());
 ---
 
@@ -37,18 +33,16 @@ const categories = post.categories.map((category: string) => category.trim());
 
   <h3
     class="mb-2 text-xl font-heading font-semibold leading-snug text-tertiary-900 lg:text-3xl dark:text-slate-100"
-    data-scroll-animate
   >
     {post.title}
   </h3>
   <p
     class="leading-relaxed text-emphasis-500 line-clamp-3 dark:text-slate-400"
-    data-scroll-animate
   >
     {post.description}
   </p>
 
-  <footer class="mt-7" data-scroll-animate>
+  <footer class="mt-7">
     <a
       href={`/blog/${url}`}
       class="inline-flex items-center text-tertiary-900 hover:text-primary-500 hover:underline transition-all duration-300 after:content-[''] after:inline-block after:ml-1 after:w-1 after:h-1 after:rounded-full after:bg-pink-500 align-middle"

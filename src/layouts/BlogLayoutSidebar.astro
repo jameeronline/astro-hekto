@@ -1,22 +1,15 @@
 ---
-//astro content import
-import { Astro } from "astro";
 import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
-import { Icon } from "astro-icon/components";
 
-//components import
 import { Input } from "@/starwind/input";
 import { Button } from "@/starwind/button";
-import { Badge } from "@/starwind/badge";
 import {
   Search,
-  EclipseIcon,
   EllipsisVertical,
   X as CloseIcon,
 } from "@lucide/astro";
 
-//icons import
 import Facebook from "../icons/brands/facebook.svg";
 import Instagram from "../icons/brands/instagram.svg";
 import X from "../icons/brands/x.svg";
@@ -265,8 +258,12 @@ const tags = Object.entries(tagMap).map(([name, count]) => ({
             <div key={product.id} class="flex items-start space-x-3">
               <img
                 src={product.image}
-                alt={product.name}
+                alt={`${product.name} - Product image`}
                 class="size-24 object-cover rounded-md bg-gray-100 flex-shrink-0"
+                width="96"
+                height="96"
+                loading="lazy"
+                decoding="async"
               />
               <div class="flex-1 min-w-0">
                 <h4 class="text-base font-medium text-tertiary-900 leading-tight mb-1">
@@ -289,8 +286,12 @@ const tags = Object.entries(tagMap).map(([name, count]) => ({
             <div key={product.id} class="text-center">
               <img
                 src={product.image}
-                alt={product.name}
+                alt={`${product.name} - Product image`}
                 class="w-full h-20 object-cover rounded-md bg-gray-100 mb-2"
+                width="200"
+                height="80"
+                loading="lazy"
+                decoding="async"
               />
               <h4 class="text-xs font-medium text-tertiary-900 mb-1">
                 {product.name}

@@ -40,10 +40,12 @@ const postImageUrl = post.image
       postImageUrl && (
         <img
           src={postImageUrl}
-          alt={post.title}
+          alt={post.title || "Blog post image"}
           class="aspect-video rounded-xl"
           width="550"
           height="310"
+          loading="eager"
+          decoding="async"
         />
       )
     }

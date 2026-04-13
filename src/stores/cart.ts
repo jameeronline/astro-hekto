@@ -1,7 +1,4 @@
-import { atom } from "nanostores";
 import { persistentAtom } from "@nanostores/persistent";
-
-//export const cartCount = atom(0);
 
 export const cartCount = persistentAtom<number>(
   "cart:count", // storage key

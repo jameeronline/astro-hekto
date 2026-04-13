@@ -73,9 +73,13 @@ const relatedProducts = [
                 class="w-full aspect-square bg-gray-100 rounded-lg p-2"
               >
                 <img
-                  src={image || "/placeholder.svg"}
-                  alt={`Thumbnail ${index + 1}`}
+                  src={image || "/placeholder.svg?height=100&width=100"}
+                  alt={`Product thumbnail ${index + 1}`}
                   class="w-full h-full object-contain"
+                  width="100"
+                  height="100"
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
             ))
@@ -89,8 +93,12 @@ const relatedProducts = [
           >
             <img
               src="/placeholder.svg?height=400&width=400"
-              alt="Playwood arm chair"
+              alt="Playwood arm chair - Product image"
               class="w-full h-full object-contain"
+              width="400"
+              height="400"
+              loading="eager"
+              decoding="async"
             />
           </div>
         </div>
@@ -283,9 +291,13 @@ const relatedProducts = [
               <div key={product.id} class="group cursor-pointer">
                 <div class="aspect-square bg-gray-100 rounded-lg p-4 mb-4 flex items-center justify-center">
                   <img
-                    src={product.image || "/placeholder.svg"}
-                    alt={product.name}
+                    src={product.image || "/placeholder.svg?height=200&width=200"}
+                    alt={`${product.name} - Related product`}
                     class="w-full h-full object-contain"
+                    width="200"
+                    height="200"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
                 <div class="text-center">

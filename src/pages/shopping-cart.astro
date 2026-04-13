@@ -122,9 +122,13 @@ const total = 325.0; // Fixed total as shown in screenshot
                   <div class="col-span-5 flex items-center space-x-4">
                     <div class="relative">
                       <img
-                        src={item.image || "/placeholder.svg"}
-                        alt={item.name}
+                        src={item.image || "/placeholder.svg?height=64&width=64"}
+                        alt={`${item.name} - Product image`}
                         class="w-16 h-16 object-cover rounded-md bg-gray-100"
+                        width="64"
+                        height="64"
+                        loading="lazy"
+                        decoding="async"
                       />
                       <button
                         onClick={() => removeItem(item.id)}

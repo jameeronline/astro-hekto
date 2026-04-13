@@ -1,17 +1,315 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 
-//components import
 import PageHeader from "@/components/blocks/PageHeader.astro";
+import { Button } from "@/starwind/button";
+import {
+  Truck,
+  ShieldCheck,
+  Headphones,
+  RefreshCw,
+  Package,
+  Lock,
+  TruckIcon,
+} from "@lucide/astro";
 
-// page header details
+const services = [
+  {
+    icon: Truck,
+    title: "Free Shipping",
+    description:
+      "Enjoy free shipping on all orders over $50. Fast and reliable delivery to your doorstep.",
+    color: "bg-blue-100 text-blue-600",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Secure Payment",
+    description:
+      "Shop with confidence using our encrypted payment gateway. Your transactions are always protected.",
+    color: "bg-green-100 text-green-600",
+  },
+  {
+    icon: RefreshCw,
+    title: "Easy Returns",
+    description:
+      "Not satisfied? Return any item within 30 days for a full refund. No questions asked.",
+    color: "bg-orange-100 text-orange-600",
+  },
+  {
+    icon: Headphones,
+    title: "24/7 Support",
+    description:
+      "Our dedicated support team is available around the clock to assist you with any inquiries.",
+    color: "bg-purple-100 text-purple-600",
+  },
+  {
+    icon: Package,
+    title: "Order Tracking",
+    description:
+      "Track your orders in real-time from dispatch to delivery. Stay informed every step of the way.",
+    color: "bg-pink-100 text-pink-600",
+  },
+  {
+    icon: Lock,
+    title: "Privacy Protection",
+    description:
+      "Your personal data is safe with us. We follow strict privacy protocols to protect your information.",
+    color: "bg-indigo-100 text-indigo-600",
+  },
+];
+
+const processSteps = [
+  {
+    step: "01",
+    title: "Choose Your Product",
+    description:
+      "Browse our extensive catalog and select the products that meet your needs and preferences.",
+  },
+  {
+    step: "02",
+    title: "Secure Checkout",
+    description:
+      "Complete your purchase securely using your preferred payment method with SSL encryption.",
+  },
+  {
+    step: "03",
+    title: "Fast Delivery",
+    description:
+      "Receive your order within 3-5 business days with our reliable shipping partners.",
+  },
+  {
+    step: "04",
+    title: "Enjoy Your Purchase",
+    description:
+      "Unbox your products and enjoy! Contact our support if you need any assistance.",
+  },
+];
+
 const pageHeader = {
-  title: "Services",
-  caption: "",
-  description: "",
+  title: "Our Services",
+  caption: "Services",
+  description:
+    "Discover the range of services we offer to make your shopping experience exceptional.",
 };
 ---
 
-<BaseLayout>
+<BaseLayout title="Services - Hekto">
   <PageHeader headerInfo={pageHeader} slot="pageHeader" />
+
+  <div class="min-h-screen bg-white">
+    {/* Services Grid */}
+    <section class="py-16 lg:py-24">
+      <div class="xl:container px-6 mx-auto">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl lg:text-4xl font-bold text-tertiary-900 mb-4">
+            What We Offer
+          </h2>
+          <p class="text-emphasis-500 max-w-2xl mx-auto">
+            We provide a comprehensive suite of services designed to make your
+            shopping experience seamless and enjoyable.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {
+            services.map((service) => (
+              <div class="bg-white border border-gray-100 rounded-xl p-8 shadow-sm hover:shadow-md transition-shadow duration-300">
+                <div
+                  class={`w-16 h-16 ${service.color} rounded-full flex items-center justify-center mb-6`}
+                >
+                  <service.icon class="w-8 h-8" />
+                </div>
+                <h3 class="text-xl font-semibold text-tertiary-900 mb-3">
+                  {service.title}
+                </h3>
+                <p class="text-emphasis-500 leading-relaxed">
+                  {service.description}
+                </p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    {/* How It Works */}
+    <section class="py-16 lg:py-24 bg-brand-50">
+      <div class="xl:container px-6 mx-auto">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl lg:text-4xl font-bold text-tertiary-900 mb-4">
+            How It Works
+          </h2>
+          <p class="text-emphasis-500 max-w-2xl mx-auto">
+            Getting your favorite products is easier than ever. Follow these simple
+            steps.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {
+            processSteps.map((item, index) => (
+              <div class="relative text-center">
+                <div class="inline-flex items-center justify-center w-16 h-16 bg-primary-500 text-white rounded-full text-2xl font-bold mb-6">
+                  {item.step}
+                </div>
+                {index < processSteps.length - 1 && (
+                  <div class="hidden lg:block absolute top-8 left-1/2 w-full h-0.5 bg-primary-200 -z-10" />
+                )}
+                <h3 class="text-xl font-semibold text-tertiary-900 mb-3">
+                  {item.title}
+                </h3>
+                <p class="text-emphasis-500">{item.description}</p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    {/* Delivery Info */}
+    <section class="py-16 lg:py-24">
+      <div class="xl:container px-6 mx-auto">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <div class="inline-flex items-center gap-2 bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-medium mb-6">
+              <TruckIcon class="w-5 h-5" />
+              <span>Delivery Information</span>
+            </div>
+            <h2 class="text-3xl lg:text-4xl font-bold text-tertiary-900 mb-6">
+              Fast & Reliable Delivery
+            </h2>
+            <p class="text-emphasis-500 mb-8 leading-relaxed">
+              We partner with top shipping carriers to ensure your orders arrive
+              safely and on time. Standard delivery takes 3-5 business days,
+              while express shipping is available for urgent orders.
+            </p>
+            <ul class="space-y-4 mb-8">
+              <li class="flex items-start gap-3">
+                <svg
+                  class="w-6 h-6 text-green-500 flex-shrink-0 mt-0.5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span class="text-emphasis-500"
+                  >Free shipping on orders over $50</span
+                >
+              </li>
+              <li class="flex items-start gap-3">
+                <svg
+                  class="w-6 h-6 text-green-500 flex-shrink-0 mt-0.5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span class="text-emphasis-500"
+                  >Express delivery available (1-2 business days)</span
+                >
+              </li>
+              <li class="flex items-start gap-3">
+                <svg
+                  class="w-6 h-6 text-green-500 flex-shrink-0 mt-0.5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span class="text-emphasis-500"
+                  >International shipping to 100+ countries</span
+                >
+              </li>
+              <li class="flex items-start gap-3">
+                <svg
+                  class="w-6 h-6 text-green-500 flex-shrink-0 mt-0.5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span class="text-emphasis-500"
+                  >Real-time order tracking provided</span
+                >
+              </li>
+            </ul>
+            <Button class="bg-primary-500 hover:bg-primary-600 text-white px-8 py-3">
+              Track Your Order
+            </Button>
+          </div>
+          <div class="relative">
+            <div class="aspect-square bg-gradient-to-br from-primary-100 to-primary-50 rounded-2xl flex items-center justify-center">
+              <div class="w-48 h-48 bg-white rounded-full flex items-center justify-center shadow-lg">
+                <TruckIcon class="w-24 h-24 text-primary-500" />
+              </div>
+            </div>
+            <div class="absolute -bottom-4 -right-4 bg-white rounded-xl shadow-lg p-4 flex items-center gap-3">
+              <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
+                <svg
+                  class="w-6 h-6 text-green-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"></path>
+                </svg>
+              </div>
+              <div>
+                <p class="font-semibold text-tertiary-900">On-Time Delivery</p>
+                <p class="text-sm text-emphasis-500">98% success rate</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* CTA Section */}
+    <section class="py-16 lg:py-24 bg-primary-500">
+      <div class="xl:container px-6 mx-auto text-center">
+        <h2 class="text-3xl lg:text-4xl font-bold text-white mb-6">
+          Need Help? Contact Our Support Team
+        </h2>
+        <p class="text-white/90 max-w-2xl mx-auto mb-8">
+          Our dedicated support team is here to assist you with any questions or
+          concerns. Don't hesitate to reach out.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <Button
+            variant="outline"
+            class="border-white text-white hover:bg-white hover:text-primary-500 px-8 py-3"
+          >
+            Contact Support
+          </Button>
+          <Button class="bg-white text-primary-500 hover:bg-gray-100 px-8 py-3">
+            View FAQs
+          </Button>
+        </div>
+      </div>
+    </section>
+  </div>
 </BaseLayout>

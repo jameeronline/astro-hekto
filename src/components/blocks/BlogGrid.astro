@@ -1,22 +1,12 @@
 ---
-//components import
+import type { CollectionEntry } from "astro:content";
 import BlogCard from "@/components/blocks/BlogCard.astro";
-
-type Post = {
-  data: {
-    title: string;
-    [key: string]: any;
-  };
-};
-
-interface Props {
-  posts: Post[];
-}
-
-//utils import
 import { slugify } from "@/utils/helper";
 
-//props
+interface Props {
+  posts: CollectionEntry<"posts">[];
+}
+
 const { posts } = Astro.props;
 ---
 

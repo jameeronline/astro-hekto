@@ -1,12 +1,13 @@
 ---
-//icon import
 import { Icon } from "astro-icon/components";
 
-//props
-const { isHome = false } = Astro.props;
+interface Partner {
+  title: string;
+  img: string;
+  link: string;
+}
 
-//variables
-const partners = [
+const partners: Partner[] = [
   {
     title: "Dribbble",
     img: "dribbble-logo",

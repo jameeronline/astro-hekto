@@ -1,19 +1,16 @@
 ---
 import { getCollection } from "astro:content";
 
-//components imports
 import BlogLayout from "@/layouts/BlogLayout.astro";
 import BlogGrid from "@/blocks/BlogGrid.astro";
 import Paginate from "@/components/Paginate.astro";
 import PageHeader from "@/components/blocks/PageHeader.astro";
 
-//utils import
 import { slugify } from "@/utils/helper";
 
 export async function getStaticPaths({ paginate }) {
   const posts = await getCollection("posts");
 
-  // Collect all unique categories from posts
   const authorsSet = new Set();
   posts.forEach((post) => {
     if (post.data.author) {
@@ -21,7 +18,6 @@ export async function getStaticPaths({ paginate }) {
     }
   });
 
-  // Generate a path for each unique author, passing only posts related to that author
   return Array.from(authorsSet)
     .map((author) => {
       const filteredPosts = posts.filter(
@@ -31,16 +27,13 @@ export async function getStaticPaths({ paginate }) {
       return paginate(filteredPosts, {
         params: { author: slugify(author as string) },
         props: { posts: filteredPosts, authorName: author },
-        pageSize: 2, // Adjust page size as needed
+        pageSize: 2,
       });
     })
     .flat();
 }
 
-const { author } = Astro.params;
-const { posts, authorName, page } = Astro.props;
-
-//const selected = "all";
+const { authorName, page } = Astro.props;
 
 const noPosts = !page || page.data.length === 0;
 ---

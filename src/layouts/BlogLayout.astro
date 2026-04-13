@@ -1,13 +1,13 @@
 ---
-//layout imports
 import BaseLayout from "@/layouts/BaseLayout.astro";
-const { title } = Astro.props;
-
-//components imports
 import Partners from "@/components/blocks/Partners.astro";
-
-//sidebar imports
 import BlogLayoutSidebar from "./BlogLayoutSidebar.astro";
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
 ---
 
 <BaseLayout title={title}>

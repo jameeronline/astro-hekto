@@ -5,17 +5,24 @@ import { tv } from "tailwind-variants";
 
 type Props = HTMLAttributes<"span">;
 
-const breadcrumbEllipsis = tv({ base: "flex size-6 items-center justify-center [&>svg]:size-4" });
+export const breadcrumbEllipsis = tv({
+  base: "flex size-6 items-center justify-center [&>svg]:size-4",
+});
 
 const { class: className, ...rest } = Astro.props;
 ---
 
 <span
-	role="presentation"
-	aria-hidden="true"
-	class={breadcrumbEllipsis({ class: className })}
-	{...rest}
+  role="presentation"
+  aria-hidden="true"
+  class={breadcrumbEllipsis({ class: className })}
+  {...rest}
+  data-slot="breadcrumb-ellipsis"
 >
-	<Dots />
-	<span class="sr-only">More</span>
+  <slot name="icon">
+    <Dots />
+  </slot>
+  <slot>
+    <span class="sr-only">More</span>
+  </slot>
 </span>

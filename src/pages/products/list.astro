@@ -1,4 +1,7 @@
 ---
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+
 //layout imports
 import PageHeader from "@/components/blocks/PageHeader.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
@@ -14,7 +17,13 @@ import {
   SelectValue,
 } from "@/starwind/select";
 // import { Slider } from "@/starwind/slider";
-import { Grid, List, ShoppingCart, Heart, Search } from "@lucide/astro";
+import { Grid, List as ListIcon, ShoppingCart, Heart, Search } from "@lucide/astro";
+
+// Fetch product categories from content collection
+const productCategories = await getCollection("productCategories") as CollectionEntry<"productCategories">[];
+const sortedCategories = productCategories
+  .sort((a, b) => a.data.name.localeCompare(b.data.name))
+  .map(cat => ({ name: cat.data.name, slug: cat.data.slug, checked: false }));
 
 const brands = [
   { name: "Coaster Furniture", checked: false },
@@ -36,18 +45,6 @@ const ratings = [
   { stars: 3, count: 1726, checked: false },
   { stars: 2, count: 258, checked: false },
   { stars: 1, count: 25, checked: false },
-];
-
-const categories = [
-  { name: "Prestashop", checked: false },
-  { name: "Magento", checked: false },
-  { name: "Bigcommerce", checked: true },
-  { name: "osCommerce", checked: false },
-  { name: "3dcart", checked: false },
-  { name: "Bags", checked: false },
-  { name: "Accessories", checked: false },
-  { name: "Jewellery", checked: false },
-  { name: "Watches", checked: false },
 ];
 
 const priceFilters = [
@@ -162,7 +159,7 @@ const pageHeader = {
   <PageHeader headerInfo={pageHeader} slot="pageHeader" />
   <div class="min-h-screen bg-white">
     {/* Header */}
-    <div class="border-b border-gray-200 py-6 px-4">
+    <div class="py-6 px-4">
       <div class="max-w-7xl mx-auto flex items-center justify-between">
         <div>
           <h1 class="text-2xl font-semibold text-blue-900 mb-1">
@@ -211,7 +208,7 @@ const pageHeader = {
                 <Grid class="h-4 w-4" />
               </Button>
               <Button variant="ghost" size="sm" class="h-8 w-8 p-0">
-                <List class="h-4 w-4" />
+                <ListIcon class="h-4 w-4" />
               </Button>
             </div>
           </div>
@@ -290,7 +287,7 @@ const pageHeader = {
             <h3 class="text-lg font-semibold text-blue-900 mb-4">Categories</h3>
             <div class="space-y-3">
               {
-                categories.map((category, index) => (
+                sortedCategories.map((category, index) => (
                   <div key={index} class="flex items-center space-x-2">
                     <Checkbox
                       id={`category-${index}`}
@@ -369,9 +366,13 @@ const pageHeader = {
                 >
                   <div class="w-48 h-48 bg-gray-100 rounded-lg flex items-center justify-center mr-6">
                     <img
-                      src={product.image || "/placeholder.svg"}
-                      alt={product.name}
+                      src={product.image || "/placeholder.svg?height=200&width=200"}
+                      alt={`${product.name} - Product image`}
                       class="w-full h-full object-contain"
+                      width="192"
+                      height="192"
+                      loading="lazy"
+                      decoding="async"
                     />
                   </div>
 
