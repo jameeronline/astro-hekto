@@ -1,54 +1,54 @@
 ---
-import BaseLayout from "@/layouts/BaseLayout.astro";
+import BaseLayout from '@/layouts/BaseLayout.astro';
 
 //components import
-import PageHeader from "@/components/blocks/PageHeader.astro";
+import PageHeader from '@/components/blocks/PageHeader.astro';
 
-import { Button } from "@/starwind/button";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/starwind/tabs";
-import { Heart, Facebook, Twitter, Instagram, Star } from "@lucide/astro";
-import Partners from "@/components/blocks/Partners.astro";
+import { Button } from '@/starwind/button';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/starwind/tabs';
+import { Heart, Facebook, Twitter, Instagram, Star } from '@lucide/astro';
+import Partners from '@/components/blocks/Partners.astro';
 
 // page header details
 const pageHeader = {
-  title: "Products Listing Grid Layout",
-  caption: "Products Listing",
-  description: "",
+  title: 'Products Listing Grid Layout',
+  caption: 'Products Listing',
+  description: '',
 };
 
 const thumbnailImages = [
-  "/placeholder.svg?height=80&width=80",
-  "/placeholder.svg?height=80&width=80",
-  "/placeholder.svg?height=80&width=80",
+  '/placeholder.svg?height=80&width=80',
+  '/placeholder.svg?height=80&width=80',
+  '/placeholder.svg?height=80&width=80',
 ];
 
 const relatedProducts = [
   {
     id: 1,
-    name: "Mens Fashion Wear",
-    price: "$19.00",
-    image: "/placeholder.svg?height=200&width=200",
+    name: 'Mens Fashion Wear',
+    price: '$19.00',
+    image: '/placeholder.svg?height=200&width=200',
     rating: 5,
   },
   {
     id: 2,
     name: "Women's Fashion",
-    price: "$21.00",
-    image: "/placeholder.svg?height=200&width=200",
+    price: '$21.00',
+    image: '/placeholder.svg?height=200&width=200',
     rating: 5,
   },
   {
     id: 3,
-    name: "Web Dummy Fashion",
-    price: "$67.00",
-    image: "/placeholder.svg?height=200&width=200",
+    name: 'Web Dummy Fashion',
+    price: '$67.00',
+    image: '/placeholder.svg?height=200&width=200',
     rating: 5,
   },
   {
     id: 4,
-    name: "Top Wall Digital Clock",
-    price: "$51.00",
-    image: "/placeholder.svg?height=200&width=200",
+    name: 'Top Wall Digital Clock',
+    price: '$51.00',
+    image: '/placeholder.svg?height=200&width=200',
     rating: 5,
   },
 ];
@@ -68,12 +68,9 @@ const relatedProducts = [
         <div class="lg:col-span-2 space-y-4">
           {
             thumbnailImages.map((image, index) => (
-              <div
-                key={index}
-                class="w-full aspect-square bg-gray-100 rounded-lg p-2"
-              >
+              <div key={index} class="w-full aspect-square bg-gray-100 rounded-lg p-2">
                 <img
-                  src={image || "/placeholder.svg?height=100&width=100"}
+                  src={image || '/placeholder.svg?height=100&width=100'}
                   alt={`Product thumbnail ${index + 1}`}
                   class="w-full h-full object-contain"
                   width="100"
@@ -88,9 +85,7 @@ const relatedProducts = [
 
         {/* Main Product Image */}
         <div class="lg:col-span-5">
-          <div
-            class="aspect-square bg-gray-100 rounded-lg p-8 flex items-center justify-center"
-          >
+          <div class="aspect-square bg-gray-100 rounded-lg p-8 flex items-center justify-center">
             <img
               src="/placeholder.svg?height=400&width=400"
               alt="Playwood arm chair - Product image"
@@ -106,9 +101,7 @@ const relatedProducts = [
         {/* Product Information */}
         <div class="lg:col-span-5 space-y-6">
           <div>
-            <h1 class="text-3xl font-semibold text-tertiary-900 mb-2">
-              Playwood arm chair
-            </h1>
+            <h1 class="text-3xl font-semibold text-tertiary-900 mb-2">Playwood arm chair</h1>
             <div class="flex items-center space-x-2 mb-4">
               <!-- <div class="flex">{renderStars(5)}</div> -->
               <span class="text-sm text-gray-500">(23)</span>
@@ -127,14 +120,13 @@ const relatedProducts = [
             <div>
               <h3 class="text-sm font-medium text-tertiary-900 mb-2">Color</h3>
               <p class="text-sm text-gray-600 leading-relaxed">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris
-                tellus porttitor purus, et volutpat sit.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tellus porttitor
+                purus, et volutpat sit.
               </p>
             </div>
 
             <div class="flex items-center space-x-4">
-              <Button
-                class="bg-primary-500 hover:bg-primary-600 text-white px-6 py-2 rounded-md"
+              <Button class="bg-primary-500 hover:bg-primary-600 text-white px-6 py-2 rounded-md"
                 >Add To Cart</Button
               >
               <Button variant="ghost" size="sm" class="p-2">
@@ -144,9 +136,7 @@ const relatedProducts = [
 
             <div class="space-y-3">
               <div>
-                <span class="text-sm font-medium text-tertiary-900"
-                  >Categories</span
-                >
+                <span class="text-sm font-medium text-tertiary-900">Categories</span>
               </div>
               <div>
                 <span class="text-sm font-medium text-tertiary-900">Tags</span>
@@ -206,54 +196,44 @@ const relatedProducts = [
 
           <TabsContent value="description" class="mt-8 space-y-6">
             <div>
-              <h3 class="text-lg font-medium text-tertiary-900 mb-4">
-                Varius tempor.
-              </h3>
+              <h3 class="text-lg font-medium text-tertiary-900 mb-4">Varius tempor.</h3>
               <p class="text-sm text-gray-600 leading-relaxed mb-6">
-                Aliquam dis vulputate vulputate integer sagittis. Faucibus dolor
-                ornare faucibus vel sed et eleifend habitasse amet. Montes,
-                mauris varius ac est bibendum. Scelerisque a, risus ac ante.
-                Velit consectetur neque placerat rhoncus est pellentesque.
-                Praesent ornare in lacus, at consectetur lorem. Ut sagittis,
-                libero venenatis at.
+                Aliquam dis vulputate vulputate integer sagittis. Faucibus dolor ornare faucibus vel
+                sed et eleifend habitasse amet. Montes, mauris varius ac est bibendum. Scelerisque
+                a, risus ac ante. Velit consectetur neque placerat rhoncus est pellentesque.
+                Praesent ornare in lacus, at consectetur lorem. Ut sagittis, libero venenatis at.
               </p>
             </div>
 
             <div>
-              <h3 class="text-lg font-medium text-tertiary-900 mb-4">
-                More details
-              </h3>
+              <h3 class="text-lg font-medium text-tertiary-900 mb-4">More details</h3>
               <div class="space-y-2">
                 <div class="flex items-start space-x-2">
                   <span class="text-tertiary-900 mt-1">→</span>
                   <p class="text-sm text-gray-600">
-                    Aliquam dis vulputate vulputate integer sagittis. Faucibus
-                    ds diam arcu, nulla lobortis justo netus dis. Eu in
-                    fringilla vulputate nunc nec. Dui, massa viverr.
+                    Aliquam dis vulputate vulputate integer sagittis. Faucibus ds diam arcu, nulla
+                    lobortis justo netus dis. Eu in fringilla vulputate nunc nec. Dui, massa viverr.
                   </p>
                 </div>
                 <div class="flex items-start space-x-2">
                   <span class="text-tertiary-900 mt-1">→</span>
                   <p class="text-sm text-gray-600">
-                    Aliquam dis vulputate vulputate integer sagittis. Faucibus
-                    ds diam arcu, nulla lobortis justo netus dis. Eu in
-                    fringilla vulputate nunc nec. Dui, massa viverr.
+                    Aliquam dis vulputate vulputate integer sagittis. Faucibus ds diam arcu, nulla
+                    lobortis justo netus dis. Eu in fringilla vulputate nunc nec. Dui, massa viverr.
                   </p>
                 </div>
                 <div class="flex items-start space-x-2">
                   <span class="text-tertiary-900 mt-1">→</span>
                   <p class="text-sm text-gray-600">
-                    Aliquam dis vulputate vulputate integer sagittis. Faucibus
-                    ds diam arcu, nulla lobortis justo netus dis. Eu in
-                    fringilla vulputate nunc nec. Dui, massa viverr.
+                    Aliquam dis vulputate vulputate integer sagittis. Faucibus ds diam arcu, nulla
+                    lobortis justo netus dis. Eu in fringilla vulputate nunc nec. Dui, massa viverr.
                   </p>
                 </div>
                 <div class="flex items-start space-x-2">
                   <span class="text-tertiary-900 mt-1">→</span>
                   <p class="text-sm text-gray-600">
-                    Aliquam dis vulputate vulputate integer sagittis. Faucibus
-                    ds diam arcu, nulla lobortis justo netus dis. Eu in
-                    fringilla vulputate nunc nec. Dui, massa viverr.
+                    Aliquam dis vulputate vulputate integer sagittis. Faucibus ds diam arcu, nulla
+                    lobortis justo netus dis. Eu in fringilla vulputate nunc nec. Dui, massa viverr.
                   </p>
                 </div>
               </div>
@@ -261,15 +241,11 @@ const relatedProducts = [
           </TabsContent>
 
           <TabsContent value="additional" class="mt-8">
-            <p class="text-gray-600">
-              Additional information content would go here.
-            </p>
+            <p class="text-gray-600">Additional information content would go here.</p>
           </TabsContent>
 
           <TabsContent value="reviews" class="mt-8">
-            <p class="text-gray-600">
-              Customer reviews would be displayed here.
-            </p>
+            <p class="text-gray-600">Customer reviews would be displayed here.</p>
           </TabsContent>
 
           <TabsContent value="video" class="mt-8">
@@ -282,16 +258,14 @@ const relatedProducts = [
     {/* Related Products Section */}
     <div class="lg:container mx-auto px-6">
       <div class="mb-16">
-        <h2 class="text-2xl font-semibold text-tertiary-900 mb-8">
-          Related Products
-        </h2>
+        <h2 class="text-2xl font-semibold text-tertiary-900 mb-8">Related Products</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {
-            relatedProducts.map((product) => (
+            relatedProducts.map(product => (
               <div key={product.id} class="group cursor-pointer">
                 <div class="aspect-square bg-gray-100 rounded-lg p-4 mb-4 flex items-center justify-center">
                   <img
-                    src={product.image || "/placeholder.svg?height=200&width=200"}
+                    src={product.image || '/placeholder.svg?height=200&width=200'}
                     alt={`${product.name} - Related product`}
                     class="w-full h-full object-contain"
                     width="200"
@@ -301,12 +275,8 @@ const relatedProducts = [
                   />
                 </div>
                 <div class="text-center">
-                  <h3 class="text-tertiary-900 font-medium mb-2 text-sm">
-                    {product.name}
-                  </h3>
-                  <div class="flex justify-center mb-2">
-                    {/* {renderStars(product.rating)} */}
-                  </div>
+                  <h3 class="text-tertiary-900 font-medium mb-2 text-sm">{product.name}</h3>
+                  <div class="flex justify-center mb-2">{/* {renderStars(product.rating)} */}</div>
                   <p class="text-tertiary-900 font-semibold">{product.price}</p>
                 </div>
               </div>

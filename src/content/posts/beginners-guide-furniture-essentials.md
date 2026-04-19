@@ -1,13 +1,13 @@
 ---
-title: "A Beginner’s Guide to Furniture: Essential Tips for Choosing the Right Pieces 12"
-author: "Astro Learner"
-description: "Discover the fundamentals of furniture selection, including style, materials, comfort, and functionality. Learn how to choose the perfect pieces for your home or office."
+title: 'A Beginner’s Guide to Furniture: Essential Tips for Choosing the Right Pieces 12'
+author: 'Astro Learner'
+description: 'Discover the fundamentals of furniture selection, including style, materials, comfort, and functionality. Learn how to choose the perfect pieces for your home or office.'
 cover:
-  image: "../../assets/blog/blog-1.png"
-  alt: "A stylish modern living room with elegant furniture."
+  image: '../../assets/blog/blog-1.png'
+  alt: 'A stylish modern living room with elegant furniture.'
 pubDate: 2024-07-16
-tags: ["furniture", "interior design", "home decor"]
-categories: ["Furniture"]
+tags: ['furniture', 'interior design', 'home decor']
+categories: ['Furniture']
 featured: true
 ---
 

@@ -1,4 +1,4 @@
-import type { ImageMetadata } from "astro";
+import type { ImageMetadata } from 'astro';
 
 export interface Product {
   id: number;
@@ -37,7 +37,7 @@ export interface FurnitureCollection {
   categories?: (string | ProductCategoryRef)[];
   tags?: string[];
   brand: string;
-  availability: "in-stock" | "out-of-stock" | "pre-order";
+  availability: 'in-stock' | 'out-of-stock' | 'pre-order';
   stock: number;
   dimensions: {
     width: number;
@@ -171,7 +171,7 @@ export interface ConfigStore {
   currency: string;
   currencySymbol: string;
   lang: string;
-  theme: "light" | "dark";
+  theme: 'light' | 'dark';
   [key: string]: string | number | boolean;
 }
 

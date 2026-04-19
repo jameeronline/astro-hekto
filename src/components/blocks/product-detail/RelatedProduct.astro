@@ -1,5 +1,5 @@
 ---
-import { slugify } from "@/utils/helper";
+import { slugify } from '@/utils/helper';
 
 interface Product {
   id: string | number;
@@ -17,13 +17,10 @@ const { id, name, image, price } = product;
 ---
 
 <div key={id} class="cursor-pointer col-span-4 lg:col-span-3">
-  <a
-    href={`/shop/${slugify(name)}`}
-    class="group flex flex-col items-center justify-center"
-  >
+  <a href={`/shop/${slugify(name)}`} class="group flex flex-col items-center justify-center">
     <figure class="w-full aspect-square bg-gray-100 rounded-lg mb-4">
       <img
-        src={image || "/placeholder.svg?height=300&width=300"}
+        src={image || '/placeholder.svg?height=300&width=300'}
         alt={`${name} - Product image`}
         class="w-full h-full object-contain scale-75 group-hover:scale-85 transition-transform duration-200"
         width="300"

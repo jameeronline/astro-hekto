@@ -1,70 +1,65 @@
 ---
-import { Icon } from "astro-icon/components";
+import { Icon } from 'astro-icon/components';
 
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/starwind/accordion";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/starwind/accordion';
 
 const footerLinks = [
   {
-    heading: "Categories",
-    id: "footer-product-dark",
+    heading: 'Categories',
+    id: 'footer-product-dark',
     links: [
-      { label: "Living Room", link: "/products/list?category=living-room" },
-      { label: "Bedroom", link: "/products/list?category=bedroom" },
-      { label: "Dining Room", link: "/products/list?category=dining-room" },
-      { label: "Office", link: "/products/list?category=office" },
-      { label: "Outdoor", link: "/products/list?category=outdoor" },
+      { label: 'Living Room', link: '/products/list?category=living-room' },
+      { label: 'Bedroom', link: '/products/list?category=bedroom' },
+      { label: 'Dining Room', link: '/products/list?category=dining-room' },
+      { label: 'Office', link: '/products/list?category=office' },
+      { label: 'Outdoor', link: '/products/list?category=outdoor' },
     ],
   },
   {
-    heading: "Pages",
-    id: "footer-about-dark",
+    heading: 'Pages',
+    id: 'footer-about-dark',
     links: [
-      { label: "Blog", link: "/blog" },
-      { label: "About", link: "/about" },
-      { label: "Services", link: "/pages/services" },
-      { label: "Features", link: "/pages/features" },
-      { label: "FAQ", link: "/faq" },
-      { label: "Contact", link: "/contact" },
+      { label: 'Blog', link: '/blog' },
+      { label: 'About', link: '/about' },
+      { label: 'Services', link: '/pages/services' },
+      { label: 'Features', link: '/pages/features' },
+      { label: 'FAQ', link: '/faq' },
+      { label: 'Contact', link: '/contact' },
     ],
   },
   {
-    heading: "Customer Care",
-    id: "footer-docs-dark",
+    heading: 'Customer Care',
+    id: 'footer-docs-dark',
     links: [
-      { label: "Contact Us", link: "/contact" },
-      { label: "FAQ", link: "/faq" },
-      { label: "Returns Policy", link: "/faq#returns" },
-      { label: "Shipping Info", link: "/pages/services#shipping" },
-      { label: "Track Order", link: "/orders-history" },
+      { label: 'Contact Us', link: '/contact' },
+      { label: 'FAQ', link: '/faq' },
+      { label: 'Returns Policy', link: '/faq#returns' },
+      { label: 'Shipping Info', link: '/pages/services#shipping' },
+      { label: 'Track Order', link: '/orders-history' },
     ],
   },
 ];
 
 const socialLinks = [
   {
-    name: "Facebook",
-    href: "#",
-    icon: "brands/facebook",
+    name: 'Facebook',
+    href: '#',
+    icon: 'brands/facebook',
   },
   {
-    name: "X",
-    href: "#",
-    icon: "brands/x",
+    name: 'X',
+    href: '#',
+    icon: 'brands/x',
   },
   {
-    name: "LinkedIn",
-    href: "#",
-    icon: "brands/linkedin",
+    name: 'LinkedIn',
+    href: '#',
+    icon: 'brands/linkedin',
   },
   {
-    name: "GitHub",
-    href: "#",
-    icon: "brands/github",
+    name: 'GitHub',
+    href: '#',
+    icon: 'brands/github',
   },
 ];
 ---
@@ -74,17 +69,14 @@ const socialLinks = [
   <!-- Main footer -->
   <div class="pt-16 pb-12 text-base bg-accent-50">
     <div class="xl:container px-4 md:px-6 mx-auto">
-      <div
-        class="grid grid-cols-4 gap-4 md:gap-6 md:grid-cols-8 lg:grid-cols-12"
-      >
+      <div class="grid grid-cols-4 gap-4 md:gap-6 md:grid-cols-8 lg:grid-cols-12">
         <div
           class="col-span-4 mb-8 lg:mb-auto md:col-span-8 lg:col-span-4"
           aria-labelledby="footer-header"
         >
           <a
             href="javascript:void(0)"
-            class="inline-flex text-3xl font-heading font-bold text-black mb-8"
-            >Hekto</a
+            class="inline-flex text-3xl font-heading font-bold text-black mb-8">Hekto</a
           >
           <form action="" class="flex mb-6 bg-white rounded-sm p-2">
             <input
@@ -102,14 +94,8 @@ const socialLinks = [
           <p>Contact Info</p>
           <p>17 Princess Road, London, Greater London NW1 8JR, UK</p>
         </div>
-        <div
-          class="col-span-4 md:col-span-8 grid grid-cols-1 md:grid-cols-3 gap-10 lg:ml-auto"
-        >
-          <Accordion
-            type="multiple"
-            defaultValue="item-1"
-            class="md:hidden border-0"
-          >
+        <div class="col-span-4 md:col-span-8 grid grid-cols-1 md:grid-cols-3 gap-10 lg:ml-auto">
+          <Accordion type="multiple" defaultValue="item-1" class="md:hidden border-0">
             {
               footerLinks.map(({ heading, links }, idx) => (
                 <AccordionItem
@@ -170,9 +156,7 @@ const socialLinks = [
   <!-- Sub Footer -->
   <div class="py-4 text-base bg-accent-100">
     <div class="xl:container px-4 md:px-6 mx-auto">
-      <div
-        class="grid grid-cols-4 gap-4 md:grid-cols-8 md:gap-6 lg:grid-cols-12"
-      >
+      <div class="grid grid-cols-4 gap-4 md:grid-cols-8 md:gap-6 lg:grid-cols-12">
         <div
           class="col-span-4 text-center md:text-left md:col-span-4 lg:col-span-6 text-tertiary-900"
         >
@@ -182,9 +166,7 @@ const socialLinks = [
           aria-labelledby="footer-social-links-dark"
           class="col-span-4 text-center md:text-right md:col-span-4 lg:col-span-6"
         >
-          <h2 class="sr-only" id="footer-social-links-dark">
-            Social Media Links
-          </h2>
+          <h2 class="sr-only" id="footer-social-links-dark">Social Media Links</h2>
           <ul class="flex items-center justify-center md:justify-end gap-4">
             {
               socialLinks.map(({ name, href, icon }) => (

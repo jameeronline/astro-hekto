@@ -1,13 +1,13 @@
 ---
-import { getCollection } from "astro:content";
+import { getCollection } from 'astro:content';
 
-import BlogLayout from "@/layouts/BlogLayout.astro";
-import BlogGrid from "@/components/blocks/BlogGrid.astro";
-import Paginate from "@/components/Paginate.astro";
-import PageHeader from "@/components/blocks/PageHeader.astro";
+import BlogLayout from '@/layouts/BlogLayout.astro';
+import BlogGrid from '@/components/blocks/BlogGrid.astro';
+import Paginate from '@/components/Paginate.astro';
+import PageHeader from '@/components/blocks/PageHeader.astro';
 
 export async function getStaticPaths({ paginate }) {
-  const allPosts = await getCollection("posts");
+  const allPosts = await getCollection('posts');
   return paginate(allPosts, { pageSize: 6 });
 }
 
@@ -19,18 +19,16 @@ const noPosts = !filteredPosts || filteredPosts.length === 0;
 <BlogLayout pageTitle="Tags Index">
   <PageHeader
     headerInfo={{
-      title: "Tags Index",
-      caption: "Tags",
-      description: "",
+      title: 'Tags Index',
+      caption: 'Tags',
+      description: '',
     }}
     slot="pageHeader"
   />
 
   {
     noPosts ? (
-      <div class="text-red-600 py-8 text-center font-semibold">
-        No posts found for tag
-      </div>
+      <div class="text-red-600 py-8 text-center font-semibold">No posts found for tag</div>
     ) : (
       <>
         <BlogGrid posts={filteredPosts} />

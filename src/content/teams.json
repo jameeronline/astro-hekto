@@ -96,9 +96,7 @@
     "country": "India",
     "role": "QA Engineer",
     "description": "Ensures product quality through rigorous testing.",
-    "socialLinks": [
-      { "type": "linkedin", "url": "https://linkedin.com/in/priyasharma" }
-    ],
+    "socialLinks": [{ "type": "linkedin", "url": "https://linkedin.com/in/priyasharma" }],
     "picture": "https://randomuser.me/api/portraits/women/45.jpg"
   },
   {
@@ -109,9 +107,7 @@
     "country": "Spain",
     "role": "Mobile Developer",
     "description": "Builds performant mobile applications.",
-    "socialLinks": [
-      { "type": "github", "url": "https://github.com/mateogarcia" }
-    ],
+    "socialLinks": [{ "type": "github", "url": "https://github.com/mateogarcia" }],
     "picture": "https://randomuser.me/api/portraits/men/34.jpg"
   }
 ]

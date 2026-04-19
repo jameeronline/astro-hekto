@@ -1,5 +1,5 @@
 ---
-import { Icon } from "astro-icon/components";
+import { Icon } from 'astro-icon/components';
 
 interface Partner {
   title: string;
@@ -9,54 +9,54 @@ interface Partner {
 
 const partners: Partner[] = [
   {
-    title: "Dribbble",
-    img: "dribbble-logo",
-    link: "https://dribbble.com/",
+    title: 'Dribbble',
+    img: 'dribbble-logo',
+    link: 'https://dribbble.com/',
   },
   {
-    title: "Dropbox",
-    img: "dropbox-logo",
-    link: "https://www.dropbox.com/",
+    title: 'Dropbox',
+    img: 'dropbox-logo',
+    link: 'https://www.dropbox.com/',
   },
   {
-    title: "GitHub",
-    img: "github-logo",
-    link: "https://github.com/",
+    title: 'GitHub',
+    img: 'github-logo',
+    link: 'https://github.com/',
   },
   {
-    title: "Jira Software",
-    img: "jira-software-logo",
-    link: "https://www.atlassian.com/software/jira",
+    title: 'Jira Software',
+    img: 'jira-software-logo',
+    link: 'https://www.atlassian.com/software/jira',
   },
   {
-    title: "Miro",
-    img: "miro-logo",
-    link: "https://miro.com/",
+    title: 'Miro',
+    img: 'miro-logo',
+    link: 'https://miro.com/',
   },
   {
-    title: "Pingdom",
-    img: "pingdom-logo",
-    link: "https://www.pingdom.com/",
+    title: 'Pingdom',
+    img: 'pingdom-logo',
+    link: 'https://www.pingdom.com/',
   },
   {
-    title: "Unsplash",
-    img: "unsplash-logo",
-    link: "https://unsplash.com/",
+    title: 'Unsplash',
+    img: 'unsplash-logo',
+    link: 'https://unsplash.com/',
   },
   {
-    title: "Webflow",
-    img: "webflow-logo",
-    link: "https://webflow.com/",
+    title: 'Webflow',
+    img: 'webflow-logo',
+    link: 'https://webflow.com/',
   },
   {
-    title: "Wix",
-    img: "wix-logo",
-    link: "https://www.wix.com/",
+    title: 'Wix',
+    img: 'wix-logo',
+    link: 'https://www.wix.com/',
   },
   {
-    title: "Zendesk",
-    img: "zendesk-logo",
-    link: "https://www.zendesk.com/",
+    title: 'Zendesk',
+    img: 'zendesk-logo',
+    link: 'https://www.zendesk.com/',
   },
 ];
 ---
@@ -66,24 +66,16 @@ const partners: Partner[] = [
   <section class="">
     <div class="container px-4 md:px-6 mx-auto">
       <!-- Component: Carousel with controls inside -->
-      <div
-        class="relative mx-auto py-16 border-t border-gray-200"
-        id="glide-partners"
-      >
+      <div class="relative mx-auto py-16 border-t border-gray-200" id="glide-partners">
         <!-- Slides -->
         <div class="overflow-hidden" data-glide-el="track">
           <ul
             class="relative w-full overflow-hidden p-0 whitespace-no-wrap flex flex-no-wrap [backface-visibility: hidden] [transform-style: preserve-3d] [touch-action: pan-Y] [will-change: transform]"
           >
             {
-              partners.map((partner) => (
+              partners.map(partner => (
                 <li class="flex items-center" title={partner.title}>
-                  <a
-                    href={partner.link}
-                    target="_blank"
-                    rel="external"
-                    class="block w-full"
-                  >
+                  <a href={partner.link} target="_blank" rel="external" class="block w-full">
                     <Icon
                       name={`logos/${partner.img}`}
                       class="w-40 h-5 m-auto grayscale opacity-70 transition duration-300 hover:grayscale-0 hover:opacity-90"
@@ -102,14 +94,14 @@ const partners: Partner[] = [
 </div>
 
 <script>
-  import Glide from "@glidejs/glide";
+  import Glide from '@glidejs/glide';
 
   function initSlider() {
-    const glideElement = document.querySelector("#glide-partners");
+    const glideElement = document.querySelector('#glide-partners');
     if (glideElement) {
       const glideInstance = new Glide(glideElement, {
-        type: "carousel",
-        focusAt: "center",
+        type: 'carousel',
+        focusAt: 'center',
         perView: 5,
         autoplay: 3000,
         hoverpause: true,
@@ -117,7 +109,7 @@ const partners: Partner[] = [
         gap: 24,
         classNames: {
           nav: {
-            active: "[&>*]:bg-wuiSlate-700",
+            active: '[&>*]:bg-wuiSlate-700',
           },
         },
         breakpoints: {
@@ -136,6 +128,6 @@ const partners: Partner[] = [
     }
   }
 
-  document.addEventListener("astro:page-load", initSlider);
+  document.addEventListener('astro:page-load', initSlider);
   //initSlider();
 </script>

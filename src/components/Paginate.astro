@@ -1,9 +1,9 @@
 ---
 //component imports
-import { Button } from "@/starwind/button";
+import { Button } from '@/starwind/button';
 
 //icons import
-import { ArrowLeft, ArrowRight } from "@lucide/astro";
+import { ArrowLeft, ArrowRight } from '@lucide/astro';
 
 export interface Props {
   currentPage: number;
@@ -15,19 +15,15 @@ export interface Props {
 const { currentPage, lastPage, prevUrl, nextUrl } = Astro.props;
 ---
 
-<nav
-  class="flex items-center justify-center gap-4 mt-12 w-full text-tertiary-950"
->
+<nav class="flex items-center justify-center gap-4 mt-12 w-full text-tertiary-950">
   {
     prevUrl ? (
       <Button variant="ghost" href={prevUrl}>
-        <ArrowLeft class="size-4" />{" "}
-        <span class="hidden md:inline">Previous</span>
+        <ArrowLeft class="size-4" /> <span class="hidden md:inline">Previous</span>
       </Button>
     ) : (
       <Button variant="ghost" disabled>
-        <ArrowLeft class="size-4" />{" "}
-        <span class="hidden md:inline">Previous</span>
+        <ArrowLeft class="size-4" /> <span class="hidden md:inline">Previous</span>
       </Button>
     )
   }

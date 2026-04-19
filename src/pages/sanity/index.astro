@@ -1,9 +1,9 @@
 ---
 //layout imports
-import BaseLayout from "@/layouts/BaseLayout.astro";
+import BaseLayout from '@/layouts/BaseLayout.astro';
 
-import type { SanityDocument } from "@sanity/client";
-import { sanityClient } from "sanity:client";
+import type { SanityDocument } from '@sanity/client';
+import { sanityClient } from 'sanity:client';
 
 const POSTS_QUERY = `*[
   _type == "post"
@@ -18,7 +18,7 @@ const posts = await sanityClient.fetch<SanityDocument[]>(POSTS_QUERY);
     <h1 class="text-4xl font-bold mb-8">Posts</h1>
     <ul class="flex flex-col gap-y-4">
       {
-        posts.map((post) => (
+        posts.map(post => (
           <li class="hover:underline">
             <a href={`/sanity/${post.slug.current}`}>
               <h2 class="text-xl font-semibold">{post.title}</h2>

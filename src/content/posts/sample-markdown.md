@@ -1,13 +1,13 @@
 ---
-title: "Sample Typography Markdown"
-author: "Astro Learner"
-description: "Learn the essentials of selecting furniture—style, materials, comfort, and practicality—to create a space that suits your needs and personality."
+title: 'Sample Typography Markdown'
+author: 'Astro Learner'
+description: 'Learn the essentials of selecting furniture—style, materials, comfort, and practicality—to create a space that suits your needs and personality.'
 cover:
-  image: "../../assets/blog/typography.jpg"
-  alt: "A stylish modern living room with elegant furniture."
+  image: '../../assets/blog/typography.jpg'
+  alt: 'A stylish modern living room with elegant furniture.'
 pubDate: 2025-08-10
-tags: ["furniture", "interior design", "home decor"]
-categories: ["Furniture"]
+tags: ['furniture', 'interior design', 'home decor']
+categories: ['Furniture']
 featured: true
 ---
 
@@ -73,7 +73,7 @@ Below is a sample code block:
 
 ```javascript
 function example() {
-  console.log("Hello, Tailwind Typography!");
+  console.log('Hello, Tailwind Typography!');
   return true;
 }
 ```

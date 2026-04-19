@@ -1,29 +1,28 @@
 ---
-import { getCollection } from "astro:content";
+import { getCollection } from 'astro:content';
 
-import BlogLayout from "@/layouts/BlogLayout.astro";
-import PageHeader from "@/components/blocks/PageHeader.astro";
-import BlogCard from "@/components/blocks/BlogCard.astro";
-import Paginate from "@/components/Paginate.astro";
+import BlogLayout from '@/layouts/BlogLayout.astro';
+import PageHeader from '@/components/blocks/PageHeader.astro';
+import BlogCard from '@/components/blocks/BlogCard.astro';
+import Paginate from '@/components/Paginate.astro';
 
-import { slugify } from "@/utils/helper";
+import { slugify } from '@/utils/helper';
 
 export async function getStaticPaths({ paginate }) {
-  const posts = await getCollection("posts");
+  const posts = await getCollection('posts');
 
   const tagsSet = new Set();
-  posts.forEach((post) => {
+  posts.forEach(post => {
     if (Array.isArray(post.data.tags)) {
-      post.data.tags.forEach((tag) => tagsSet.add(tag));
+      post.data.tags.forEach(tag => tagsSet.add(tag));
     }
   });
 
   return Array.from(tagsSet)
-    .map((tag) => {
+    .map(tag => {
       const filteredPosts = posts.filter(
-        (post) =>
-          Array.isArray(post.data.tags) &&
-          post.data.tags.some((cat) => slugify(cat) === slugify(tag))
+        post =>
+          Array.isArray(post.data.tags) && post.data.tags.some(cat => slugify(cat) === slugify(tag))
       );
 
       return paginate(filteredPosts, {
@@ -46,7 +45,7 @@ const noPosts = !postsData || postsData.length === 0;
     headerInfo={{
       title: `Posts in Tags`,
       caption: `${tagName} Tag`,
-      description: "",
+      description: '',
     }}
     slot="pageHeader"
   />
@@ -58,7 +57,7 @@ const noPosts = !postsData || postsData.length === 0;
       </div>
     ) : (
       <>
-        {postsData.map((post) => (
+        {postsData.map(post => (
           <BlogCard post={post.data} url={slugify(post.data.title)} />
         ))}
         <Paginate

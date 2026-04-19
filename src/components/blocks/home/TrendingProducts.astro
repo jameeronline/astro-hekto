@@ -1,35 +1,35 @@
 ---
-import { Image } from "astro:assets";
+import { Image } from 'astro:assets';
 
-import Product10 from "@/assets/products/10.png";
-import Product11 from "@/assets/products/11.png";
-import Product12 from "@/assets/products/12.png";
-import Product13 from "@/assets/products/13.png";
+import Product10 from '@/assets/products/10.png';
+import Product11 from '@/assets/products/11.png';
+import Product12 from '@/assets/products/12.png';
+import Product13 from '@/assets/products/13.png';
 
 const trendingProducts = [
   {
     image: Product10,
-    title: "Modern Lounge Chair",
-    price: "199.00",
-    oldPrice: "249.00",
+    title: 'Modern Lounge Chair',
+    price: '199.00',
+    oldPrice: '249.00',
   },
   {
     image: Product11,
-    title: "Ergonomic Office Chair",
-    price: "149.00",
-    oldPrice: "199.00",
+    title: 'Ergonomic Office Chair',
+    price: '149.00',
+    oldPrice: '199.00',
   },
   {
     image: Product12,
-    title: "Classic Wooden Armchair",
-    price: "179.00",
-    oldPrice: "229.00",
+    title: 'Classic Wooden Armchair',
+    price: '179.00',
+    oldPrice: '229.00',
   },
   {
     image: Product13,
-    title: "Minimalist Dining Chair",
-    price: "89.00",
-    oldPrice: "129.00",
+    title: 'Minimalist Dining Chair',
+    price: '89.00',
+    oldPrice: '129.00',
   },
 ];
 ---
@@ -37,9 +37,7 @@ const trendingProducts = [
 <!-- START - trending Products -->
 <section class="my-16 xl:my-24">
   <div class="xl:container px-6 mx-auto">
-    <h2
-      class="text-center text-tertiary-950 text-2xl mb-6 lg:text-4xl lg:mb-12 font-bold"
-    >
+    <h2 class="text-center text-tertiary-950 text-2xl mb-6 lg:text-4xl lg:mb-12 font-bold">
       Trending Products
     </h2>
 
@@ -51,7 +49,7 @@ const trendingProducts = [
           class="whitespace-no-wrap flex-no-wrap [backface-visibility: hidden] [transform-style: preserve-3d] [touch-action: pan-Y] [will-change: transform] relative flex w-full overflow-hidden p-0 py-4"
         >
           {
-            trendingProducts.map((product) => (
+            trendingProducts.map(product => (
               <li class="px-2">
                 <article class="group overflow-hidden bg-white p-3 rounded-lg shadow-[0px_0px_16px_0px_rgba(0,0,0,0.05)] text-slate-500 transition-colors">
                   <figure class="relative overflow-hidden aspect-square w-full bg-tertiary-50 flex items-center justify-center">

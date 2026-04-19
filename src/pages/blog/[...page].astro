@@ -1,19 +1,17 @@
 ---
-import { getCollection } from "astro:content";
+import { getCollection } from 'astro:content';
 
-import BlogLayout from "@/layouts/BlogLayout.astro";
-import BlogGrid from "@/blocks/BlogGrid.astro";
-import PageHeader from "@/blocks/PageHeader.astro";
-import Paginate from "@/components/Paginate.astro";
+import BlogLayout from '@/layouts/BlogLayout.astro';
+import BlogGrid from '@/blocks/BlogGrid.astro';
+import PageHeader from '@/blocks/PageHeader.astro';
+import Paginate from '@/components/Paginate.astro';
 
-const pageTitle = "Latest Blog";
+const pageTitle = 'Latest Blog';
 
 export async function getStaticPaths({ paginate }) {
-  const allPosts = await getCollection("posts");
+  const allPosts = await getCollection('posts');
 
-  const sortedPosts = allPosts.sort(
-    (a, b) => new Date(b.data.pubDate) - new Date(a.data.pubDate)
-  );
+  const sortedPosts = allPosts.sort((a, b) => new Date(b.data.pubDate) - new Date(a.data.pubDate));
 
   return paginate(sortedPosts, {
     pageSize: 3,
@@ -26,9 +24,9 @@ const posts = page?.data;
 
 // page header details
 const pageHeader = {
-  title: "Latest Blog",
-  caption: "Blog",
-  description: "",
+  title: 'Latest Blog',
+  caption: 'Blog',
+  description: '',
 };
 ---
 

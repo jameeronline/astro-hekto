@@ -3,11 +3,11 @@ title: Beginner’s Guide to Interior Designing
 author: Sarah Smith
 description: A beginner-friendly guide to creating a beautiful and functional home interior that reflects your personality and lifestyle.
 cover:
-  image: "../../assets/blog/blog-4.png"
+  image: '../../assets/blog/blog-4.png'
   alt: Cozy living room with stylish interior design
 pubDate: 2025-06-24
-tags: ["interior design", "home decor", "beginner tips", "space planning"]
-categories: ["Home Improvement"]
+tags: ['interior design', 'home decor', 'beginner tips', 'space planning']
+categories: ['Home Improvement']
 featured: true
 ---
 

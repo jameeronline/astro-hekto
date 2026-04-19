@@ -9,12 +9,12 @@ const { price: _price } = Astro.props;
 <span class="currency-details"> </span>
 
 <script>
-  import { configStore } from "@/stores/config";
+  import { configStore } from '@/stores/config';
 
   //Listen changes
   configStore.subscribe(() => {
     const priceInfo = configStore.get().currency;
-    const currencyElement = document.querySelector(".currency-details");
+    const currencyElement = document.querySelector('.currency-details');
     if (currencyElement) {
       currencyElement.innerHTML = priceInfo;
     }

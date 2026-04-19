@@ -3,51 +3,44 @@
 ---
 
 <div class="search-container">
-  <input
-    type="search"
-    id="search-input"
-    placeholder="Search articles..."
-    class="search-input"
-  />
+  <input type="search" id="search-input" placeholder="Search articles..." class="search-input" />
 
   <div id="search-results"></div>
 </div>
 
 <script is:inline>
-  document.addEventListener("DOMContentLoaded", () => {
+  document.addEventListener('DOMContentLoaded', () => {
     async function loadPagefind() {
       if (window.Pagefind) return;
 
       try {
-        window.Pagefind = await import("/pagefind/pagefind.js");
-        const searchInput = document.getElementById("search-input");
-        const searchResults = document.getElementById("search-results");
+        window.Pagefind = await import('/pagefind/pagefind.js');
+        const searchInput = document.getElementById('search-input');
+        const searchResults = document.getElementById('search-results');
 
-        searchInput.addEventListener("input", async (e) => {
+        searchInput.addEventListener('input', async e => {
           const term = e.target.value;
           if (term.length < 2) {
-            searchResults.innerHTML = "";
+            searchResults.innerHTML = '';
             return;
           }
 
           const search = await Pagefind.search(term);
-          const results = await Promise.all(
-            search.results.map((r) => r.data())
-          );
+          const results = await Promise.all(search.results.map(r => r.data()));
 
           searchResults.innerHTML = results
             .map(
-              (result) => `
+              result => `
           <a href="${result.url}" class="search-result">
-            <h3>${result.meta.title || "Untitled"}</h3>
-            ${result.meta.description ? `<p>${result.meta.description}</p>` : ""}
+            <h3>${result.meta.title || 'Untitled'}</h3>
+            ${result.meta.description ? `<p>${result.meta.description}</p>` : ''}
           </a>
         `
             )
-            .join("");
+            .join('');
         });
       } catch (e) {
-        console.error("Error loading Pagefind:", e);
+        console.error('Error loading Pagefind:', e);
       }
     }
 

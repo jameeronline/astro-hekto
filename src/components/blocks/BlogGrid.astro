@@ -1,10 +1,10 @@
 ---
-import type { CollectionEntry } from "astro:content";
-import BlogCard from "@/components/blocks/BlogCard.astro";
-import { slugify } from "@/utils/helper";
+import type { CollectionEntry } from 'astro:content';
+import BlogCard from '@/components/blocks/BlogCard.astro';
+import { slugify } from '@/utils/helper';
 
 interface Props {
-  posts: CollectionEntry<"posts">[];
+  posts: CollectionEntry<'posts'>[];
 }
 
 const { posts } = Astro.props;
@@ -14,8 +14,6 @@ const { posts } = Astro.props;
   posts.length === 0 ? (
     <p>No posts found.</p>
   ) : (
-    posts.map((post) => (
-      <BlogCard post={post.data} url={slugify(post.data.title)} />
-    ))
+    posts.map(post => <BlogCard post={post.data} url={slugify(post.data.title)} />)
   )
 }

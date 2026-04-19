@@ -1,23 +1,23 @@
-import { persistentAtom } from "@nanostores/persistent";
+import { persistentAtom } from '@nanostores/persistent';
 
 export interface ConfigStore {
   currency: string;
   currencySymbol: string;
   lang: string;
-  theme: "light" | "dark";
+  theme: 'light' | 'dark';
   [key: string]: string | number | boolean;
 }
 
 const defaultConfig: ConfigStore = {
-  currency: "USD",
-  currencySymbol: "$",
-  lang: "en",
-  theme: "light",
+  currency: 'USD',
+  currencySymbol: '$',
+  lang: 'en',
+  theme: 'light',
 };
 
 // Create a persistent nanostore
 export const configStore = persistentAtom<ConfigStore>(
-  "configStore", // storage key
+  'configStore', // storage key
   defaultConfig,
   {
     encode: JSON.stringify,
@@ -37,14 +37,11 @@ export function setLang(lang: string) {
   configStore.set({ ...configStore.get(), lang });
 }
 
-export function setTheme(theme: "light" | "dark") {
+export function setTheme(theme: 'light' | 'dark') {
   configStore.set({ ...configStore.get(), theme });
 }
 
 // Generic update function for any config key
-export function updateConfig<K extends keyof ConfigStore>(
-  key: K,
-  value: ConfigStore[K]
-) {
+export function updateConfig<K extends keyof ConfigStore>(key: K, value: ConfigStore[K]) {
   configStore.set({ ...configStore.get(), [key]: value });
 }

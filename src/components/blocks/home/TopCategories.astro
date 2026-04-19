@@ -1,25 +1,25 @@
 ---
-import { getCollection } from "astro:content";
-import type { CollectionEntry } from "astro:content";
-import { Image } from "astro:assets";
+import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+import { Image } from 'astro:assets';
 
-import SectionHeader from "@/components/atoms/SectionHeader.astro";
+import SectionHeader from '@/components/atoms/SectionHeader.astro';
 
 // Fetch product categories from content collection
-const allCategories = await getCollection("productCategories") as CollectionEntry<"productCategories">[];
+const allCategories = (await getCollection(
+  'productCategories'
+)) as CollectionEntry<'productCategories'>[];
 
-const categories = allCategories
-  .sort((a, b) => a.data.name.localeCompare(b.data.name))
-  .slice(0, 6);
+const categories = allCategories.sort((a, b) => a.data.name.localeCompare(b.data.name)).slice(0, 6);
 
 // Placeholder images for categories without images
 const placeholderImages = [
-  "/placeholder.svg?height=200&width=200",
-  "/placeholder.svg?height=200&width=200",
-  "/placeholder.svg?height=200&width=200",
-  "/placeholder.svg?height=200&width=200",
-  "/placeholder.svg?height=200&width=200",
-  "/placeholder.svg?height=200&width=200",
+  '/placeholder.svg?height=200&width=200',
+  '/placeholder.svg?height=200&width=200',
+  '/placeholder.svg?height=200&width=200',
+  '/placeholder.svg?height=200&width=200',
+  '/placeholder.svg?height=200&width=200',
+  '/placeholder.svg?height=200&width=200',
 ];
 ---
 
@@ -37,15 +37,14 @@ const placeholderImages = [
           {
             categories.map((category, idx) => (
               <li>
-                <a
-                  href={`/shop/${category.data.slug}`}
-                  class="overflow-hidden group"
-                >
+                <a href={`/shop/${category.data.slug}`} class="overflow-hidden group">
                   <figure class="rounded-lg lg:rounded-full overflow-hidden aspect-square bg-slate-100 group-hover:bg-slate-200 relative flex items-center justify-center">
                     <Image
-                      src={category.data.image.startsWith('/') 
-                        ? category.data.image 
-                        : placeholderImages[idx % placeholderImages.length]}
+                      src={
+                        category.data.image.startsWith('/')
+                          ? category.data.image
+                          : placeholderImages[idx % placeholderImages.length]
+                      }
                       alt={`${String(category.data.name)} category image`}
                       width={200}
                       height={200}
@@ -64,10 +63,7 @@ const placeholderImages = [
         </ul>
       </div>
       <!-- Indicators -->
-      <div
-        class="flex items-center justify-center w-full -mt-6"
-        data-glide-el="controls[nav]"
-      >
+      <div class="flex items-center justify-center w-full -mt-6" data-glide-el="controls[nav]">
         {
           categories.map((_, idx) => (
             <button
@@ -87,14 +83,14 @@ const placeholderImages = [
 <!-- END - Top Categories -->
 
 <script>
-  import Glide from "@glidejs/glide";
+  import Glide from '@glidejs/glide';
 
   function initSlider() {
-    const glideElement = document.querySelector("#glide-categories");
+    const glideElement = document.querySelector('#glide-categories');
     if (glideElement) {
       const glideInstance = new Glide(glideElement, {
-        type: "carousel",
-        focusAt: "center",
+        type: 'carousel',
+        focusAt: 'center',
         perView: 5,
         autoplay: 3000,
         hoverpause: true,
@@ -102,7 +98,7 @@ const placeholderImages = [
         gap: 24,
         classNames: {
           nav: {
-            active: "[&>*]:bg-primary-700",
+            active: '[&>*]:bg-primary-700',
           },
         },
         breakpoints: {
@@ -118,5 +114,5 @@ const placeholderImages = [
     }
   }
 
-  document.addEventListener("astro:page-load", initSlider);
+  document.addEventListener('astro:page-load', initSlider);
 </script>

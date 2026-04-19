@@ -1,138 +1,132 @@
 ---
-import BaseLayout from "@/layouts/BaseLayout.astro";
-import { Image } from "astro:assets";
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { Image } from 'astro:assets';
 
-import { Button } from "@/starwind/button";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/starwind/select";
+import { Button } from '@/starwind/button';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/starwind/select';
 
-import { Grid, List, Heart, ShoppingCart, Search } from "@lucide/astro";
+import { Grid, List, Heart, ShoppingCart, Search } from '@lucide/astro';
 
-import PageHeader from "@/components/blocks/PageHeader.astro";
+import PageHeader from '@/components/blocks/PageHeader.astro';
 
-import Product1 from "@/assets/products/1.png";
-import Product2 from "@/assets/products/2.png";
-import Product3 from "@/assets/products/3.png";
-import Product4 from "@/assets/products/4.png";
-import Product5 from "@/assets/products/5.png";
-import Product6 from "@/assets/products/6.png";
-import Product7 from "@/assets/products/7.png";
-import Product8 from "@/assets/products/8.png";
-import Product9 from "@/assets/products/9.png";
-import Product10 from "@/assets/products/10.png";
-import Product11 from "@/assets/products/11.png";
-import Product12 from "@/assets/products/12.png";
-import Partners from "@/components/blocks/Partners.astro";
+import Product1 from '@/assets/products/1.png';
+import Product2 from '@/assets/products/2.png';
+import Product3 from '@/assets/products/3.png';
+import Product4 from '@/assets/products/4.png';
+import Product5 from '@/assets/products/5.png';
+import Product6 from '@/assets/products/6.png';
+import Product7 from '@/assets/products/7.png';
+import Product8 from '@/assets/products/8.png';
+import Product9 from '@/assets/products/9.png';
+import Product10 from '@/assets/products/10.png';
+import Product11 from '@/assets/products/11.png';
+import Product12 from '@/assets/products/12.png';
+import Partners from '@/components/blocks/Partners.astro';
 
 const products = [
   {
     id: 1,
-    name: "Vel elit euismod",
+    name: 'Vel elit euismod',
     image: Product1,
-    originalPrice: "$26.00",
-    salePrice: "$42.00",
+    originalPrice: '$26.00',
+    salePrice: '$42.00',
     rating: 5,
   },
   {
     id: 2,
-    name: "Ultricies condimentum imperdiet",
+    name: 'Ultricies condimentum imperdiet',
     image: Product2,
-    originalPrice: "$26.00",
-    salePrice: "$42.00",
+    originalPrice: '$26.00',
+    salePrice: '$42.00',
     rating: 5,
   },
   {
     id: 3,
-    name: "Vitae suspendisse sed",
+    name: 'Vitae suspendisse sed',
     image: Product3,
-    originalPrice: "$26.00",
-    salePrice: "$42.00",
+    originalPrice: '$26.00',
+    salePrice: '$42.00',
     rating: 5,
   },
   {
     id: 4,
-    name: "Sed at fermentum",
+    name: 'Sed at fermentum',
     image: Product4,
-    originalPrice: "$26.00",
-    salePrice: "$42.00",
+    originalPrice: '$26.00',
+    salePrice: '$42.00',
     rating: 5,
   },
   {
     id: 5,
-    name: "Fusce pellentesque at",
+    name: 'Fusce pellentesque at',
     image: Product5,
-    originalPrice: "$26.00",
-    salePrice: "$42.00",
+    originalPrice: '$26.00',
+    salePrice: '$42.00',
     rating: 5,
   },
   {
     id: 6,
-    name: "Vestibulum magna laoreet",
+    name: 'Vestibulum magna laoreet',
     image: Product6,
-    originalPrice: "$26.00",
-    salePrice: "$42.00",
+    originalPrice: '$26.00',
+    salePrice: '$42.00',
     rating: 5,
   },
   {
     id: 7,
-    name: "Sollicitudin amet orci",
+    name: 'Sollicitudin amet orci',
     image: Product7,
-    originalPrice: "$26.00",
-    salePrice: "$42.00",
+    originalPrice: '$26.00',
+    salePrice: '$42.00',
     rating: 5,
   },
   {
     id: 8,
-    name: "Ultrices mauris sit",
+    name: 'Ultrices mauris sit',
     image: Product8,
-    originalPrice: "$26.00",
-    salePrice: "$42.00",
+    originalPrice: '$26.00',
+    salePrice: '$42.00',
     rating: 5,
   },
   {
     id: 9,
-    name: "Pellentesque condimentum ac",
+    name: 'Pellentesque condimentum ac',
     image: Product9,
-    originalPrice: "$26.00",
-    salePrice: "$42.00",
+    originalPrice: '$26.00',
+    salePrice: '$42.00',
     rating: 5,
   },
   {
     id: 10,
-    name: "Cras scelerisque velit",
+    name: 'Cras scelerisque velit',
     image: Product10,
-    originalPrice: "$26.00",
-    salePrice: "$42.00",
+    originalPrice: '$26.00',
+    salePrice: '$42.00',
     rating: 5,
   },
   {
     id: 11,
-    name: "Lectus vulputate faucibus",
+    name: 'Lectus vulputate faucibus',
     image: Product11,
-    originalPrice: "$26.00",
-    salePrice: "$42.00",
+    originalPrice: '$26.00',
+    salePrice: '$42.00',
     rating: 5,
   },
   {
     id: 12,
-    name: "Purus risus, ut",
+    name: 'Purus risus, ut',
     image: Product12,
-    originalPrice: "$26.00",
-    salePrice: "$42.00",
+    originalPrice: '$26.00',
+    salePrice: '$42.00',
     rating: 5,
   },
 ];
 
 // page header details
 const pageHeader = {
-  title: "Products Listing Grid Layout",
-  caption: "Products Listing",
-  description: "",
+  title: 'Products Listing Grid Layout',
+  caption: 'Products Listing',
+  description: '',
 };
 ---
 
@@ -147,9 +141,7 @@ const pageHeader = {
           <h1 class="text-2xl font-semibold text-tertiary-900 mb-1">
             Ecommerce Accesories & Fashion Item
           </h1>
-          <p class="text-sm text-gray-500">
-            About 9,620 results (0.62 seconds)
-          </p>
+          <p class="text-sm text-gray-500">About 9,620 results (0.62 seconds)</p>
         </div>
 
         <div class="flex items-center space-x-6">
@@ -192,11 +184,7 @@ const pageHeader = {
               >
                 <Grid class="h-4 w-4" />
               </Button>
-              <Button
-                variant="ghost"
-                size="sm"
-                class="h-10 w-10 p-0 hover:bg-gray-100"
-              >
+              <Button variant="ghost" size="sm" class="h-10 w-10 p-0 hover:bg-gray-100">
                 <List class="h-4 w-4" />
               </Button>
             </div>
@@ -210,7 +198,7 @@ const pageHeader = {
         data-scroll-animate
       >
         {
-          products.map((product) => (
+          products.map(product => (
             <div
               key={product.id}
               class="col-span-4 lg:col-span-3 group rounded-lg overflow-hidden"
@@ -220,7 +208,7 @@ const pageHeader = {
               <div class="relative bg-accent-50/50 hover:bg-[#EBF4F3] aspect-square flex items-center justify-center transition-all duration-300">
                 {/* Product Image */}
                 <Image
-                  src={product.image || "/placeholder.svg"}
+                  src={product.image || '/placeholder.svg'}
                   alt={product.name}
                   width={180}
                   height={180}
@@ -259,18 +247,12 @@ const pageHeader = {
                 <h6 class="mb-2">{product.name}</h6>
 
                 {/* Rating */}
-                <div class="flex justify-center mb-2">
-                  {/* {renderStars(product.rating)} */}
-                </div>
+                <div class="flex justify-center mb-2">{/* {renderStars(product.rating)} */}</div>
 
                 {/* Pricing */}
                 <div class="flex items-center justify-center space-x-2">
-                  <span class="text-tertiary-900 font-medium text-sm">
-                    {product.salePrice}
-                  </span>
-                  <span class="text-primary-500 line-through text-sm">
-                    {product.originalPrice}
-                  </span>
+                  <span class="text-tertiary-900 font-medium text-sm">{product.salePrice}</span>
+                  <span class="text-primary-500 line-through text-sm">{product.originalPrice}</span>
                 </div>
               </div>
             </div>

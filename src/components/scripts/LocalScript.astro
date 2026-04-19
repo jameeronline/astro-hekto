@@ -1,43 +1,41 @@
 <!-- Scroll animations -->
 <script>
   const initializeObserver = () => {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
         if (entry.isIntersecting) {
-          entry.target.classList.add("scroll-animated");
+          entry.target.classList.add('scroll-animated');
         }
       });
     });
 
-    const elements = document.querySelectorAll(
-      ".scroll-animation [data-scroll-animate]"
-    );
+    const elements = document.querySelectorAll('.scroll-animation [data-scroll-animate]');
 
-    elements.forEach((element) => {
+    elements.forEach(element => {
       observer.observe(element);
     });
   };
 
-  document.addEventListener("DOMContentLoaded", () => {
+  document.addEventListener('DOMContentLoaded', () => {
     initializeObserver();
   });
 
-  document.addEventListener("astro:page-loaded", () => {
+  document.addEventListener('astro:page-loaded', () => {
     initializeObserver();
   });
 
-  document.addEventListener("astro:after-swap", () => {
+  document.addEventListener('astro:after-swap', () => {
     initializeObserver();
   });
 
   //currency update
-  import { configStore } from "@/stores/config";
+  import { configStore } from '@/stores/config';
 
   function updateConfigDetails(config) {
-    const currencyElem = document.querySelectorAll(".currency-symbol");
+    const currencyElem = document.querySelectorAll('.currency-symbol');
 
     if (config.currencySymbol && currencyElem.length) {
-      currencyElem.forEach((el) => {
+      currencyElem.forEach(el => {
         el.innerHTML = config.currencySymbol;
       });
     }
@@ -49,18 +47,18 @@
   });
 
   // Run once after Astro page rendered
-  if (typeof window !== "undefined") {
-    document.addEventListener("astro:page-load", () => {
+  if (typeof window !== 'undefined') {
+    document.addEventListener('astro:page-load', () => {
       updateConfigDetails(configStore.get());
     });
   }
 
   // Initial run on DOMContentLoaded
-  document.addEventListener("DOMContentLoaded", () => {
+  document.addEventListener('DOMContentLoaded', () => {
     updateConfigDetails(configStore.get());
   });
 
-  document.addEventListener("astro:after-swap", () => {
+  document.addEventListener('astro:after-swap', () => {
     updateConfigDetails(configStore.get());
   });
 </script>

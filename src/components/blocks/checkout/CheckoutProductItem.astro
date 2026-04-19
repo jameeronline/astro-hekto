@@ -22,7 +22,7 @@ const { item } = Astro.props;
   <div class="flex items-center space-x-4">
     <div class="relative flex-none">
       <img
-        src={item.image || "/placeholder.svg?height=80&width=80"}
+        src={item.image || '/placeholder.svg?height=80&width=80'}
         alt={`${item.name} - Product image`}
         class="size-20 flex-none object-cover rounded-md bg-gray-200"
         width="80"
@@ -32,9 +32,7 @@ const { item } = Astro.props;
       />
     </div>
     <div>
-      <h5
-        class="text-base font-medium text-tertiary-900 line-clamp-2 md:line-clamp-none"
-      >
+      <h5 class="text-base font-medium text-tertiary-900 line-clamp-2 md:line-clamp-none">
         {item.name}
       </h5>
       <p class="text-sm text-gray-500">Color: {item.color}</p>

@@ -1,38 +1,32 @@
 ---
-import { getCollection } from "astro:content";
-import type { GetStaticPaths } from "astro";
+import { getCollection } from 'astro:content';
+import type { GetStaticPaths } from 'astro';
 
-import BaseLayout from "@/layouts/BaseLayout.astro";
-import PageHeader from "@/components/blocks/PageHeader.astro";
-import Paginate from "@/components/Paginate.astro";
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHeader from '@/components/blocks/PageHeader.astro';
+import Paginate from '@/components/Paginate.astro';
 
-import { Button } from "@/starwind/button";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/starwind/select";
+import { Button } from '@/starwind/button';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/starwind/select';
 
-import { Grid, List } from "@lucide/astro";
+import { Grid, List } from '@lucide/astro';
 
 const params = new URLSearchParams(Astro.url.searchParams);
 
 function withLayoutParam(url: string | undefined | null) {
-  if (!url) return "#";
-  const [base] = url.split("?");
-  if (params.has("layout")) {
+  if (!url) return '#';
+  const [base] = url.split('?');
+  if (params.has('layout')) {
     return `${base}?${params.toString()}`;
   }
   return base;
 }
 
-import Partners from "@/components/blocks/Partners.astro";
-import ProductCard from "@/components/blocks/shop/ProductCard.astro";
+import Partners from '@/components/blocks/Partners.astro';
+import ProductCard from '@/components/blocks/shop/ProductCard.astro';
 
 export const getStaticPaths: GetStaticPaths = async ({ paginate }) => {
-  const furnitureCollection = await getCollection("furnitureCollections");
+  const furnitureCollection = await getCollection('furnitureCollections');
 
   return paginate(furnitureCollection, {
     pageSize: 12,
@@ -44,13 +38,13 @@ const { page } = Astro.props;
 const furnitureItems = page?.data;
 
 //url parameters
-const layout = Astro.url?.searchParams.get("layout") ?? "grid";
+const layout = Astro.url?.searchParams.get('layout') ?? 'grid';
 
 // page header details
 const pageHeader = {
-  title: "Shop Grid Default",
-  caption: "",
-  description: "",
+  title: 'Shop Grid Default',
+  caption: '',
+  description: '',
 };
 ---
 
@@ -109,10 +103,9 @@ const pageHeader = {
               variant="ghost"
               size="sm"
               class:list={{
-                "h-10 w-10 p-0": true,
-                "bg-tertiary-500 text-white hover:bg-tertiary-600":
-                  layout === "grid",
-                "hover:bg-gray-100": layout !== "grid",
+                'h-10 w-10 p-0': true,
+                'bg-tertiary-500 text-white hover:bg-tertiary-600': layout === 'grid',
+                'hover:bg-gray-100': layout !== 'grid',
               }}
             >
               <Grid class="h-4 w-4" />
@@ -122,10 +115,9 @@ const pageHeader = {
               variant="ghost"
               size="sm"
               class:list={{
-                "h-10 w-10 p-0": true,
-                "bg-tertiary-500 text-white hover:bg-tertiary-600":
-                  layout === "list",
-                "hover:bg-gray-100": layout !== "list",
+                'h-10 w-10 p-0': true,
+                'bg-tertiary-500 text-white hover:bg-tertiary-600': layout === 'list',
+                'hover:bg-gray-100': layout !== 'list',
               }}
             >
               <List class="h-4 w-4" />

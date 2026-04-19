@@ -1,34 +1,34 @@
 ---
 //icon import
-import { Icon } from "astro-icon/components";
+import { Icon } from 'astro-icon/components';
 
 //components import
-import SectionHeader from "@/components/atoms/SectionHeader.astro";
+import SectionHeader from '@/components/atoms/SectionHeader.astro';
 
 const offers = [
   {
-    icon: "free-delivery",
-    title: "Free Delivery",
+    icon: 'free-delivery',
+    title: 'Free Delivery',
     description:
-      "Enjoy free delivery on all your orders, making shopping more convenient and affordable.",
+      'Enjoy free delivery on all your orders, making shopping more convenient and affordable.',
   },
   {
-    icon: "cashback",
-    title: "Return Policy",
+    icon: 'cashback',
+    title: 'Return Policy',
     description:
-      "Shop with confidence thanks to our hassle-free return policy, ensuring your satisfaction with every purchase.",
+      'Shop with confidence thanks to our hassle-free return policy, ensuring your satisfaction with every purchase.',
   },
   {
-    icon: "premium-quality",
-    title: "Premium Quality",
+    icon: 'premium-quality',
+    title: 'Premium Quality',
     description:
-      "Experience top-notch products crafted with premium materials and attention to detail for lasting quality.",
+      'Experience top-notch products crafted with premium materials and attention to detail for lasting quality.',
   },
   {
-    icon: "24-hours-support",
-    title: "24/7 Support",
+    icon: '24-hours-support',
+    title: '24/7 Support',
     description:
-      "Get assistance whenever you need it with our dedicated 24/7 customer support team, ready to help around the clock.",
+      'Get assistance whenever you need it with our dedicated 24/7 customer support team, ready to help around the clock.',
   },
 ];
 ---
@@ -37,28 +37,17 @@ const offers = [
   <div class="container--default">
     <SectionHeader>What Current Offer!</SectionHeader>
 
-    <div
-      class="grid grid-cols-4 gap-6 md:grid-cols-8 lg:grid-cols-12"
-      data-scroll-animate
-    >
+    <div class="grid grid-cols-4 gap-6 md:grid-cols-8 lg:grid-cols-12" data-scroll-animate>
       {
-        offers.map((offer) => (
-          <div
-            class="col-span-4 md:col-span-4 lg:col-span-3"
-            key={offer.title}
-            data-scroll-animate
-          >
+        offers.map(offer => (
+          <div class="col-span-4 md:col-span-4 lg:col-span-3" key={offer.title} data-scroll-animate>
             <div class="overflow-hidden text-center bg-white rounded shadow-[0px_8px_40px_0px_rgba(0,0,0,0.05)] text-slate-500">
               <figure class="px-6 pt-12 pb-0">
                 <Icon name={offer.icon} class="mx-auto size-10" />
               </figure>
               <div class="p-6">
-                <h3 class="text-center text-tertiary-950 text-2xl mb-5 font-bold">
-                  {offer.title}
-                </h3>
-                <p class="leading-7 text-[#72718F] md:line-clamp-3">
-                  {offer.description}
-                </p>
+                <h3 class="text-center text-tertiary-950 text-2xl mb-5 font-bold">{offer.title}</h3>
+                <p class="leading-7 text-[#72718F] md:line-clamp-3">{offer.description}</p>
               </div>
             </div>
           </div>

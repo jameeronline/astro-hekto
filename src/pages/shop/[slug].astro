@@ -1,32 +1,32 @@
 ---
 //astro imports
-import { getCollection, getEntry, getEntries, render } from "astro:content";
+import { getCollection, getEntry, getEntries, render } from 'astro:content';
 
-import { Image } from "astro:assets";
+import { Image } from 'astro:assets';
 
-import BaseLayout from "@/layouts/BaseLayout.astro";
+import BaseLayout from '@/layouts/BaseLayout.astro';
 
 //blocks import
-import PageHeader from "@/components/blocks/PageHeader.astro";
-import Partners from "@/components/blocks/Partners.astro";
-import RelatedProduct from "@/components/blocks/product-detail/RelatedProduct.astro";
+import PageHeader from '@/components/blocks/PageHeader.astro';
+import Partners from '@/components/blocks/Partners.astro';
+import RelatedProduct from '@/components/blocks/product-detail/RelatedProduct.astro';
 
 //components import
-import { Button } from "@/starwind/button";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/starwind/tabs";
+import { Button } from '@/starwind/button';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/starwind/tabs';
 
 //icons import
-import { Heart, Star, Facebook, Twitter, Instagram } from "@lucide/astro";
+import { Heart, Star, Facebook, Twitter, Instagram } from '@lucide/astro';
 
 //utility import
-import { slugify } from "@/utils/helper";
-import { date } from "astro:schema";
+import { slugify } from '@/utils/helper';
+import { date } from 'astro:schema';
 
 // Generate static paths for each product based on its slug
 export async function getStaticPaths() {
-  const furnitureCollection = await getCollection("furnitureCollections");
+  const furnitureCollection = await getCollection('furnitureCollections');
 
-  return furnitureCollection.map((product) => ({
+  return furnitureCollection.map(product => ({
     params: {
       slug: slugify(product.data.title),
     },
@@ -98,9 +98,9 @@ const { Content, headings } = await render(product);
 
 // page header details
 const pageHeader = {
-  title: "Products Details Layout",
-  caption: "",
-  description: "",
+  title: 'Products Details Layout',
+  caption: '',
+  description: '',
 };
 
 // Remove the renderStars function from the script section.
@@ -114,9 +114,7 @@ const pageHeader = {
     <div class="bg-white">
       <div class="container--default">
         {/* Product Detail Section */}
-        <div
-          class="bg-white rounded-lg p-6 shadow-[0px_0px_32px_0px_rgba(0,0,0,0.08)]"
-        >
+        <div class="bg-white rounded-lg p-6 shadow-[0px_0px_32px_0px_rgba(0,0,0,0.08)]">
           <div class="grid lg:grid-cols-12 gap-8">
             {/* Thumbnail Images */}
             <div class="lg:col-span-2 space-y-4">
@@ -130,7 +128,7 @@ const pageHeader = {
                     key={index}
                   >
                     <Image
-                      src={data.featuredImage || "/placeholder.svg"}
+                      src={data.featuredImage || '/placeholder.svg'}
                       alt={`Thumbnail ${index + 1}`}
                       class="w-full h-full object-contain scale-75 hover:scale-100 transition-transform duration-200"
                       width={80}
@@ -150,8 +148,8 @@ const pageHeader = {
                 class="w-full aspect-square bg-gray-100 rounded-lg p-8 flex items-center justify-center"
               >
                 <Image
-                  src={data.featuredImage || "/placeholder.svg"}
-                  alt={data.title || "Product Image"}
+                  src={data.featuredImage || '/placeholder.svg'}
+                  alt={data.title || 'Product Image'}
                   class="w-full h-full object-contain"
                   width={600}
                   height={600}
@@ -166,7 +164,7 @@ const pageHeader = {
             <div class="lg:col-span-5 space-y-6 lg:py-10">
               <div>
                 <h1 class="text-3xl font-semibold text-tertiary-900 mb-2">
-                  {data.title || "Product Name"}
+                  {data.title || 'Product Name'}
                 </h1>
                 <div class="flex items-center space-x-3 mb-6">
                   <div class="flex items-center space-x-2 mb-4">
@@ -177,30 +175,21 @@ const pageHeader = {
                   </div>
                 </div>
                 <div class="flex items-center space-x-3 mb-6">
-                  <span class="text-2xl font-heading text-tertiary-900"
-                    >${data.price}</span
-                  >
-                  <span class="text-sm text-primary-500 line-through"
-                    >${data.price}</span
-                  >
+                  <span class="text-2xl font-heading text-tertiary-900">${data.price}</span>
+                  <span class="text-sm text-primary-500 line-through">${data.price}</span>
                 </div>
               </div>
 
               <div class="space-y-6">
                 <div>
-                  <span
-                    class="text-lg font-heading font-semibold text-tertiary-900"
-                    >Color</span
-                  >
+                  <span class="text-lg font-heading font-semibold text-tertiary-900">Color</span>
                   <p class="text-gray-600 leading-relaxed">
                     {data.color}
                   </p>
                 </div>
 
                 <div class="flex items-center space-x-4">
-                  <Button class="btn--primary" id="addToCart"
-                    >Add To Cart</Button
-                  >
+                  <Button class="btn--primary" id="addToCart">Add To Cart</Button>
                   <Button variant="outline" size="icon" class="px-4">
                     <Heart class="h-6 w-6 text-gray-600" />
                   </Button>
@@ -208,14 +197,13 @@ const pageHeader = {
 
                 <div class="space-y-4">
                   <div>
-                    <span
-                      class="text-lg font-heading font-semibold text-tertiary-900"
+                    <span class="text-lg font-heading font-semibold text-tertiary-900"
                       >Categories</span
                     >
                     <ul class="flex flex-wrap gap-2 mt-2">
                       {
                         categoryDetails && categoryDetails.length > 0 ? (
-                          categoryDetails.map((category) => (
+                          categoryDetails.map(category => (
                             <li key={category.id}>
                               <a
                                 href={`/shop/category/${category.id}`}
@@ -232,14 +220,11 @@ const pageHeader = {
                     </ul>
                   </div>
                   <div>
-                    <span
-                      class="text-lg font-heading font-semibold text-tertiary-900"
-                      >Tags</span
-                    >
+                    <span class="text-lg font-heading font-semibold text-tertiary-900">Tags</span>
                     <ul class="flex flex-wrap gap-2 mt-2">
                       {
                         tags && tags.length > 0 ? (
-                          tags.map((tag) => (
+                          tags.map(tag => (
                             <li key={tag}>
                               <a
                                 href={`/shop/tag/${slugify(tag)}`}
@@ -256,10 +241,7 @@ const pageHeader = {
                     </ul>
                   </div>
                   <div class="flex items-center space-x-3">
-                    <span
-                      class="text-lg font-heading font-semibold text-tertiary-900"
-                      >Share</span
-                    >
+                    <span class="text-lg font-heading font-semibold text-tertiary-900">Share</span>
                     <div class="flex space-x-2">
                       <Button variant="ghost" size="sm" class="p-1">
                         <Facebook class="h-4 w-4 text-tertiary-600" />
@@ -332,26 +314,21 @@ const pageHeader = {
               class="prose prose-custom lg:prose-lg prose-table:border-0 prose-tr:border-0 prose-th:border-0 prose-td:border-0"
             >
               {
-                data.specifications &&
-                Object.keys(data.specifications).length > 0 ? (
+                data.specifications && Object.keys(data.specifications).length > 0 ? (
                   <table class="min-w-full divide-y divide-gray-200 text-sm">
                     <tbody>
-                      {Object.entries(data.specifications).map(
-                        ([key, value]) => (
-                          <tr>
-                            <td class="py-2 pr-4 font-medium text-tertiary-900 capitalize">
-                              {key.replace(/_/g, " ")}
-                            </td>
-                            <td class="py-2 text-gray-700">{value}</td>
-                          </tr>
-                        )
-                      )}
+                      {Object.entries(data.specifications).map(([key, value]) => (
+                        <tr>
+                          <td class="py-2 pr-4 font-medium text-tertiary-900 capitalize">
+                            {key.replace(/_/g, ' ')}
+                          </td>
+                          <td class="py-2 text-gray-700">{value}</td>
+                        </tr>
+                      ))}
                     </tbody>
                   </table>
                 ) : (
-                  <p class="text-gray-600">
-                    No additional specification details available.
-                  </p>
+                  <p class="text-gray-600">No additional specification details available.</p>
                 )
               }
             </div>
@@ -362,25 +339,20 @@ const pageHeader = {
                     {data.reviews.map((review, idx) => (
                       <div
                         key={idx}
-                        class={`pb-6${idx !== data.reviews.length - 1 ? " border-b" : ""}`}
+                        class={`pb-6${idx !== data.reviews.length - 1 ? ' border-b' : ''}`}
                       >
                         <div class="flex items-center mb-2">
                           <span class="font-semibold text-tertiary-900 mr-2">
-                            {review.reviewer || "Anonymous"}
+                            {review.reviewer || 'Anonymous'}
                           </span>
-                          <span class="text-xs text-gray-500">
-                            {review.date || ""}
-                          </span>
+                          <span class="text-xs text-gray-500">{review.date || ''}</span>
                         </div>
                         <div class="flex items-center mb-2">
                           {[...Array(review.rating || 0)].map((_, i) => (
                             <Star class="w-4 h-4 text-yellow-400" key={i} />
                           ))}
                           {[...Array(5 - (review.rating || 0))].map((_, i) => (
-                            <Star
-                              class="w-4 h-4 text-gray-300"
-                              key={i + (review.rating || 0)}
-                            />
+                            <Star class="w-4 h-4 text-gray-300" key={i + (review.rating || 0)} />
                           ))}
                         </div>
                         <p class="text-gray-700">{review.text}</p>
@@ -406,9 +378,7 @@ const pageHeader = {
                     />
                   </div>
                 ) : (
-                  <p class="text-gray-600">
-                    Product videos would be embedded here.
-                  </p>
+                  <p class="text-gray-600">Product videos would be embedded here.</p>
                 )
               }
             </div>
@@ -431,7 +401,7 @@ const pageHeader = {
 </BaseLayout>
 
 <script>
-  import { addToCart } from "@/stores/cart";
+  import { addToCart } from '@/stores/cart';
   // import { Fancybox } from "@fancyapps/ui/dist/fancybox/";
   // import { Carousel } from "@fancyapps/ui/dist/carousel/";
   // import { Thumbs } from "@fancyapps/ui/dist/carousel/carousel.thumbs.js";
@@ -454,5 +424,5 @@ const pageHeader = {
   }
 
   // Add an event listener to the button
-  document.getElementById("addToCart")?.addEventListener("click", updateCart);
+  document.getElementById('addToCart')?.addEventListener('click', updateCart);
 </script>

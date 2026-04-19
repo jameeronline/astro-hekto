@@ -1,46 +1,46 @@
 ---
 export const prerender = false; // Not needed in 'server' mode
 
-import BaseLayout from "@/layouts/BaseLayout.astro";
+import BaseLayout from '@/layouts/BaseLayout.astro';
 
 //components import
-import PageHeader from "@/components/blocks/PageHeader.astro";
-import Partners from "@/components/blocks/Partners.astro";
+import PageHeader from '@/components/blocks/PageHeader.astro';
+import Partners from '@/components/blocks/Partners.astro';
 
 //blocks import
-import ContactForm from "@/components/blocks/contact/ContactForm.astro";
+import ContactForm from '@/components/blocks/contact/ContactForm.astro';
 
 //react contact form
-import ReactContactForm from "@/components/blocks/ReactContactForm";
+import ReactContactForm from '@/components/blocks/ReactContactForm';
 
 const faqs = [
   {
-    question: "How can I get in touch with your support team?",
+    question: 'How can I get in touch with your support team?',
     answer:
-      "You can reach our support team by filling out the contact form on this page or by emailing support@hekto.com. We aim to respond within 24 hours.",
+      'You can reach our support team by filling out the contact form on this page or by emailing support@hekto.com. We aim to respond within 24 hours.',
   },
   {
-    question: "What are your customer service hours?",
+    question: 'What are your customer service hours?',
     answer:
-      "Our customer service team is available Monday to Friday, 9:00 AM to 6:00 PM (GMT). We are closed on weekends and public holidays.",
+      'Our customer service team is available Monday to Friday, 9:00 AM to 6:00 PM (GMT). We are closed on weekends and public holidays.',
   },
   {
-    question: "Where is your company located?",
+    question: 'Where is your company located?',
     answer:
-      "Our headquarters are located at 123 Market Street, San Francisco, CA 94103, USA. We also have offices in London and Berlin.",
+      'Our headquarters are located at 123 Market Street, San Francisco, CA 94103, USA. We also have offices in London and Berlin.',
   },
   {
-    question: "Can I track my order after purchase?",
+    question: 'Can I track my order after purchase?',
     answer:
-      "Yes, once your order is shipped, you will receive a tracking number via email. You can use this number to track your order status on our website.",
+      'Yes, once your order is shipped, you will receive a tracking number via email. You can use this number to track your order status on our website.',
   },
 ];
 
 // page header details
 const pageHeader = {
-  title: "Contact Us",
-  caption: "",
-  description: "",
+  title: 'Contact Us',
+  caption: '',
+  description: '',
 };
 ---
 
@@ -48,19 +48,14 @@ const pageHeader = {
   <PageHeader headerInfo={pageHeader} slot="pageHeader" />
 
   <div class="container--default" data-scroll-animate>
-    <div
-      class="grid grid-cols-4 gap-4 md:grid-cols-8 md:gap-16 lg:grid-cols-12"
-    >
+    <div class="grid grid-cols-4 gap-4 md:grid-cols-8 md:gap-16 lg:grid-cols-12">
       {/* General Information Section */}
-      <div
-        class="space-y-8 col-span-4 md:col-span-8 lg:col-span-6"
-        data-scroll-animate
-      >
+      <div class="space-y-8 col-span-4 md:col-span-8 lg:col-span-6" data-scroll-animate>
         <h3 class="mb-8" data-scroll-animate>General Information</h3>
 
         <div class="space-y-12" data-scroll-animate>
           {
-            faqs.map((faq) => (
+            faqs.map(faq => (
               <div>
                 <h6 class="text-lg font-semibold mb-3">{faq.question}</h6>
                 <p class="leading-relaxed">{faq.answer}</p>

@@ -1,4 +1,4 @@
-declare module "@glidejs/glide" {
+declare module '@glidejs/glide' {
   export default class Glide {
     constructor(element: string | Element, options?: Glide.Options);
     mount(extensions?: Glide.Extensions): this;

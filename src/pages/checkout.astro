@@ -1,51 +1,51 @@
 ---
-import BaseLayout from "@/layouts/BaseLayout.astro";
+import BaseLayout from '@/layouts/BaseLayout.astro';
 
-import { Button } from "@/starwind/button";
-import PageHeader from "@/components/blocks/PageHeader.astro";
-import CheckoutForm from "@/components/blocks/checkout/CheckoutForm.astro";
-import CheckoutProductItem from "@/components/blocks/checkout/CheckoutProductItem.astro";
+import { Button } from '@/starwind/button';
+import PageHeader from '@/components/blocks/PageHeader.astro';
+import CheckoutForm from '@/components/blocks/checkout/CheckoutForm.astro';
+import CheckoutProductItem from '@/components/blocks/checkout/CheckoutProductItem.astro';
 
 const orderItems = [
   {
     id: 1,
-    name: "Classic Leather Backpack",
-    color: "Tan",
-    size: "M",
-    price: "89.00",
-    image: "./products/product-thumbnail-1.png",
+    name: 'Classic Leather Backpack',
+    color: 'Tan',
+    size: 'M',
+    price: '89.00',
+    image: './products/product-thumbnail-1.png',
   },
   {
     id: 2,
-    name: "Cotton Crewneck T-Shirt",
-    color: "White",
-    size: "L",
-    price: "19.99",
-    image: "./products/product-thumbnail-2.png",
+    name: 'Cotton Crewneck T-Shirt',
+    color: 'White',
+    size: 'L',
+    price: '19.99',
+    image: './products/product-thumbnail-2.png',
   },
   {
     id: 3,
-    name: "Slim Fit Jeans",
-    color: "Indigo",
-    size: "32",
-    price: "54.50",
-    image: "./products/product-thumbnail-3.png",
+    name: 'Slim Fit Jeans',
+    color: 'Indigo',
+    size: '32',
+    price: '54.50',
+    image: './products/product-thumbnail-3.png',
   },
   {
     id: 4,
-    name: "Wool Blend Overcoat",
-    color: "Charcoal",
-    size: "XL",
-    price: "120.00",
-    image: "./products/product-thumbnail-4.png",
+    name: 'Wool Blend Overcoat',
+    color: 'Charcoal',
+    size: 'XL',
+    price: '120.00',
+    image: './products/product-thumbnail-4.png',
   },
   {
     id: 5,
-    name: "Running Sneakers",
-    color: "Blue/White",
-    size: "10",
-    price: "59.00",
-    image: "./products/product-thumbnail-5.png",
+    name: 'Running Sneakers',
+    color: 'Blue/White',
+    size: '10',
+    price: '59.00',
+    image: './products/product-thumbnail-5.png',
   },
 ];
 ---
@@ -53,9 +53,9 @@ const orderItems = [
 <BaseLayout title="Checkout">
   <PageHeader
     headerInfo={{
-      title: "Checkout",
-      caption: "Complete your order",
-      description: "Fill in your details to proceed with the checkout.",
+      title: 'Checkout',
+      caption: 'Complete your order',
+      description: 'Fill in your details to proceed with the checkout.',
     }}
     slot="pageHeader"
   />
@@ -68,7 +68,7 @@ const orderItems = [
       <div class="space-y-6">
         {/* Order Items */}
         <div class="space-y-0">
-          {orderItems.map((item) => <CheckoutProductItem item={item} />)}
+          {orderItems.map(item => <CheckoutProductItem item={item} />)}
         </div>
 
         {/* Order Totals */}
@@ -86,9 +86,7 @@ const orderItems = [
         {/* Shipping Notice */}
         <div class="flex items-center space-x-2 py-3">
           <div class="w-2 h-2 bg-primary-500 rounded-full"></div>
-          <span class="text-sm text-gray-600"
-            >Shipping & taxes calculated at checkout</span
-          >
+          <span class="text-sm text-gray-600">Shipping & taxes calculated at checkout</span>
         </div>
 
         {/* Checkout Button */}

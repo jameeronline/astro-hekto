@@ -41,7 +41,7 @@ const ReactContactForm = () => {
         },
         'VXTHC019o49w3ab6L'
       );
-      
+
       setSubmitted(true);
       setForm({ name: '', email: '', subject: '', message: '' });
     } catch (err) {
@@ -115,21 +115,21 @@ const ReactContactForm = () => {
             className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
           />
         </div>
-        <Button 
-          type="submit" 
+        <Button
+          type="submit"
           disabled={loading}
           className="w-full bg-primary-500 text-white py-2 px-4 rounded-md hover:bg-primary-600 disabled:opacity-50"
         >
           {loading ? 'Sending...' : 'Send Message'}
         </Button>
       </form>
-      
+
       {submitted && (
         <div className="mt-4 p-3 bg-green-100 text-green-800 rounded-md" role="alert">
           Message sent successfully!
         </div>
       )}
-      
+
       {error && (
         <div className="mt-4 p-3 bg-red-100 text-red-800 rounded-md" role="alert">
           {error}

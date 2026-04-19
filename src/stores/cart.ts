@@ -1,7 +1,7 @@
-import { persistentAtom } from "@nanostores/persistent";
+import { persistentAtom } from '@nanostores/persistent';
 
 export const cartCount = persistentAtom<number>(
-  "cart:count", // storage key
+  'cart:count', // storage key
   0, // initial value
   {
     encode: JSON.stringify,

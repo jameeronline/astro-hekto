@@ -1,8 +1,8 @@
 ---
-import { Image } from "astro:assets";
-import { slugify } from "@/utils/helper";
-import { Heart, ShoppingCart, Share } from "@lucide/astro";
-import { Button } from "@/starwind/button";
+import { Image } from 'astro:assets';
+import { slugify } from '@/utils/helper';
+import { Heart, ShoppingCart, Share } from '@lucide/astro';
+import { Button } from '@/starwind/button';
 
 interface Props {
   product: {
@@ -24,7 +24,7 @@ const { title, featuredImage, price } = product;
 >
   {/* Product Image */}
   <Image
-    src={featuredImage || "/placeholder.svg"}
+    src={featuredImage || '/placeholder.svg'}
     alt={title}
     width={180}
     height={180}

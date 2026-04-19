@@ -1,13 +1,13 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 @plugin "@tailwindcss/typography";
 @plugin "@tailwindcss/forms";
 
 /* Vendor styles */
-@import "aos/dist/aos.css";
-@import "./starwind.css";
-@import "@fancyapps/ui/dist/fancybox/fancybox.css";
-@import "@fancyapps/ui/dist/carousel/carousel.css";
-@import "@fancyapps/ui/dist/carousel/carousel.thumbs.css";
+@import 'aos/dist/aos.css';
+@import './starwind.css';
+@import '@fancyapps/ui/dist/fancybox/fancybox.css';
+@import '@fancyapps/ui/dist/carousel/carousel.css';
+@import '@fancyapps/ui/dist/carousel/carousel.thumbs.css';
 
 #myCarousel {
   max-width: 640px;
@@ -25,14 +25,14 @@
 }
 
 /* Design System Tokens */
-@import "./design-system.css";
+@import './design-system.css';
 
 @theme {
   /* fonts */
   /* --font-heading: "Josefin Sans Variable", sans-serif;
   --font-body: "Lato", sans-serif; */
-  --font-heading: "IBM Plex Sans Variable", sans-serif;
-  --font-body: "IBM Plex Sans Variable", sans-serif;
+  --font-heading: 'IBM Plex Sans Variable', sans-serif;
+  --font-body: 'IBM Plex Sans Variable', sans-serif;
 
   /* screen sizes */
   --screen-xs: 375px;
@@ -226,24 +226,12 @@
   --tw-prose-hr: color-mix(in srgb, var(--color-emphasis-300) 50%, transparent);
   --tw-prose-quotes: var(--color-emphasis-700);
   --tw-prose-quote-borders: var(--color-emphasis-400);
-  --tw-prose-captions: color-mix(
-    in srgb,
-    var(--color-emphasis-600) 80%,
-    transparent
-  );
+  --tw-prose-captions: color-mix(in srgb, var(--color-emphasis-600) 80%, transparent);
   --tw-prose-code: var(--color-emphasis-800);
   --tw-prose-pre-code: var(--color-emphasis-100);
-  --tw-prose-pre-bg: color-mix(
-    in srgb,
-    var(--color-emphasis-950) 10%,
-    transparent
-  );
+  --tw-prose-pre-bg: color-mix(in srgb, var(--color-emphasis-950) 10%, transparent);
   --tw-prose-th-borders: var(--color-emphasis-300);
-  --tw-prose-td-borders: color-mix(
-    in srgb,
-    var(--color-emphasis-200) 50%,
-    transparent
-  );
+  --tw-prose-td-borders: color-mix(in srgb, var(--color-emphasis-200) 50%, transparent);
   /* Dark mode support */
   /* --tw-prose-invert-body: var(--color-tertiary-100);
   --tw-prose-invert-headings: var(--color-tertiary-50);

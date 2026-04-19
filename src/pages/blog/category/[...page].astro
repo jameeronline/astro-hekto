@@ -1,13 +1,13 @@
 ---
-import { getCollection } from "astro:content";
+import { getCollection } from 'astro:content';
 
-import BlogLayout from "@/layouts/BlogLayout.astro";
-import BlogGrid from "@/components/blocks/BlogGrid.astro";
-import PageHeader from "@/components/blocks/PageHeader.astro";
-import Paginate from "@/components/Paginate.astro";
+import BlogLayout from '@/layouts/BlogLayout.astro';
+import BlogGrid from '@/components/blocks/BlogGrid.astro';
+import PageHeader from '@/components/blocks/PageHeader.astro';
+import Paginate from '@/components/Paginate.astro';
 
 export async function getStaticPaths({ paginate }) {
-  const allPosts = await getCollection("posts");
+  const allPosts = await getCollection('posts');
   return paginate(allPosts, { pageSize: 6 });
 }
 
@@ -19,9 +19,9 @@ const noPosts = !filteredPosts || filteredPosts.length === 0;
 <BlogLayout pageTitle="Category Index">
   <PageHeader
     headerInfo={{
-      title: "Category Index",
-      caption: "Category",
-      description: "",
+      title: 'Category Index',
+      caption: 'Category',
+      description: '',
     }}
     slot="pageHeader"
   />

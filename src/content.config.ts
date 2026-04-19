@@ -1,12 +1,12 @@
 // 1. Import utilities from `astro:content`
-import { defineCollection, z as zod, reference } from "astro:content";
+import { defineCollection, z as zod, reference } from 'astro:content';
 
 // 2. Import loader(s)
-import { glob, file } from "astro/loaders";
+import { glob, file } from 'astro/loaders';
 
 // 3. Define your collection(s)
 const posts = defineCollection({
-  loader: glob({ pattern: "**/*.{md,mdx}", base: "src/content/posts" }),
+  loader: glob({ pattern: '**/*.{md,mdx}', base: 'src/content/posts' }),
   schema: ({ image }) =>
     zod.object({
       title: zod.string(),
@@ -25,7 +25,7 @@ const posts = defineCollection({
 });
 
 const productCategories = defineCollection({
-  loader: file("src/content/product-categories.json"),
+  loader: file('src/content/product-categories.json'),
   schema: zod.object({
     slug: zod.string(),
     name: zod.string(),
@@ -35,7 +35,7 @@ const productCategories = defineCollection({
 });
 
 const products = defineCollection({
-  loader: file("src/content/products.json"),
+  loader: file('src/content/products.json'),
   schema: zod.object({
     id: zod.number(),
     name: zod.string(),
@@ -44,7 +44,7 @@ const products = defineCollection({
     originalPrice: zod.string(),
     salePrice: zod.string(),
     rating: zod.number(),
-    categories: zod.array(reference("productCategories").optional()),
+    categories: zod.array(reference('productCategories').optional()),
     tags: zod.array(zod.string()),
     inStock: zod.boolean(),
     description: zod.string(),
@@ -53,8 +53,8 @@ const products = defineCollection({
 
 const furnitureCollections = defineCollection({
   loader: glob({
-    pattern: "**/*.{md,mdx}",
-    base: "src/content/products",
+    pattern: '**/*.{md,mdx}',
+    base: 'src/content/products',
   }),
   schema: ({ image }) =>
     zod.object({
@@ -64,10 +64,10 @@ const furnitureCollections = defineCollection({
       price: zod.number(),
       currency: zod.string(),
       sku: zod.string(),
-      categories: zod.array(reference("productCategories").optional()),
+      categories: zod.array(reference('productCategories').optional()),
       tags: zod.array(zod.string()),
       brand: zod.string(),
-      availability: zod.enum(["in-stock", "out-of-stock", "pre-order"]),
+      availability: zod.enum(['in-stock', 'out-of-stock', 'pre-order']),
       stock: zod.number(),
       dimensions: zod.object({
         width: zod.number(),

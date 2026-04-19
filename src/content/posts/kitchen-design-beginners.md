@@ -3,11 +3,11 @@ title: Beginner’s Guide to Kitchen Design
 author: Sarah Smith
 description: A simple, beginner-friendly guide to designing a functional and stylish kitchen that suits your lifestyle and tastes.
 cover:
-  image: "../../assets/blog/blog-3.png"
+  image: '../../assets/blog/blog-3.png'
   alt: Modern kitchen with functional design
 pubDate: 2025-05-18
-tags: ["kitchen design", "home decor", "interior design", "beginner tips"]
-categories: ["Construction"]
+tags: ['kitchen design', 'home decor', 'interior design', 'beginner tips']
+categories: ['Construction']
 featured: true
 ---
 
